@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -60px; /* 🔥 RIDOTTO SPAZIO */
+    margin-bottom: -120px; /* 🔥 super vicino */
 }
 
 .hero-content {
@@ -56,54 +56,52 @@ body {
     color:#22c55e;
 }
 
-/* CAROSELLO */
+/* CAROSELLO ULTRA FLUIDO */
 .logos-section {
-  margin-top: 10px; /* 🔥 ancora più vicino */
+  margin-top: -20px;
 }
 
 .logos-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
-}
-
-.logos-container:active {
-  cursor: grabbing;
-}
-
-/* nasconde scrollbar */
-.logos-container::-webkit-scrollbar {
-  display: none;
+  overflow: hidden;
+  position: relative;
 }
 
 .logos-track {
-  display:flex;
-  gap:40px;
-  width:max-content;
-  animation: scroll 140s linear infinite;
-}
-
-/* pausa su interazione */
-.logos-container:hover .logos-track,
-.logos-container:active .logos-track {
-  animation-play-state: paused;
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  will-change: transform;
 }
 
 .logos-track img {
-  height:55px;
-  background:white;
-  padding:10px 20px;
-  border-radius:12px;
+  height: 55px;
+  background: white;
+  padding: 12px 24px;
+  border-radius: 12px;
 }
 
-/* ANIMAZIONE */
-@keyframes scroll {
-  from {transform:translateX(0)}
-  to {transform:translateX(-50%)}
+/* fade laterale */
+.logos-container::before,
+.logos-container::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  top: 0;
+  z-index: 2;
 }
 
-/* WHATSAPP SUPERFICIE */
+.logos-container::before {
+  left: 0;
+  background: linear-gradient(to right, #050505, transparent);
+}
+
+.logos-container::after {
+  right: 0;
+  background: linear-gradient(to left, #050505, transparent);
+}
+
+/* WHATSAPP */
 .whatsapp {
     position: fixed;
     bottom: 20px;
@@ -112,7 +110,7 @@ body {
     padding: 14px;
     border-radius: 50px;
     color: black;
-    z-index: 9999; /* 🔥 SEMPRE SOPRA */
+    z-index: 999999;
     animation: glow 2s infinite;
 }
 
@@ -141,13 +139,12 @@ body {
 
 <div>
 <h1>Trasformo contatti in <span class="green">clienti reali</span></h1>
-<p>Aiuto aziende a convertire lead in vendite.</p>
+<p>Aiuto aziende, agenzie e freelance a convertire lead in vendite.</p>
 
 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Email</a>
 
-<!-- 🔥 LINKEDIN FIXATO -->
 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-LinkedIn
+Profilo LinkedIn
 </a>
 
 </div>
@@ -188,6 +185,8 @@ LinkedIn
 <!-- LOOP -->
 <img src="Realmaps.png">
 <img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
 
 </div>
 </div>
@@ -196,6 +195,63 @@ LinkedIn
 <a href="https://wa.me/393505791061" class="whatsapp">
 WhatsApp
 </a>
+
+<!-- JS ULTRA FLUIDO -->
+<script>
+const track = document.querySelector('.logos-track');
+
+let position = 0;
+let speed = 0.3;
+let isDown = false;
+let startX;
+
+// AUTO SCROLL
+function autoScroll() {
+  if (!isDown) {
+    position -= speed;
+    track.style.transform = `translateX(${position}px)`;
+
+    if (Math.abs(position) >= track.scrollWidth / 2) {
+      position = 0;
+    }
+  }
+  requestAnimationFrame(autoScroll);
+}
+autoScroll();
+
+// DESKTOP DRAG
+track.addEventListener('mousedown', (e) => {
+  isDown = true;
+  startX = e.pageX;
+});
+
+track.addEventListener('mouseup', () => isDown = false);
+track.addEventListener('mouseleave', () => isDown = false);
+
+track.addEventListener('mousemove', (e) => {
+  if (!isDown) return;
+  const x = e.pageX;
+  const walk = (x - startX) * 1.5;
+  position += walk;
+  startX = x;
+});
+
+// MOBILE TOUCH
+track.addEventListener('touchstart', (e) => {
+  isDown = true;
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchend', () => isDown = false);
+
+track.addEventListener('touchmove', (e) => {
+  if (!isDown) return;
+  const x = e.touches[0].clientX;
+  const walk = (x - startX) * 1.5;
+  position += walk;
+  startX = x;
+});
+</script>
 
 </body>
 </html>
