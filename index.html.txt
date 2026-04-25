@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -30px; /* 🔥 più vicino al carosello */
+    margin-bottom: -60px; /* 🔥 RIDOTTO SPAZIO */
 }
 
 .hero-content {
@@ -57,21 +57,34 @@ body {
 }
 
 /* CAROSELLO */
-.logos-section { margin-top:40px; }
+.logos-section {
+  margin-top: 10px; /* 🔥 ancora più vicino */
+}
 
 .logos-container {
   overflow-x: auto;
-  white-space: nowrap;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   cursor: grab;
+}
+
+.logos-container:active {
+  cursor: grabbing;
+}
+
+/* nasconde scrollbar */
+.logos-container::-webkit-scrollbar {
+  display: none;
 }
 
 .logos-track {
   display:flex;
   gap:40px;
+  width:max-content;
   animation: scroll 140s linear infinite;
 }
 
+/* pausa su interazione */
 .logos-container:hover .logos-track,
 .logos-container:active .logos-track {
   animation-play-state: paused;
@@ -84,12 +97,13 @@ body {
   border-radius:12px;
 }
 
+/* ANIMAZIONE */
 @keyframes scroll {
   from {transform:translateX(0)}
   to {transform:translateX(-50%)}
 }
 
-/* WHATSAPP */
+/* WHATSAPP SUPERFICIE */
 .whatsapp {
     position: fixed;
     bottom: 20px;
@@ -98,6 +112,7 @@ body {
     padding: 14px;
     border-radius: 50px;
     color: black;
+    z-index: 9999; /* 🔥 SEMPRE SOPRA */
     animation: glow 2s infinite;
 }
 
@@ -107,11 +122,20 @@ body {
   100% { box-shadow:0 0 10px #22c55e;}
 }
 
+/* MOBILE */
+@media(max-width: 768px){
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero">
 <div class="hero-content">
 
@@ -120,7 +144,12 @@ body {
 <p>Aiuto aziende a convertire lead in vendite.</p>
 
 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Email</a>
-<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">LinkedIn</a>
+
+<!-- 🔥 LINKEDIN FIXATO -->
+<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
+LinkedIn
+</a>
+
 </div>
 
 <div class="hero-right">
@@ -156,7 +185,7 @@ body {
 <img src="app-in-farma.png">
 <img src="ilaria.png">
 
-<!-- loop -->
+<!-- LOOP -->
 <img src="Realmaps.png">
 <img src="homei.jpeg">
 
