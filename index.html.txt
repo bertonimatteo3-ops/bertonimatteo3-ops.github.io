@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matteo Bertoni</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #050505;
+    color: white;
+}
+
+/* HERO */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -30px; /* 🔥 più vicino al carosello */
+}
+
+.hero-content {
+    display: flex;
+    gap: 60px;
+}
+
+.hero-right img {
+    width: 160px;
+    border-radius: 50%;
+    border: 3px solid #22c55e;
+}
+
+.green { color:#22c55e; }
+
+.btn {
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: #22c55e;
+    color: black;
+    border-radius: 8px;
+    display:inline-block;
+}
+
+.linkedin {
+    display:block;
+    margin-top:10px;
+    border:1px solid #22c55e;
+    padding:10px;
+    border-radius:8px;
+    color:#22c55e;
+}
+
+/* CAROSELLO */
+.logos-section { margin-top:40px; }
+
+.logos-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+.logos-track {
+  display:flex;
+  gap:40px;
+  animation: scroll 140s linear infinite;
+}
+
+.logos-container:hover .logos-track,
+.logos-container:active .logos-track {
+  animation-play-state: paused;
+}
+
+.logos-track img {
+  height:55px;
+  background:white;
+  padding:10px 20px;
+  border-radius:12px;
+}
+
+@keyframes scroll {
+  from {transform:translateX(0)}
+  to {transform:translateX(-50%)}
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #22c55e;
+    padding: 14px;
+    border-radius: 50px;
+    color: black;
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow:0 0 10px #22c55e;}
+  50% { box-shadow:0 0 25px #22c55e;}
+  100% { box-shadow:0 0 10px #22c55e;}
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+<div class="hero-content">
+
+<div>
+<h1>Trasformo contatti in <span class="green">clienti reali</span></h1>
+<p>Aiuto aziende a convertire lead in vendite.</p>
+
+<a href="mailto:bertonimatteo3@gmail.com" class="btn">Email</a>
+<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">LinkedIn</a>
+</div>
+
+<div class="hero-right">
+<img src="foto.png">
+</div>
+
+</div>
+</section>
+
+<!-- CAROSELLO -->
+<section class="logos-section">
+<div class="logos-container">
+<div class="logos-track">
+
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
+
+<!-- loop -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+
+</div>
+</div>
+</section>
+
+<a href="https://wa.me/393505791061" class="whatsapp">
+WhatsApp
+</a>
+
+</body>
+</html>
