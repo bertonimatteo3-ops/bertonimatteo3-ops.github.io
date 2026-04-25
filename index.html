@@ -110,7 +110,6 @@ body::before {
     border-radius: 8px;
     color: #22c55e;
     text-decoration: none;
-    transition: 0.3s;
 }
 
 .linkedin:hover {
@@ -148,7 +147,7 @@ body::before {
     font-weight: bold;
 }
 
-/* ===== CAROSELLO LOGHI ===== */
+/* ===== CAROSELLO PREMIUM ===== */
 
 .logos-section {
   margin-top: 20px;
@@ -164,13 +163,42 @@ body::before {
 
 .logos-container {
   overflow: hidden;
+  position: relative;
+}
+
+/* FADE LATERALI */
+.logos-container::before,
+.logos-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logos-container::before {
+  left: 0;
+  background: linear-gradient(to right, #050505, transparent);
+}
+
+.logos-container::after {
+  right: 0;
+  background: linear-gradient(to left, #050505, transparent);
 }
 
 .logos-track {
   display: flex;
   gap: 30px;
   width: max-content;
-  animation: scroll 120s linear infinite;
+  animation: scroll 140s linear infinite;
+  will-change: transform;
+}
+
+/* PAUSA SU HOVER */
+.logos-container:hover .logos-track {
+  animation-play-state: paused;
 }
 
 .logos-track img {
@@ -181,6 +209,7 @@ body::before {
   object-fit: contain;
 }
 
+/* ANIMAZIONE */
 @keyframes scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -197,8 +226,6 @@ body::before {
     border-radius: 50px;
     font-weight: bold;
     text-decoration: none;
-    box-shadow: 0 0 20px rgba(34,197,94,0.6);
-    z-index: 10;
 }
 
 /* MOBILE */
@@ -206,18 +233,6 @@ body::before {
     .hero-content {
         flex-direction: column;
         text-align: center;
-    }
-
-    .hero-left {
-        text-align: center;
-    }
-
-    .hero-buttons {
-        align-items: center;
-    }
-
-    .hero h1 {
-        font-size: 26px;
     }
 }
 
@@ -253,13 +268,12 @@ body::before {
 
 <!-- CAROSELLO -->
 <section class="logos-section">
-
-  <p class="logos-title">Hanno lavorato con me</p>
+  <p class="logos-title">Collaborazioni</p>
 
   <div class="logos-container">
     <div class="logos-track">
 
-      <!-- LOGHI -->
+      <!-- LOGHI + LOOP -->
       <img src="Realmaps.png">
       <img src="homei.jpeg">
       <img src="gruppo-soraci.jpg">
@@ -305,10 +319,9 @@ body::before {
 
     </div>
   </div>
-
 </section>
 
-<!-- RESTO IDENTICO -->
+<!-- RESTO -->
 <section class="section">
     <h2 class="green">Con chi lavoro</h2>
     <div class="grid grid-3">
