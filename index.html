@@ -1,160 +1,223 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matteo Bertoni</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matteo Bertoni</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #000000, #001f3f);
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #000000, #001f3f);
+  color: white;
+  text-align: center;
+}
 
-    h1 {
-      font-size: 42px;
-      margin-top: 60px;
-    }
+/* HERO */
+h1 {
+  font-size: 42px;
+  margin-top: 60px;
+}
 
-    h1 span {
-      color: #2ecc71;
-    }
+h1 span {
+  color: #2ecc71;
+}
 
-    p {
-      color: #aaa;
-      margin-top: 10px;
-    }
+p {
+  color: #aaa;
+}
 
-    .btn {
-      margin-top: 25px;
-      padding: 14px 28px;
-      background: #2ecc71;
-      border-radius: 8px;
-      color: black;
-      font-weight: bold;
-      display: inline-block;
-      text-decoration: none;
-    }
+.btn {
+  margin-top: 25px;
+  padding: 14px 28px;
+  background: #2ecc71;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  display: inline-block;
+  text-decoration: none;
+}
 
-    .profile {
-      margin-top: 40px;
-    }
+.profile {
+  margin-top: 40px;
+}
 
-    .profile img {
-      width: 150px;
-      border-radius: 50%;
-      border: 3px solid #2ecc71;
-    }
+.profile img {
+  width: 150px;
+  border-radius: 50%;
+  border: 3px solid #2ecc71;
+}
 
-    /* LOGHI */
-    .logos-section {
-      margin-top: 80px;
-      overflow: hidden;
-    }
+/* LOGHI */
+.logos-section {
+  margin-top: 80px;
+  position: relative;
+}
 
-    .logos-title {
-      color: #ccc;
-      margin-bottom: 30px;
-    }
+.logos-title {
+  color: #ccc;
+  margin-bottom: 30px;
+}
 
-    .logos-wrapper {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
+.logos-wrapper {
+  overflow: hidden;
+  position: relative;
+}
 
-    .logos-track {
-      display: flex;
-      gap: 40px;
-      width: max-content;
-      animation: scroll 30s linear infinite;
-    }
+/* BLUR LATERALE */
+.logos-wrapper::before,
+.logos-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
 
-    .logos-track img {
-      height: 50px;
-      background: white;
-      padding: 10px;
-      border-radius: 8px;
-      object-fit: contain;
-    }
+.logos-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #000, transparent);
+}
 
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-  </style>
+.logos-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #000, transparent);
+}
+
+/* TRACK */
+.logos-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: scroll 60s linear infinite;
+}
+
+/* LOGHI */
+.logos-track img {
+  height: 40px;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transition: transform 0.3s ease;
+}
+
+.logos-track img:hover {
+  transform: scale(1.1);
+}
+
+/* ANIMAZIONE */
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* FRECCIA */
+.scroll-btn {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: none;
+  color: white;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>Trasformo lead in <span>clienti paganti</span></h1>
-  <p>Consulente commerciale, closer e supporto marketing</p>
+<h1>Trasformo lead in <span>clienti paganti</span></h1>
+<p>Consulente commerciale, closer e supporto marketing</p>
 
-  <a class="btn" href="https://wa.me/393XXXXXXXXX">Contattami</a>
+<a class="btn" href="https://wa.me/393XXXXXXXXX">Contattami</a>
 
-  <div class="profile">
-    <img src="foto.png" alt="Matteo">
-  </div>
+<div class="profile">
+  <img src="foto.png">
+</div>
 
-  <!-- LOGHI -->
-  <div class="logos-section">
-    <p class="logos-title">
-      Collaborazioni con startup, PMI e realtà strutturate, supportando crescita, vendite e sviluppo commerciale
-    </p>
+<!-- LOGHI -->
+<div class="logos-section">
+  <p class="logos-title">
+    Collaborazioni con startup, PMI e realtà strutturate, supportando crescita, vendite e sviluppo commerciale
+  </p>
 
-    <div class="logos-wrapper">
-      <div class="logos-track">
+  <div class="logos-wrapper">
+    <div class="logos-track">
 
-        <!-- LOGHI -->
-        <img src="Realmaps.png">
-        <img src="homei.jpeg">
-        <img src="gruppo-soraci.jpg">
-        <img src="venditore-a-distanza.jpg">
-        <img src="marchi-cucine.jpg">
-        <img src="cappellini.png">
-        <img src="herbalife.png">
-        <img src="prima-scelta.png">
-        <img src="webapp.jpeg">
-        <img src="wayan.png">
-        <img src="bovolone.jpg">
-        <img src="velocissimo.webp">
-        <img src="assocral.png">
-        <img src="sales.png">
-        <img src="farmacisti.png">
-        <img src="foglietto-illustrativo.png">
-        <img src="prezzi-farmaco.png">
-        <img src="pruiti-marketing.png">
-        <img src="ilaria-andrea.png">
-        <img src="appinfarma.png">
+      <!-- LOGHI -->
+      <img src="Realmaps.png">
+      <img src="homei.jpeg">
+      <img src="gruppo-soraci.jpg">
+      <img src="venditore-a-distanza.jpg">
+      <img src="marchi-cucine.jpg">
+      <img src="cappellini.png">
+      <img src="herbalife.png">
+      <img src="prima-scelta.png">
+      <img src="webapp.jpeg">
+      <img src="wayan.png">
+      <img src="bovolone.jpg">
+      <img src="velocissimo.webp">
+      <img src="assocral.png">
+      <img src="sales.png">
+      <img src="farmacisti.png">
+      <img src="foglietto-illustrativo.png">
+      <img src="prezzi-farmaco.png">
+      <img src="pruiti-marketing.png">
+      <img src="ilaria-andrea.png">
+      <img src="appinfarma.png">
 
-        <!-- LOOP -->
-        <img src="Realmaps.png">
-        <img src="homei.jpeg">
-        <img src="gruppo-soraci.jpg">
-        <img src="venditore-a-distanza.jpg">
-        <img src="marchi-cucine.jpg">
-        <img src="cappellini.png">
-        <img src="herbalife.png">
-        <img src="prima-scelta.png">
-        <img src="webapp.jpeg">
-        <img src="wayan.png">
-        <img src="bovolone.jpg">
-        <img src="velocissimo.webp">
-        <img src="assocral.png">
-        <img src="sales.png">
-        <img src="farmacisti.png">
-        <img src="foglietto-illustrativo.png">
-        <img src="prezzi-farmaco.png">
-        <img src="pruiti-marketing.png">
-        <img src="ilaria-andrea.png">
-        <img src="appinfarma.png">
+      <!-- LOOP -->
+      <img src="Realmaps.png">
+      <img src="homei.jpeg">
+      <img src="gruppo-soraci.jpg">
+      <img src="venditore-a-distanza.jpg">
+      <img src="marchi-cucine.jpg">
+      <img src="cappellini.png">
+      <img src="herbalife.png">
+      <img src="prima-scelta.png">
+      <img src="webapp.jpeg">
+      <img src="wayan.png">
+      <img src="bovolone.jpg">
+      <img src="velocissimo.webp">
+      <img src="assocral.png">
+      <img src="sales.png">
+      <img src="farmacisti.png">
+      <img src="foglietto-illustrativo.png">
+      <img src="prezzi-farmaco.png">
+      <img src="pruiti-marketing.png">
+      <img src="ilaria-andrea.png">
+      <img src="appinfarma.png">
 
-      </div>
     </div>
   </div>
+
+  <!-- FRECCIA -->
+  <button class="scroll-btn" onclick="speedUp()">→</button>
+</div>
+
+<script>
+let track = document.querySelector('.logos-track');
+
+function speedUp() {
+  track.style.animation = "scroll 10s linear infinite";
+
+  setTimeout(() => {
+    track.style.animation = "scroll 60s linear infinite";
+  }, 3000);
+}
+</script>
 
 </body>
 </html>
