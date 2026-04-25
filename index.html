@@ -85,8 +85,7 @@ body::before {
 }
 
 .logos-container {
-  overflow-x: auto; /* 🔥 scroll naturale */
-  scroll-behavior: smooth;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -97,6 +96,7 @@ body::before {
   width: max-content;
 }
 
+/* 🔥 LOGHI PERFETTI */
 .logos-track img {
   width: 140px;
   height: 60px;
@@ -137,7 +137,7 @@ body::before {
     font-size:30px;
 }
 
-/* WHATSAPP */
+/* WHATSAPP LUMINOSO */
 .whatsapp {
     position: fixed;
     bottom: 20px;
@@ -149,6 +149,13 @@ body::before {
     font-weight: bold;
     z-index: 9999;
     text-decoration: none;
+    animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #22c55e; }
+  50% { box-shadow: 0 0 25px #22c55e; }
+  100% { box-shadow: 0 0 5px #22c55e; }
 }
 
 /* MOBILE */
@@ -197,6 +204,29 @@ Profilo LinkedIn
 <div class="logos-container" id="carousel">
 <div class="logos-track">
 
+<!-- LISTA -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
+
+<!-- DUPLICATO IDENTICO -->
 <img src="Realmaps.png">
 <img src="homei.jpeg">
 <img src="gruppo-soraci.jpg">
@@ -222,7 +252,7 @@ Profilo LinkedIn
 </div>
 </section>
 
-<!-- SEZIONI COMPLETE -->
+<!-- SEZIONI -->
 <section class="section">
 <h2 class="green">Con chi lavoro</h2>
 <div class="grid grid-3">
@@ -242,6 +272,21 @@ Profilo LinkedIn
 </section>
 
 <section class="section">
+<h2 class="green">Metodo</h2>
+<div class="card">
+<p>Analizzo il mercato e costruisco strategie per trasformare lead in clienti reali.</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="green">Esperienza reale</h2>
+<div class="card">
+<p>Ho collaborato con startup, e-commerce e aziende digitali.</p>
+<p>Trasformo contatti in fatturato concreto.</p>
+</div>
+</section>
+
+<section class="section">
 <h2 class="green">Contatti</h2>
 <p>Email: bertonimatteo3@gmail.com</p>
 <p>WhatsApp: 350 579 1061</p>
@@ -251,20 +296,32 @@ Profilo LinkedIn
 Contattami su WhatsApp
 </a>
 
-<!-- AUTO SCROLL -->
+<!-- LOOP PERFETTO -->
 <script>
 const el = document.getElementById('carousel');
 
-let speed = 0.4;
+let speed = 0.35;
+let isTouching = false;
 
 function autoScroll(){
-  el.scrollLeft += speed;
-  if(el.scrollLeft >= el.scrollWidth - el.clientWidth){
-    el.scrollLeft = 0;
+
+  if(!isTouching){
+    el.scrollLeft += speed;
+
+    const half = el.scrollWidth / 2;
+
+    if(el.scrollLeft >= half){
+      el.scrollLeft -= half;
+    }
   }
+
   requestAnimationFrame(autoScroll);
 }
+
 autoScroll();
+
+el.addEventListener('touchstart', () => isTouching = true);
+el.addEventListener('touchend', () => isTouching = false);
 </script>
 
 </body>
