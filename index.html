@@ -14,7 +14,6 @@ body {
     font-family: 'Inter', sans-serif;
     background: #050505;
     color: white;
-    position: relative;
 }
 
 /* SFONDO */
@@ -30,24 +29,24 @@ body::before {
     z-index: 0;
 }
 
-.hero, .section, .logos-section {
-    position: relative;
-    z-index: 2;
-}
-
 /* HERO */
 .hero {
+    position: relative;
+    z-index: 2;
     min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -60px;
 }
 
 .hero-content {
     display: flex;
     gap: 60px;
     align-items: center;
+}
+
+.hero-title {
+    font-size: 40px;
 }
 
 .hero-right img {
@@ -58,67 +57,53 @@ body::before {
 
 .green { color:#22c55e; }
 
-.hero-title {
-  font-size: 40px;
-}
-
 /* BOTTONI */
 .btn, .linkedin {
     margin-top: 12px;
     padding: 14px 24px;
     border-radius: 8px;
     display: inline-block;
-    text-align: center;
     width: 240px;
+    text-align: center;
 }
 
-.btn {
-    background: #22c55e;
-    color: black;
-    text-decoration: none;
-}
-
-.linkedin {
-    border: 1px solid #22c55e;
-    color: #22c55e;
-    text-decoration: none;
-}
+.btn { background:#22c55e; color:black; text-decoration:none; }
+.linkedin { border:1px solid #22c55e; color:#22c55e; text-decoration:none; }
 
 /* ===== CAROSELLO ===== */
 
 .logos-section {
   margin-top: 10px;
+  position: relative;
+  z-index: 2;
 }
 
 .logos-title {
   text-align: center;
-  color: #aaa;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+  color:#aaa;
 }
 
 .logos-container {
-  overflow: hidden;
+  overflow-x: auto; /* 🔥 scroll naturale */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* 🔥 LOGHI PERFETTI */
 .logos-track {
   display: flex;
-  gap: 24px;
+  gap: 20px;
   padding: 20px;
-  will-change: transform;
+  width: max-content;
 }
 
 .logos-track img {
-  width: 140px;      /* 🔥 larghezza fissa */
-  height: 60px;      /* 🔥 altezza fissa */
-
+  width: 140px;
+  height: 60px;
   background: white;
   padding: 10px;
   border-radius: 12px;
-
   object-fit: contain;
-  object-position: center;
-
   flex-shrink: 0;
 }
 
@@ -128,12 +113,8 @@ body::before {
     padding: 60px 20px;
     max-width: 1000px;
     margin: auto;
-}
-
-.card {
-    background: rgba(15, 23, 42, 0.8);
-    padding: 25px;
-    border-radius: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .grid {
@@ -143,6 +124,17 @@ body::before {
 
 .grid-3 {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.stat {
+    color:#22c55e;
+    font-size:30px;
 }
 
 /* WHATSAPP */
@@ -160,21 +152,10 @@ body::before {
 }
 
 /* MOBILE */
-@media(max-width: 768px){
-
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 26px;
-    }
-
-    .hero-title .green {
-        display: block;
-        text-align: center;
-    }
+@media(max-width:768px){
+  .hero-content { flex-direction:column; text-align:center; }
+  .hero-title { font-size:26px; }
+  .hero-title .green { display:block; }
 }
 
 </style>
@@ -191,7 +172,7 @@ body::before {
 Trasformo contatti in <span class="green">clienti reali</span>
 </h1>
 
-<p>Aiuto aziende a convertire lead in vendite.</p>
+<p>Aiuto aziende, agenzie e freelance a convertire lead in vendite.</p>
 
 <a href="mailto:bertonimatteo3@gmail.com" class="btn">
 Parliamone via email
@@ -200,7 +181,6 @@ Parliamone via email
 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
 Profilo LinkedIn
 </a>
-
 </div>
 
 <div class="hero-right">
@@ -214,63 +194,77 @@ Profilo LinkedIn
 <section class="logos-section">
 <p class="logos-title">Collaborazioni</p>
 
-<div class="logos-container">
+<div class="logos-container" id="carousel">
 <div class="logos-track">
 
-<!-- LISTA COMPLETA DUPLICATA -->
-<img src="Realmaps.png"><img src="homei.jpeg"><img src="gruppo-soraci.jpg">
-<img src="venditore-a-distanza.jpg"><img src="marchi-cucine.jpg"><img src="cappellini.png">
-<img src="herbalife.png"><img src="prima-scelta.png"><img src="webapp.jpeg">
-<img src="wayan.png"><img src="verona.jpg"><img src="velocissimo.webp">
-<img src="assocral.png"><img src="sales.png"><img src="farmacisti.png">
-<img src="prezzi-farmaco.png"><img src="foglietto-illustrativo.png">
-<img src="pruiti-marketing.png"><img src="app-in-farma.png"><img src="ilaria.png">
-
-<!-- DUPLICATO -->
-<img src="Realmaps.png"><img src="homei.jpeg"><img src="gruppo-soraci.jpg">
-<img src="venditore-a-distanza.jpg"><img src="marchi-cucine.jpg"><img src="cappellini.png">
-<img src="herbalife.png"><img src="prima-scelta.png"><img src="webapp.jpeg">
-<img src="wayan.png"><img src="verona.jpg"><img src="velocissimo.webp">
-<img src="assocral.png"><img src="sales.png"><img src="farmacisti.png">
-<img src="prezzi-farmaco.png"><img src="foglietto-illustrativo.png">
-<img src="pruiti-marketing.png"><img src="app-in-farma.png"><img src="ilaria.png">
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
 
 </div>
 </div>
 </section>
 
-<!-- SEZIONI -->
+<!-- SEZIONI COMPLETE -->
 <section class="section">
 <h2 class="green">Con chi lavoro</h2>
 <div class="grid grid-3">
-<div class="card"><h3>Aziende</h3><p>che vogliono aumentare vendite e conversioni</p></div>
-<div class="card"><h3>Agenzie marketing</h3><p>che cercano un closer</p></div>
+<div class="card"><h3>Aziende</h3><p>che vogliono aumentare vendite</p></div>
+<div class="card"><h3>Agenzie</h3><p>che cercano closer</p></div>
 <div class="card"><h3>Freelance</h3><p>che vogliono scalare</p></div>
 </div>
+</section>
+
+<section class="section">
+<h2 class="green">Numeri</h2>
+<div class="grid grid-3">
+<div class="card"><div class="stat">45%</div><p>clienti ricorrenti</p></div>
+<div class="card"><div class="stat">+20%</div><p>ROI medio</p></div>
+<div class="card"><div class="stat">100+</div><p>clienti</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="green">Contatti</h2>
+<p>Email: bertonimatteo3@gmail.com</p>
+<p>WhatsApp: 350 579 1061</p>
 </section>
 
 <a href="https://wa.me/393505791061" class="whatsapp">
 Contattami su WhatsApp
 </a>
 
-<!-- JS -->
+<!-- AUTO SCROLL -->
 <script>
-const track = document.querySelector('.logos-track');
+const el = document.getElementById('carousel');
 
-let pos = 0;
-let speed = 0.05;
+let speed = 0.4;
 
-function animate(){
-  pos -= speed;
-
-  const half = track.scrollWidth / 2;
-  if(pos <= -half) pos += half;
-
-  track.style.transform = `translateX(${pos}px)`;
-  requestAnimationFrame(animate);
+function autoScroll(){
+  el.scrollLeft += speed;
+  if(el.scrollLeft >= el.scrollWidth - el.clientWidth){
+    el.scrollLeft = 0;
+  }
+  requestAnimationFrame(autoScroll);
 }
-
-animate();
+autoScroll();
 </script>
 
 </body>
