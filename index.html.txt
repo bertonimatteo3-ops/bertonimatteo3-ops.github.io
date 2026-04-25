@@ -22,7 +22,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -120px; /* 🔥 super vicino */
+    margin-bottom: -90px; /* 🔥 ridotto ma stabile */
 }
 
 .hero-content {
@@ -54,11 +54,12 @@ body {
     padding:10px;
     border-radius:8px;
     color:#22c55e;
+    text-decoration:none;
 }
 
-/* CAROSELLO ULTRA FLUIDO */
+/* CAROSELLO */
 .logos-section {
-  margin-top: -20px;
+  margin-top: -10px;
 }
 
 .logos-container {
@@ -80,7 +81,7 @@ body {
   border-radius: 12px;
 }
 
-/* fade laterale */
+/* fade */
 .logos-container::before,
 .logos-container::after {
   content: "";
@@ -89,6 +90,7 @@ body {
   height: 100%;
   top: 0;
   z-index: 2;
+  pointer-events: none;
 }
 
 .logos-container::before {
@@ -187,6 +189,14 @@ Profilo LinkedIn
 <img src="homei.jpeg">
 <img src="gruppo-soraci.jpg">
 <img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
 
 </div>
 </div>
@@ -201,11 +211,11 @@ WhatsApp
 const track = document.querySelector('.logos-track');
 
 let position = 0;
-let speed = 0.3;
+let speed = 0.4;
 let isDown = false;
 let startX;
 
-// AUTO SCROLL
+// autoplay
 function autoScroll() {
   if (!isDown) {
     position -= speed;
@@ -219,7 +229,7 @@ function autoScroll() {
 }
 autoScroll();
 
-// DESKTOP DRAG
+// drag desktop
 track.addEventListener('mousedown', (e) => {
   isDown = true;
   startX = e.pageX;
@@ -236,7 +246,7 @@ track.addEventListener('mousemove', (e) => {
   startX = x;
 });
 
-// MOBILE TOUCH
+// touch mobile
 track.addEventListener('touchstart', (e) => {
   isDown = true;
   startX = e.touches[0].clientX;
