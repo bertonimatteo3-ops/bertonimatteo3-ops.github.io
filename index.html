@@ -17,7 +17,7 @@ body {
     position: relative;
 }
 
-/* SFONDO MAC */
+/* SFONDO */
 body::before {
     content: "";
     position: fixed;
@@ -38,7 +38,7 @@ body::before {
 
 /* HERO */
 .hero {
-    min-height: 80vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,28 +59,35 @@ body::before {
 
 .green { color:#22c55e; }
 
-.btn {
-    margin-top: 20px;
+/* TITOLO */
+.hero-title {
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+/* BOTTONI */
+.btn, .linkedin {
+    margin-top: 12px;
     padding: 14px 24px;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: center;
+    width: 240px;
+}
+
+.btn {
     background: #22c55e;
     color: black;
-    border-radius: 8px;
-    display:inline-block;
     text-decoration: none;
 }
 
 .linkedin {
-    display:block;
-    margin-top:10px;
-    border:1px solid #22c55e;
-    padding:10px;
-    border-radius:8px;
-    color:#22c55e;
-    text-decoration:none;
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    text-decoration: none;
 }
 
-/* ===== CAROSELLO ===== */
-
+/* CAROSELLO */
 .logos-section {
   margin-top: 10px;
 }
@@ -165,10 +172,21 @@ body::before {
 
 /* MOBILE */
 @media(max-width: 768px){
+
     .hero-content {
         flex-direction: column;
         text-align: center;
     }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+    .hero-title .green {
+        display: block;
+        text-align: center;
+    }
+
 }
 
 </style>
@@ -181,7 +199,9 @@ body::before {
 <div class="hero-content">
 
 <div>
-<h1>Trasformo contatti in <span class="green">clienti reali</span></h1>
+<h1 class="hero-title">
+Trasformo contatti in <span class="green">clienti reali</span>
+</h1>
 
 <p>Aiuto aziende, agenzie e freelance a convertire lead in vendite.</p>
 
@@ -236,7 +256,7 @@ Profilo LinkedIn
 
 </section>
 
-<!-- SEZIONI -->
+<!-- SEZIONI (invariate) -->
 <section class="section">
 <h2 class="green">Con chi lavoro</h2>
 <div class="grid grid-3">
@@ -286,6 +306,24 @@ Profilo LinkedIn
 <a href="https://wa.me/393505791061" target="_blank" class="whatsapp">
 Contattami su WhatsApp
 </a>
+
+<!-- AUTO SCROLL FLUIDO -->
+<script>
+const container = document.querySelector('.logos-container');
+let speed = 0.3;
+let isTouching = false;
+
+function autoScroll(){
+  if(!isTouching){
+    container.scrollLeft += speed;
+  }
+  requestAnimationFrame(autoScroll);
+}
+autoScroll();
+
+container.addEventListener('touchstart', () => isTouching = true);
+container.addEventListener('touchend', () => isTouching = false);
+</script>
 
 </body>
 </html>
