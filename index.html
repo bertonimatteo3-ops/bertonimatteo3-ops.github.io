@@ -1,187 +1,160 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matteo Bertoni</title>
 
-<title>Matteo Bertoni</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #000000, #001f3f);
+      color: white;
+      text-align: center;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: radial-gradient(circle at center, #001a1a, #000);
-  color: white;
-  text-align: center;
-}
+    h1 {
+      font-size: 42px;
+      margin-top: 60px;
+    }
 
-/* HERO */
-.hero {
-  padding: 80px 20px 40px;
-}
+    h1 span {
+      color: #2ecc71;
+    }
 
-h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
+    p {
+      color: #aaa;
+      margin-top: 10px;
+    }
 
-.highlight {
-  color: #2ecc71;
-}
+    .btn {
+      margin-top: 25px;
+      padding: 14px 28px;
+      background: #2ecc71;
+      border-radius: 8px;
+      color: black;
+      font-weight: bold;
+      display: inline-block;
+      text-decoration: none;
+    }
 
-p.subtitle {
-  color: #aaa;
-  margin-bottom: 30px;
-}
+    .profile {
+      margin-top: 40px;
+    }
 
-button {
-  background: #2ecc71;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-}
+    .profile img {
+      width: 150px;
+      border-radius: 50%;
+      border: 3px solid #2ecc71;
+    }
 
-button:hover {
-  opacity: 0.9;
-}
+    /* LOGHI */
+    .logos-section {
+      margin-top: 80px;
+      overflow: hidden;
+    }
 
-.profile {
-  margin-top: 30px;
-}
+    .logos-title {
+      color: #ccc;
+      margin-bottom: 30px;
+    }
 
-.profile img {
-  width: 160px;
-  border-radius: 50%;
-  border: 3px solid #2ecc71;
-}
+    .logos-wrapper {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
 
-/* LOGHI */
-.logos-wrapper {
-  overflow: hidden;
-  margin-top: 60px;
-  position: relative;
-}
+    .logos-track {
+      display: flex;
+      gap: 40px;
+      width: max-content;
+      animation: scroll 30s linear infinite;
+    }
 
-/* fade laterale */
-.logos-wrapper::before,
-.logos-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 120px;
-  height: 100%;
-  z-index: 2;
-}
+    .logos-track img {
+      height: 50px;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
 
-.logos-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, #000, transparent);
-}
-
-.logos-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, #000, transparent);
-}
-
-.logos-track {
-  display: flex;
-  gap: 50px;
-  width: max-content;
-  animation: scroll 30s linear infinite;
-}
-
-.logos-track:hover {
-  animation-play-state: paused;
-}
-
-.logos-track img {
-  height: 60px;
-  max-width: 140px;
-  object-fit: contain;
-
-  background: white;
-  padding: 12px;
-  border-radius: 12px;
-
-  transition: 0.3s;
-}
-
-.logos-track img:hover {
-  transform: scale(1.1);
-}
-
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-</style>
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="hero">
-  <h1>Trasformo lead in <span class="highlight">clienti paganti</span></h1>
-  <p class="subtitle">Consulente commerciale, closer e supporto marketing</p>
+  <h1>Trasformo lead in <span>clienti paganti</span></h1>
+  <p>Consulente commerciale, closer e supporto marketing</p>
 
-  <button onclick="window.location.href='mailto:bertonimatteo3@gmail.com'">
-    Contattami
-  </button>
+  <a class="btn" href="https://wa.me/393XXXXXXXXX">Contattami</a>
 
   <div class="profile">
-    <img src="foto.png">
+    <img src="foto.png" alt="Matteo">
   </div>
-</div>
 
-<p style="color:#aaa; margin-top:40px;">
-  Collaborazioni con startup, PMI e realtà strutturate, supportando crescita, vendite e sviluppo commerciale
-</p>
+  <!-- LOGHI -->
+  <div class="logos-section">
+    <p class="logos-title">
+      Collaborazioni con startup, PMI e realtà strutturate, supportando crescita, vendite e sviluppo commerciale
+    </p>
 
-<div class="logos-wrapper">
-  <div class="logos-track">
+    <div class="logos-wrapper">
+      <div class="logos-track">
 
-    <img src="Realmaps.png">
-    <img src="homei.jpeg">
-    <img src="gruppo-soraci.jpg">
-    <img src="venditore-a-distanza.jpg">
-    <img src="marchi-cucine.jpg">
-    <img src="cappellini.png">
-    <img src="herbalife.png">
-    <img src="prima-scelta.png">
-    <img src="webapp.jpeg">
-    <img src="wayan.png">
-    <img src="bovolone.jpg">
-    <img src="velocissimo.webp">
-    <img src="assocral.png">
-    <img src="sales.png">
-    <img src="farmacisti.png">
-    <img src="foglietto-illustrativo.png">
-    <img src="prezzi-farmaco.png">
-    <img src="pruiti-marketing.png">
+        <!-- LOGHI -->
+        <img src="Realmaps.png">
+        <img src="homei.jpeg">
+        <img src="gruppo-soraci.jpg">
+        <img src="venditore-a-distanza.jpg">
+        <img src="marchi-cucine.jpg">
+        <img src="cappellini.png">
+        <img src="herbalife.png">
+        <img src="prima-scelta.png">
+        <img src="webapp.jpeg">
+        <img src="wayan.png">
+        <img src="bovolone.jpg">
+        <img src="velocissimo.webp">
+        <img src="assocral.png">
+        <img src="sales.png">
+        <img src="farmacisti.png">
+        <img src="foglietto-illustrativo.png">
+        <img src="prezzi-farmaco.png">
+        <img src="pruiti-marketing.png">
+        <img src="ilaria-andrea.png">
+        <img src="appinfarma.png">
 
-    <!-- LOOP -->
-    <img src="Realmaps.png">
-    <img src="homei.jpeg">
-    <img src="gruppo-soraci.jpg">
-    <img src="venditore-a-distanza.jpg">
-    <img src="marchi-cucine.jpg">
-    <img src="cappellini.png">
-    <img src="herbalife.png">
-    <img src="prima-scelta.png">
-    <img src="webapp.jpeg">
-    <img src="wayan.png">
-    <img src="bovolone.jpg">
-    <img src="velocissimo.webp">
-    <img src="assocral.png">
-    <img src="sales.png">
-    <img src="farmacisti.png">
-    <img src="foglietto-illustrativo.png">
-    <img src="prezzi-farmaco.png">
-    <img src="pruiti-marketing.png">
+        <!-- LOOP -->
+        <img src="Realmaps.png">
+        <img src="homei.jpeg">
+        <img src="gruppo-soraci.jpg">
+        <img src="venditore-a-distanza.jpg">
+        <img src="marchi-cucine.jpg">
+        <img src="cappellini.png">
+        <img src="herbalife.png">
+        <img src="prima-scelta.png">
+        <img src="webapp.jpeg">
+        <img src="wayan.png">
+        <img src="bovolone.jpg">
+        <img src="velocissimo.webp">
+        <img src="assocral.png">
+        <img src="sales.png">
+        <img src="farmacisti.png">
+        <img src="foglietto-illustrativo.png">
+        <img src="prezzi-farmaco.png">
+        <img src="pruiti-marketing.png">
+        <img src="ilaria-andrea.png">
+        <img src="appinfarma.png">
 
+      </div>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
