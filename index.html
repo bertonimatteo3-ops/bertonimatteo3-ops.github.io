@@ -85,7 +85,8 @@ body::before {
     text-decoration: none;
 }
 
-/* CAROSELLO */
+/* ===== CAROSELLO PREMIUM ===== */
+
 .logos-section {
   margin-top: 10px;
 }
@@ -97,23 +98,77 @@ body::before {
   font-size: 14px;
 }
 
+/* CONTAINER */
 .logos-container {
   overflow: hidden;
   position: relative;
 }
 
+/* TRACK */
 .logos-track {
   display: flex;
-  gap: 30px;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 30px;
   will-change: transform;
 }
 
+/* LOGHI */
 .logos-track img {
-  height: 55px;
+  height: 50px;
+  width: 150px;
+
   background: white;
-  padding: 12px 24px;
-  border-radius: 12px;
+  padding: 12px 18px;
+  border-radius: 14px;
+
+  object-fit: contain;
+  object-position: center;
+
   flex-shrink: 0;
+
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* HOVER DESKTOP */
+@media (hover: hover) {
+  .logos-track img {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .logos-track img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  }
+}
+
+/* MOBILE */
+@media(max-width: 768px){
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 26px;
+    }
+
+    .hero-title .green {
+        display: block;
+        text-align: center;
+    }
+
+    .logos-track {
+      gap: 18px;
+      padding: 15px 20px;
+    }
+
+    .logos-track img {
+      width: 130px;
+      height: 45px;
+      padding: 10px 14px;
+    }
 }
 
 /* SEZIONI */
@@ -166,25 +221,6 @@ body::before {
   100% { box-shadow:0 0 10px #22c55e;}
 }
 
-/* MOBILE */
-@media(max-width: 768px){
-
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-title {
-        font-size: 26px;
-    }
-
-    .hero-title .green {
-        display: block;
-        text-align: center;
-    }
-
-}
-
 </style>
 </head>
 
@@ -208,6 +244,7 @@ Parliamone via email
 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
 Profilo LinkedIn
 </a>
+
 </div>
 
 <div class="hero-right">
@@ -260,7 +297,7 @@ Profilo LinkedIn
 </div>
 </section>
 
-<!-- SEZIONI RIPRISTINATE -->
+<!-- SEZIONI -->
 <section class="section">
 <h2 class="green">Con chi lavoro</h2>
 <div class="grid grid-3">
@@ -296,8 +333,8 @@ Profilo LinkedIn
 <section class="section">
 <h2 class="green">Esperienza reale</h2>
 <div class="card">
-<p>Collaboro con startup, e-commerce, aziende digitali, PMI e multinazionali.</p>
-<p>Obiettivo: trasformare contatti in fatturato reale.</p>
+<p>Ho collaborato con startup, e-commerce e aziende digitali.</p>
+<p>Trasformo contatti in fatturato reale.</p>
 </div>
 </section>
 
@@ -311,57 +348,87 @@ Profilo LinkedIn
 Contattami su WhatsApp
 </a>
 
-<!-- JS CAROSELLO -->
+<!-- JS ULTRA SMOOTH -->
 <script>
 const track = document.querySelector('.logos-track');
 
 let pos = 0;
-let speed = 0.4;
+let velocity = 0;
 let isDragging = false;
 let startX = 0;
-let velocity = 0;
+let lastX = 0;
+let autoSpeed = 0.2;
+
+const friction = 0.95;
+const maxSpeed = 4;
 
 function animate() {
+
   if (!isDragging) {
-    pos -= speed;
-  } else {
-    pos += velocity;
-    velocity *= 0.95;
+    velocity -= autoSpeed;
   }
 
-  if (Math.abs(pos) >= track.scrollWidth / 2) {
-    pos = 0;
+  pos += velocity;
+  velocity *= friction;
+
+  if (velocity > maxSpeed) velocity = maxSpeed;
+  if (velocity < -maxSpeed) velocity = -maxSpeed;
+
+  const halfWidth = track.scrollWidth / 2;
+
+  if (pos <= -halfWidth) {
+    pos += halfWidth;
+  }
+
+  if (pos >= 0) {
+    pos -= halfWidth;
   }
 
   track.style.transform = `translateX(${pos}px)`;
+
   requestAnimationFrame(animate);
 }
+
 animate();
 
 track.addEventListener('touchstart', e => {
   isDragging = true;
   startX = e.touches[0].clientX;
+  lastX = startX;
+  velocity = 0;
 });
 
 track.addEventListener('touchmove', e => {
   const x = e.touches[0].clientX;
-  velocity = (x - startX) * 0.5;
-  startX = x;
+  const delta = x - lastX;
+
+  velocity = delta * 0.6;
+  lastX = x;
 });
 
-track.addEventListener('touchend', () => isDragging = false);
+track.addEventListener('touchend', () => {
+  isDragging = false;
+});
 
 track.addEventListener('mousedown', e => {
   isDragging = true;
   startX = e.clientX;
+  lastX = startX;
+  velocity = 0;
 });
 
-window.addEventListener('mouseup', () => isDragging = false);
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+});
 
 window.addEventListener('mousemove', e => {
   if (!isDragging) return;
-  velocity = (e.clientX - startX) * 0.5;
-  startX = e.clientX;
+
+  const x = e.clientX;
+  const delta = x - lastX;
+
+  velocity = delta * 0.6;
+  lastX = x;
 });
 </script>
 
