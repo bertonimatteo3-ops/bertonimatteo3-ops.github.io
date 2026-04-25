@@ -300,12 +300,14 @@ Clicca qui per WhatsApp (rispondo entro 24h)
 <script>
 const el = document.getElementById('carousel');
 
-let speed = 0.35;
+let speed = 0.6; // 🔥 più visibile su desktop
 let isTouching = false;
+let isHovering = false;
 
+// LOOP + AUTO SCROLL
 function autoScroll(){
 
-  if(!isTouching){
+  if(!isTouching && !isHovering){
     el.scrollLeft += speed;
 
     const half = el.scrollWidth / 2;
@@ -320,8 +322,14 @@ function autoScroll(){
 
 autoScroll();
 
+
+// MOBILE TOUCH
 el.addEventListener('touchstart', () => isTouching = true);
 el.addEventListener('touchend', () => isTouching = false);
+
+// DESKTOP HOVER (pausa quando mouse sopra)
+el.addEventListener('mouseenter', () => isHovering = true);
+el.addEventListener('mouseleave', () => isHovering = false);
 </script>
 
 </body>
