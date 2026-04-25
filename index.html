@@ -175,7 +175,44 @@ body::before {
   .hero-title { font-size:26px; }
   .hero-title .green { display:block; }
 }
+/* MOBILE */
+@media(max-width:768px){
+  ...
+}
 
+/* ===== MICRO INTERAZIONI PREMIUM ===== */
+
+.btn,
+.linkedin,
+.card,
+.logos-track img {
+  transition: all 0.25s ease;
+}
+
+@media (hover: hover) {
+
+  .btn:hover,
+  .linkedin:hover,
+  .card:hover,
+  .logos-track img:hover {
+
+    transform: translateY(-5px) scale(1.03);
+
+    box-shadow: 
+      0 10px 25px rgba(0,0,0,0.3),
+      0 0 20px rgba(34,197,94,0.4);
+
+  }
+}
+
+.btn:active,
+.linkedin:active,
+.card:active,
+.logos-track img:active {
+
+  transform: scale(0.97);
+
+}
 </style>
 </head>
 
