@@ -26,11 +26,10 @@ body::before {
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.12;
+    opacity: 0.18; /* 🔥 più visibile */
     z-index: 0;
 }
 
-/* CONTENUTO */
 .hero, .section, .logos-section {
     position: relative;
     z-index: 2;
@@ -59,7 +58,6 @@ body::before {
 
 .green { color:#22c55e; }
 
-/* TITOLO */
 .hero-title {
   font-size: 40px;
   line-height: 1.2;
@@ -100,16 +98,14 @@ body::before {
 }
 
 .logos-container {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  overflow: hidden;
+  position: relative;
 }
 
 .logos-track {
   display: flex;
   gap: 30px;
-  padding: 10px 20px;
+  will-change: transform;
 }
 
 .logos-track img {
@@ -194,7 +190,6 @@ body::before {
 
 <body>
 
-<!-- HERO -->
 <section class="hero">
 <div class="hero-content">
 
@@ -222,14 +217,13 @@ Profilo LinkedIn
 </div>
 </section>
 
-<!-- CAROSELLO -->
 <section class="logos-section">
-
 <p class="logos-title">Collaborazioni</p>
 
 <div class="logos-container">
 <div class="logos-track">
 
+<!-- LOGHI -->
 <img src="Realmaps.png">
 <img src="homei.jpeg">
 <img src="gruppo-soraci.jpg">
@@ -251,78 +245,76 @@ Profilo LinkedIn
 <img src="app-in-farma.png">
 <img src="ilaria.png">
 
+<!-- DUPLICATO (LOOP) -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+
 </div>
 </div>
-
 </section>
 
-<!-- SEZIONI (invariate) -->
-<section class="section">
-<h2 class="green">Con chi lavoro</h2>
-<div class="grid grid-3">
-<div class="card"><h3>Aziende</h3><p>che vogliono aumentare vendite e conversioni</p></div>
-<div class="card"><h3>Agenzie marketing</h3><p>che cercano un closer o supporto commerciale</p></div>
-<div class="card"><h3>Freelance</h3><p>che vogliono collaborare o scalare il proprio business</p></div>
-</div>
-</section>
-
-<section class="section">
-<h2 class="green">Come ti posso aiutare</h2>
-<div class="grid grid-3">
-<div class="card"><h3>Closing</h3><p>Conversione lead in clienti</p></div>
-<div class="card"><h3>Consulenza</h3><p>Strategia commerciale</p></div>
-<div class="card"><h3>Marketing & Copy</h3><p>Supporto contenuti</p></div>
-</div>
-</section>
-
-<section class="section">
-<h2 class="green">Numeri</h2>
-<div class="grid grid-3">
-<div class="card"><div class="stat">45%</div><p>clienti ricorrenti generati</p></div>
-<div class="card"><div class="stat">+20%</div><p>ROI medio campagne marketing</p></div>
-<div class="card"><div class="stat">100+</div><p>clienti sviluppati da zero</p></div>
-</div>
-</section>
-
-<section class="section">
-<h2 class="green">Metodo</h2>
-<div class="card"><p>Analizzo il mercato e costruisco strategie per trasformare lead in clienti.</p></div>
-</section>
-
-<section class="section">
-<h2 class="green">Esperienza reale</h2>
-<div class="card">
-<p>Ho collaborato con startup, e-commerce e aziende digitali.</p>
-<p>Trasformo contatti in fatturato reale.</p>
-</div>
-</section>
-
-<section class="section">
-<h2 class="green">Contatti</h2>
-<p>Email: bertonimatteo3@gmail.com</p>
-<p>WhatsApp: 350 579 1061</p>
-</section>
-
-<a href="https://wa.me/393505791061" target="_blank" class="whatsapp">
-Contattami su WhatsApp
-</a>
-
-<!-- AUTO SCROLL FLUIDO -->
+<!-- JS FLUIDO -->
 <script>
-const container = document.querySelector('.logos-container');
-let speed = 0.3;
-let isTouching = false;
+const track = document.querySelector('.logos-track');
 
-function autoScroll(){
-  if(!isTouching){
-    container.scrollLeft += speed;
+let pos = 0;
+let speed = 0.4;
+let isDragging = false;
+let startX = 0;
+let velocity = 0;
+
+function animate() {
+  if (!isDragging) {
+    pos -= speed;
+  } else {
+    pos += velocity;
+    velocity *= 0.95;
   }
-  requestAnimationFrame(autoScroll);
-}
-autoScroll();
 
-container.addEventListener('touchstart', () => isTouching = true);
-container.addEventListener('touchend', () => isTouching = false);
+  if (Math.abs(pos) >= track.scrollWidth / 2) {
+    pos = 0;
+  }
+
+  track.style.transform = `translateX(${pos}px)`;
+  requestAnimationFrame(animate);
+}
+animate();
+
+track.addEventListener('touchstart', e => {
+  isDragging = true;
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchmove', e => {
+  const x = e.touches[0].clientX;
+  velocity = (x - startX) * 0.5;
+  startX = x;
+});
+
+track.addEventListener('touchend', () => isDragging = false);
+
+track.addEventListener('mousedown', e => {
+  isDragging = true;
+  startX = e.clientX;
+});
+
+window.addEventListener('mouseup', () => isDragging = false);
+
+window.addEventListener('mousemove', e => {
+  if (!isDragging) return;
+  velocity = (e.clientX - startX) * 0.5;
+  startX = e.clientX;
+});
 </script>
 
 </body>
