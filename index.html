@@ -44,7 +44,7 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: -40px;
+    margin-bottom: -80px;
 }
 
 .hero-content {
@@ -75,6 +75,7 @@ body::before {
 
 .hero h1 {
     font-size: 40px;
+    line-height: 1.2;
 }
 
 .hero p {
@@ -93,6 +94,12 @@ body::before {
     color: black;
     text-decoration: none;
     border-radius: 8px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
 }
 
 .linkedin {
@@ -103,44 +110,12 @@ body::before {
     border-radius: 8px;
     color: #22c55e;
     text-decoration: none;
+    transition: 0.3s;
 }
 
-/* 🔥 CAROSELLO */
-.logos-section {
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-.logos-title {
-  text-align: center;
-  color: #aaa;
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
-.logos-container {
-  overflow: hidden;
-}
-
-.logos-track {
-  display: flex;
-  gap: 30px;
-  width: max-content;
-  animation: scroll 120s linear infinite;
-}
-
-.logos-track img {
-  height: 45px;
-  background: white;
-  padding: 10px 20px;
-  border-radius: 12px;
-  object-fit: contain;
-  filter: none !important;
-}
-
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.linkedin:hover {
+    background: #22c55e;
+    color: black;
 }
 
 /* SEZIONI */
@@ -170,6 +145,60 @@ body::before {
 .stat {
     font-size: 30px;
     color: #22c55e;
+    font-weight: bold;
+}
+
+/* ===== CAROSELLO LOGHI ===== */
+
+.logos-section {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.logos-title {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.logos-container {
+  overflow: hidden;
+}
+
+.logos-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scroll 120s linear infinite;
+}
+
+.logos-track img {
+  height: 45px;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #22c55e;
+    color: black;
+    padding: 14px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(34,197,94,0.6);
+    z-index: 10;
 }
 
 /* MOBILE */
@@ -210,18 +239,9 @@ body::before {
             </p>
 
             <div class="hero-buttons">
-                <a href="mailto:bertonimatteo3@gmail.com" class="btn">
-                    Parliamone via email
-                </a>
-
-                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-                    Profilo LinkedIn
-                </a>
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn">Parliamone via email</a>
+                <a href="https://www.linkedin.com" target="_blank" class="linkedin">Profilo LinkedIn</a>
             </div>
-
-            <p style="margin-top:15px; opacity:0.8;">
-                oppure scrivimi direttamente su WhatsApp 👇
-            </p>
         </div>
 
         <div class="hero-right">
@@ -231,60 +251,58 @@ body::before {
     </div>
 </section>
 
-<!-- 🔥 CAROSELLO LOGHI -->
+<!-- CAROSELLO -->
 <section class="logos-section">
+    <p class="logos-title">Hanno lavorato con me</p>
 
-  <p class="logos-title">
-    Collaborazioni con startup, PMI e realtà strutturate, supportando crescita, vendite e sviluppo commerciale
-  </p>
+    <div class="logos-container">
+        <div class="logos-track">
 
-  <div class="logos-container">
-    <div class="logos-track">
+            <!-- LOGHI -->
+            <img src="Realmaps.png">
+            <img src="homei.jpeg">
+            <img src="gruppo-soraci.jpg">
+            <img src="venditore-a-distanza.jpg">
+            <img src="marchi-cucine.jpg">
+            <img src="cappellini.png">
+            <img src="herbalife.png">
+            <img src="prima-scelta.png">
+            <img src="webapp.jpeg">
+            <img src="wayan.png">
+            <img src="verona.jpg">
+            <img src="velocissimo.webp">
+            <img src="assocral.png">
+            <img src="sales.png">
+            <img src="farmacisti.png">
+            <img src="prezzi-farmaco.png">
+            <img src="foglio-illustrativo.png">
+            <img src="pruiti-marketing.png">
 
-      <img src="Realmaps.png">
-      <img src="homei.jpeg">
-      <img src="gruppo-soraci.jpg">
-      <img src="venditore-a-distanza.jpg">
-      <img src="marchi-cucine.jpg">
-      <img src="cappellini.png">
-      <img src="herbalife.png">
-      <img src="prima-scelta.png">
-      <img src="webapp.jpeg">
-      <img src="wayan.png">
-      <img src="bovolone.jpg">
-      <img src="velocissimo.webp">
-      <img src="assocral.png">
-      <img src="sales.png">
-      <img src="farmacisti.png">
-      <img src="foglietto-illustrativo.png">
-      <img src="prezzi-farmaco.png">
-      <img src="pruiti-marketing.png">
-      <img src="ilaria-andrea.png">
-      <img src="appinfarma.png">
+            <!-- LOOP -->
+            <img src="Realmaps.png">
+            <img src="homei.jpeg">
+            <img src="gruppo-soraci.jpg">
+            <img src="venditore-a-distanza.jpg">
+            <img src="marchi-cucine.jpg">
+            <img src="cappellini.png">
+            <img src="herbalife.png">
+            <img src="prima-scelta.png">
+            <img src="webapp.jpeg">
+            <img src="wayan.png">
+            <img src="verona.jpg">
+            <img src="velocissimo.webp">
+            <img src="assocral.png">
+            <img src="sales.png">
+            <img src="farmacisti.png">
+            <img src="prezzi-farmaco.png">
+            <img src="foglio-illustrativo.png">
+            <img src="pruiti-marketing.png">
 
-      <!-- LOOP -->
-      <img src="Realmaps.png">
-      <img src="homei.jpeg">
-      <img src="gruppo-soraci.jpg">
-      <img src="venditore-a-distanza.jpg">
-      <img src="marchi-cucine.jpg">
-      <img src="cappellini.png">
-      <img src="herbalife.png">
-      <img src="prima-scelta.png">
-      <img src="webapp.jpeg">
-      <img src="wayan.png">
-      <img src="bovolone.jpg">
-      <img src="velocissimo.webp">
-      <img src="assocral.png">
-      <img src="sales.png">
-
+        </div>
     </div>
-  </div>
-
 </section>
 
 <!-- RESTO IDENTICO -->
-
 <section class="section">
     <h2 class="green">Con chi lavoro</h2>
     <div class="grid grid-3">
@@ -294,45 +312,8 @@ body::before {
     </div>
 </section>
 
-<section class="section">
-    <h2 class="green">Come ti posso aiutare</h2>
-    <div class="grid grid-3">
-        <div class="card"><h3>Closing</h3><p>Conversione lead in clienti</p></div>
-        <div class="card"><h3>Consulenza</h3><p>Strategia commerciale</p></div>
-        <div class="card"><h3>Marketing & Copy</h3><p>Supporto contenuti</p></div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="green">Numeri</h2>
-    <div class="grid grid-3">
-        <div class="card"><div class="stat">45%</div><p>clienti ricorrenti generati</p></div>
-        <div class="card"><div class="stat">+20%</div><p>ROI medio campagne marketing</p></div>
-        <div class="card"><div class="stat">100+</div><p>clienti sviluppati da zero</p></div>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="green">Metodo</h2>
-    <div class="card"><p>Analizzo il mercato e costruisco strategie per trasformare lead in clienti.</p></div>
-</section>
-
-<section class="section">
-    <h2 class="green">Esperienza reale</h2>
-    <div class="card">
-        <p>Ho collaborato con startup, e-commerce e aziende digitali.</p>
-        <p>Trasformo contatti in fatturato reale.</p>
-    </div>
-</section>
-
-<section class="section">
-    <h2 class="green">Contatti</h2>
-    <p>Email: bertonimatteo3@gmail.com</p>
-    <p>WhatsApp: 350 579 1061</p>
-</section>
-
 <a href="https://wa.me/393505791061" target="_blank" class="whatsapp">
-    Scrivimi su WhatsApp (rispondo entro 24h)
+    Scrivimi su WhatsApp
 </a>
 
 </body>
