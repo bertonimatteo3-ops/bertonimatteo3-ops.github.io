@@ -311,3 +311,52 @@ body::before {
 
 </body>
 </html>
+
+.logos-section {
+  margin-top: 60px;
+}
+
+.logos-title {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 25px;
+}
+
+.logos-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* track */
+.logos-track {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scroll 120s linear infinite;
+}
+
+/* CARD LOGHI */
+.logos-track img {
+  height: 50px;
+  width: auto;
+
+  background: white; /* 🔥 FONDAMENTALE */
+  padding: 10px 20px;
+  border-radius: 12px;
+
+  object-fit: contain;
+
+  /* migliora nitidezza */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+
+  /* rimuove effetti strani */
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* animazione */
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
