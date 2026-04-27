@@ -284,6 +284,42 @@ body::before {
   animation: premiumCTA 4s ease-in-out infinite;
 
 }
+    /* ===== LOGHI WALL PREMIUM UNIFORMATI ===== */
+
+.logos-grid {
+  margin-top: 40px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 25px;
+}
+
+/* BOX LOGO */
+.logos-grid img {
+  width: 100%;
+  height: 70px;
+
+  object-fit: contain; /* 🔥 chiave per uniformare */
+
+  padding: 10px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+
+  filter: grayscale(100%) brightness(0.9);
+  opacity: 0.8;
+
+  transition: all 0.3s ease;
+}
+
+/* HOVER */
+@media (hover: hover) {
+  .logos-grid img:hover {
+    filter: grayscale(0%) brightness(1);
+    opacity: 1;
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.06);
+  }
+}
 </style>
 </head>
 
@@ -409,6 +445,29 @@ Vai al mio profilo LinkedIn
         </div>
 
     </div>
+        </section>
+    
+        <section class="section logos-wall">
+  <h2 class="green">Hanno già scelto di collaborare con me</h2>
+
+<div class="logos-grid">
+  <img src="assocral.png">
+  <img src="prima-scelta.png">
+  <img src="wayan.png">
+  <img src="Realmaps.png">
+  <img src="homei.jpeg">
+  <img src="gruppo-soraci.jpg">
+  <img src="venditore-a-distanza.jpg">
+  <img src="marchi-cucine.jpg">
+  <img src="cappellini.png">
+  <img src="herbalife.png">
+  <img src="webapp.jpeg">
+  <img src="verona.jpg">
+  <img src="velocissimo.webp">
+  <img src="sales.png">
+  
+  </div>
+</section>
 
     <div style="text-align:center; margin-top:40px;">
     <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" 
@@ -442,23 +501,6 @@ Vai al mio profilo LinkedIn
 <p>Startup, e-commerce, PMI o multinazionali: se c’è da vendere, entro in gioco</p>
 <p>Obiettivo: trasformare contatti in fatturato concreto</p>
 </div>
-</section>
-
-<section class="section contatti">
-
-  <h2 class="green">Contatti</h2>
-
-  <div class="contact-box">
-
-    <p class="contact-name">Matteo Bertoni</p>
-    <p class="contact-role">Consulente Strategico</p>
-
-    <div class="contact-info">
-      <p>Email: bertonimatteo3@gmail.com</p>
-      <p>WhatsApp: 350 579 1061</p>
-    </div>
-
-  </div>
 
 </section>
 
