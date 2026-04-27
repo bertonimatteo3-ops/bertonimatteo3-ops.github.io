@@ -329,30 +329,151 @@ body::before {
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-content">
+  <div class="hero-content">
 
-<div>
-<h1 class="hero-title">
-Freelance: trasformo i tuoi lead in <span class="green">clienti reali</span>
-</h1>
+    <div>
+      <h1 class="hero-title">
+        Freelance: trasformo i tuoi lead in <span class="green">clienti reali</span>
+      </h1>
 
-<p>Aiuto aziende e agenzie come la tua a convertire i contatti</p>
+      <p>
+        Aiuto aziende e agenzie come la tua a convertire i contatti
+      </p>
 
-<a href="mailto:bertonimatteo3@gmail.com" class="btn">
-Clicca e parliamone via email
-</a>
+      <a href="mailto:bertonimatteo3@gmail.com" class="btn">
+        Clicca e parliamone via email
+      </a>
 
-<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-Vai al mio profilo LinkedIn
-</a>
+      <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
+        Vai al mio profilo LinkedIn
+      </a>
+    </div>
+
+    <div class="hero-right">
+      <img src="tuafoto.png">
+    </div>
+
+  </div>
+</section>
+
+
+<!-- LOGHI -->
+<section class="section logos-wall">
+  <h2 class="green">Hanno già scelto di collaborare con me</h2>
+
+  <div class="logos-grid">
+    <img src="Realmaps.png">
+    <img src="homei.jpeg">
+    <img src="gruppo-soraci.jpg">
+    <img src="venditore-a-distanza.jpg">
+    <img src="marchi-cucine.jpg">
+    <img src="cappellini.png">
+    <img src="herbalife.png">
+    <img src="prima-scelta.png">
+    <img src="webapp.jpeg">
+    <img src="wayan.png">
+    <img src="verona.jpg">
+    <img src="velocissimo.webp">
+    <img src="assocral.png">
+    <img src="sales.png">
+    <img src="farmacisti.png">
+    <img src="prezzi-farmaco.png">
+    <img src="foglietto-illustrativo.png">
+    <img src="pruiti-marketing.png">
+    <img src="app-in-farma.png">
+    <img src="ilaria.png">
+  </div>
+</section>
+
+
+<!-- CTA LINKEDIN -->
+<div style="text-align:center; margin-top:40px;">
+  <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
+    Vedi esempi di content reali sul mio LinkedIn
+  </a>
 </div>
 
-<div class="hero-right">
-<img src="foto.png">
-</div>
 
+<!-- CONTATTI -->
+<section class="section contatti">
+
+  <h2 class="green">Contatti</h2>
+
+  <div class="contact-box">
+
+    <p class="contact-name">Matteo Bertoni</p>
+    <p class="contact-role">Consulente Strategico</p>
+
+    <div class="contact-info">
+      <p>Email: bertonimatteo3@gmail.com</p>
+      <p>WhatsApp: 350 579 1061</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- WHATSAPP CTA -->
+<a href="https://wa.me/393505791061" class="whatsapp whatsapp-cta">
+  Domande? Scrivimi su WhatsApp ✓
+</a>
+
+
+<!-- CAROSELLO -->
+<section class="logos-section">
+<p class="logos-title">Hanno scelto di collaborare con me</p>
+
+<div class="logos-container" id="carousel">
+<div class="logos-track">
+
+<!-- LISTA -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
+ </div>
 </div>
 </section>
+    <!-- SCRIPT -->
+<script>
+const el = document.getElementById('carousel');
+
+let speed = 1.2;
+let isTouching = false;
+
+function autoScroll(){
+  if(!isTouching){
+    el.scrollLeft += speed;
+
+    const half = el.scrollWidth / 2;
+
+    if(el.scrollLeft >= half){
+      el.scrollLeft -= half;
+    }
+  }
+
+  requestAnimationFrame(autoScroll);
+}
+
+autoScroll();
+</script>
 
 <!-- CAROSELLO -->
 <section class="logos-section">
