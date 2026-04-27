@@ -10,7 +10,6 @@
 <meta property="og:image" content="https://matteobertoni.net/anteprima.jpg">
 <meta property="og:url" content="https://matteobertoni.net/">
 <meta property="og:type" content="website">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -41,8 +40,19 @@ body::before {
     z-index: 2;
     min-height: 65vh;
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    padding-top: 60px;
+    padding-top: 60px;        
+}
+    .hero {
+    position: relative;
+    ...
+}
+
+/* 👇 QUI */
+.hero::after {
+  content: "";
+  ...
 }
 
 .hero-content {
@@ -76,7 +86,45 @@ body::before {
 .btn { background:#22c55e; color:black; text-decoration:none; }
 .linkedin { border:1px solid #22c55e; color:#22c55e; text-decoration:none; }
 
-/* SEZIONI */
+/* ===== CAROSELLO ===== */
+
+.logos-section {
+  margin-top: -130px;
+  position: relative;
+  z-index: 3;
+}
+
+.logos-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color:#aaa;
+}
+
+.logos-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.logos-track {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  width: max-content;
+}
+
+/* 🔥 LOGHI PERFETTI */
+.logos-track img {
+  width: 140px;
+  height: 60px;
+  background: white;
+  padding: 10px;
+  border-radius: 12px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ===== SEZIONI ===== */
+
 .section {
     padding: 60px 20px;
     max-width: 1000px;
@@ -85,24 +133,27 @@ body::before {
     z-index: 2;
 }
 
-/* LOGHI GRID */
-.logos-grid {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 20px;
+.grid {
+    display: grid;
+    gap: 20px;
 }
 
-.logos-grid img {
-  width: 100%;
-  height: 70px;
-  object-fit: contain;
-  padding: 15px;
-  background: white;
-  border-radius: 12px;
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-/* WHATSAPP */
+.card {
+    background: rgba(15, 23, 42, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.stat {
+    color:#22c55e;
+    font-size:30px;
+}
+
+/* WHATSAPP LUMINOSO */
 .whatsapp {
     position: fixed;
     bottom: 20px;
@@ -127,8 +178,107 @@ body::before {
 @media(max-width:768px){
   .hero-content { flex-direction:column; text-align:center; }
   .hero-title { font-size:26px; }
+  .hero-title .green { display:block; }
+}
+/* MOBILE */
+@media(max-width:768px){
+  ...
 }
 
+/* ===== MICRO INTERAZIONI PREMIUM ===== */
+
+.btn,
+.linkedin,
+.card,
+.logos-track img {
+  transition: all 0.25s ease;
+}
+
+@media (hover: hover) {
+
+  .btn:hover,
+  .linkedin:hover,
+  .card:hover,
+  .logos-track img:hover {
+
+    transform: translateY(-5px) scale(1.03);
+
+    box-shadow: 
+      0 10px 25px rgba(0,0,0,0.3),
+      0 0 20px rgba(34,197,94,0.4);
+
+  }
+}
+
+/* ===== CTA LINKEDIN PREMIUM (GLow + Float + Shake PERFETTI) ===== */
+
+.linkedin-cta {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 14px 28px;
+  background: #22c55e;
+  color: black;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+
+  animation: premiumCTA 4s ease-in-out infinite;
+}
+
+/* 🔥 ANIMAZIONE UNIFICATA */
+@keyframes premiumCTA {
+
+  /* stato base */
+  0% {
+    transform: translateY(0) translateX(0);
+    box-shadow: 0 0 10px rgba(34,197,94,0.4);
+  }
+
+  /* salita */
+  25% {
+    transform: translateY(-6px);
+    box-shadow: 0 0 25px rgba(34,197,94,0.7);
+  }
+
+  /* picco glow */
+  50% {
+    transform: translateY(0);
+    box-shadow: 0 0 35px rgba(34,197,94,1);
+  }
+
+  /* discesa */
+  70% {
+    transform: translateY(-3px);
+  }
+
+  /* 🔔 TRILLO */
+  80% {
+    transform: translateY(0) translateX(-2px);
+  }
+
+  82% {
+    transform: translateY(0) translateX(2px);
+  }
+
+  84% {
+    transform: translateY(0) translateX(-2px);
+  }
+
+  86% {
+    transform: translateY(0) translateX(2px);
+  }
+
+  /* ritorno */
+  100% {
+    transform: translateY(0) translateX(0);
+    box-shadow: 0 0 10px rgba(34,197,94,0.4);
+  }
+}
+
+/* hover */
+.linkedin-cta:hover {
+  transform: scale(1.05);
+}
 </style>
 </head>
 
@@ -136,64 +286,221 @@ body::before {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div>
-      <h1 class="hero-title">
-        Freelance: trasformo i tuoi lead in <span class="green">clienti reali</span>
-      </h1>
+<div class="hero-content">
 
-      <p>Aiuto aziende e agenzie come la tua a convertire i contatti</p>
+<div>
+<h1 class="hero-title">
+Freelance: trasformo i tuoi lead in <span class="green">clienti reali</span>
+</h1>
 
-      <a href="mailto:bertonimatteo3@gmail.com" class="btn">
-        Clicca e parliamone via email
-      </a>
+<p>Aiuto aziende e agenzie come la tua a convertire i contatti</p>
 
-      <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-        Vai al mio profilo LinkedIn
-      </a>
-    </div>
-
-    <div class="hero-right">
-      <img src="tuafoto.png">
-    </div>
-  </div>
-</section>
-
-<!-- LOGHI -->
-<section class="section">
-  <h2 class="green">Hanno già scelto di collaborare con me</h2>
-
-  <div class="logos-grid">
-    <img src="Realmaps.png">
-    <img src="homei.jpeg">
-    <img src="gruppo-soraci.jpg">
-    <img src="venditore-a-distanza.jpg">
-    <img src="marchi-cucine.jpg">
-    <img src="cappellini.png">
-    <img src="herbalife.png">
-    <img src="prima-scelta.png">
-    <img src="webapp.jpeg">
-    <img src="wayan.png">
-    <img src="verona.jpg">
-    <img src="velocissimo.webp">
-    <img src="assocral.png">
-    <img src="sales.png">
-  </div>
-</section>
-
-<!-- CONTATTI -->
-<section class="section">
-  <h2 class="green">Contatti</h2>
-  <p><strong>Matteo Bertoni</strong></p>
-  <p>Consulente Strategico</p>
-  <p>Email: bertonimatteo3@gmail.com</p>
-  <p>WhatsApp: 350 579 1061</p>
-</section>
-
-<!-- WHATSAPP -->
-<a href="https://wa.me/393505791061" class="whatsapp">
-  Scrivimi su WhatsApp ✓
+<a href="mailto:bertonimatteo3@gmail.com" class="btn">
+Clicca e parliamone via email
 </a>
+
+<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
+Vai al mio profilo LinkedIn
+</a>
+</div>
+
+<div class="hero-right">
+<img src="foto.png">
+</div>
+
+</div>
+</section>
+
+<!-- CAROSELLO -->
+<section class="logos-section">
+<p class="logos-title">Hanno scelto di collaborare con me</p>
+
+<div class="logos-container" id="carousel">
+<div class="logos-track">
+
+<!-- LISTA -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
+
+<!-- DUPLICATO IDENTICO -->
+<img src="Realmaps.png">
+<img src="homei.jpeg">
+<img src="gruppo-soraci.jpg">
+<img src="venditore-a-distanza.jpg">
+<img src="marchi-cucine.jpg">
+<img src="cappellini.png">
+<img src="herbalife.png">
+<img src="prima-scelta.png">
+<img src="webapp.jpeg">
+<img src="wayan.png">
+<img src="verona.jpg">
+<img src="velocissimo.webp">
+<img src="assocral.png">
+<img src="sales.png">
+<img src="farmacisti.png">
+<img src="prezzi-farmaco.png">
+<img src="foglietto-illustrativo.png">
+<img src="pruiti-marketing.png">
+<img src="app-in-farma.png">
+<img src="ilaria.png">
+
+</div>
+</div>
+</section>
+
+<!-- SEZIONI -->
+<section class="section">
+<h2 class="green">Chi posso aiutare davvero</h2>
+<div class="grid grid-3">
+<div class="card"><h3>Aziende</h3><p>alla ricerca di closer per alzare il fatturato senza aumentare il team interno</p></div>
+<div class="card"><h3>Agenzie</h3><p>che vogliono scalare le vendite con un supporto commerciale già operativo, senza appesantire la loro struttura</p></div>
+<div class="card"><h3>Freelance</h3><p>per creare collaborazioni e condivisioni strategiche durature</p></div>
+</div>
+</section>
+
+    <section class="section">
+    
+    <h2 class="green">Come porto risultati</h2>
+
+    <div class="grid grid-3">
+
+        <div class="card">
+            <h3>Vendita diretta</h3>
+            <p>
+                Chiudo trattative da remoto e trasformo i tuoi lead in clienti paganti, senza dispersioni
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Gestione clienti</h3>
+            <p>
+                Non mi fermo alla vendita: aumento retention, fiducia e valore nel tempo
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Content & Copy</h3>
+            <p>
+               Strategia, contenuti e copy orientati alla conversione: portfolio su LinkedIn
+            </p>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+    <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" 
+       target="_blank" 
+       class="linkedin-cta">
+       Vedi esempi di content reali sul mio LinkedIn
+    </a>
+</div>
+
+</section>
+
+<section class="section">
+<h2 class="green">Risultati misurabili</h2>
+<div class="grid grid-3">
+<div class="card"><div class="stat">46%</div><p>clienti ricorrenti nel tempo</p></div>
+<div class="card"><div class="stat">+20%</div><p>ROI medio su campagne e processi ottimizzati</p></div>
+<div class="card"><div class="stat">100+</div><p>clienti acquisiti, senza audience iniziale</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="green">Strategia e processo</h2>
+<div class="card">
+<p>Analizzo mercato e comportamento dei clienti per costruire strategie che convertono</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="green">Con chi ho già collaborato</h2>
+<div class="card">
+<p>Startup, e-commerce, PMI o multinazionali: se c’è da vendere, entro in gioco</p>
+<p>Obiettivo: trasformare contatti in fatturato concreto</p>
+</div>
+</section>
+
+<section class="section contatti">
+
+  <h2 class="green">Contatti</h2>
+
+  <div class="contact-box">
+
+    <p class="contact-name">Matteo Bertoni</p>
+    <p class="contact-role">Consulente Strategico</p>
+
+    <div class="contact-info">
+      <p>Email: bertonimatteo3@gmail.com</p>
+      <p>WhatsApp: 350 579 1061</p>
+    </div>
+
+  </div>
+
+</section>
+
+<a href="https://wa.me/393505791061" class="whatsapp">
+Domande? Scrivimi su WhatsApp ✅
+</a>
+
+<!-- LOOP PERFETTO -->
+<script>
+const el = document.getElementById('carousel');
+
+let speed = 1.2; // 🔥 test visivo forte
+let isTouching = false;
+
+// AUTO SCROLL
+function autoScroll(){
+
+  if(!isTouching){
+    el.scrollLeft += speed;
+
+    const half = el.scrollWidth / 2;
+
+    if(el.scrollLeft >= half){
+      el.scrollLeft -= half;
+    }
+  }
+
+  requestAnimationFrame(autoScroll);
+}
+
+autoScroll();
+
+// 🔥 TOUCH CONTROL PERFETTO
+el.addEventListener('touchstart', () => {
+  isTouching = true;
+});
+
+el.addEventListener('touchmove', () => {
+  isTouching = true;
+});
+
+el.addEventListener('touchend', () => {
+  setTimeout(() => {
+    isTouching = false;
+  }, 1000); // 🔥 lascia inerzia naturale
+});
+</script>
 
 </body>
 </html>
