@@ -318,10 +318,13 @@ body::before {
     padding-top: 80px;
   }
 }
-    @media (max-width: 768px) {
-  .mobile-break {
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
     display: block;
-    margin-top: -30px;
   }
 }
 </style>
@@ -339,8 +342,9 @@ Freelance: trasformo i tuoi lead in <span class="green">clienti reali</span>
 </h1>
 
 <p>
-  Aiuto aziende e agenzie nel B2B/B2C a vendere 
-  <span class="mobile-break">(+22% conversioni medie)</span>
+  Aiuto aziende e agenzie nel B2B/B2C a vendere
+  <br class="mobile-only">
+  <span>(+22% conversioni medie)</span>
 </p>
 
 <a href="mailto:bertonimatteo3@gmail.com" class="btn">
