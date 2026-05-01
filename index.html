@@ -364,7 +364,19 @@ body::before {
   animation: fadeUp 0.8s ease forwards;
   animation-delay: 0.4s;
 }
+.hidden .cta-line {
+  opacity: 0;
+  transform: translateY(30px);
+}
 
+.show .line1 {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.show .line2 {
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: 0.4s;
+}
 /* animazione */
 @keyframes fadeUp {
   to {
