@@ -606,7 +606,7 @@ function handleScroll() {
   const rect = cta.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
-  if (rect.top < windowHeight - 100) {
+if (rect.top < windowHeight * 0.85)
     cta.classList.remove('hidden');
     cta.classList.add('show');
 
