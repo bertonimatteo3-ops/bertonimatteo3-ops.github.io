@@ -599,6 +599,22 @@ Scopri chi sono su LinkedIn
 <!-- LOOP PERFETTO -->
 <script>
 const el = document.getElementById('carousel');
+ 
+const cta = document.querySelector('.final-cta');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      cta.classList.remove('hidden');
+      cta.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.3
+});
+
+observer.observe(cta);
+    
 
 let speed = 0.5; // 🔥 test visivo forte
 let isTouching = false;
