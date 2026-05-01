@@ -602,18 +602,20 @@ const el = document.getElementById('carousel');
  
 const cta = document.querySelector('.final-cta');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      cta.classList.remove('hidden');
-      cta.classList.add('show');
-    }
-  });
-}, {
-  threshold: 0.3
-});
+function handleScroll() {
+  const rect = cta.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
 
-observer.observe(cta);
+  if (rect.top < windowHeight - 100) {
+    cta.classList.remove('hidden');
+    cta.classList.add('show');
+
+    window.removeEventListener('scroll', handleScroll);
+  }
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', handleScroll);
     
 
 let speed = 0.5; // 🔥 test visivo forte
