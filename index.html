@@ -606,12 +606,11 @@ function handleScroll() {
   const rect = cta.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
-if (rect.top < windowHeight * 0.85)
-    cta.classList.remove('hidden');
-    cta.classList.add('show');
+if (rect.top < windowHeight * 0.85) {
+  cta.classList.remove('hidden');
+  cta.classList.add('show');
 
-    window.removeEventListener('scroll', handleScroll);
-  }
+  window.removeEventListener('scroll', handleScroll);
 }
 
 window.addEventListener('scroll', handleScroll);
