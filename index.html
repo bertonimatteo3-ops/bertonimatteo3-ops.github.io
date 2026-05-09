@@ -31,7 +31,7 @@ body {
     font-family: 'Inter', sans-serif;
     background: #050505;
     color: white;
-    overflow-x: hidden; /* Evita scroll orizzontale */
+    overflow-x: hidden;
 }
 
 /* SFONDO */
@@ -77,12 +77,15 @@ body::before {
     flex: 1;
 }
 
-/* Tipografia fluida: scala in base allo schermo */
+/* Tipografia fluida */
 .hero-title {
     font-size: clamp(32px, 5vw, 52px);
     line-height: 1.1;
     margin-bottom: 20px;
 }
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
 
 .hero-left p {
     font-size: clamp(16px, 2vw, 20px);
@@ -112,7 +115,7 @@ body::before {
     border-radius: 8px;
     display: inline-block;
     width: 100%;
-    max-width: 280px; /* Su PC non si allarga troppo */
+    max-width: 280px;
     text-align: center;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -133,7 +136,7 @@ body::before {
 }
 
 /* =========================================
-   CAROSELLO LOGHI
+   CAROSELLO LOGHI PIU' GRANDE E SCROLLABILE
 ========================================= */
 .logos-section {
     position: relative;
@@ -152,8 +155,19 @@ body::before {
 }
 
 .logos-container {
-    overflow: hidden; /* Nascondi scrollbar ma mantieni movimento */
+    overflow-x: auto; /* Permette lo scroll manuale */
+    -webkit-overflow-scrolling: touch; /* Scroll fluido su iOS */
+    scrollbar-width: none; /* Nasconde scrollbar su Firefox */
     width: 100%;
+    cursor: grab; /* Cursore per PC */
+}
+
+.logos-container:active {
+    cursor: grabbing;
+}
+
+.logos-container::-webkit-scrollbar {
+    display: none; /* Nasconde scrollbar su Chrome/Safari */
 }
 
 .logos-track {
@@ -164,15 +178,18 @@ body::before {
     align-items: center;
 }
 
+/* Modifica #3: Slide più grandi da PC e Smartphone */
 .logos-track img {
-    width: 120px;
-    height: 60px;
+    width: clamp(150px, 25vw, 200px); /* Molto più grandi rispetto a prima */
+    height: clamp(75px, 12vw, 100px);
     background: white;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 10px;
     object-fit: contain;
     flex-shrink: 0;
     transition: transform 0.3s ease;
+    user-select: none; /* Evita che il browser provi a salvare l'immagine al trascinamento */
+    -webkit-user-drag: none;
 }
 
 /* =========================================
@@ -197,7 +214,6 @@ body::before {
     gap: 25px;
 }
 
-/* Griglia super-responsiva: non rompe mai sui cellulari stretti */
 .grid-3 {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
@@ -211,16 +227,13 @@ body::before {
     transition: all 0.3s ease;
 }
 
+/* Modifica #4: Titoli card tutti bianchi */
 .card h3 {
     font-weight: 700;
     font-size: 22px;
     color: #ffffff;
     margin-bottom: 15px;
     line-height: 1.3;
-}
-
-.card h3 span {
-    color: #22c55e;
 }
 
 .card p {
@@ -248,15 +261,17 @@ body::before {
     .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
     .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
     .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
-    .logos-track img:hover { transform: scale(1.1); }
+    .logos-track img:hover { transform: scale(1.05); }
 }
 
+/* Modifica #5: Bottone Linkedin Bianco con tonalità Verdi */
 .linkedin-cta {
     display: inline-block;
     margin-top: 20px;
     padding: 16px 32px;
-    background: #22c55e;
-    color: black;
+    background: #ffffff;
+    color: #064e3b; /* Verde scuro molto elegante e leggibile sul bianco */
+    border: 2px solid #22c55e;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
@@ -264,9 +279,9 @@ body::before {
 }
 
 @keyframes premiumCTA {
-    0%, 100% { transform: translateY(0); box-shadow: 0 0 10px rgba(34,197,94,0.4); }
-    25% { transform: translateY(-6px); box-shadow: 0 0 25px rgba(34,197,94,0.7); }
-    50% { transform: translateY(0); box-shadow: 0 0 35px rgba(34,197,94,1); }
+    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
+    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
+    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
     70% { transform: translateY(-3px); }
     80%, 84% { transform: translateX(-2px); }
     82%, 86% { transform: translateX(2px); }
@@ -275,7 +290,7 @@ body::before {
 /* CTA FINALE (Animazione a scroll) */
 .final-cta {
     text-align: center;
-    padding: 80px 20px 140px; /* Extra padding per evitare che Whatsapp lo copra */
+    padding: 80px 20px 140px; 
     position: relative;
     z-index: 2;
 }
@@ -318,7 +333,7 @@ body::before {
     border-radius: 50px;
     color: black;
     font-weight: 700;
-    z-index: 9998; /* Un punto in meno di Iubenda */
+    z-index: 9998;
     text-decoration: none;
     box-shadow: 0 4px 15px rgba(34,197,94,0.4);
     transition: transform 0.3s ease;
@@ -327,10 +342,9 @@ body::before {
 /* =========================================
    MEDIA QUERIES (MOBILE RESPONSIVE)
 ========================================= */
-.mobile-only { display: none; }
-
 @media (max-width: 768px) {
-    .mobile-only { display: block; }
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
     
     .hero {
         min-height: auto;
@@ -356,9 +370,8 @@ body::before {
         padding: 50px 20px;
     }
 
-    /* Whatsapp Mobile: Diventa una barra in basso che non interferisce col testo */
     .whatsapp {
-        bottom: 80px; /* Spazio per Iubenda */
+        bottom: 80px; 
         right: 50%;
         transform: translateX(50%);
         width: 90%;
@@ -398,9 +411,12 @@ body::before {
 <section class="hero">
     <div class="hero-content">
         <div class="hero-left">
+            <!-- Modifica #1: Titolo diviso per formattazione PC e Mobile perfetta -->
             <h1 class="hero-title">
-                Sales Closer: trasformo i tuoi lead in <br class="mobile-only"><span class="green">clienti reali</span>
+                <span class="desktop-only">Sales Closer: trasformo i tuoi lead in <br><span class="green">clienti reali</span></span>
+                <span class="mobile-only">Sales Closer<br>Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span>
             </h1>
+            
             <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare le vendite e scalare il fatturato.</p>
             <div class="btn-group">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
@@ -418,9 +434,9 @@ body::before {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container" id="carousel">
         <div class="logos-track">
-            <!-- LISTA (Duplicata per effetto infinito fluido) -->
+            <!-- LISTA 1 -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
-            <!-- DUPLICATO IDENTICO PER LO SCROLL -->
+            <!-- LISTA 2 DUPLICATA -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
@@ -431,17 +447,17 @@ body::before {
     <h2 class="green">Chi posso aiutare davvero</h2>
     <div class="grid grid-3">
         <div class="card">
-            <h3>Aziende e <span>Agenzie</span></h3>
+            <h3>Aziende e Agenzie</h3>
             <p>Per realtà che hanno un flusso di contatti ma faticano a convertirli in contratti firmati.</p>
             <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
         </div>
         <div class="card">
-            <h3>Startup e <span>Nuovi Progetti</span></h3>
+            <h3>Startup e Nuovi Progetti</h3>
             <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
             <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia "digeribile" dal mercato fin dal primo giorno.</p>
         </div>
         <div class="card">
-            <h3>Freelance & <span>Partner</span></h3>
+            <h3>Freelance & Partner</h3>
             <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
             <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
         </div>
@@ -453,17 +469,17 @@ body::before {
     <h2 class="green">Come porto risultati</h2>
     <div class="grid grid-3">
         <div class="card">
-            <h3>Chiusura Trattative <span>(Sales Closing)</span></h3>
+            <h3>Chiusura Trattative (Sales Closing)</h3>
             <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
             <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
         </div>
         <div class="card">
-            <h3>Sviluppo <span>Lifetime Value</span> (LTV)</h3>
+            <h3>Sviluppo Lifetime Value (LTV)</h3>
             <p>Non mi fermo alla firma del contratto.</p>
             <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
         </div>
         <div class="card">
-            <h3>Corporate Content & <span>Social</span></h3>
+            <h3>Corporate Content & Social</h3>
             <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
             <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
         </div>
@@ -540,30 +556,60 @@ body::before {
     <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
 </div>
 
-
-<!-- JAVASCRIPT: CAROSELLO + ANIMAZIONE CTA -->
+<!-- JAVASCRIPT: CAROSELLO TRASCINABILE + ANIMAZIONE CTA -->
 <script>
-    // 1. CAROSELLO AUTO-SCROLL
+    // 1. CAROSELLO AUTO-SCROLL E TRASCINABILE
     const el = document.getElementById('carousel');
     let speed = 0.8; 
     let isTouching = false;
 
+    // Funzione scorrimento automatico
     function autoScroll(){
         if(!isTouching){
             el.scrollLeft += speed;
             const half = el.scrollWidth / 2;
             if(el.scrollLeft >= half){
-                el.scrollLeft -= half; // Reset invisibile a metà
+                el.scrollLeft -= half;
             }
         }
         requestAnimationFrame(autoScroll);
     }
     autoScroll();
 
+    // Gestione tocco su Mobile (Swipe)
     el.addEventListener('touchstart', () => { isTouching = true; }, {passive: true});
-    el.addEventListener('touchmove', () => { isTouching = true; }, {passive: true});
     el.addEventListener('touchend', () => { 
-        setTimeout(() => { isTouching = false; }, 800); 
+        setTimeout(() => { isTouching = false; }, 1500); // Riprende dopo 1.5s
+    });
+
+    // Gestione trascinamento con Mouse su PC
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    el.addEventListener('mousedown', (e) => {
+        isDown = true;
+        isTouching = true;
+        startX = e.pageX - el.offsetLeft;
+        scrollLeft = el.scrollLeft;
+    });
+
+    el.addEventListener('mouseleave', () => {
+        isDown = false;
+        setTimeout(() => { isTouching = false; }, 1500);
+    });
+
+    el.addEventListener('mouseup', () => {
+        isDown = false;
+        setTimeout(() => { isTouching = false; }, 1500);
+    });
+
+    el.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - el.offsetLeft;
+        const walk = (x - startX) * 1.5; // Velocità di trascinamento
+        el.scrollLeft = scrollLeft - walk;
     });
 
     // 2. TRIGGER ANIMAZIONE CTA FINALE ALLO SCROLL
@@ -575,7 +621,7 @@ body::before {
                     ctaObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 }); // Parte l'animazione quando è visibile al 30%
+        }, { threshold: 0.3 });
 
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) ctaObserver.observe(ctaElement);
