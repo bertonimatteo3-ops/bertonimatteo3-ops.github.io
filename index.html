@@ -29,24 +29,34 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #050505;
+    /* Sfondo base leggermente più chiaro (da #050505 a #0f0f0f) */
+    background: #0f0f0f; 
     color: white;
     overflow-x: hidden;
 }
 
-/* SFONDO */
-body::before {
-    content: "";
+/* 
+   FIX SFONDO IOS / ANDROID
+   Invece di usare il body, usiamo un div fisso in background con accelerazione hardware.
+   Previene i salti e lo zoom su mobile.
+*/
+.bg-fixed {
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.18;
+    /* Opacità aumentata per renderlo PIÙ CHIARO rispetto a prima */
+    opacity: 0.30; 
     z-index: 0;
     pointer-events: none;
+    /* Hack per stabilizzare l'immagine su iOS */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
 }
 
 .green { color: #22c55e; }
@@ -77,7 +87,6 @@ body::before {
     flex: 1;
 }
 
-/* Tipografia fluida */
 .hero-title {
     font-size: clamp(32px, 5vw, 52px);
     line-height: 1.1;
@@ -136,13 +145,13 @@ body::before {
 }
 
 /* =========================================
-   CAROSELLO LOGHI PIU' GRANDE E SCROLLABILE
+   CAROSELLO LOGHI
 ========================================= */
 .logos-section {
     position: relative;
     z-index: 3;
     padding: 40px 0;
-    background: linear-gradient(to right, rgba(5,5,5,1), rgba(5,5,5,0) 10%, rgba(5,5,5,0) 90%, rgba(5,5,5,1));
+    background: linear-gradient(to right, rgba(15,15,15,1), rgba(15,15,15,0) 10%, rgba(15,15,15,0) 90%, rgba(15,15,15,1));
 }
 
 .logos-title {
@@ -155,11 +164,11 @@ body::before {
 }
 
 .logos-container {
-    overflow-x: auto; /* Permette lo scroll manuale */
-    -webkit-overflow-scrolling: touch; /* Scroll fluido su iOS */
-    scrollbar-width: none; /* Nasconde scrollbar su Firefox */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     width: 100%;
-    cursor: grab; /* Cursore per PC */
+    cursor: grab;
 }
 
 .logos-container:active {
@@ -167,7 +176,7 @@ body::before {
 }
 
 .logos-container::-webkit-scrollbar {
-    display: none; /* Nasconde scrollbar su Chrome/Safari */
+    display: none;
 }
 
 .logos-track {
@@ -178,9 +187,8 @@ body::before {
     align-items: center;
 }
 
-/* Modifica #3: Slide più grandi da PC e Smartphone */
 .logos-track img {
-    width: clamp(150px, 25vw, 200px); /* Molto più grandi rispetto a prima */
+    width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
     background: white;
     padding: 12px;
@@ -188,7 +196,7 @@ body::before {
     object-fit: contain;
     flex-shrink: 0;
     transition: transform 0.3s ease;
-    user-select: none; /* Evita che il browser provi a salvare l'immagine al trascinamento */
+    user-select: none;
     -webkit-user-drag: none;
 }
 
@@ -221,13 +229,15 @@ body::before {
 .card {
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.05);
     padding: 35px 25px;
     border-radius: 12px;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Modifica #4: Titoli card tutti bianchi */
 .card h3 {
     font-weight: 700;
     font-size: 22px;
@@ -255,6 +265,39 @@ body::before {
 }
 
 /* =========================================
+   FRECCIA E ORDINAMENTO CARD PC/MOBILE
+========================================= */
+
+/* Animazione morbida della freccia */
+.arrow-down-container {
+    margin-top: auto; /* La spinge in basso */
+    padding-top: 20px;
+    text-align: center;
+}
+
+.arrow-icon {
+    width: 40px;
+    height: 40px;
+    fill: #22c55e;
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-12px); }
+    60% { transform: translateY(-6px); }
+}
+
+/* Ordine delle card SOLO DA PC */
+@media (min-width: 769px) {
+    /* Mappa l'ordine in modo che la card Corporate Social vada al centro */
+    .card-closing { order: 1; }
+    .card-social { order: 2; border: 1px solid rgba(34,197,94,0.3); background: rgba(15, 23, 42, 0.8); } /* La metto al centro e la evidenzio leggermente */
+    .card-ltv { order: 3; }
+}
+
+
+/* =========================================
    ANIMAZIONI E INTERAZIONI
 ========================================= */
 @media (hover: hover) {
@@ -264,18 +307,19 @@ body::before {
     .logos-track img:hover { transform: scale(1.05); }
 }
 
-/* Modifica #5: Bottone Linkedin Bianco con tonalità Verdi */
 .linkedin-cta {
     display: inline-block;
     margin-top: 20px;
     padding: 16px 32px;
     background: #ffffff;
-    color: #064e3b; /* Verde scuro molto elegante e leggibile sul bianco */
+    color: #064e3b; 
     border: 2px solid #22c55e;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     animation: premiumCTA 4s ease-in-out infinite;
+    position: relative;
+    z-index: 3;
 }
 
 @keyframes premiumCTA {
@@ -287,23 +331,27 @@ body::before {
     82%, 86% { transform: translateX(2px); }
 }
 
-/* CTA FINALE (Animazione a scroll) */
+/* CTA FINALE ELETANGTE (Animazione a scroll più lenta e cinematografica) */
 .final-cta {
     text-align: center;
-    padding: 80px 20px 140px; 
+    padding: 100px 20px 140px; 
     position: relative;
     z-index: 2;
 }
 
 .cta-line {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(8px); /* Partenza sfocata */
+    transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 1.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 1.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .final-cta.visible .cta-line {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
 .line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
@@ -313,7 +361,10 @@ body::before {
     font-weight: 700; 
     text-shadow: 0 0 15px rgba(34,197,94,0.4); 
 }
-.final-cta.visible .line2 { transition-delay: 0.3s; }
+
+/* Ritardi per farle apparire una dopo l'altra elegantemente */
+.final-cta.visible .line1 { transition-delay: 0.2s; }
+.final-cta.visible .line2 { transition-delay: 1.4s; } /* La seconda frase appare molto dopo la prima */
 
 /* =========================================
    WHATSAPP BUTTON E CONTATTI
@@ -407,11 +458,13 @@ body::before {
 
 <body>
 
+<!-- DIV PER SFONDO FISSO CROSS-BROWSER/IOS -->
+<div class="bg-fixed"></div>
+
 <!-- HERO -->
 <section class="hero">
     <div class="hero-content">
         <div class="hero-left">
-            <!-- Modifica #1: Titolo diviso per formattazione PC e Mobile perfetta -->
             <h1 class="hero-title">
                 <span class="desktop-only">Sales Closer: trasformo i tuoi lead in <br><span class="green">clienti reali</span></span>
                 <span class="mobile-only">Sales Closer<br>Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span>
@@ -468,23 +521,38 @@ body::before {
 <section class="section">
     <h2 class="green">Come porto risultati</h2>
     <div class="grid grid-3">
-        <div class="card">
+        
+        <!-- CARD 1 -->
+        <div class="card card-closing">
             <h3>Chiusura Trattative (Sales Closing)</h3>
             <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
             <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
         </div>
-        <div class="card">
+
+        <!-- CARD 2 -->
+        <div class="card card-ltv">
             <h3>Sviluppo Lifetime Value (LTV)</h3>
             <p>Non mi fermo alla firma del contratto.</p>
             <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
         </div>
-        <div class="card">
+
+        <!-- CARD 3 (Centrale da PC con la Freccia) -->
+        <div class="card card-social">
             <h3>Corporate Content & Social</h3>
             <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
             <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
+            
+            <!-- Freccia Animata verso il basso -->
+            <div class="arrow-down-container">
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
+                </svg>
+            </div>
         </div>
+
     </div>
 
+    <!-- Bottone Sotto le Card -->
     <div style="text-align:center; margin-top:50px;">
         <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
            Guarda sul mio LinkedIn come comunico per vendere
@@ -525,7 +593,7 @@ body::before {
     </div>
 </section>
 
-<!-- CTA FINALE ANIMATA SCROLL -->
+<!-- CTA FINALE ANIMATA SCROLL (Animazione più lenta) -->
 <div class="final-cta" id="final-cta">
     <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo che fa la differenza.</p>
@@ -612,7 +680,7 @@ body::before {
         el.scrollLeft = scrollLeft - walk;
     });
 
-    // 2. TRIGGER ANIMAZIONE CTA FINALE ALLO SCROLL
+    // 2. TRIGGER ANIMAZIONE CTA FINALE ALLO SCROLL (Soglia abbassata per vederla meglio)
     document.addEventListener("DOMContentLoaded", function() {
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -621,7 +689,7 @@ body::before {
                     ctaObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.15 });
 
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) ctaObserver.observe(ctaElement);
