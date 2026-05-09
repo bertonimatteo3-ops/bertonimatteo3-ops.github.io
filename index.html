@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
+<script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Matteo Bertoni</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Matteo Bertoni | Sales Closer</title>
 
 <meta property="og:title" content="Trasformo lead in clienti reali">
 <meta property="og:description" content="Aiuto aziende e agenzie a trasformare i contatti in clienti reali, aumentando vendite e conversioni.">
 <meta property="og:image" content="https://matteobertoni.net/anteprima.jpg">
 <meta property="og:url" content="https://matteobertoni.net/">
 <meta property="og:type" content="website">
+
+<!-- Preload Font per caricamento più veloce -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* =========================================
+   BASE E RESET
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
     background: #050505;
     color: white;
+    overflow-x: hidden; /* Evita scroll orizzontale */
 }
 
 /* SFONDO */
 body::before {
     content: "";
     position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     width: 100%;
     height: 100%;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
@@ -33,416 +46,348 @@ body::before {
     background-position: center;
     opacity: 0.18;
     z-index: 0;
+    pointer-events: none;
 }
 
-/* HERO */
+.green { color: #22c55e; }
+
+/* =========================================
+   HERO SECTION
+========================================= */
 .hero {
     position: relative;
     z-index: 2;
-    min-height: 65vh;
+    min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding-top: 60px;        
-}
-    .hero {
-    position: relative;
-    ...
-}
-
-/* 👇 QUI */
-.hero::after {
-  content: "";
-  ...
+    padding: 100px 20px 60px;
 }
 
 .hero-content {
     display: flex;
+    flex-direction: row;
     gap: 60px;
     align-items: center;
+    max-width: 1100px;
+    margin: auto;
 }
 
+.hero-left {
+    flex: 1;
+}
+
+/* Tipografia fluida: scala in base allo schermo */
 .hero-title {
-    font-size: 40px;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-left p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #cccccc;
+    margin-bottom: 30px;
+    line-height: 1.5;
 }
 
 .hero-right img {
-    width: 160px;
+    width: clamp(140px, 20vw, 220px);
     border-radius: 50%;
-    border: 3px solid #22c55e;
+    border: 4px solid #22c55e;
+    box-shadow: 0 0 30px rgba(34,197,94,0.3);
 }
 
-.green { color:#22c55e; }
+/* =========================================
+   BOTTONI GLOBALI
+========================================= */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-/* BOTTONI */
 .btn, .linkedin {
-    margin-top: 12px;
-    padding: 14px 24px;
+    padding: 16px 24px;
     border-radius: 8px;
     display: inline-block;
-    width: 240px;
+    width: 100%;
+    max-width: 280px; /* Su PC non si allarga troppo */
     text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
-.btn { background:#22c55e; color:black; text-decoration:none; }
-.linkedin { border:1px solid #22c55e; color:#22c55e; text-decoration:none; }
+.btn { 
+    background: #22c55e; 
+    color: black; 
+    text-decoration: none; 
+}
 
-/* ===== CAROSELLO ===== */
+.linkedin { 
+    border: 2px solid #22c55e; 
+    color: #22c55e; 
+    text-decoration: none; 
+    background: transparent;
+}
 
+/* =========================================
+   CAROSELLO LOGHI
+========================================= */
 .logos-section {
-  margin-top: 40px;
-  position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
+    padding: 40px 0;
+    background: linear-gradient(to right, rgba(5,5,5,1), rgba(5,5,5,0) 10%, rgba(5,5,5,0) 90%, rgba(5,5,5,1));
 }
 
 .logos-title {
-  text-align: center;
-  margin-bottom: 20px;
-  color:#aaa;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #aaa;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .logos-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+    overflow: hidden; /* Nascondi scrollbar ma mantieni movimento */
+    width: 100%;
 }
 
 .logos-track {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  width: max-content;
+    display: flex;
+    gap: 30px;
+    padding: 10px 20px;
+    width: max-content;
+    align-items: center;
 }
 
-/* 🔥 LOGHI PERFETTI */
 .logos-track img {
-  width: 140px;
-  height: 60px;
-  background: white;
-  padding: 10px;
-  border-radius: 12px;
-  object-fit: contain;
-  flex-shrink: 0;
+    width: 120px;
+    height: 60px;
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 }
 
-/* ===== SEZIONI ===== */
-
+/* =========================================
+   SEZIONI E GRIGLIE
+========================================= */
 .section {
-    padding: 60px 20px;
-    max-width: 1000px;
+    padding: 80px 20px;
+    max-width: 1100px;
     margin: auto;
     position: relative;
     z-index: 2;
 }
 
-.grid {
-    display: grid;
-    gap: 20px;
+.section h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 40px;
+    text-align: center;
 }
 
+.grid {
+    display: grid;
+    gap: 25px;
+}
+
+/* Griglia super-responsiva: non rompe mai sui cellulari stretti */
 .grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
 }
 
 .card {
-  background: rgba(15, 23, 42, 0.8);
-  padding: 35px 25px;
-  border-radius: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 35px 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
- .card h3 {
-  margin-top: 0;
-  font-weight: 700;
-  font-size: 20px;
-  color: #ffffff;
-  margin-bottom: 10px;
 
-  letter-spacing: 0.3px;
-  text-shadow: 0 0 12px rgba(34,197,94,0.5);
+.card h3 {
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    line-height: 1.3;
 }
-    .card p {
-  margin-bottom: 12px;
+
+.card h3 span {
+    color: #22c55e;
 }
-    .card p:first-of-type {
-  margin-top: 14px;
+
+.card p {
+    color: #cccccc;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.card p:last-child {
+    margin-bottom: 0;
 }
 
 .stat {
-    color:#22c55e;
-    font-size:30px;
+    color: #22c55e;
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px;
 }
 
-/* WHATSAPP LUMINOSO */
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #22c55e;
-    padding: 14px 18px;
-    border-radius: 50px;
-    color: black;
-    font-weight: bold;
-    z-index: 9999;
-    text-decoration: none;
-    animation: whatsappPulse 2.5s ease-in-out infinite;
-}
-
-/* 🔥 ANIMAZIONE COMPLETA CTA */
-@keyframes whatsappPulse {
-
-  0% {
-    transform: translateY(0) scale(1);
-    box-shadow: 0 0 5px #22c55e;
-  }
-
-  25% {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 0 25px #22c55e;
-  }
-
-  40% {
-    transform: translateY(0) scale(1);
-  }
-
-  /* TRILLO */
-  50% { transform: translateY(0) translateX(-2px); }
-  52% { transform: translateY(0) translateX(2px); }
-  54% { transform: translateY(0) translateX(-2px); }
-  56% { transform: translateY(0) translateX(2px); }
-
-  70% {
-    transform: translateY(-4px);
-  }
-
-  100% {
-    transform: translateY(0);
-    box-shadow: 0 0 5px #22c55e;
-  }
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 5px #22c55e; }
-  50% { box-shadow: 0 0 25px #22c55e; }
-  100% { box-shadow: 0 0 5px #22c55e; }
-}
-    /* MOBILE */
-@media(max-width:768px){
-  .hero-content { flex-direction:column; text-align:center; }
-  .hero-title { font-size:26px; }
-  .hero-title .green { display:block; }
-}
-/* MOBILE */
-@media(max-width:768px){
-  ...
-}
-
-/* ===== MICRO INTERAZIONI PREMIUM ===== */
-
-.btn,
-.linkedin,
-.card,
-.logos-track img {
-  transition: all 0.25s ease;
-}
-
+/* =========================================
+   ANIMAZIONI E INTERAZIONI
+========================================= */
 @media (hover: hover) {
-
-  .btn:hover,
-  .linkedin:hover,
-  .card:hover,
-  .logos-track img:hover {
-
-    transform: translateY(-5px) scale(1.03);
-
-    box-shadow: 
-      0 10px 25px rgba(0,0,0,0.3),
-      0 0 20px rgba(34,197,94,0.4);
-
-  }
+    .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
+    .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
+    .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
+    .logos-track img:hover { transform: scale(1.1); }
 }
-
-/* ===== CTA LINKEDIN PREMIUM (GLow + Float + Shake PERFETTI) ===== */
 
 .linkedin-cta {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 14px 28px;
-  background: #22c55e;
-  color: black;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-
-  animation: premiumCTA 4s ease-in-out infinite;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 16px 32px;
+    background: #22c55e;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    animation: premiumCTA 4s ease-in-out infinite;
 }
 
-/* 🔥 ANIMAZIONE UNIFICATA */
 @keyframes premiumCTA {
-
-  /* stato base */
-  0% {
-    transform: translateY(0) translateX(0);
-    box-shadow: 0 0 10px rgba(34,197,94,0.4);
-  }
-
-  /* salita */
-  25% {
-    transform: translateY(-6px);
-    box-shadow: 0 0 25px rgba(34,197,94,0.7);
-  }
-
-  /* picco glow */
-  50% {
-    transform: translateY(0);
-    box-shadow: 0 0 35px rgba(34,197,94,1);
-  }
-
-  /* discesa */
-  70% {
-    transform: translateY(-3px);
-  }
-
-  /* 🔔 TRILLO */
-  80% {
-    transform: translateY(0) translateX(-2px);
-  }
-
-  82% {
-    transform: translateY(0) translateX(2px);
-  }
-
-  84% {
-    transform: translateY(0) translateX(-2px);
-  }
-
-  86% {
-    transform: translateY(0) translateX(2px);
-  }
-
-  /* ritorno */
-  100% {
-    transform: translateY(0) translateX(0);
-    box-shadow: 0 0 10px rgba(34,197,94,0.4);
-  }
+    0%, 100% { transform: translateY(0); box-shadow: 0 0 10px rgba(34,197,94,0.4); }
+    25% { transform: translateY(-6px); box-shadow: 0 0 25px rgba(34,197,94,0.7); }
+    50% { transform: translateY(0); box-shadow: 0 0 35px rgba(34,197,94,1); }
+    70% { transform: translateY(-3px); }
+    80%, 84% { transform: translateX(-2px); }
+    82%, 86% { transform: translateX(2px); }
 }
 
-/* hover */
-.linkedin-cta:hover {
-  transform: scale(1.05);
-}
-  @media (min-width: 769px) {
-  .hero {
-    min-height: 55vh;
-    padding-top: 80px;
-  }
-}
-.mobile-only {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .mobile-only {
-    display: block;
-  }
-}
-
-      /* ...tutto il tuo 
-
-.linkedin-cta:hover {
-  transform: scale(1.05);
-}
-
-/* 👇 INCOLLA QUI */
+/* CTA FINALE (Animazione a scroll) */
 .final-cta {
-  text-align: center;
-  margin: 100px 20px 60px;
+    text-align: center;
+    padding: 80px 20px 140px; /* Extra padding per evitare che Whatsapp lo copra */
+    position: relative;
+    z-index: 2;
 }
 
-/* base */
 .cta-line {
-  opacity: 0;
-  transform: translateY(30px);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* prima riga */
-.line1 {
-  font-size: 22px;
-  color: #aaa;
-  animation: fadeUp 0.8s ease forwards;
-}
-
-/* seconda riga */
-.line2 {
-  font-size: 34px;
-  color: #22c55e;
-  font-weight: 600;
-  margin-top: 10px;
-  text-shadow: 0 0 15px rgba(34,197,94,0.5);
-
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.4s;
-}
-
-/* animazione */
-@keyframes fadeUp {
-  to {
+.final-cta.visible .cta-line {
     opacity: 1;
     transform: translateY(0);
-  }
 }
 
-/* mobile */
+.line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
+.line2 { 
+    font-size: clamp(26px, 4.5vw, 40px); 
+    color: #22c55e; 
+    font-weight: 700; 
+    text-shadow: 0 0 15px rgba(34,197,94,0.4); 
+}
+.final-cta.visible .line2 { transition-delay: 0.3s; }
+
+/* =========================================
+   WHATSAPP BUTTON E CONTATTI
+========================================= */
+.contatti { text-align: center; }
+.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
+.contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+.contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; }
+
+.whatsapp {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #22c55e;
+    padding: 16px 24px;
+    border-radius: 50px;
+    color: black;
+    font-weight: 700;
+    z-index: 9998; /* Un punto in meno di Iubenda */
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+    transition: transform 0.3s ease;
+}
+
+/* =========================================
+   MEDIA QUERIES (MOBILE RESPONSIVE)
+========================================= */
+.mobile-only { display: none; }
+
 @media (max-width: 768px) {
-  .line2 {
-    font-size: 26px;
-  }
-}
-    @media (max-width: 768px) {
-  .logos-section {
-    margin-top: -60px !important;
-  }
-}
-    @media (min-width: 769px) {
-  .logos-section {
-    margin-top: -80px;
-  }
-}
-   /* ===== FIX IUBENDA BANNER DEFINITIVO ===== */
+    .mobile-only { display: block; }
+    
+    .hero {
+        min-height: auto;
+        padding-top: 60px;
+    }
 
-#iubenda-cs-banner,
-.iubenda-cs-banner {
-  position: fixed !important;
-  bottom: 0 !important;
-  top: auto !important;
-  left: 0 !important;
-  width: 100% !important;
-  z-index: 999999 !important;
+    .hero-content { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 30px;
+    }
 
-  padding: 16px 20px !important;
-  font-size: 14px !important;
+    .btn-group {
+        align-items: center;
+    }
 
-  max-height: none !important;
-  height: auto !important;
-  overflow: visible !important;
-}
+    .logos-section {
+        margin-top: 0;
+        padding: 20px 0;
+    }
 
-/* contenuto interno */
-#iubenda-cs-banner .iubenda-cs-content {
-  padding: 0 !important;
-}
+    .section {
+        padding: 50px 20px;
+    }
 
-/* bottoni */
-#iubenda-cs-banner .iubenda-cs-actions {
-  margin-top: 12px !important;
-  display: flex !important;
-  gap: 10px !important;
-  flex-wrap: wrap !important;
+    /* Whatsapp Mobile: Diventa una barra in basso che non interferisce col testo */
+    .whatsapp {
+        bottom: 80px; /* Spazio per Iubenda */
+        right: 50%;
+        transform: translateX(50%);
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        padding: 14px 10px;
+        font-size: 15px;
+    }
 }
 
-/* mobile */
-@media (max-width: 768px) {
-  #iubenda-cs-banner {
-    padding: 12px !important;
+/* =========================================
+   FIX IUBENDA BANNER DEFINITIVO
+========================================= */
+#iubenda-cs-banner, .iubenda-cs-banner {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    padding: 12px 20px !important;
     font-size: 13px !important;
-  }
+}
+
+#iubenda-cs-banner .iubenda-cs-actions {
+    margin-top: 10px !important;
+    display: flex !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
 }
 </style>
 </head>
@@ -451,288 +396,191 @@ body::before {
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-content">
-
-<div>
-<h1 class="hero-title">
-Sales Closer: trasformo i tuoi lead in <span class="green">clienti reali</span>
-</h1>
-
-<p>
-  Aiuto Aziende e Agenzie nel B2B/B2C
-  <br class="mobile-only">
-  <span>ad aumentare le vendite</span>
-</p>
-
-<a href="mailto:bertonimatteo3@gmail.com" class="btn">
-Prenota una call gratuita
-</a>
-
-<a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-Scopri chi sono su LinkedIn
-</a>
-</div>
-
-<div class="hero-right">
-<img src="foto.png">
-</div>
-
-</div>
+    <div class="hero-content">
+        <div class="hero-left">
+            <h1 class="hero-title">
+                Sales Closer: trasformo i tuoi lead in <br class="mobile-only"><span class="green">clienti reali</span>
+            </h1>
+            <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare le vendite e scalare il fatturato.</p>
+            <div class="btn-group">
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">Scopri chi sono su LinkedIn</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <img src="foto.png" alt="Matteo Bertoni Sales Closer">
+        </div>
+    </div>
 </section>
 
-<!-- CAROSELLO -->
+<!-- CAROSELLO LOGHI -->
 <section class="logos-section">
-<p class="logos-title">Hanno scelto di collaborare con me ⤵︎</p>
-
-<div class="logos-container" id="carousel">
-<div class="logos-track">
-    <!-- LISTA -->
-<img src="venditore-a-distanza.jpg">
-<img src="herbalife.png">
-<img src="Realmaps.png">
-<img src="assocral.png">
-<img src="prima-scelta.png">
-<img src="homei.jpeg">
-<img src="arcari.png" alt="Arcari">
-<img src="gruppo-soraci.jpg">
-<img src="marchi-cucine.jpg">
-<img src="pruiti-marketing.png">
-<img src="cappellini.png">
-<img src="webapp.jpeg">
-<img src="wayan.png">
-<img src="verona.jpg">
-<img src="berton.png" alt="Berton">
-<img src="prezzi-farmaco.png">
-<img src="velocissimo.webp">
-<img src="sales.png">
-<img src="farmacisti.png">
-<img src="app-in-farma.png">
-<img src="ilaria.png">
-<img src="foglietto-illustrativo.png">
-
-    <!-- NUOVI LOGHI -->
-<img src="gizia.png" alt="Gizia">
-<img src="slym.png" alt="Slym">
-
-<!-- DUPLICATO IDENTICO -->
-<img src="venditore-a-distanza.jpg">
-<img src="herbalife.png">
-<img src="Realmaps.png">
-<img src="assocral.png">
-<img src="prima-scelta.png">
-<img src="homei.jpeg">
-<img src="arcari.png" alt="Arcari">
-<img src="gruppo-soraci.jpg">
-<img src="marchi-cucine.jpg">
-<img src="pruiti-marketing.png">
-<img src="cappellini.png">
-<img src="webapp.jpeg">
-<img src="wayan.png">
-<img src="verona.jpg">
-<img src="berton.png" alt="Berton">
-<img src="prezzi-farmaco.png">
-<img src="velocissimo.webp">
-<img src="sales.png">
-<img src="farmacisti.png">
-<img src="app-in-farma.png">
-<img src="ilaria.png">
-<img src="foglietto-illustrativo.png">
-
-    <!-- NUOVI LOGHI -->
-<img src="gizia.png" alt="Gizia">
-<img src="slym.png" alt="Slym">
-
-</div>
-</div>
+    <p class="logos-title">Hanno scelto di collaborare con me</p>
+    <div class="logos-container" id="carousel">
+        <div class="logos-track">
+            <!-- LISTA (Duplicata per effetto infinito fluido) -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <!-- DUPLICATO IDENTICO PER LO SCROLL -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+        </div>
+    </div>
 </section>
 
-<!-- SEZIONI -->
+<!-- SEZIONE CHI AIUTO -->
 <section class="section">
-<h2 class="green">Chi posso aiutare davvero</h2>
-<div class="grid grid-3">
-<div class="card">
-  <h3>Aziende e <span>Agenzie</span></h3>
-<br>
-  <p>Per realtà che hanno un flusso di contatti ma faticano a convertirli in contratti firmati.</p>
-
-  <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
-</div>
-<div class="card">
-  <h3>Startup e Nuovi Progetti</h3>
-<br>
-  <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
-
-  <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia "digeribile" dal mercato fin dal primo giorno.</p>
-</div>
-<div class="card">
-  <h3>Freelance & Partner</h3>
-<br>
-  <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
-
-  <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
-</div>
-</div>
-</section>
-
-    <section class="section">
-    
-    <h2 class="green">Come porto risultati</h2>
-
+    <h2 class="green">Chi posso aiutare davvero</h2>
     <div class="grid grid-3">
+        <div class="card">
+            <h3>Aziende e <span>Agenzie</span></h3>
+            <p>Per realtà che hanno un flusso di contatti ma faticano a convertirli in contratti firmati.</p>
+            <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
+        </div>
+        <div class="card">
+            <h3>Startup e <span>Nuovi Progetti</span></h3>
+            <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
+            <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia "digeribile" dal mercato fin dal primo giorno.</p>
+        </div>
+        <div class="card">
+            <h3>Freelance & <span>Partner</span></h3>
+            <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
+            <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
+        </div>
+    </div>
+</section>
 
-  <div class="card">
-    <h3>Chiusura Trattative (Sales Closing)</h3>
-      <br>
-    <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
-    <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo.</p>
-    <p>Porto 'cash collected' immediato nelle casse dell'azienda.</p>
-  </div>
-
-  <div class="card">
-    <h3>Sviluppo Lifetime Value (LTV)</h3>
-      <br>
-    <p>Non mi fermo alla firma del contratto.</p>
-    <p>Accompagno ogni cliente migliore dei modi, aumentando retention e fiducia nel tempo.</p>
-    <p>Creo opportunità di upsell e cross-sell per massimizzare la redditività di ogni acquisizione.</p>
-  </div>
-
-  <div class="card">
-    <h3>Corporate Content & Social Strategy</h3>
-      <br>
-    <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
-    <p>Trasformo il tuo profilo o la tua pagina in una calamita per lead qualificati: scrivo contenuti e creo grafiche che costruiscono autorità e fiducia, 'scaldando' il mercato prima ancora di alzare la cornetta.</p>
-  </div>
-
+<!-- SEZIONE COME PORTO RISULTATI -->
+<section class="section">
+    <h2 class="green">Come porto risultati</h2>
+    <div class="grid grid-3">
+        <div class="card">
+            <h3>Chiusura Trattative <span>(Sales Closing)</span></h3>
+            <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
+            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
+        </div>
+        <div class="card">
+            <h3>Sviluppo <span>Lifetime Value</span> (LTV)</h3>
+            <p>Non mi fermo alla firma del contratto.</p>
+            <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
+        </div>
+        <div class="card">
+            <h3>Corporate Content & <span>Social</span></h3>
+            <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
+            <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
+        </div>
     </div>
 
-    <div style="text-align:center; margin-top:40px;">
-    <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" 
-       target="_blank" 
-       class="linkedin-cta">
-       Vedi esempi di content reali sul mio LinkedIn
-    </a>
-</div>
-
+    <div style="text-align:center; margin-top:50px;">
+        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
+           Vedi esempi sul mio LinkedIn
+        </a>
+    </div>
 </section>
 
+<!-- NUMERI -->
 <section class="section">
-<h2 class="green">Un po' di numeri che mi riguardano</h2>
-<div class="grid grid-3">
-<div class="card">
-  <div class="stat">49% tasso di retention (riacquisto)</div>
-<br>
-  <p>Dato medio complessivo dei progetti che ho gestito nel tempo.</p>
-
-  <p>Non mi limito a 'chiudere'. Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui.</p>
-
-  <p>Risultato? Quasi un cliente su due continua a investire nell'azienda anche dopo la prima vendita.</p>
-</div>
-
-<div class="card">
-  <div class="stat">100+ contratti chiusi da traffico freddo</div>
-<br>
-  <p>Non mi serve parlare solo con chi è già pronto a comprare.</p>
-
-  <p>Ho chiuso oltre 100 trattative partendo da lead completamente freddi: gestisco le obiezioni, educo il potenziale cliente e porto a casa il contratto.</p>
-</div>
-<div class="card">
-  <div class="stat">+27% tasso di chiusura medio calcolato</div>
-<br>
-  <p>Una metrica calcolata sull'intero storico della mia attività da closer.</p>
-
-  <p>Sommare i risultati di ogni singolo progetto mi permette di offrire una garanzia di performance: so come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
-</div></div>
+    <h2 class="green">I miei numeri</h2>
+    <div class="grid grid-3">
+        <div class="card">
+            <div class="stat">49% retention</div>
+            <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'. Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
+        </div>
+        <div class="card">
+            <div class="stat">100+ contratti</div>
+            <p>Chiusi da traffico freddo. Ho gestito trattative partendo da lead completamente freddi: gestisco le obiezioni, educo il potenziale cliente e porto a casa il contratto.</p>
+        </div>
+        <div class="card">
+            <div class="stat">+27% closing rate</div>
+            <p>Tasso medio calcolato sull'intero storico della mia attività da closer. So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
+        </div>
+    </div>
 </section>
 
+<!-- SEZIONI BREVI -->
 <section class="section">
-<h2 class="green">Strategia e processo</h2>
-<div class="card">
-<p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
-</div>
-</section>
-<section class="section">
-<h2 class="green">Con chi ho già collaborato</h2>
-<div class="card">
-<p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi.</p>
-<p>Obiettivo: trasformare i tuoi contatti in fatturato concreto.</p>
-</div>
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+        <div class="card">
+            <h3 class="green">Strategia e processo</h3>
+            <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
+        </div>
+        <div class="card">
+            <h3 class="green">Con chi collaboro</h3>
+            <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
+        </div>
+    </div>
 </section>
 
-   <div class="final-cta hidden">
-  <p class="cta-line line1">I lead non sono il problema.</p>
-  <p class="cta-line line2">È quello che succede dopo che fa la differenza.</p>
+<!-- CTA FINALE ANIMATA SCROLL -->
+<div class="final-cta" id="final-cta">
+    <p class="cta-line line1">I lead non sono il problema.</p>
+    <p class="cta-line line2">È quello che succede dopo che fa la differenza.</p>
 </div>
 
+<!-- CONTATTI -->
 <section class="section contatti">
-
-  <h2 class="green">Contatti</h2>
-
-  <div class="contact-box">
-
-    <p class="contact-name">Matteo Bertoni</p>
-    <p class="contact-role">Consulente Strategico (Verona)</p>
-
-    <div class="contact-info">
-      <p>Email: bertonimatteo3@gmail.com</p>
-      <p>WhatsApp: 350 579 1061</p>
+    <h2 class="green">Contatti</h2>
+    <div class="contact-box">
+        <p class="contact-name">Matteo Bertoni</p>
+        <p class="contact-role">Sales Closer (Verona)</p>
+        <div class="contact-info">
+            <p>Email: bertonimatteo3@gmail.com</p>
+            <p>WhatsApp: 350 579 1061</p>
+        </div>
     </div>
-
-  </div>
-
 </section>
 
+<!-- TASTO WHATSAPP FISSO -->
 <a href="https://wa.me/393505791061" class="whatsapp">
-↪︎ Vuoi più clienti? Scrivimi su WhatsApp ↩︎
+    ↪︎ Vuoi più clienti? Scrivimi ↩︎
 </a>
 
-<!-- LOOP PERFETTO -->
-<script>
-const el = document.getElementById('carousel');
-
-let speed = 0.5; // 🔥 test visivo forte
-let isTouching = false;
-
-// AUTO SCROLL
-function autoScroll(){
-
-  if(!isTouching){
-    el.scrollLeft += speed;
-
-    const half = el.scrollWidth / 2;
-
-    if(el.scrollLeft >= half){
-      el.scrollLeft -= half;
-    }
-  }
-
-  requestAnimationFrame(autoScroll);
-}
-
-autoScroll();
-
-// 🔥 TOUCH CONTROL PERFETTO
-el.addEventListener('touchstart', () => {
-  isTouching = true;
-});
-
-el.addEventListener('touchmove', () => {
-  isTouching = true;
-});
-
-el.addEventListener('touchend', () => {
-  setTimeout(() => {
-    isTouching = false;
-  }, 1000); // 🔥 lascia inerzia naturale
-});
-</script>
-<div style="text-align:center; margin-top:40px; font-size:14px;">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank">
-  Privacy Policy
-</a>
-  |
-  <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank">
-  Cookie Policy
-</a>
+<!-- FOOTER IUBENDA -->
+<div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
+    |
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
 </div>
+
+
+<!-- JAVASCRIPT: CAROSELLO + ANIMAZIONE CTA -->
+<script>
+    // 1. CAROSELLO AUTO-SCROLL
+    const el = document.getElementById('carousel');
+    let speed = 0.8; 
+    let isTouching = false;
+
+    function autoScroll(){
+        if(!isTouching){
+            el.scrollLeft += speed;
+            const half = el.scrollWidth / 2;
+            if(el.scrollLeft >= half){
+                el.scrollLeft -= half; // Reset invisibile a metà
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+    autoScroll();
+
+    el.addEventListener('touchstart', () => { isTouching = true; }, {passive: true});
+    el.addEventListener('touchmove', () => { isTouching = true; }, {passive: true});
+    el.addEventListener('touchend', () => { 
+        setTimeout(() => { isTouching = false; }, 800); 
+    });
+
+    // 2. TRIGGER ANIMAZIONE CTA FINALE ALLO SCROLL
+    document.addEventListener("DOMContentLoaded", function() {
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    ctaObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 }); // Parte l'animazione quando è visibile al 30%
+
+        const ctaElement = document.getElementById('final-cta');
+        if(ctaElement) ctaObserver.observe(ctaElement);
+    });
+</script>
+
 </body>
 </html>
