@@ -55,14 +55,14 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   ANIMAZIONI DI RIVELAZIONE ESTREMAMENTE LENTE ED ELEGANTI
+   ANIMAZIONI DI RIVELAZIONE LENTE ED ELEGANTI (FIX CONFLITTO CSS)
 ========================================= */
 .reveal {
     opacity: 0;
-    transform: translateY(60px); /* Partono leggermente più in basso per un effetto fluttuante più lungo */
-    /* Transizione portata a 3 secondi con una curva molto morbida (cinematografica) */
-    transition: opacity 3s cubic-bezier(0.22, 1, 0.36, 1), 
-                transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateY(50px);
+    /* !important forza l'animazione lenta di 1.8s a NON essere scavalcata dal 0.3s delle Card! */
+    transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1) !important, 
+                transform 1.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
     will-change: opacity, transform;
 }
 
@@ -71,10 +71,12 @@ body {
     transform: translateY(0);
 }
 
-/* Ritardi notevolmente aumentati per staccare bene l'apparizione di ogni card */
-.grid .card.reveal:nth-child(1) { transition-delay: 0.2s; }
-.grid .card.reveal:nth-child(2) { transition-delay: 0.8s; }
-.grid .card.reveal:nth-child(3) { transition-delay: 1.4s; }
+/* Ordine e ritardo a cascata SOLO PER PC/DESKTOP */
+@media (min-width: 769px) {
+    .grid .card.reveal:nth-child(1) { transition-delay: 0.1s !important; }
+    .grid .card.reveal:nth-child(2) { transition-delay: 0.4s !important; }
+    .grid .card.reveal:nth-child(3) { transition-delay: 0.7s !important; }
+}
 
 /* =========================================
    HERO SECTION
@@ -169,7 +171,7 @@ body {
 .linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI (RALLENTATO)
+   CAROSELLO LOGHI
 ========================================= */
 .logos-section {
     position: relative;
@@ -198,7 +200,6 @@ body {
     gap: 30px;
     padding: 10px 0;
     width: max-content;
-    /* Rallentato da 35s a 70s per maggiore leggibilità ed eleganza */
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
 }
@@ -271,7 +272,6 @@ body {
     line-height: 1.3;
 }
 
-/* Classe speciale per i titoli dei numeri, in modo che siano verdi ma mantengano lo stesso font-size delle card */
 .card h3.green-title {
     color: #22c55e;
 }
@@ -361,7 +361,6 @@ body {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
     filter: blur(8px); 
-    /* Rallentato ulteriormente a 2.5s */
     transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 filter 2.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -491,7 +490,7 @@ body {
         <div class="logos-track">
             <!-- LISTA 1 -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
-            <!-- LISTA 2 DUPLICATA (Necessaria per lo scorrimento infinito CSS) -->
+            <!-- LISTA 2 DUPLICATA -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
@@ -524,7 +523,7 @@ body {
     <h2 class="green reveal">Come porto risultati</h2>
     <div class="grid grid-3">
         
-        <!-- CARD 1 (Scritta bianca, identica agli altri titoli, va a capo) -->
+        <!-- CARD 1 -->
         <div class="card card-closing reveal">
             <h3>Chiusura Trattative<br>(Sales Closing)</h3>
             <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
@@ -564,7 +563,7 @@ body {
     </div>
 </section>
 
-<!-- NUMERI (Titoli della stessa grandezza degli altri, ma verdi) -->
+<!-- NUMERI -->
 <section class="section">
     <h2 class="green reveal">I miei numeri</h2>
     <div class="grid grid-3">
@@ -619,7 +618,7 @@ body {
     </div>
 </section>
 
-<!-- TASTO WHATSAPP FISSO CON LOGO -->
+<!-- TASTO WHATSAPP FISSO -->
 <a href="https://wa.me/393505791061" class="whatsapp">
     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0zm0 21.96c-1.78 0-3.52-.48-5.06-1.39l-.36-.21-3.76.99.99-3.66-.23-.37c-1-1.59-1.53-3.41-1.53-5.3 0-5.54 4.51-10.05 10.05-10.05 5.54 0 10.05 4.51 10.05 10.05 0 5.54-4.51 10.05-10.05 10.05zm5.51-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.52-.77-2.67-1.42-3.68-2.6-.28-.32.03-.3.32-.88.1-.2.05-.38-.03-.53-.08-.15-.68-1.63-.93-2.23-.24-.59-.48-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
@@ -634,16 +633,23 @@ body {
     <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
 </div>
 
-<!-- JAVASCRIPT: INTERSECTION OBSERVER PER SCROLL ANIMATIONS -->
+<!-- JAVASCRIPT: INTERSECTION OBSERVER -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // Osservatore per tutti gli elementi con classe .reveal
+        // Osservatore principale per l'apparizione lenta
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
+                    // Quando l'elemento entra nello schermo fa partire l'animazione lenta
                     entry.target.classList.add('active');
                     revealObserver.unobserve(entry.target); 
+                    
+                    // DOPO 3 secondi (a comparsa finita), disattiviamo il "reveal" lento
+                    // Questo permette alla card di tornare reattiva al mouse per fare l'effetto "salto" in 0.3s
+                    setTimeout(() => {
+                        entry.target.classList.remove('reveal', 'active');
+                    }, 3000);
                 }
             });
         }, { 
