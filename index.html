@@ -55,13 +55,14 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   ANIMAZIONI DI RIVELAZIONE (SCROLL)
+   ANIMAZIONI DI RIVELAZIONE PIU' LENTE ED ELEGANTE
 ========================================= */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Transizione portata a 1.2s per un effetto molto più morbido */
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     will-change: opacity, transform;
 }
 
@@ -70,10 +71,10 @@ body {
     transform: translateY(0);
 }
 
-/* Ritardi per le card in modo che appaiano a cascata */
-.grid .card:nth-child(1) { transition-delay: 0.1s; }
-.grid .card:nth-child(2) { transition-delay: 0.3s; }
-.grid .card:nth-child(3) { transition-delay: 0.5s; }
+/* Ritardi aumentati per le card in modo che appaiano a cascata con più respiro */
+.grid .card.reveal:nth-child(1) { transition-delay: 0.1s; }
+.grid .card.reveal:nth-child(2) { transition-delay: 0.35s; }
+.grid .card.reveal:nth-child(3) { transition-delay: 0.6s; }
 
 /* =========================================
    HERO SECTION
@@ -168,7 +169,7 @@ body {
 .linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI (FIX IOS PURO CSS)
+   CAROSELLO LOGHI (RALLENTATO)
 ========================================= */
 .logos-section {
     position: relative;
@@ -189,7 +190,7 @@ body {
 
 .logos-container {
     width: 100%;
-    overflow: hidden; /* Nasconde la scrollbar e i salti */
+    overflow: hidden; 
 }
 
 .logos-track {
@@ -197,8 +198,8 @@ body {
     gap: 30px;
     padding: 10px 0;
     width: max-content;
-    /* Animazione continua CSS, perfetta su iOS */
-    animation: scrollMarquee 35s linear infinite;
+    /* Rallentato da 35s a 70s per maggiore leggibilità ed eleganza */
+    animation: scrollMarquee 70s linear infinite;
     align-items: center;
 }
 
@@ -209,7 +210,7 @@ body {
 
 @keyframes scrollMarquee {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Scorre esattamente della metà */
+    100% { transform: translateX(-50%); } 
 }
 
 .logos-track img {
@@ -270,6 +271,11 @@ body {
     line-height: 1.3;
 }
 
+/* Classe speciale per i titoli dei numeri, in modo che siano verdi ma mantengano lo stesso font-size delle card */
+.card h3.green-title {
+    color: #22c55e;
+}
+
 .card p {
     color: #cccccc;
     margin-bottom: 15px;
@@ -278,14 +284,6 @@ body {
 
 .card p:last-child {
     margin-bottom: 0;
-}
-
-.stat {
-    color: #22c55e;
-    font-size: clamp(28px, 3vw, 36px);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 15px;
 }
 
 /* Freccia e ordinamento card */
@@ -363,9 +361,9 @@ body {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
     filter: blur(8px); 
-    transition: opacity 1.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 1.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                filter 1.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 2s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .final-cta.visible .cta-line {
@@ -525,9 +523,9 @@ body {
     <h2 class="green reveal">Come porto risultati</h2>
     <div class="grid grid-3">
         
-        <!-- CARD 1 (Modifica a capo e dimensione) -->
+        <!-- CARD 1 (Scritta bianca, identica agli altri titoli, va a capo) -->
         <div class="card card-closing reveal">
-            <h3>Chiusura Trattative<br><span style="font-size: 18px; color: #22c55e; font-weight: normal;">(Sales Closing)</span></h3>
+            <h3>Chiusura Trattative<br>(Sales Closing)</h3>
             <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
             <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
         </div>
@@ -565,22 +563,22 @@ body {
     </div>
 </section>
 
-<!-- NUMERI -->
+<!-- NUMERI (Titoli della stessa grandezza degli altri, ma verdi) -->
 <section class="section">
     <h2 class="green reveal">I miei numeri</h2>
     <div class="grid grid-3">
         <div class="card reveal">
-            <div class="stat">49% retention</div>
+            <h3 class="green-title">49% retention</h3>
             <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
             <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
         </div>
         <div class="card reveal">
-            <div class="stat">100+ contratti</div>
+            <h3 class="green-title">100+ contratti</h3>
             <p>Chiusi da traffico freddo.</p>
             <p>Ho gestito trattative partendo da lead completamente freddi: gestisco le obiezioni, educo il potenziale cliente e porto a casa il contratto.</p>
         </div>
         <div class="card reveal">
-            <div class="stat">+27% closing rate</div>
+            <h3 class="green-title">+27% closing rate</h3>
             <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
             <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
         </div>
@@ -639,23 +637,23 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // Osservatore per tutti gli elementi con classe .reveal (Titoli, Card, Sezioni)
+        // Osservatore per tutti gli elementi con classe .reveal
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); // Si anima solo la prima volta
+                    revealObserver.unobserve(entry.target); 
                 }
             });
         }, { 
-            threshold: 0.1, // Si attiva quando il 10% dell'elemento entra nello schermo
-            rootMargin: "0px 0px -50px 0px" // Fa attivare l'animazione leggermente prima che tocchi il fondo dello schermo
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" 
         });
 
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Osservatore dedicato solo per la CTA finale (che usa la classe .visible)
+        // Osservatore dedicato solo per la CTA finale
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
