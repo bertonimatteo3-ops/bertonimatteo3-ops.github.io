@@ -55,14 +55,14 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   ANIMAZIONI DI RIVELAZIONE PIU' LENTE ED ELEGANTE
+   ANIMAZIONI DI RIVELAZIONE ESTREMAMENTE LENTE ED ELEGANTI
 ========================================= */
 .reveal {
     opacity: 0;
-    transform: translateY(40px);
-    /* Transizione portata a 2 secondi per un effetto molto più lento e morbido */
-    transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(60px); /* Partono leggermente più in basso per un effetto fluttuante più lungo */
+    /* Transizione portata a 3 secondi con una curva molto morbida (cinematografica) */
+    transition: opacity 3s cubic-bezier(0.22, 1, 0.36, 1), 
+                transform 3s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: opacity, transform;
 }
 
@@ -71,10 +71,10 @@ body {
     transform: translateY(0);
 }
 
-/* Ritardi aumentati per le card in modo che appaiano a cascata molto lentamente */
-.grid .card.reveal:nth-child(1) { transition-delay: 0.15s; }
-.grid .card.reveal:nth-child(2) { transition-delay: 0.45s; }
-.grid .card.reveal:nth-child(3) { transition-delay: 0.75s; }
+/* Ritardi notevolmente aumentati per staccare bene l'apparizione di ogni card */
+.grid .card.reveal:nth-child(1) { transition-delay: 0.2s; }
+.grid .card.reveal:nth-child(2) { transition-delay: 0.8s; }
+.grid .card.reveal:nth-child(3) { transition-delay: 1.4s; }
 
 /* =========================================
    HERO SECTION
