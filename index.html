@@ -55,28 +55,32 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   ANIMAZIONI DI RIVELAZIONE LENTE ED ELEGANTI (FIX CONFLITTO CSS)
+   NUOVE ANIMAZIONI ESTREMAMENTE LENTE ED ELEGANTI (Keyframes)
 ========================================= */
 .reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    /* !important forza l'animazione lenta di 1.8s a NON essere scavalcata dal 0.3s delle Card! */
-    transition: opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1) !important, 
-                transform 1.8s cubic-bezier(0.22, 1, 0.36, 1) !important;
-    will-change: opacity, transform;
+    opacity: 0; /* Rimane invisibile finché non entra nello schermo */
 }
 
+/* Quando l'elemento è visibile, parte un'animazione lunga 3 secondi con decelarazione elegante */
 .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+    animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Ordine e ritardo a cascata SOLO PER PC/DESKTOP */
-@media (min-width: 769px) {
-    .grid .card.reveal:nth-child(1) { transition-delay: 0.1s !important; }
-    .grid .card.reveal:nth-child(2) { transition-delay: 0.4s !important; }
-    .grid .card.reveal:nth-child(3) { transition-delay: 0.7s !important; }
+@keyframes elegantReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
+/* Ritardi a cascata per l'ingresso delle card (Sia PC che Mobile) */
+.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
+.grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
+.grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
 
 /* =========================================
    HERO SECTION
@@ -637,19 +641,17 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // Osservatore principale per l'apparizione lenta
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Quando l'elemento entra nello schermo fa partire l'animazione lenta
                     entry.target.classList.add('active');
                     revealObserver.unobserve(entry.target); 
                     
-                    // DOPO 3 secondi (a comparsa finita), disattiviamo il "reveal" lento
-                    // Questo permette alla card di tornare reattiva al mouse per fare l'effetto "salto" in 0.3s
+                    // Ora aspetta 5 secondi interi prima di rimettere a posto le classi
+                    // Questo garantisce che l'animazione lenta di 3 secondi finisca con la massima eleganza senza scatti!
                     setTimeout(() => {
                         entry.target.classList.remove('reveal', 'active');
-                    }, 3000);
+                    }, 5000);
                 }
             });
         }, { 
@@ -660,7 +662,6 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // Osservatore dedicato solo per la CTA finale
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
