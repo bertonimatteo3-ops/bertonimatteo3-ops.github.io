@@ -637,10 +637,30 @@ body {
     <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
 </div>
 
-<!-- JAVASCRIPT: INTERSECTION OBSERVER -->
+<!-- JAVASCRIPT: INTERSECTION OBSERVER E FIX TOUCH -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
+        // --- INIZIO FIX PER CAROSELLO SU DISPOSITIVI TOUCH ---
+        const logosTrack = document.querySelector('.logos-track');
+        if (logosTrack) {
+            // Quando metti il dito, l'animazione si ferma
+            logosTrack.addEventListener('touchstart', function() {
+                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
+            }, { passive: true });
+            
+            // Quando alzi il dito, l'animazione viene forzata a ripartire
+            logosTrack.addEventListener('touchend', function() {
+                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+            });
+            
+            // Per sicurezza, se il dito esce dall'area senza sollevarsi in modo pulito
+            logosTrack.addEventListener('touchcancel', function() {
+                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+            });
+        }
+        // --- FINE FIX ---
+
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
