@@ -29,7 +29,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #0f0f0f; 
+    background: #1a1a1a; /* MODIFICATO: Sfondo base leggermente più chiaro */
     color: white;
     overflow-x: hidden;
 }
@@ -44,7 +44,7 @@ body {
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.30; 
+    opacity: 0.45; /* MODIFICATO: Opacità aumentata per schiarire la landing */
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
@@ -55,13 +55,12 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE ANIMAZIONI ESTREMAMENTE LENTE ED ELEGANTI (Keyframes)
+   ANIMAZIONI (Keyframes)
 ========================================= */
 .reveal {
-    opacity: 0; /* Rimane invisibile finché non entra nello schermo */
+    opacity: 0;
 }
 
-/* Quando l'elemento è visibile, parte un'animazione lunga 3 secondi con decelarazione elegante */
 .reveal.active {
     animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -77,7 +76,6 @@ body {
     }
 }
 
-/* Ritardi a cascata per l'ingresso delle card (Sia PC che Mobile) */
 .grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
 .grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
 .grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
@@ -166,7 +164,6 @@ body {
     background: transparent;
 }
 
-/* Dimensioni icone SVG nei bottoni */
 .btn-icon {
     width: 20px;
     height: 20px;
@@ -181,7 +178,7 @@ body {
     position: relative;
     z-index: 3;
     padding: 40px 0;
-    background: linear-gradient(to right, rgba(15,15,15,1), rgba(15,15,15,0) 10%, rgba(15,15,15,0) 90%, rgba(15,15,15,1));
+    background: linear-gradient(to right, rgba(26,26,26,1), rgba(26,26,26,0) 10%, rgba(26,26,26,0) 90%, rgba(26,26,26,1));
     overflow: hidden;
 }
 
@@ -194,11 +191,6 @@ body {
     letter-spacing: 2px;
 }
 
-.logos-container {
-    width: 100%;
-    overflow: hidden; 
-}
-
 .logos-track {
     display: flex;
     gap: 30px;
@@ -206,11 +198,6 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-}
-
-/* Pausa animazione al tocco o passaggio del mouse */
-.logos-track:hover, .logos-track:active {
-    animation-play-state: paused;
 }
 
 @keyframes scrollMarquee {
@@ -226,8 +213,6 @@ body {
     border-radius: 10px;
     object-fit: contain;
     flex-shrink: 0;
-    user-select: none;
-    -webkit-user-drag: none;
 }
 
 /* =========================================
@@ -257,7 +242,7 @@ body {
 }
 
 .card {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(15, 23, 42, 0.7); /* Leggermente più opaco per contrasto con sfondo chiaro */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.05);
@@ -273,130 +258,20 @@ body {
     font-size: 22px;
     color: #ffffff;
     margin-bottom: 15px;
-    line-height: 1.3;
-}
-
-.card h3.green-title {
-    color: #22c55e;
 }
 
 .card p {
     color: #cccccc;
-    margin-bottom: 15px;
     line-height: 1.6;
 }
-
-.card p:last-child {
-    margin-bottom: 0;
-}
-
-/* Freccia e ordinamento card */
-.arrow-down-container {
-    margin-top: auto; 
-    padding-top: 20px;
-    text-align: center;
-}
-
-.arrow-icon {
-    width: 40px;
-    height: 40px;
-    fill: #22c55e;
-    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-}
-
-@keyframes bounceDown {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-12px); }
-    60% { transform: translateY(-6px); }
-}
-
-@media (min-width: 769px) {
-    .card-closing { order: 1; }
-    .card-social { order: 2; border: 1px solid rgba(34,197,94,0.3); background: rgba(15, 23, 42, 0.8); } 
-    .card-ltv { order: 3; }
-}
-
-/* =========================================
-   ANIMAZIONI E INTERAZIONI
-========================================= */
-@media (hover: hover) {
-    .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
-    .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
-    .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
-}
-
-.linkedin-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    padding: 16px 32px;
-    background: #ffffff;
-    color: #064e3b; 
-    border: 2px solid #22c55e;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    animation: premiumCTA 4s ease-in-out infinite;
-    position: relative;
-    z-index: 3;
-}
-.linkedin-cta .btn-icon { fill: #064e3b; }
-
-@keyframes premiumCTA {
-    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
-    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
-    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
-    70% { transform: translateY(-3px); }
-    80%, 84% { transform: translateX(-2px); }
-    82%, 86% { transform: translateX(2px); }
-}
-
-/* CTA FINALE ELEGANT (Scroll lenta) */
-.final-cta {
-    text-align: center;
-    padding: 100px 20px 140px; 
-    position: relative;
-    z-index: 2;
-}
-
-.cta-line {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    filter: blur(8px); 
-    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                filter 2.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.final-cta.visible .cta-line {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-}
-
-.line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
-.line2 { font-size: clamp(26px, 4.5vw, 40px); color: #22c55e; font-weight: 700; text-shadow: 0 0 15px rgba(34,197,94,0.4); }
-
-.final-cta.visible .line1 { transition-delay: 0.2s; }
-.final-cta.visible .line2 { transition-delay: 1.4s; }
 
 /* =========================================
    WHATSAPP BUTTON E CONTATTI
 ========================================= */
-.contatti { text-align: center; }
-.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
-.contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
-.contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-.contact-info p { margin-bottom: 10px; font-size: 16px; }
-
-/* MODIFICA RICHIESTA: Tasto WhatsApp solo cerchio fisso in BASSO A SINISTRA */
 .whatsapp {
     position: fixed;
     bottom: 20px;
-    left: 20px; /* Posizione PC, iPad, Smartphone */
-    right: auto; /* Impedisce che venga centrato da altre regole */
+    right: 20px; /* FISSO A DESTRA */
     background: #22c55e;
     width: 60px; 
     height: 60px;
@@ -413,41 +288,37 @@ body {
 .whatsapp:hover { transform: scale(1.1); }
 
 /* =========================================
-   MEDIA QUERIES (MOBILE RESPONSIVE)
+   MEDIA QUERIES
 ========================================= */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block !important; }
-    
     .hero { min-height: auto; padding-top: 60px; }
     .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
     .btn-group { align-items: center; }
-    .logos-section { margin-top: 0; padding: 20px 0; }
-    .section { padding: 50px 20px; }
-    
-    .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
-
-    /* Il tasto WhatsApp non viene più sovrascritto qui per restare a sinistra */
 }
+
+/* IUBENDA ALLINEATA A SINISTRA */
+.iubenda-footer {
+    text-align: left; /* FISSO A SINISTRA */
+    padding: 20px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+.iubenda-footer a { color: #aaa; text-decoration: none; margin-right: 10px; }
 
 /* FIX IUBENDA BANNER */
-#iubenda-cs-banner, .iubenda-cs-banner {
-    position: fixed !important;
-    bottom: 0 !important;
-    top: auto !important;
-    left: 0 !important;
-    width: 100% !important;
+#iubenda-cs-banner {
     z-index: 999999 !important;
-    padding: 12px 20px !important;
-    font-size: 13px !important;
 }
-#iubenda-cs-banner .iubenda-cs-actions { margin-top: 10px !important; display: flex !important; gap: 10px !important; flex-wrap: wrap !important; }
 </style>
 </head>
 
 <body>
 
-<!-- DIV PER SFONDO FISSO -->
 <div class="bg-fixed"></div>
 
 <!-- HERO -->
@@ -458,12 +329,9 @@ body {
                 <span class="desktop-only">Sales Closer: trasformo i tuoi lead in <br><span class="green">clienti reali</span></span>
                 <span class="mobile-only">Sales Closer<br>Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span>
             </h1>
-            
             <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
             <div class="btn-group">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
-                
-                <!-- TASTO LINKEDIN CON LOGO -->
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
                     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -481,12 +349,11 @@ body {
 <!-- CAROSELLO LOGHI -->
 <section class="logos-section reveal">
     <p class="logos-title">Hanno scelto di collaborare con me</p>
-    <div class="logos-container">
+    <div class="logos-container" style="width: 100%; overflow: hidden;">
         <div class="logos-track">
-            <!-- LISTA 1 -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
-            <!-- LISTA 2 DUPLICATA -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo">
+            <!-- Duplicati per loop -->
+            <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo">
         </div>
     </div>
 </section>
@@ -498,191 +365,64 @@ body {
         <div class="card reveal">
             <h3>Aziende e Agenzie</h3>
             <p>Per realtà che hanno un flusso di contatti ma faticano a gestirli e convertirli in contratti firmati.</p>
-            <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
         </div>
         <div class="card reveal">
             <h3>Startup e Nuovi Progetti</h3>
             <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
-            <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia desiderabile dal mercato fin dal primo giorno.</p>
         </div>
         <div class="card reveal">
             <h3>Freelance & Partner</h3>
             <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
-            <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
         </div>
     </div>
 </section>
-
-<!-- SEZIONE COME PORTO RISULTATI -->
-<section class="section">
-    <h2 class="green reveal">Come porto risultati</h2>
-    <div class="grid grid-3">
-        
-        <!-- CARD 1 -->
-        <div class="card card-closing reveal">
-            <h3>Chiusura Trattative<br>(Sales Closing)</h3>
-            <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
-            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="card card-ltv reveal">
-            <h3>Sviluppo Lifetime Value (LTV)</h3>
-            <p>Non mi fermo alla firma del contratto.</p>
-            <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
-        </div>
-
-        <!-- CARD 3 -->
-        <div class="card card-social reveal">
-            <h3>Corporate Content & Social</h3>
-            <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
-            <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
-            
-            <div class="arrow-down-container">
-                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
-                </svg>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Bottone Sotto le Card -->
-    <div class="reveal" style="text-align:center; margin-top:50px;">
-        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
-           <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-           </svg>
-           Guarda sul mio LinkedIn come comunico per vendere
-        </a>
-    </div>
-</section>
-
-<!-- NUMERI -->
-<section class="section">
-    <h2 class="green reveal">I miei numeri</h2>
-    <div class="grid grid-3">
-        <div class="card reveal">
-            <h3 class="green-title">49% retention</h3>
-            <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
-            <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
-        </div>
-        <div class="card reveal">
-            <h3 class="green-title">100+ contratti</h3>
-            <p>Chiusi da traffico freddo.</p>
-            <p>Ho gestito trattative partendo da lead completamente freddi: gestisco le obiezioni, educo il potenziale cliente e porto a casa il contratto.</p>
-        </div>
-        <div class="card reveal">
-            <h3 class="green-title">+27% closing rate</h3>
-            <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
-            <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
-        </div>
-    </div>
-</section>
-
-<!-- SEZIONI BREVI -->
-<section class="section">
-    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
-        <div class="card reveal">
-            <h3 class="green">Strategia e processo</h3>
-            <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
-        </div>
-        <div class="card reveal">
-            <h3 class="green">Con chi collaboro</h3>
-            <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
-        </div>
-    </div>
-</section>
-
-<!-- CTA FINALE ANIMATA SCROLL -->
-<div class="final-cta" id="final-cta">
-    <p class="cta-line line1">I lead non sono il problema.</p>
-    <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
-</div>
 
 <!-- CONTATTI -->
-<section class="section contatti reveal">
+<section class="section contatti reveal" style="text-align: center;">
     <h2 class="green">Contatti</h2>
-    <div class="contact-box">
-        <p class="contact-name">Matteo Bertoni</p>
-        <p class="contact-role">Sales Closer (Verona)</p>
-        <div class="contact-info">
+    <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px;">
+        <p style="font-size: 24px; font-weight: bold;">Matteo Bertoni</p>
+        <p style="color: #22c55e; text-transform: uppercase; letter-spacing: 1px;">Sales Closer (Verona)</p>
+        <div style="margin-top: 20px;">
             <p>Email: bertonimatteo3@gmail.com</p>
             <p>WhatsApp: 350 579 1061</p>
         </div>
     </div>
 </section>
 
-<!-- TASTO WHATSAPP FISSO - MODIFICATO: SOLO CERCHIO A SINISTRA (ANDROID/IOS OK) -->
+<!-- TASTO WHATSAPP FISSO A DESTRA -->
 <a href="https://wa.me/393505791061" class="whatsapp" target="_blank" rel="noopener">
     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0zm0 21.96c-1.78 0-3.52-.48-5.06-1.39l-.36-.21-3.76.99.99-3.66-.23-.37c-1-1.59-1.53-3.41-1.53-5.3 0-5.54 4.51-10.05 10.05-10.05 5.54 0 10.05 4.51 10.05 10.05 0 5.54-4.51 10.05-10.05 10.05zm5.51-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.52-.77-2.67-1.42-3.68-2.6-.28-.32.03-.3.32-.88.1-.2.05-.38-.03-.53-.08-.15-.68-1.63-.93-2.23-.24-.59-.48-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
     </svg>
 </a>
 
-<!-- FOOTER IUBENDA -->
-<div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
-    |
-    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
+<!-- IUBENDA ALLINEATA A SINISTRA -->
+<div class="iubenda-footer">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank">Privacy Policy</a> |
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank">Cookie Policy</a>
 </div>
 
-<!-- JAVASCRIPT: INTERSECTION OBSERVER E FIX TOUCH -->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        
-        // --- INIZIO FIX PER CAROSELLO SU DISPOSITIVI TOUCH ---
-        const logosTrack = document.querySelector('.logos-track');
-        if (logosTrack) {
-            // Quando metti il dito, l'animazione si ferma
-            logosTrack.addEventListener('touchstart', function() {
-                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
-            }, { passive: true });
-            
-            // Quando alzi il dito, l'animazione viene forzata a ripartire
-            logosTrack.addEventListener('touchend', function() {
-                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
-            });
-            
-            // Per sicurezza, se il dito esce dall'area senza sollevarsi in modo pulito
-            logosTrack.addEventListener('touchcancel', function() {
-                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
-            });
-        }
-        // --- FINE FIX ---
-
+        // Observer per animazioni reveal
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     revealObserver.unobserve(entry.target); 
-                    
-                    // Ora aspetta 5 secondi interi prima di rimettere a posto le classi
-                    // Questo garantisce che l'animazione lenta di 3 secondi finisca con la massima eleganza senza scatti!
-                    setTimeout(() => {
-                        entry.target.classList.remove('reveal', 'active');
-                    }, 5000);
                 }
             });
-        }, { 
-            threshold: 0.1, 
-            rootMargin: "0px 0px -50px 0px" 
-        });
+        }, { threshold: 0.1 });
 
-        const revealElements = document.querySelectorAll('.reveal');
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        const ctaObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    ctaObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-
-        const ctaElement = document.getElementById('final-cta');
-        if(ctaElement) ctaObserver.observe(ctaElement);
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        
+        // Fix Carosello Touch
+        const track = document.querySelector('.logos-track');
+        if (track) {
+            track.addEventListener('touchstart', () => track.style.animationPlayState = 'paused', {passive: true});
+            track.addEventListener('touchend', () => track.style.animationPlayState = 'running');
+        }
     });
 </script>
 
