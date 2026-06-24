@@ -12,7 +12,7 @@
 <meta property="og:url" content="https://matteobertoni.net/">
 <meta property="og:type" content="website">
 
-<!-- Preload Font per caricamento più veloce -->
+<!-- Preload Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #1a1a1a; /* MODIFICATO: Sfondo base leggermente più chiaro */
+    background: #333333; /* MODIFICATO: Sfondo base decisamente più chiaro */
     color: white;
     overflow-x: hidden;
 }
@@ -44,41 +44,24 @@ body {
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.45; /* MODIFICATO: Opacità aumentata per schiarire la landing */
+    opacity: 0.65; /* MODIFICATO: Molto più chiaro per far risaltare l'immagine */
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
-    will-change: transform;
 }
 
 .green { color: #22c55e; }
 
 /* =========================================
-   ANIMAZIONI (Keyframes)
+   ANIMAZIONI
 ========================================= */
-.reveal {
-    opacity: 0;
-}
-
-.reveal.active {
-    animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
+.reveal { opacity: 0; }
+.reveal.active { animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes elegantReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(80px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(80px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
-
-.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
-.grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
-.grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
 
 /* =========================================
    HERO SECTION
@@ -102,217 +85,105 @@ body {
     margin: auto;
 }
 
-.hero-left { flex: 1; }
-
-.hero-title {
-    font-size: clamp(32px, 5vw, 52px);
-    line-height: 1.1;
-    margin-bottom: 20px;
-}
-
+.hero-title { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; margin-bottom: 20px; }
 .desktop-only { display: block; }
 .mobile-only { display: none; }
 
-.hero-left p {
-    font-size: clamp(16px, 2vw, 20px);
-    color: #cccccc;
-    margin-bottom: 30px;
-    line-height: 1.5;
-}
-
-.hero-right img {
-    width: clamp(140px, 20vw, 220px);
-    border-radius: 50%;
-    border: 4px solid #22c55e;
-    box-shadow: 0 0 30px rgba(34,197,94,0.3);
-}
+.hero-left p { font-size: clamp(16px, 2vw, 20px); color: #eeeeee; margin-bottom: 30px; line-height: 1.5; }
+.hero-right img { width: clamp(140px, 20vw, 220px); border-radius: 50%; border: 4px solid #22c55e; box-shadow: 0 0 30px rgba(34,197,94,0.3); }
 
 /* =========================================
-   BOTTONI GLOBALI E ICONE
+   BOTTONI E CARDE
 ========================================= */
-.btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
+.btn-group { display: flex; flex-direction: column; gap: 15px; }
 .btn, .linkedin {
-    padding: 16px 24px;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
+    padding: 16px 24px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px; width: 100%; max-width: 280px; font-weight: 600; transition: all 0.3s ease; text-decoration: none;
 }
+.btn { background: #22c55e; color: black; }
+.linkedin { border: 2px solid #22c55e; color: #22c55e; background: rgba(0,0,0,0.2); }
 
-.btn { 
-    background: #22c55e; 
-    color: black; 
-    text-decoration: none; 
-}
-
-.linkedin { 
-    border: 2px solid #22c55e; 
-    color: #22c55e; 
-    text-decoration: none; 
-    background: transparent;
-}
-
-.btn-icon {
-    width: 20px;
-    height: 20px;
-    flex-shrink: 0;
-}
-.linkedin .btn-icon { fill: #22c55e; }
-
-/* =========================================
-   CAROSELLO LOGHI
-========================================= */
 .logos-section {
-    position: relative;
-    z-index: 3;
-    padding: 40px 0;
-    background: linear-gradient(to right, rgba(26,26,26,1), rgba(26,26,26,0) 10%, rgba(26,26,26,0) 90%, rgba(26,26,26,1));
+    position: relative; z-index: 3; padding: 40px 0;
+    background: linear-gradient(to right, rgba(51,51,51,1), rgba(51,51,51,0) 10%, rgba(51,51,51,0) 90%, rgba(51,51,51,1));
     overflow: hidden;
 }
 
-.logos-title {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #aaa;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+.logos-track { display: flex; gap: 30px; animation: scrollMarquee 70s linear infinite; width: max-content; }
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.logos-track img { width: clamp(150px, 25vw, 200px); background: white; padding: 12px; border-radius: 10px; object-fit: contain; }
 
-.logos-track {
-    display: flex;
-    gap: 30px;
-    padding: 10px 0;
-    width: max-content;
-    animation: scrollMarquee 70s linear infinite;
-    align-items: center;
-}
-
-@keyframes scrollMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
-}
-
-.logos-track img {
-    width: clamp(150px, 25vw, 200px);
-    height: clamp(75px, 12vw, 100px);
-    background: white;
-    padding: 12px;
-    border-radius: 10px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
+.section { padding: 80px 20px; max-width: 1100px; margin: auto; position: relative; z-index: 2; }
+.grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 35px 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+.card h3 { color: #22c55e; margin-bottom: 15px; }
 
 /* =========================================
-   SEZIONI E GRIGLIE
+   ELEMENTI FISSI (WHATSAPP E IUBENDA)
 ========================================= */
-.section {
-    padding: 80px 20px;
-    max-width: 1100px;
-    margin: auto;
-    position: relative;
-    z-index: 2;
-}
 
-.section h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    margin-bottom: 40px;
-    text-align: center;
-}
-
-.grid {
-    display: grid;
-    gap: 25px;
-}
-
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-}
-
-.card {
-    background: rgba(15, 23, 42, 0.7); /* Leggermente più opaco per contrasto con sfondo chiaro */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 35px 25px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.card h3 {
-    font-weight: 700;
-    font-size: 22px;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-.card p {
-    color: #cccccc;
-    line-height: 1.6;
-}
-
-/* =========================================
-   WHATSAPP BUTTON E CONTATTI
-========================================= */
-.whatsapp {
+/* WHATSAPP - BASSO A DESTRA */
+.whatsapp-fixed {
     position: fixed;
     bottom: 20px;
-    right: 20px; /* FISSO A DESTRA */
+    right: 20px;
     background: #22c55e;
-    width: 60px; 
+    width: 60px;
     height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    text-decoration: none;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     transition: transform 0.3s ease;
 }
-.whatsapp .btn-icon { fill: black; width: 32px; height: 32px; }
-.whatsapp:hover { transform: scale(1.1); }
+.whatsapp-fixed:hover { transform: scale(1.1); }
+.whatsapp-fixed svg { fill: black; width: 32px; height: 32px; }
+
+/* LOGO IUBENDA - BASSO A SINISTRA */
+.iubenda-logo-left {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+.iubenda-logo-left:hover { opacity: 0.8; }
+.iubenda-logo-left svg { width: 25px; height: 25px; fill: white; }
+
+/* LINK PRIVACY - CENTRO */
+.footer-links-center {
+    text-align: center;
+    padding: 40px 20px 100px;
+    position: relative;
+    z-index: 2;
+}
+.footer-links-center a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+.footer-links-center a:hover { color: white; }
 
 /* =========================================
-   MEDIA QUERIES
+   RESPONSIVE
 ========================================= */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block !important; }
-    .hero { min-height: auto; padding-top: 60px; }
     .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
     .btn-group { align-items: center; }
-}
-
-/* IUBENDA ALLINEATA A SINISTRA */
-.iubenda-footer {
-    text-align: left; /* FISSO A SINISTRA */
-    padding: 20px;
-    font-size: 13px;
-    color: #666;
-    margin-bottom: 60px;
-    position: relative;
-    z-index: 2;
-}
-.iubenda-footer a { color: #aaa; text-decoration: none; margin-right: 10px; }
-
-/* FIX IUBENDA BANNER */
-#iubenda-cs-banner {
-    z-index: 999999 !important;
+    .whatsapp-fixed { width: 55px; height: 55px; bottom: 15px; right: 15px; }
+    .iubenda-logo-left { bottom: 15px; left: 15px; }
 }
 </style>
 </head>
@@ -332,97 +203,84 @@ body {
             <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
             <div class="btn-group">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
-                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
-                    <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                    Scopri chi sono su LinkedIn
-                </a>
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">Scopri chi sono su LinkedIn</a>
             </div>
         </div>
         <div class="hero-right">
-            <img src="foto.png" alt="Matteo Bertoni Sales Closer">
+            <img src="foto.png" alt="Matteo Bertoni">
         </div>
     </div>
 </section>
 
-<!-- CAROSELLO LOGHI -->
+<!-- LOGHI -->
 <section class="logos-section reveal">
-    <p class="logos-title">Hanno scelto di collaborare con me</p>
-    <div class="logos-container" style="width: 100%; overflow: hidden;">
-        <div class="logos-track">
-            <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo">
-            <!-- Duplicati per loop -->
-            <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo">
-        </div>
+    <div class="logos-track">
+        <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo">
+        <!-- Duplicati -->
+        <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo">
     </div>
 </section>
 
-<!-- SEZIONE CHI AIUTO -->
+<!-- CARTE -->
 <section class="section">
-    <h2 class="green reveal">Chi posso aiutare davvero</h2>
-    <div class="grid grid-3">
+    <h2 class="green reveal" style="text-align:center; margin-bottom:40px;">Chi posso aiutare davvero</h2>
+    <div class="grid">
         <div class="card reveal">
             <h3>Aziende e Agenzie</h3>
             <p>Per realtà che hanno un flusso di contatti ma faticano a gestirli e convertirli in contratti firmati.</p>
         </div>
         <div class="card reveal">
-            <h3>Startup e Nuovi Progetti</h3>
-            <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
+            <h3>Startup</h3>
+            <p>Per chi vuole lanciare nuovi servizi definendo l'angolo d'attacco più efficace sul mercato.</p>
         </div>
         <div class="card reveal">
-            <h3>Freelance & Partner</h3>
-            <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
+            <h3>Freelance</h3>
+            <p>Per professionisti che vogliono delegare la fase finale della trattativa per focus sulla delivery.</p>
         </div>
     </div>
 </section>
 
 <!-- CONTATTI -->
-<section class="section contatti reveal" style="text-align: center;">
+<section class="section reveal" style="text-align: center;">
     <h2 class="green">Contatti</h2>
-    <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px;">
+    <div style="background: rgba(0,0,0,0.4); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; border: 1px solid rgba(255,255,255,0.1);">
         <p style="font-size: 24px; font-weight: bold;">Matteo Bertoni</p>
-        <p style="color: #22c55e; text-transform: uppercase; letter-spacing: 1px;">Sales Closer (Verona)</p>
-        <div style="margin-top: 20px;">
-            <p>Email: bertonimatteo3@gmail.com</p>
-            <p>WhatsApp: 350 579 1061</p>
-        </div>
+        <p style="color: #22c55e;">Sales Closer (Verona)</p>
+        <p style="margin-top: 15px;">Email: bertonimatteo3@gmail.com</p>
+        <p>WhatsApp: 350 579 1061</p>
     </div>
 </section>
 
+<!-- LOGO IUBENDA FISSO A SINISTRA -->
+<a href="https://www.iubenda.com/privacy-policy/62758775" class="iubenda-logo-left" target="_blank" title="Iubenda">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm0 28C9.383 28 4 22.617 4 16S9.383 4 16 4s12 5.383 12 12-5.383 12-12 12zm3-12.834V12a3 3 0 1 0-6 0v3.166a5 5 0 1 0 6 0zM16 22a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+    </svg>
+</a>
+
 <!-- TASTO WHATSAPP FISSO A DESTRA -->
-<a href="https://wa.me/393505791061" class="whatsapp" target="_blank" rel="noopener">
-    <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<a href="https://wa.me/393505791061" class="whatsapp-fixed" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0zm0 21.96c-1.78 0-3.52-.48-5.06-1.39l-.36-.21-3.76.99.99-3.66-.23-.37c-1-1.59-1.53-3.41-1.53-5.3 0-5.54 4.51-10.05 10.05-10.05 5.54 0 10.05 4.51 10.05 10.05 0 5.54-4.51 10.05-10.05 10.05zm5.51-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.52-.77-2.67-1.42-3.68-2.6-.28-.32.03-.3.32-.88.1-.2.05-.38-.03-.53-.08-.15-.68-1.63-.93-2.23-.24-.59-.48-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
     </svg>
 </a>
 
-<!-- IUBENDA ALLINEATA A SINISTRA -->
-<div class="iubenda-footer">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank">Privacy Policy</a> |
+<!-- LINK PRIVACY CENTRATI -->
+<div class="footer-links-center">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank">Privacy Policy</a>
     <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank">Cookie Policy</a>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Observer per animazioni reveal
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); 
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-        
-        // Fix Carosello Touch
-        const track = document.querySelector('.logos-track');
-        if (track) {
-            track.addEventListener('touchstart', () => track.style.animationPlayState = 'paused', {passive: true});
-            track.addEventListener('touchend', () => track.style.animationPlayState = 'running');
-        }
     });
 </script>
 
