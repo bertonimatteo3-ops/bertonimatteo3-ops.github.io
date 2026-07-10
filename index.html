@@ -91,33 +91,18 @@ body {
    ANIMAZIONI AGGIUNTE E MODIFICATE
 ========================================= */
 
-/* Animazione Mani (Nuova SVG realistica) */
-.handshake-svg {
+/* Animazione per l'immagine caricata dall'utente */
+.handshake-img {
     display: block;
     margin: -10px auto 35px auto;
-    width: 75px;
-    height: 75px;
-    animation: handshakeAnim 2s infinite ease-in-out;
+    width: 120px; /* Puoi aumentare o diminuire questo valore per ingrandire/rimpicciolire l'immagine */
+    height: auto;
+    animation: handshakeImageAnim 2.5s infinite ease-in-out;
     transform-origin: center;
 }
-@keyframes handshakeAnim {
+@keyframes handshakeImageAnim {
     0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-6px) scale(1.05); }
-}
-
-/* Nuova Freccia chiara e accattivante */
-.arrow-up-curve-container {
-    text-align: center;
-    margin: -10px 0 40px 0;
-}
-.arrow-up-curve {
-    width: 75px;
-    height: 75px;
-    animation: captivatingArrow 2.5s infinite ease-in-out;
-}
-@keyframes captivatingArrow {
-    0%, 100% { transform: translateY(0); filter: drop-shadow(0px 0px 5px rgba(34,197,94,0.3)); }
-    50% { transform: translateY(-12px); filter: drop-shadow(0px 5px 15px rgba(34,197,94,0.7)); }
+    50% { transform: translateY(-8px) scale(1.03); } /* Effetto di movimento (galleggiamento/respiro) */
 }
 
 /* Stile Contatore da 0 a 100 */
@@ -570,10 +555,8 @@ body {
     <section class="section">
         <h2 class="green reveal" style="margin-bottom: 20px;">Chi posso aiutare davvero</h2>
         
-        <!-- Icona Mani che si stringono Molto Più Evidente (FontAwesome) -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="#22c55e" class="handshake-svg reveal">
-           <path d="M434.7 419.8l-46-46.1c-15.3-15.3-39.7-16-55.8-1.5l-63.5 57.5c-3.1 2.8-7.7 2.6-10.6-.4l-57.1-57.1c-3-3-3.2-7.8-.5-11l55-66.5c11.3-13.6 10-33.8-3-45.9l-49-45.6c-4.4-4.1-11.4-3.5-15.1 1.3l-81.5 106.8c-14.7 19.3-11.5 47 7.2 62.7l93.7 78.5c18.5 15.5 45.4 15 63.3-1.2l61.6-55.8c6-5.4 15.3-5 20.8 1l39.1 39.1c5.5 5.5 14.5 6 20.6 .9l20.1-16.7c7-5.8 6.4-16.6-.7-21.7zM616.5 240.2L498.4 122.1c-22.3-22.3-57-23.7-80.9-3.2L310 216.4c-4.4 3.8-11 3.5-15.1-.7l-71.1-71.1c-14.7-14.7-38.2-15-53.3-.7l-46.7 44.5c-7.3 6.9-7.2 18.5 .2 25.3l104 96.9c13.7 12.8 35.1 11.5 47.4-2.9l46.2-54.2c3-3.5 8.3-3.6 11.4-.2l48.6 48.6c15.1 15.1 39.7 15.5 55.4 .9l63.4-58.8c3.1-2.8 7.8-2.6 10.7 .3l57.1 57.1c3 3 3.1 7.7 .4 10.8l-55.7 65.6c-11.5 13.5-10.1 34 3.2 46l48.5 43.6c4.5 4.1 11.6 3.4 15.3-1.4l81.5-106.8c14.6-19.1 11.3-46.8-7.3-62.4z"/>
-        </svg>
+        <!-- IMMAGINE MANI INSERITA DA UTENTE CON ANIMAZIONE -->
+        <img src="mani.png" alt="Mani che si stringono" class="handshake-img reveal">
 
         <div class="grid grid-3">
             <div class="card reveal">
@@ -599,16 +582,6 @@ body {
 <section class="section">
     <h2 class="green reveal" style="margin-bottom: 20px;">Come porto risultati</h2>
     
-    <!-- Nuova Freccia chiara ed esplicita (Curva in alto a destra) -->
-    <div class="arrow-up-curve-container reveal">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="arrow-up-curve" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <!-- Curva che sale dal basso verso l'alto a destra -->
-            <path d="M8 22 Q 8 8 16 4" />
-            <!-- Punta della freccia a destra in alto -->
-            <path d="M9 4 L 16 4 L 16 11" />
-        </svg>
-    </div>
-
     <div class="grid grid-3">
         <div class="card card-closing reveal">
             <h3>Chiusura Trattative<br>(Sales Closing)</h3>
