@@ -550,10 +550,14 @@ body {
     </div>
 </section>
 
-<!-- FASCIA BIANCA: CHI AIUTO (AGGIUNTO SPAZIO SOPRA E IMMAGINE) -->
+<!-- FASCIA BIANCA: CHI AIUTO -->
 <div class="white-band" style="margin-top: 80px;">
     <section class="section">
-        <h2 class="green reveal" style="margin-bottom: 20px;">Chi posso aiutare davvero</h2>
+        <!-- SPAZIO AUMENTATO SOTTO LA FRASE DA 20px a 50px -->
+        <h2 class="green reveal" style="margin-bottom: 50px;">Chi posso aiutare davvero</h2>
+        
+        <!-- IMMAGINE STRETTA DI MANO CON SPAZIATURA -->
+        <img src="handshake.jpeg" alt="Stretta di mano" class="handshake-img reveal" style="margin: 20px auto 60px auto;">
 
         <div class="grid grid-3">
             <div class="card reveal">
@@ -575,9 +579,8 @@ body {
     </section>
 </div>
 
-<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) (AGGIUNTO SPAZIO SOPRA LA SEZIONE) -->
+<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) -->
 <section class="section" style="padding-top: 120px;">
-    <!-- AGGIUNTO SPAZIO SOTTO AL TITOLO -->
     <h2 class="green reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
     
     <div class="grid grid-3">
@@ -602,7 +605,7 @@ body {
             </div>
         </div>
     </div>
-    <!-- AGGIUNTO SPAZIO SOTTO AL BOTTONE LINKEDIN -->
+    
     <div class="reveal" style="text-align:center; margin-top:50px; margin-bottom: 100px;">
         <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
            <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -656,7 +659,7 @@ body {
     </section>
 </div>
 
-<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) (AGGIUNTO SPAZIO SOPRA LA FRASE) -->
+<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
 <div class="final-cta" id="final-cta" style="margin-top: 80px;">
     <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
@@ -703,21 +706,33 @@ body {
             });
         }
         
-        // SCRIPT CONTATTORE 
+        // SCRIPT CONTATORE (RALLENTAMENTO DA 90 IN POI)
         const counterEl = document.getElementById('fast-counter');
         let hasCounted = false;
         const counterObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !hasCounted) {
                 hasCounted = true;
                 let count = 0;
-                let interval = setInterval(() => {
-                    count += 1; 
-                    if (count >= 100) {
-                        count = 100;
-                        clearInterval(interval);
-                    }
+                
+                function updateCounter() {
+                    count += 1;
                     counterEl.innerText = count;
-                }, 20); // MODIFICA: Abbassato da 80ms a 20ms per renderlo rapido (circa 2 secondi totali)
+                    
+                    if (count < 100) {
+                        // Da 0 a 89 la velocità è di 20ms
+                        let delay = 20; 
+                        
+                        // Arrivati a 90, il ritardo inizia ad aumentare progressivamente
+                        if (count >= 90) {
+                            delay = 20 + ((count - 90) * 25); 
+                        }
+                        
+                        setTimeout(updateCounter, delay);
+                    }
+                }
+                
+                // Avvia la funzione
+                updateCounter();
             }
         }, { threshold: 0.5 }); 
         
