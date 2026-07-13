@@ -87,29 +87,26 @@ body {
     color: #475569 !important;
 }
 
-/* DIVISORI SFUMATURA A PUNTINI */
-.halftone-divider {
+/* DIVISORI SFUMATURA ELEGANTE (CSS Puro) */
+.gradient-divider {
     width: 100%;
-    height: 60px; /* Altezza regolabile per smartphone e PC */
-    background-image: url('sfumatura-puntini.png'); /* INSERISCI QUI IL NOME DELLA TUA IMMAGINE */
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 140px; /* Altezza ampia per una sfumatura molto dolce */
+    /* Uso rgba(255,255,255,0) al posto di transparent per evitare l'alone grigio/nero sui dispositivi iOS */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
     position: relative;
     z-index: 2;
-    margin-bottom: -1px; /* Rimuove lo spazietto bianco */
+    margin-bottom: -1px; /* Evita lo stacco netto su alcuni schermi */
 }
 
-/* Capovolge l'immagine per il divisore finale */
-.halftone-divider.bottom {
-    transform: scaleY(-1); 
+.gradient-divider.bottom {
+    background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
     margin-top: -1px;
     margin-bottom: 0;
 }
 
 /* TITOLO CONTATTI MODIFICATO */
 .titolo-contatti-small {
-    font-size: 22px; /* Dimensione più piccola rispetto al normale h2 */
+    font-size: 16px; /* Ancor più piccolo come richiesto */
     font-weight: 400; /* Non in grassetto */
     color: #22c55e;
     margin-bottom: 25px;
@@ -513,7 +510,7 @@ body {
     
     .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
 
-    .titolo-contatti-small { font-size: 18px; } /* Ancora più piccolo su mobile */
+    .titolo-contatti-small { font-size: 14px; } /* Ancor più piccolo su mobile */
 
     .whatsapp {
         bottom: 15px; 
@@ -580,8 +577,8 @@ body {
     </div>
 </section>
 
-<!-- DIVISORE A PUNTINI (INIZIO) -->
-<div class="halftone-divider" style="margin-top: 80px;"></div>
+<!-- DIVISORE SFUMATO (INIZIO) -->
+<div class="gradient-divider" style="margin-top: 60px;"></div>
 
 <!-- FASCIA BIANCA: CHI AIUTO -->
 <div class="white-band">
@@ -689,8 +686,8 @@ body {
     </section>
 </div>
 
-<!-- DIVISORE A PUNTINI (FINE) -->
-<div class="halftone-divider bottom"></div>
+<!-- DIVISORE SFUMATO (FINE) -->
+<div class="gradient-divider bottom"></div>
 
 <!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
 <div class="final-cta" id="final-cta" style="margin-top: 80px;">
