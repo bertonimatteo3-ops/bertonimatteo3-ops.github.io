@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" style="scroll-behavior: smooth;">
+<html lang="it">
 <head>
 <script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
 <meta charset="UTF-8">
@@ -25,9 +25,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    /* Migliora la resa dei font e delle animazioni */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -35,24 +32,21 @@ body {
     background: #1c1c1c; 
     color: white;
     overflow-x: hidden;
-    /* Ottimizzazione scroll iOS */
-    -webkit-overflow-scrolling: touch;
 }
 
-/* FIX SFONDO IOS / ANDROID - Ottimizzato per fluidità */
+/* FIX SFONDO IOS / ANDROID */
 .bg-fixed {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
-    /* Forza accelerazione hardware */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
@@ -83,9 +77,6 @@ body {
 .white-band .card {
     background: rgba(0, 0, 0, 0.05) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
-    /* Disattiva blur pesante su sfondo bianco per performance */
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
 }
 
 .white-band .card h3 {
@@ -105,9 +96,10 @@ body {
 }
 
 /* =========================================
-   ANIMAZIONI OTTIMIZZATE
+   ANIMAZIONI AGGIUNTE E MODIFICATE
 ========================================= */
 
+/* Animazione per l'immagine caricata dall'utente */
 .handshake-img {
     display: block;
     margin: -10px auto 35px auto;
@@ -115,13 +107,13 @@ body {
     height: auto;
     animation: handshakeImageAnim 2.5s infinite ease-in-out;
     transform-origin: center;
-    will-change: transform;
 }
 @keyframes handshakeImageAnim {
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-8px) scale(1.03); } 
 }
 
+/* Stile Contatore da 0 a 100 */
 .counter-container {
     text-align: center;
     font-size: 55px;
@@ -132,20 +124,21 @@ body {
     font-variant-numeric: tabular-nums; 
 }
 
-/* REVEAL OTTIMIZZATO PER EVITARE SCATTI */
+/* =========================================
+   ANIMAZIONI ESTREMAMENTE LENTE
+========================================= */
 .reveal {
     opacity: 0; 
-    will-change: transform, opacity;
 }
 
 .reveal.active {
-    animation: elegantReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes elegantReveal {
     0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(80px);
     }
     100% {
         opacity: 1;
@@ -153,9 +146,9 @@ body {
     }
 }
 
-.grid .card.reveal:nth-child(1) { animation-delay: 0.1s; }
-.grid .card.reveal:nth-child(2) { animation-delay: 0.3s; }
-.grid .card.reveal:nth-child(3) { animation-delay: 0.5s; }
+.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
+.grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
+.grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
 
 /* =========================================
    HERO SECTION
@@ -224,7 +217,7 @@ body {
     max-width: 280px;
     text-align: center;
     font-weight: 600;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
@@ -249,7 +242,7 @@ body {
 .linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI OTTIMIZZATO
+   CAROSELLO LOGHI
 ========================================= */
 .logos-section {
     position: relative;
@@ -280,12 +273,15 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-    will-change: transform;
+}
+
+.logos-track:hover, .logos-track:active {
+    animation-play-state: paused;
 }
 
 @keyframes scrollMarquee {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-50%, 0, 0); } 
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
 }
 
 .logos-track img {
@@ -297,6 +293,7 @@ body {
     object-fit: contain;
     flex-shrink: 0;
     user-select: none;
+    -webkit-user-drag: none;
 }
 
 /* =========================================
@@ -308,8 +305,6 @@ body {
     margin: auto;
     position: relative;
     z-index: 2;
-    /* Migliora fluidità durante lo scroll */
-    transform: translateZ(0);
 }
 
 .section h2 {
@@ -328,14 +323,13 @@ body {
 }
 
 .card {
-    background: rgba(15, 23, 42, 0.7);
-    /* Ottimizzazione Backdrop Filter */
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.05);
     padding: 35px 25px;
     border-radius: 12px;
-    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
 }
@@ -358,12 +352,21 @@ body {
     line-height: 1.6;
 }
 
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+.arrow-down-container {
+    margin-top: auto; 
+    padding-top: 20px;
+    text-align: center;
+}
+
 .arrow-icon {
     width: 40px;
     height: 40px;
     fill: #22c55e;
     animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-    will-change: transform;
 }
 
 @keyframes bounceDown {
@@ -403,14 +406,16 @@ body {
     animation: premiumCTA 4s ease-in-out infinite;
     position: relative;
     z-index: 3;
-    will-change: transform, box-shadow;
 }
+.linkedin-cta .btn-icon { fill: #064e3b; }
 
 @keyframes premiumCTA {
     0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
     25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
     50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
     70% { transform: translateY(-3px); }
+    80%, 84% { transform: translateX(-2px); }
+    82%, 86% { transform: translateX(2px); }
 }
 
 .final-cta {
@@ -422,51 +427,92 @@ body {
 
 .cta-line {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
-    will-change: transform, opacity;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(8px); 
+    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 2.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .final-cta.visible .cta-line {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
 }
 
 .line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
 .line2 { font-size: clamp(26px, 4.5vw, 40px); color: #22c55e; font-weight: 700; text-shadow: 0 0 15px rgba(34,197,94,0.4); }
 
-.final-cta.visible .line1 { transition-delay: 0.1s; }
-.final-cta.visible .line2 { transition-delay: 0.6s; }
+.final-cta.visible .line1 { transition-delay: 0.2s; }
+.final-cta.visible .line2 { transition-delay: 1.4s; }
 
 /* =========================================
    WHATSAPP BUTTON E CONTATTI
 ========================================= */
+.contatti { text-align: center; }
+.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
+.contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+.contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; }
+
 .whatsapp {
     position: fixed;
-    bottom: 20px; 
-    left: 20px; 
+    bottom: 15px; 
+    left: 30px; 
     background: #22c55e; 
     width: 60px; 
     height: 60px; 
     border-radius: 50%;
-    z-index: 9999;
+    z-index: 9998;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
+.whatsapp .btn-icon { 
+    fill: white; 
+    width: 32px; 
+    height: 32px; 
+}
+.whatsapp:hover { transform: translateY(-4px) scale(1.05); }
 
-.whatsapp .btn-icon { fill: white; width: 32px; height: 32px; }
-
-/* MEDIA QUERIES */
+/* =========================================
+   MEDIA QUERIES (MOBILE RESPONSIVE)
+========================================= */
 @media (max-width: 768px) {
-    .hero-content { flex-direction: column-reverse; text-align: center; }
-    .whatsapp { bottom: 15px; left: 15px; }
-    .hero-title br { display: none; }
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+    
+    .hero { min-height: auto; padding-top: 60px; }
+    .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
+    .btn-group { align-items: center; }
+    .logos-section { margin-top: 0; padding: 20px 0; }
+    .section { padding: 50px 20px; }
+    
+    .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
+
+    .whatsapp {
+        bottom: 15px; 
+        left: 15px;
+        width: 60px;
+        height: 60px;
+        z-index: 999999; 
+    }
 }
 
-/* FIX IUBENDA */
-#iubenda-cs-banner { z-index: 999999 !important; }
+/* FIX IUBENDA BANNER */
+#iubenda-cs-banner, .iubenda-cs-banner {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+    padding: 12px 20px !important;
+    font-size: 13px !important;
+}
 </style>
 </head>
 
@@ -507,7 +553,6 @@ body {
     <div class="logos-container">
         <div class="logos-track">
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
-            <!-- Duplicati per loop infinito -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
@@ -516,7 +561,9 @@ body {
 <!-- FASCIA BIANCA: CHI AIUTO -->
 <div class="white-band" style="margin-top: 80px;">
     <section class="section">
+        <!-- SPAZIO AUMENTATO SOTTO LA FRASE DA 20px a 50px -->
         <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
+
         <div class="grid grid-3">
             <div class="card reveal">
                 <h3>Aziende e Agenzie</h3>
@@ -537,7 +584,7 @@ body {
     </section>
 </div>
 
-<!-- SEZIONE COME PORTO RISULTATI -->
+<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) -->
 <section class="section" style="padding-top: 120px;">
     <h2 class="green reveal" style="margin-bottom: 80px;">Come porto risultati</h2>
     
@@ -574,13 +621,16 @@ body {
     </div>
 </section>
 
-<!-- FASCIA BIANCA: NUMERI -->
+<!-- FASCIA BIANCA: I MIEI NUMERI E COLLABORAZIONI -->
 <div class="white-band">
     <section class="section">
         <h2 class="green reveal" style="margin-bottom: 40px;">I miei numeri</h2>
+        
+        <!-- Contatore 0-100% -->
         <div class="counter-container reveal">
             <span id="fast-counter">0</span>%
         </div>
+
         <div class="grid grid-3">
             <div class="card reveal">
                 <h3 class="green-title">47% Retention</h3>
@@ -590,7 +640,7 @@ body {
             <div class="card reveal">
                 <h3 class="green-title">+ €2,7M Fatturato Generato</h3>
                 <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
-                <p>Gestisco ogni trattativacon un approccio consulenziale.</p>
+                <p>Gestisco ogni trattativacon un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
             </div>
             <div class="card reveal">
                 <h3 class="green-title">+27% Closing Rate</h3>
@@ -599,15 +649,28 @@ body {
             </div>
         </div>
     </section>
+
+    <section class="section">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+            <div class="card reveal">
+                <h3 class="green">Strategia e Processo</h3>
+                <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
+            </div>
+            <div class="card reveal">
+                <h3 class="green">Con chi Collaboro</h3>
+                <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
+            </div>
+        </div>
+    </section>
 </div>
 
-<!-- CTA FINALE -->
+<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
 <div class="final-cta" id="final-cta" style="margin-top: 80px;">
     <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
 </div>
 
-<!-- CONTATTI -->
+<!-- CONTATTI (Sfondo Mac) -->
 <section class="section contatti reveal">
     <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
     <div class="contact-box">
@@ -629,46 +692,75 @@ body {
 
 <!-- FOOTER IUBENDA -->
 <div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a> | <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
+    |
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // SCRIPT CONTATORE OTTIMIZZATO
+        // FIX PER CAROSELLO
+        const logosTrack = document.querySelector('.logos-track');
+        if (logosTrack) {
+            logosTrack.addEventListener('touchstart', function() {
+                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
+            }, { passive: true });
+            logosTrack.addEventListener('touchend', function() {
+                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+            });
+        }
+        
+        // SCRIPT CONTATORE (RALLENTAMENTO DA 90 IN POI)
         const counterEl = document.getElementById('fast-counter');
         let hasCounted = false;
         const counterObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !hasCounted) {
                 hasCounted = true;
                 let count = 0;
+                
                 function updateCounter() {
                     count += 1;
                     counterEl.innerText = count;
+                    
                     if (count < 100) {
-                        let delay = count >= 90 ? 20 + ((count - 90) * 30) : 20;
+                        // Da 0 a 89 la velocità è di 20ms
+                        let delay = 20; 
+                        
+                        // Arrivati a 90, il ritardo inizia ad aumentare progressivamente
+                        if (count >= 90) {
+                            delay = 20 + ((count - 90) * 25); 
+                        }
+                        
                         setTimeout(updateCounter, delay);
                     }
                 }
+                
+                // Avvia la funzione
                 updateCounter();
             }
         }, { threshold: 0.5 }); 
         
         if(counterEl) counterObserver.observe(counterEl);
 
-        // REVEAL OBSERVER OTTIMIZZATO (Rimosso timeout pesante)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
+                    revealObserver.unobserve(entry.target); 
+                    setTimeout(() => {
+                        entry.target.classList.remove('reveal', 'active');
+                    }, 5000);
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, { 
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" 
+        });
 
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => revealObserver.observe(el));
 
-        // FINAL CTA OBSERVER
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -676,7 +768,7 @@ body {
                     ctaObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.15 });
 
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) ctaObserver.observe(ctaElement);
