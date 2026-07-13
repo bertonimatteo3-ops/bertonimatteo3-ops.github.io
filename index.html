@@ -55,7 +55,7 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE E DIVISORI
+   NUOVE CLASSI PER BANDE BIANCHE
 ========================================= */
 .white-band {
     background-color: white !important;
@@ -87,27 +87,10 @@ body {
     color: #475569 !important;
 }
 
-/* DIVISORI SFUMATURA ELEGANTE (CSS Puro) */
-.gradient-divider {
-    width: 100%;
-    height: 140px; /* Altezza ampia per una sfumatura molto dolce */
-    /* Uso rgba(255,255,255,0) al posto di transparent per evitare l'alone grigio/nero sui dispositivi iOS */
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
-    position: relative;
-    z-index: 2;
-    margin-bottom: -1px; /* Evita lo stacco netto su alcuni schermi */
-}
-
-.gradient-divider.bottom {
-    background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0));
-    margin-top: -1px;
-    margin-bottom: 0;
-}
-
-/* TITOLO CONTATTI MODIFICATO */
-.titolo-contatti-small {
-    font-size: 16px; /* Ancor più piccolo come richiesto */
-    font-weight: 400; /* Non in grassetto */
+/* TITOLO CONTATTI MODIFICATO (Stessa dimensione di "I lead non sono il problema.") */
+.titolo-contatti {
+    font-size: clamp(20px, 3vw, 24px); 
+    font-weight: 400; /* Mantenuto non in grassetto */
     color: #22c55e;
     margin-bottom: 25px;
 }
@@ -510,8 +493,6 @@ body {
     
     .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
 
-    .titolo-contatti-small { font-size: 14px; } /* Ancor più piccolo su mobile */
-
     .whatsapp {
         bottom: 15px; 
         left: 15px;
@@ -577,11 +558,8 @@ body {
     </div>
 </section>
 
-<!-- DIVISORE SFUMATO (INIZIO) -->
-<div class="gradient-divider" style="margin-top: 60px;"></div>
-
 <!-- FASCIA BIANCA: CHI AIUTO -->
-<div class="white-band">
+<div class="white-band" style="margin-top: 80px;">
     <section class="section">
         <!-- SPAZIO AUMENTATO SOTTO LA FRASE DA 20px a 50px -->
         <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
@@ -686,9 +664,6 @@ body {
     </section>
 </div>
 
-<!-- DIVISORE SFUMATO (FINE) -->
-<div class="gradient-divider bottom"></div>
-
 <!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
 <div class="final-cta" id="final-cta" style="margin-top: 80px;">
     <p class="cta-line line1">I lead non sono il problema.</p>
@@ -697,7 +672,7 @@ body {
 
 <!-- CONTATTI (Sfondo Mac) -->
 <section class="section contatti reveal">
-    <h2 class="titolo-contatti-small">Contattami e collaboriamo</h2>
+    <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
     <div class="contact-box">
         <p class="contact-name">Matteo Bertoni</p>
         <p class="contact-role">Sales Closer (Verona)</p>
