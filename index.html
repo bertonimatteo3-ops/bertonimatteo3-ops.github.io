@@ -1,168 +1,793 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matteo Bertoni | Remote Closing Specialist</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Matteo Bertoni | Remote Closing Specialist</title>
 
-    <style>
-        :root { --green: #22c55e; --bg: #1c1c1c; --card-bg: rgba(15, 23, 42, 0.7); }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: white; overflow-x: hidden; line-height: 1.6; }
+<meta property="og:title" content="Trasformo lead in clienti reali">
+<meta property="og:description" content="Aiuto aziende e agenzie a trasformare i contatti in clienti reali, aumentando vendite e conversioni.">
+<meta property="og:image" content="https://matteobertoni.net/anteprima.jpg">
+<meta property="og:url" content="https://matteobertoni.net/">
+<meta property="og:type" content="website">
 
-        /* SFONDO OTTIMIZZATO - NIENTE SCATTI */
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-                    background: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8') center/cover;
-                    opacity: 0.3; z-index: -1; transform: translateZ(0); }
+<!-- Preload Font per caricamento più veloce -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        .section { padding: 80px 20px; max-width: 1100px; margin: auto; position: relative; z-index: 2; }
-        .green { color: var(--green); }
-        
-        /* GRIGLIA INTELLIGENTE (Sostituisce decine di media queries) */
-        .grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+<style>
+/* =========================================
+   BASE E RESET
+========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        .card { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; 
-                transition: 0.3s; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .card:hover { transform: translateY(-5px); border-color: var(--green); }
+body {
+    font-family: 'Inter', sans-serif;
+    background: #1c1c1c; 
+    color: white;
+    overflow-x: hidden;
+}
 
-        /* HERO - REATTIVA */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 100px 20px; }
-        .hero-content { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center; }
-        .hero-title { font-size: clamp(32px, 5vw, 55px); line-height: 1.1; margin-bottom: 20px; }
-        .hero-img { width: 220px; height: 220px; border-radius: 50%; border: 4px solid var(--green); box-shadow: 0 0 30px rgba(34,197,94,0.3); }
+/* FIX SFONDO IOS / ANDROID / MAC (Originale) */
+.bg-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35; 
+    z-index: 0;
+    pointer-events: none;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+}
 
-        /* BOTTONI */
-        .btn { background: var(--green); color: black; padding: 16px 30px; border-radius: 8px; text-decoration: none; 
-               font-weight: 700; display: inline-block; transition: 0.3s; }
-        .linkedin-sub { color: var(--green); border: 2px solid var(--green); margin-top: 15px; background: transparent; }
+.green { color: #22c55e; }
 
-        /* LOGO CAROUSEL */
-        .logos-track { display: flex; gap: 30px; width: max-content; animation: scroll 60s linear infinite; padding: 20px 0; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .logos-track img { width: 180px; height: 90px; object-fit: contain; background: white; border-radius: 10px; padding: 10px; }
+/* =========================================
+   NUOVE CLASSI PER BANDE BIANCHE (STATICHE E SOLIDE)
+========================================= */
+.white-band {
+    background-color: white !important;
+    color: #1c1c1c !important;
+    position: relative;
+    z-index: 2;
+    
+    /* Layout pulito senza forzature della GPU per evitare tremolii */
+    max-width: 1200px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 24px;
+}
 
-        /* FASCE BIANCHE */
-        .white-band { background: white; color: #1c1c1c; border-radius: 30px; margin: 60px 20px; }
-        .white-band .card { background: rgba(0,0,0,0.05); color: #1c1c1c; border: none; backdrop-filter: none; }
-        .white-band h3 { color: #1c1c1c; }
+/* Su schermi larghi, la fascia si centra automaticamente */
+@media (min-width: 1240px) {
+    .white-band {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
-        /* ANIMAZIONI */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+.white-band .section {
+    max-width: 1100px;
+    margin: auto;
+}
 
-        .counter { font-size: 60px; font-weight: 800; color: var(--green); text-align: center; margin: 20px 0; }
+.white-band h2 {
+    color: #16a34a !important; 
+}
 
-        .whatsapp { position: fixed; bottom: 20px; left: 20px; background: var(--green); width: 60px; height: 60px; 
-                    border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 999; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        
-        @media (max-width: 768px) { .hero-content { text-align: center; } .hero-img { order: -1; } }
-    </style>
+.white-band .card {
+    background: rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.white-band .card h3 {
+    color: #0f172a !important;
+}
+
+.white-band .card p {
+    color: #475569 !important;
+}
+
+/* TITOLO CONTATTI MODIFICATO */
+.section h2.titolo-contatti {
+    font-size: clamp(20px, 3vw, 24px) !important;
+    font-weight: 400 !important;
+    color: #22c55e !important;
+    margin-bottom: 25px !important;
+}
+
+/* =========================================
+   ANIMAZIONI AGGIUNTE E MODIFICATE
+========================================= */
+
+.handshake-img {
+    display: block;
+    margin: -10px auto 35px auto;
+    width: 120px; 
+    height: auto;
+    animation: handshakeImageAnim 2.5s infinite ease-in-out;
+    transform-origin: center;
+}
+@keyframes handshakeImageAnim {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.03); } 
+}
+
+.counter-container {
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #22c55e;
+    margin: -20px 0 80px 0;
+    text-shadow: 0 0 15px rgba(34,197,94,0.3);
+    font-variant-numeric: tabular-nums; 
+}
+
+/* =========================================
+   ANIMAZIONI ESTREMAMENTE LENTE
+========================================= */
+.reveal {
+    opacity: 0; 
+}
+
+.reveal.active {
+    animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes elegantReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
+.grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
+.grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 60px;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    align-items: center;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.hero-left { flex: 1; }
+
+.hero-title {
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 0.8em; 
+    font-weight: 700; 
+}
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+.hero-left p {
+    font-size: clamp(16px, 2vw, 20px);
+    color: #cccccc;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.hero-right img {
+    width: clamp(140px, 20vw, 220px);
+    border-radius: 50%;
+    border: 4px solid #22c55e;
+    box-shadow: 0 0 30px rgba(34,197,94,0.3);
+}
+
+/* =========================================
+   BOTTONI GLOBALI E ICONE
+========================================= */
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn, .linkedin {
+    padding: 16px 24px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.btn { 
+    background: #22c55e; 
+    color: black; 
+    text-decoration: none; 
+}
+
+.linkedin { 
+    border: 2px solid #22c55e; 
+    color: #22c55e; 
+    text-decoration: none; 
+    background: transparent;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+.linkedin .btn-icon { fill: #22c55e; }
+
+/* =========================================
+   CAROSELLO LOGHI
+========================================= */
+.logos-section {
+    position: relative;
+    z-index: 3;
+    padding: 40px 0;
+    background: linear-gradient(to right, rgba(28,28,28,1), rgba(28,28,28,0) 10%, rgba(28,28,28,0) 90%, rgba(28,28,28,1));
+    overflow: hidden;
+}
+
+.logos-title {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #aaa;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.logos-container {
+    width: 100%;
+    overflow: hidden; 
+}
+
+.logos-track {
+    display: flex;
+    gap: 30px;
+    padding: 10px 0;
+    width: max-content;
+    animation: scrollMarquee 70s linear infinite;
+    align-items: center;
+}
+
+.logos-track:hover, .logos-track:active {
+    animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+.logos-track img {
+    width: clamp(150px, 25vw, 200px);
+    height: clamp(75px, 12vw, 100px);
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    object-fit: contain;
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* =========================================
+   SEZIONI E GRIGLIE
+========================================= */
+.section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.section h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    gap: 25px;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.card {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 35px 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card h3 {
+    font-weight: 700;
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.card h3.green-title {
+    color: #22c55e;
+}
+
+.card p {
+    color: #cccccc;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+.arrow-down-container {
+    margin-top: auto; 
+    padding-top: 20px;
+    text-align: center;
+}
+
+.arrow-icon {
+    width: 40px;
+    height: 40px;
+    fill: #22c55e;
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+@keyframes bounceDown {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-12px); }
+    60% { transform: translateY(-6px); }
+}
+
+@media (min-width: 769px) {
+    .card-closing { order: 1; }
+    .card-social { order: 2; border: 1px solid rgba(34,197,94,0.3); background: rgba(15, 23, 42, 0.8); } 
+    .card-ltv { order: 3; }
+}
+
+/* =========================================
+   ANIMAZIONI E INTERAZIONI
+========================================= */
+@media (hover: hover) {
+    .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
+    .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
+    .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
+}
+
+.linkedin-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 16px 32px;
+    background: #ffffff;
+    color: #064e3b; 
+    border: 2px solid #22c55e;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    animation: premiumCTA 4s ease-in-out infinite;
+    position: relative;
+    z-index: 3;
+}
+.linkedin-cta .btn-icon { fill: #064e3b; }
+
+@keyframes premiumCTA {
+    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
+    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
+    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
+    70% { transform: translateY(-3px); }
+    80%, 84% { transform: translateX(-2px); }
+    82%, 86% { transform: translateX(2px); }
+}
+
+.final-cta {
+    text-align: center;
+    padding: 100px 20px 140px; 
+    position: relative;
+    z-index: 2;
+}
+
+.cta-line {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(8px); 
+    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.final-cta.visible .cta-line {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
+.line2 { font-size: clamp(26px, 4.5vw, 40px); color: #22c55e; font-weight: 700; text-shadow: 0 0 15px rgba(34,197,94,0.4); }
+
+.final-cta.visible .line1 { transition-delay: 0.2s; }
+.final-cta.visible .line2 { transition-delay: 1.4s; }
+
+/* =========================================
+   WHATSAPP BUTTON E CONTATTI
+========================================= */
+.contatti { text-align: center; }
+.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
+.contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
+.contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; }
+
+.whatsapp {
+    position: fixed;
+    bottom: 15px; 
+    left: 30px; 
+    background: #22c55e; 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    z-index: 9998;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(34,197,94,0.4);
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.whatsapp .btn-icon { 
+    fill: white; 
+    width: 32px; 
+    height: 32px; 
+}
+.whatsapp:hover { transform: translateY(-4px) scale(1.05); }
+
+/* =========================================
+   MEDIA QUERIES (MOBILE RESPONSIVE)
+========================================= */
+@media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+    
+    .hero { min-height: auto; padding-top: 60px; }
+    .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
+    .btn-group { align-items: center; }
+    .logos-section { margin-top: 0; padding: 20px 0; }
+    .section { padding: 50px 20px; }
+    
+    .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
+
+    .white-band {
+        margin-left: 15px; 
+        margin-right: 15px; 
+        border-radius: 20px; 
+    }
+
+    .whatsapp {
+        bottom: 15px; 
+        left: 15px;
+        width: 60px;
+        height: 60px;
+        z-index: 999999; 
+    }
+}
+
+/* FIX IUBENDA BANNER */
+#iubenda-cs-banner, .iubenda-cs-banner {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+    padding: 12px 20px !important;
+    font-size: 13px !important;
+}
+</style>
 </head>
+
 <body>
 
 <div class="bg-fixed"></div>
 
 <!-- HERO -->
-<section class="section hero reveal">
+<section class="hero reveal">
     <div class="hero-content">
-        <div style="flex: 1; min-width: 300px;">
-            <h1 class="hero-title">Remote Closing Specialist<br><span class="green" style="font-size: 0.7em;">Trasformo i tuoi lead in clienti reali</span></h1>
-            <p style="font-size: 20px; color: #ccc; margin-bottom: 30px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
-            <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
-            <br>
-            <a href="https://linkedin.com" class="btn linkedin-sub">Chi sono su LinkedIn</a>
+        <div class="hero-left">
+            <h1 class="hero-title">
+                <span class="desktop-only">Remote Closing Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green">clienti reali</span></span></span>
+                <span class="mobile-only">Remote Closing Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span></span>
+            </h1>
+            
+            <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
+            <div class="btn-group">
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
+                
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
+                    <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Scopri chi sono su LinkedIn
+                </a>
+            </div>
         </div>
-        <img src="foto.png" class="hero-img" alt="Matteo Bertoni">
+        <div class="hero-right">
+            <img src="foto.png" alt="Matteo Bertoni Sales Closer">
+        </div>
     </div>
 </section>
 
-<!-- LOGHI -->
-<div style="overflow: hidden; background: rgba(0,0,0,0.2);">
-    <div class="logos-track">
-        <!-- Inserisci qui i tuoi 24 loghi (duplicati per loop) -->
-        <img src="herbalife.png"><img src="Realmaps.png"><img src="arcari.png"><img src="marchi-cucine.jpg"><img src="herbalife.png"><img src="Realmaps.png"><img src="arcari.png"><img src="marchi-cucine.jpg">
-        <img src="herbalife.png"><img src="Realmaps.png"><img src="arcari.png"><img src="marchi-cucine.jpg"><img src="herbalife.png"><img src="Realmaps.png"><img src="arcari.png"><img src="marchi-cucine.jpg">
+<!-- CAROSELLO LOGHI -->
+<section class="logos-section reveal">
+    <p class="logos-title">Hanno scelto di collaborare con me</p>
+    <div class="logos-container">
+        <div class="logos-track">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+        </div>
     </div>
-</div>
+</section>
 
-<!-- CHI AIUTO -->
-<div class="white-band">
+<!-- FASCIA BIANCA: CHI AIUTO -->
+<div class="white-band" style="margin-top: 80px;">
     <section class="section">
-        <h2 class="green" style="text-align: center; font-size: 40px; margin-bottom: 50px;">Chi posso aiutare davvero</h2>
-        <div class="grid">
+        <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
+
+        <div class="grid grid-3">
             <div class="card reveal">
                 <h3>Aziende e Agenzie</h3>
-                <p>Gestisco il flusso di contatti e li converto in contratti firmati senza i tuoi costi fissi di gestione.</p>
+                <p>Per realtà che hanno un flusso di contatti ma faticano a gestirli e convertirli in contratti firmati.</p>
+                <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
             </div>
             <div class="card reveal">
-                <h3>Startup</h3>
-                <p>Studio il posizionamento e la strategia di vendita per rendere la tua offerta desiderabile da subito.</p>
+                <h3>Startup e Nuovi Progetti</h3>
+                <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
+                <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia desiderabile dal mercato fin dal primo giorno.</p>
             </div>
             <div class="card reveal">
                 <h3>Freelance & Partner</h3>
-                <p>Tu ti occupi del servizio, io mi occupo di chiudere la vendita e portarti fatturato.</p>
+                <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
+                <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
             </div>
         </div>
     </section>
 </div>
 
-<!-- RISULTATI -->
-<section class="section">
-    <h2 class="green reveal" style="text-align: center; margin-bottom: 50px;">I miei numeri</h2>
-    <div class="counter reveal" id="num">0%</div>
-    <div class="grid">
-        <div class="card reveal" style="text-align: center;">
-            <h3 class="green" style="font-size: 35px;">+ €2,7M</h3>
-            <p>Fatturato Generato direttamente dalle mie vendite.</p>
+<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) -->
+<section class="section" style="padding-top: 120px;">
+    <h2 class="green reveal" style="margin-bottom: 80px;">Come porto risultati</h2>
+    
+    <div class="grid grid-3">
+        <div class="card card-closing reveal">
+            <h3>Chiusura Trattative<br>(Sales Closing)</h3>
+            <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
+            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
         </div>
-        <div class="card reveal" style="text-align: center;">
-            <h3 class="green" style="font-size: 35px;">47%</h3>
-            <p>Retention Media dei progetti gestiti.</p>
+        <div class="card card-ltv reveal">
+            <h3>Sviluppo Lifetime Value (LTV)</h3>
+            <p>Non mi fermo alla firma del contratto.</p>
+            <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
         </div>
-        <div class="card reveal" style="text-align: center;">
-            <h3 class="green" style="font-size: 35px;">27%</h3>
-            <p>Closing Rate medio sullo storico attività.</p>
+        <div class="card card-social reveal">
+            <h3>Corporate Content & Social</h3>
+            <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
+            <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
+            <div class="arrow-down-container">
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reveal" style="text-align:center; margin-top:50px; margin-bottom: 100px;">
+        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
+           <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+           </svg>
+           Guarda sul mio LinkedIn come comunico per vendere
+        </a>
+    </div>
+</section>
+
+<!-- FASCIA BIANCA: I MIEI NUMERI E COLLABORAZIONI -->
+<div class="white-band">
+    <section class="section">
+        <h2 class="green reveal" style="margin-bottom: 40px;">I miei numeri</h2>
+        
+        <!-- Contatore 0-100% -->
+        <div class="counter-container reveal">
+            <span id="fast-counter">0</span>%
+        </div>
+
+        <div class="grid grid-3">
+            <div class="card reveal">
+                <h3 class="green-title">47% Retention</h3>
+                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
+                <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
+            </div>
+            <div class="card reveal">
+                <h3 class="green-title">+ €2,7M Fatturato Generato</h3>
+                <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
+                <p>Gestisco ogni trattativacon un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
+            </div>
+            <div class="card reveal">
+                <h3 class="green-title">+27% Closing Rate</h3>
+                <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
+                <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+            <div class="card reveal">
+                <h3 class="green">Strategia e Processo</h3>
+                <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
+            </div>
+            <div class="card reveal">
+                <h3 class="green">Con chi Collaboro</h3>
+                <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
+<div class="final-cta" id="final-cta" style="margin-top: 80px;">
+    <p class="cta-line line1">I lead non sono il problema.</p>
+    <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
+</div>
+
+<!-- CONTATTI (Sfondo Mac) -->
+<section class="section contatti reveal">
+    <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
+    <div class="contact-box">
+        <p class="contact-name">Matteo Bertoni</p>
+        <p class="contact-role">Sales Closer (Verona)</p>
+        <div class="contact-info">
+            <p>Email: bertonimatteo3@gmail.com</p>
+            <p>WhatsApp: 350 579 1061</p>
         </div>
     </div>
 </section>
 
-<!-- CONTATTI -->
-<section class="section reveal" style="text-align: center;">
-    <h2 class="green" style="margin-bottom: 30px;">Contattami e collaboriamo</h2>
-    <div class="card" style="display: inline-block; width: 100%; max-width: 500px;">
-        <p style="font-size: 24px; font-weight: 700;">Matteo Bertoni</p>
-        <p class="green">Sales Closer (Verona)</p>
-        <p>Email: bertonimatteo3@gmail.com</p>
-        <p>WhatsApp: 350 579 1061</p>
-    </div>
-</section>
-
-<a href="https://wa.me/393505791061" class="whatsapp">
-    <svg width="30" height="30" fill="white" viewBox="0 0 24 24"><path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0z"/></svg>
+<!-- TASTO WHATSAPP FISSO -->
+<a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
+    <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0zm0 21.96c-1.78 0-3.52-.48-5.06-1.39l-.36-.21-3.76.99.99-3.66-.23-.37c-1-1.59-1.53-3.41-1.53-5.3 0-5.54 4.51-10.05 10.05-10.05 5.54 0 10.05 4.51 10.05 10.05 0 5.54-4.51 10.05-10.05 10.05zm5.51-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.52-.77-2.67-1.42-3.68-2.6-.28-.32.03-.3.32-.88.1-.2.05-.38-.03-.53-.08-.15-.68-1.63-.93-2.23-.24-.59-.48-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
+    </svg>
 </a>
 
-<script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                if(entry.target.id === 'num') {
-                    let c = 0;
-                    const iv = setInterval(() => {
-                        if(c >= 100) clearInterval(iv);
-                        entry.target.innerText = c + '%';
-                        c++;
-                    }, 20);
-                }
-            }
-        });
-    }, { threshold: 0.1 });
+<!-- FOOTER IUBENDA -->
+<div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
+    |
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
+</div>
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // FIX PER CAROSELLO
+        const logosTrack = document.querySelector('.logos-track');
+        if (logosTrack) {
+            logosTrack.addEventListener('touchstart', function() {
+                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
+            }, { passive: true });
+            logosTrack.addEventListener('touchend', function() {
+                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+            });
+        }
+        
+        // SCRIPT CONTATORE
+        const counterEl = document.getElementById('fast-counter');
+        let hasCounted = false;
+        const counterObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !hasCounted) {
+                hasCounted = true;
+                let count = 0;
+                
+                function updateCounter() {
+                    count += 1;
+                    counterEl.innerText = count;
+                    
+                    if (count < 100) {
+                        let delay = 20; 
+                        if (count >= 90) {
+                            delay = 20 + ((count - 90) * 25); 
+                        }
+                        setTimeout(updateCounter, delay);
+                    }
+                }
+                updateCounter();
+            }
+        }, { threshold: 0.5 }); 
+        
+        if(counterEl) counterObserver.observe(counterEl);
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target); 
+                    setTimeout(() => {
+                        entry.target.classList.remove('reveal', 'active');
+                    }, 5000);
+                }
+            });
+        }, { 
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" 
+        });
+
+        const revealElements = document.querySelectorAll('.reveal');
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        const ctaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    ctaObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        const ctaElement = document.getElementById('final-cta');
+        if(ctaElement) ctaObserver.observe(ctaElement);
+    });
 </script>
 
 </body>
