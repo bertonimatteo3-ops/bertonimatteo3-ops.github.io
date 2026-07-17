@@ -55,37 +55,27 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE (STATICHE E SOLIDE)
+   NUOVE CLASSI PER BANDE BIANCHE E ILLUSTRAZIONI
 ========================================= */
 .white-band {
     background-color: white !important;
     color: #1c1c1c !important;
     position: relative;
     z-index: 2;
-    
-    /* Layout pulito senza forzature della GPU per evitare tremolii */
     max-width: 1200px;
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 24px;
 }
 
-/* Nuova classe per le illustrazioni inserite */
-.illustrazione-web {
+/* Classe per centrare le immagini e renderle responsive */
+.illustrazione-centrata {
     display: block;
     width: 90%;
-    max-width: 450px; 
+    max-width: 500px;
     height: auto;
-    margin: 10px auto 40px auto; 
-    filter: contrast(1.1) brightness(1.05) saturate(1.1);
-}
-/* Fix specifico per rimuovere lo spazio sotto l'immagine numeri */
-.img-numeri {
-    margin-bottom: 0px !important;
-}
-
-.section.compact-top {
-    padding-top: 30px !important;
+    margin: 30px auto; /* Centratura orizzontale automatica */
+    filter: contrast(1.1) brightness(1.05); /* Rende lo sfondo del disegno bianco puro */
 }
 
 /* Su schermi larghi, la fascia si centra automaticamente */
@@ -129,7 +119,6 @@ body {
 /* =========================================
    ANIMAZIONI AGGIUNTE E MODIFICATE
 ========================================= */
-
 .handshake-img {
     display: block;
     margin: -10px auto 35px auto;
@@ -253,18 +242,17 @@ body {
     font-weight: 600;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 .btn { 
     background: #22c55e; 
     color: black; 
-    text-decoration: none; 
 }
 
 .linkedin { 
     border: 2px solid #22c55e; 
     color: #22c55e; 
-    text-decoration: none; 
     background: transparent;
 }
 
@@ -620,11 +608,9 @@ body {
                 <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
             </div>
         </div>
-        
-        <!-- IMMAGINE AIUTO DOPO FREELANCE & PARTNER -->
-        <div style="text-align: center; width: 100%;">
-    <img src="aiuto.png" alt="Aiuto" class="illustrazione-web reveal">
-</div>
+
+        <!-- IMMAGINE AIUTO CENTRATA -->
+        <img src="aiuto.png" alt="Aiuto" class="illustrazione-centrata reveal">
 
     </section>
 </div>
@@ -694,12 +680,12 @@ body {
             </div>
         </div>
 
-        <!-- IMMAGINE NUMERI DOPO CLOSING RATE -->
-        <img src="numeri.png" alt="Numeri" class="illustrazione-web img-numeri reveal">
+        <!-- IMMAGINE NUMERI CENTRATA -->
+        <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal">
 
     </section>
 
-    <section class="section compact-top">
+    <section class="section">
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
             <div class="card reveal">
                 <h3 class="green">Strategia e Processo</h3>
