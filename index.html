@@ -55,35 +55,21 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE (STATICHE E SOLIDE)
+   STRUTTURA BLOCCHI BIANCHI
 ========================================= */
 .white-band {
     background-color: white !important;
     color: #1c1c1c !important;
     position: relative;
     z-index: 2;
-    
-    /* Layout pulito senza forzature della GPU per evitare tremolii */
     max-width: 1200px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
     border-radius: 24px;
 }
 
-/* Nuova classe per le illustrazioni inserite */
-.illustrazione-web {
-    display: block;
-    width: 90%;
-    max-width: 500px;
-    height: auto;
-    margin: 20px auto 40px auto;
-    /* Filtro per rendere lo sfondo del disegno bianco puro */
-    filter: contrast(1.1) brightness(1.08);
-}
-
-/* Su schermi larghi, la fascia si centra automaticamente */
 @media (min-width: 1240px) {
     .white-band {
         margin-left: auto;
@@ -94,10 +80,13 @@ body {
 .white-band .section {
     max-width: 1100px;
     margin: auto;
+    padding: 80px 20px;
 }
 
 .white-band h2 {
     color: #16a34a !important; 
+    text-align: center;
+    margin-bottom: 40px;
 }
 
 .white-band .card {
@@ -113,6 +102,21 @@ body {
     color: #475569 !important;
 }
 
+/* Spaziature immagini richieste */
+.illustrazione-centrata {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    margin: 40px auto;
+    filter: contrast(1.1) brightness(1.08); /* Filtro bianco puro */
+}
+
+/* Modifiche spaziature specifiche */
+.img-bottom-compact { margin-bottom: 0 !important; }
+.img-top-compact { margin-top: 0 !important; }
+.gap-extra-large { margin-top: 120px !important; }
+
 /* TITOLO CONTATTI MODIFICATO */
 .section h2.titolo-contatti {
     font-size: clamp(20px, 3vw, 24px) !important;
@@ -122,9 +126,8 @@ body {
 }
 
 /* =========================================
-   ANIMAZIONI AGGIUNTE E MODIFICATE
+   ANIMAZIONI E COMPONENTI
 ========================================= */
-
 .handshake-img {
     display: block;
     margin: -10px auto 35px auto;
@@ -143,7 +146,7 @@ body {
     font-size: 55px;
     font-weight: 700;
     color: #22c55e;
-    margin: -20px 0 80px 0;
+    margin: 0px 0 60px 0;
     text-shadow: 0 0 15px rgba(34,197,94,0.3);
     font-variant-numeric: tabular-nums; 
 }
@@ -270,7 +273,7 @@ body {
 .linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI
+   CAROSELLO LOGHI (INTEGRALE)
 ========================================= */
 .logos-section {
     position: relative;
@@ -423,7 +426,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin: 40px auto;
     padding: 16px 32px;
     background: #ffffff;
     color: #064e3b; 
@@ -581,7 +584,7 @@ body {
     </div>
 </section>
 
-<!-- CAROSELLO LOGHI -->
+<!-- CAROSELLO LOGHI (INTEGRALE) -->
 <section class="logos-section reveal">
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
@@ -595,7 +598,7 @@ body {
 <!-- BLOCCO BIANCO 1: CHI AIUTO -->
 <div class="white-band" style="margin-top: 80px;">
     <section class="section">
-        <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
+        <h2 class="reveal">Chi posso aiutare davvero</h2>
 
         <div class="grid grid-3">
             <div class="card reveal">
@@ -615,16 +618,14 @@ body {
             </div>
         </div>
 
-        <!-- Immagine centrata e distanziata tra freelance e bordo blocco 1 -->
-        <div style="text-align: center; width: 100%;">
-            <img src="aiuto.png" alt="Aiuto" class="illustrazione-web reveal">
-        </div>
+        <!-- Immagine centrata e distanziata tra freelance e bordo blocco 1 (RIDOTTO SPAZIO SOTTO) -->
+        <img src="aiuto.png" alt="Aiuto" class="illustrazione-centrata reveal img-bottom-compact">
     </section>
 </div>
 
-<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) - FUORI DAL BLOCCO BIANCO -->
-<section class="section" style="padding-top: 120px;">
-    <h2 class="green reveal" style="margin-bottom: 80px;">Come porto risultati</h2>
+<!-- SEZIONE SCURA: COME PORTO RISULTATI + LINKEDIN -->
+<section class="section" style="padding-top: 60px;">
+    <h2 class="green reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
     
     <div class="grid grid-3">
         <div class="card card-closing reveal">
@@ -649,11 +650,8 @@ body {
         </div>
     </div>
     
-    <div class="reveal" style="text-align:center; margin-top:50px; margin-bottom: 100px;">
+    <div class="reveal" style="text-align:center;">
         <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
-           <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-           </svg>
            Guarda sul mio LinkedIn come comunico per vendere
         </a>
     </div>
@@ -662,7 +660,7 @@ body {
 <!-- BLOCCO BIANCO 2: I MIEI NUMERI -->
 <div class="white-band">
     <section class="section">
-        <h2 class="green reveal" style="margin-bottom: 40px;">I miei numeri</h2>
+        <h2 class="reveal">I miei numeri</h2>
         
         <!-- Contatore 0-100% -->
         <div class="counter-container reveal">
@@ -671,17 +669,17 @@ body {
 
         <div class="grid grid-3">
             <div class="card reveal">
-                <h3 class="green-title">47% Retention</h3>
+                <h3 class="green">47% Retention</h3>
                 <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
                 <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
             </div>
             <div class="card reveal">
-                <h3 class="green-title">+ €2,7M Fatturato Generato</h3>
+                <h3 class="green">+ €2,7M Fatturato Generato</h3>
                 <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
                 <p>Gestisco ogni trattativacon un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
             </div>
             <div class="card reveal">
-                <h3 class="green-title">+27% Closing Rate</h3>
+                <h3 class="green">+27% Closing Rate</h3>
                 <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
                 <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
             </div>
@@ -689,13 +687,11 @@ body {
     </section>
 </div>
 
-<!-- BLOCCO BIANCO 3: IMMAGINE + STRATEGIA + COLLABORO -->
-<div class="white-band">
+<!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO (SPAZIATO) -->
+<div class="white-band gap-extra-large">
     <section class="section">
-        <!-- Immagine centrata in cima al blocco 3 -->
-        <div style="text-align: center; width: 100%;">
-            <img src="numeri.png" alt="Numeri" class="illustrazione-web reveal">
-        </div>
+        <!-- Immagine centrata in cima al blocco 3 (SENZA SPAZIO SOPRA) -->
+        <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal img-top-compact">
 
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
             <div class="card reveal">
