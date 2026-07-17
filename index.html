@@ -77,6 +77,17 @@ body {
     max-width: 550px;
     height: auto;
     margin: 50px auto;
+    /* Filtro per rendere lo sfondo del disegno bianco puro */
+    filter: contrast(1.1) brightness(1.05) saturate(1.1);
+}
+
+/* Fix specifico per rimuovere lo spazio sotto l'immagine numeri */
+.img-numeri {
+    margin-bottom: 0px !important;
+}
+
+.section.compact-top {
+    padding-top: 30px !important;
 }
 
 /* Su schermi larghi, la fascia si centra automaticamente */
@@ -611,9 +622,9 @@ body {
                 <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
             </div>
         </div>
-
-        <!-- Immagine Aiuto dopo Freelance & Partner -->
-        <img src="aiuto.png" alt="Illustrazione Strategia e Obiettivi" class="illustrazione-web reveal">
+        
+        <!-- IMMAGINE AIUTO DOPO FREELANCE & PARTNER -->
+        <img src="aiuto.png" alt="Aiuto" class="illustrazione-web reveal">
 
     </section>
 </div>
@@ -683,12 +694,12 @@ body {
             </div>
         </div>
 
-        <!-- Immagine Numeri tra Closing Rate e Strategia -->
-        <img src="numeri.png" alt="Analisi Numeri e Performance" class="illustrazione-web reveal">
+        <!-- IMMAGINE NUMERI DOPO CLOSING RATE -->
+        <img src="numeri.png" alt="Numeri" class="illustrazione-web img-numeri reveal">
 
     </section>
 
-    <section class="section">
+    <section class="section compact-top">
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
             <div class="card reveal">
                 <h3 class="green">Strategia e Processo</h3>
