@@ -34,12 +34,12 @@ body {
     overflow-x: hidden;
 }
 
-/* FIX SFONDO IOS / ANDROID */
+/* FIX SFONDO IOS / ANDROID (Tornato all'originale 100vw) */
 .bg-fixed {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* FIX: cambiato da 100vw a 100% per evitare salti della scrollbar su PC */
+    width: 100vw;
     height: 100vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
@@ -55,7 +55,7 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE
+   NUOVE CLASSI PER BANDE BIANCHE (MAC FIX)
 ========================================= */
 .white-band {
     background-color: white !important;
@@ -63,14 +63,17 @@ body {
     position: relative;
     z-index: 2;
     
-    /* MODIFICHE MARGINI E ANGOLI */
+    /* Layout */
     width: calc(100% - 40px);
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 24px;
     
-    /* Rimosso overflow:hidden che causava lag e saltellamenti su PC */
+    /* MAC FIX: riattiviamo l'overflow per tagliare gli angoli, ma forziamo l'accelerazione hardware per evitare il saltellamento */
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 }
 
 .white-band .section {
@@ -107,7 +110,6 @@ body {
    ANIMAZIONI AGGIUNTE E MODIFICATE
 ========================================= */
 
-/* Animazione per l'immagine caricata dall'utente */
 .handshake-img {
     display: block;
     margin: -10px auto 35px auto;
@@ -121,7 +123,6 @@ body {
     50% { transform: translateY(-8px) scale(1.03); } 
 }
 
-/* Stile Contatore da 0 a 100 */
 .counter-container {
     text-align: center;
     font-size: 55px;
@@ -132,9 +133,7 @@ body {
     font-variant-numeric: tabular-nums; 
 }
 
-/* =========================================
-   ANIMAZIONI ESTREMAMENTE LENTE
-========================================= */
+/* ANIMAZIONI ESTREMAMENTE LENTE */
 .reveal {
     opacity: 0; 
 }
