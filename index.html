@@ -55,14 +55,21 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE
+   NUOVE CLASSI PER BANDE BIANCHE (AGGIORNATE)
 ========================================= */
 .white-band {
     background-color: white !important;
     color: #1c1c1c !important;
     position: relative;
     z-index: 2;
-    width: 100%;
+    
+    /* MODIFICHE MARGINI E ANGOLI */
+    width: calc(100% - 40px); /* Crea il margine laterale */
+    max-width: 1200px; /* Su desktop si ferma a questa larghezza per essere compatto come nello screen */
+    margin-left: auto; /* Centra il riquadro */
+    margin-right: auto; /* Centra il riquadro */
+    border-radius: 24px; /* Angoli arrotondati */
+    overflow: hidden; /* Evita che elementi interni sbordino dagli angoli arrotondati */
 }
 
 .white-band .section {
@@ -497,6 +504,12 @@ body {
     .section { padding: 50px 20px; }
     
     .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
+
+    /* Ottimizzazione margini riquadri bianchi su schermi stretti (Mobile) */
+    .white-band {
+        width: calc(100% - 30px); /* Riduce leggermente i margini laterali per dare più spazio al testo interno */
+        border-radius: 20px; /* Ammorbidisce un po' l'angolo su mobile */
+    }
 
     .whatsapp {
         bottom: 15px; 
