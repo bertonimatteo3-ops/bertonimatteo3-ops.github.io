@@ -39,7 +39,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%; /* FIX: cambiato da 100vw a 100% per evitare salti della scrollbar su PC */
     height: 100vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
@@ -55,7 +55,7 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE (AGGIORNATE)
+   NUOVE CLASSI PER BANDE BIANCHE
 ========================================= */
 .white-band {
     background-color: white !important;
@@ -64,12 +64,13 @@ body {
     z-index: 2;
     
     /* MODIFICHE MARGINI E ANGOLI */
-    width: calc(100% - 40px); /* Crea il margine laterale */
-    max-width: 1200px; /* Su desktop si ferma a questa larghezza per essere compatto come nello screen */
-    margin-left: auto; /* Centra il riquadro */
-    margin-right: auto; /* Centra il riquadro */
-    border-radius: 24px; /* Angoli arrotondati */
-    overflow: hidden; /* Evita che elementi interni sbordino dagli angoli arrotondati */
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 24px;
+    
+    /* Rimosso overflow:hidden che causava lag e saltellamenti su PC */
 }
 
 .white-band .section {
@@ -188,8 +189,8 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 0.8em; /* Più piccolo rispetto al titolo base in modo responsivo */
-    font-weight: 700; /* Sempre in grassetto */
+    font-size: 0.8em; 
+    font-weight: 700; 
 }
 
 .desktop-only { display: block; }
@@ -505,10 +506,9 @@ body {
     
     .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
 
-    /* Ottimizzazione margini riquadri bianchi su schermi stretti (Mobile) */
     .white-band {
-        width: calc(100% - 30px); /* Riduce leggermente i margini laterali per dare più spazio al testo interno */
-        border-radius: 20px; /* Ammorbidisce un po' l'angolo su mobile */
+        width: calc(100% - 30px); 
+        border-radius: 20px; 
     }
 
     .whatsapp {
@@ -579,7 +579,6 @@ body {
 <!-- FASCIA BIANCA: CHI AIUTO -->
 <div class="white-band" style="margin-top: 80px;">
     <section class="section">
-        <!-- SPAZIO AUMENTATO SOTTO LA FRASE DA 20px a 50px -->
         <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
 
         <div class="grid grid-3">
@@ -729,7 +728,7 @@ body {
             });
         }
         
-        // SCRIPT CONTATORE (RALLENTAMENTO DA 90 IN POI)
+        // SCRIPT CONTATORE
         const counterEl = document.getElementById('fast-counter');
         let hasCounted = false;
         const counterObserver = new IntersectionObserver((entries) => {
@@ -742,19 +741,13 @@ body {
                     counterEl.innerText = count;
                     
                     if (count < 100) {
-                        // Da 0 a 89 la velocità è di 20ms
                         let delay = 20; 
-                        
-                        // Arrivati a 90, il ritardo inizia ad aumentare progressivamente
                         if (count >= 90) {
                             delay = 20 + ((count - 90) * 25); 
                         }
-                        
                         setTimeout(updateCounter, delay);
                     }
                 }
-                
-                // Avvia la funzione
                 updateCounter();
             }
         }, { threshold: 0.5 }); 
