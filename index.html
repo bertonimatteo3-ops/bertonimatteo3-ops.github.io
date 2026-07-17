@@ -55,19 +55,32 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   STRUTTURA A 3 BLOCCHI BIANCHI
+   NUOVE CLASSI PER BANDE BIANCHE (STATICHE E SOLIDE)
 ========================================= */
 .white-band {
     background-color: white !important;
     color: #1c1c1c !important;
     position: relative;
     z-index: 2;
+    
+    /* Layout pulito senza forzature della GPU per evitare tremolii */
     max-width: 1200px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     border-radius: 24px;
+}
+
+/* Nuova classe per le illustrazioni inserite */
+.illustrazione-web {
+    display: block;
+    width: 90%;
+    max-width: 500px;
+    height: auto;
+    margin: 20px auto 40px auto;
+    /* Filtro per rendere lo sfondo del disegno bianco puro */
+    filter: contrast(1.1) brightness(1.08);
 }
 
 /* Su schermi larghi, la fascia si centra automaticamente */
@@ -81,14 +94,10 @@ body {
 .white-band .section {
     max-width: 1100px;
     margin: auto;
-    padding: 80px 20px;
 }
 
 .white-band h2 {
     color: #16a34a !important; 
-    text-align: center;
-    font-size: clamp(28px, 4vw, 40px);
-    margin-bottom: 40px;
 }
 
 .white-band .card {
@@ -102,16 +111,6 @@ body {
 
 .white-band .card p {
     color: #475569 !important;
-}
-
-/* Centratura immagini responsive */
-.illustrazione-centrata {
-    display: block;
-    width: 90%;
-    max-width: 500px;
-    height: auto;
-    margin: 40px auto;
-    filter: contrast(1.1) brightness(1.05); /* Filtro bianco puro */
 }
 
 /* TITOLO CONTATTI MODIFICATO */
@@ -144,7 +143,7 @@ body {
     font-size: 55px;
     font-weight: 700;
     color: #22c55e;
-    margin: 0px 0 60px 0;
+    margin: -20px 0 80px 0;
     text-shadow: 0 0 15px rgba(34,197,94,0.3);
     font-variant-numeric: tabular-nums; 
 }
@@ -594,9 +593,10 @@ body {
 </section>
 
 <!-- BLOCCO BIANCO 1: CHI AIUTO -->
-<div class="white-band">
+<div class="white-band" style="margin-top: 80px;">
     <section class="section">
-        <h2 class="reveal">Chi posso aiutare davvero</h2>
+        <h2 class="green reveal" style="margin-bottom: 80px;">Chi posso aiutare davvero</h2>
+
         <div class="grid grid-3">
             <div class="card reveal">
                 <h3>Aziende e Agenzie</h3>
@@ -614,41 +614,57 @@ body {
                 <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
             </div>
         </div>
-        
-        <!-- Immagine centrata tra le card e il bordo del blocco 1 -->
-        <img src="aiuto.png" alt="Aiuto" class="illustrazione-centrata reveal">
+
+        <!-- Immagine centrata e distanziata tra freelance e bordo blocco 1 -->
+        <div style="text-align: center; width: 100%;">
+            <img src="aiuto.png" alt="Aiuto" class="illustrazione-web reveal">
+        </div>
     </section>
 </div>
 
-<!-- BLOCCO BIANCO 2: COME PORTO RISULTATI + NUMERI -->
-<div class="white-band">
-    <section class="section">
-        <h2 class="reveal">Come porto risultati</h2>
-        <div class="grid grid-3" style="margin-bottom: 80px;">
-            <div class="card reveal">
-                <h3>Chiusura Trattative<br>(Sales Closing)</h3>
-                <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
-                <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
-            </div>
-            <div class="card reveal">
-                <h3>Sviluppo Lifetime Value (LTV)</h3>
-                <p>Non mi fermo alla firma del contratto.</p>
-                <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
-            </div>
-            <div class="card reveal">
-                <h3>Corporate Content & Social</h3>
-                <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
-                <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
-                <div class="arrow-down-container">
-                    <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
-                    </svg>
-                </div>
+<!-- SEZIONE COME PORTO RISULTATI (Sfondo Mac) - FUORI DAL BLOCCO BIANCO -->
+<section class="section" style="padding-top: 120px;">
+    <h2 class="green reveal" style="margin-bottom: 80px;">Come porto risultati</h2>
+    
+    <div class="grid grid-3">
+        <div class="card card-closing reveal">
+            <h3>Chiusura Trattative<br>(Sales Closing)</h3>
+            <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
+            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
+        </div>
+        <div class="card card-ltv reveal">
+            <h3>Sviluppo Lifetime Value (LTV)</h3>
+            <p>Non mi fermo alla firma del contratto.</p>
+            <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
+        </div>
+        <div class="card card-social reveal">
+            <h3>Corporate Content & Social</h3>
+            <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
+            <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo contenuti che costruiscono autorità e fiducia.</p>
+            <div class="arrow-down-container">
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
+                </svg>
             </div>
         </div>
+    </div>
+    
+    <div class="reveal" style="text-align:center; margin-top:50px; margin-bottom: 100px;">
+        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
+           <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+               <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+           </svg>
+           Guarda sul mio LinkedIn come comunico per vendere
+        </a>
+    </div>
+</section>
 
-        <h2 class="reveal">I miei numeri</h2>
-        <!-- Contatore -->
+<!-- BLOCCO BIANCO 2: I MIEI NUMERI -->
+<div class="white-band">
+    <section class="section">
+        <h2 class="green reveal" style="margin-bottom: 40px;">I miei numeri</h2>
+        
+        <!-- Contatore 0-100% -->
         <div class="counter-container reveal">
             <span id="fast-counter">0</span>%
         </div>
@@ -673,11 +689,13 @@ body {
     </section>
 </div>
 
-<!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO -->
+<!-- BLOCCO BIANCO 3: IMMAGINE + STRATEGIA + COLLABORO -->
 <div class="white-band">
     <section class="section">
         <!-- Immagine centrata in cima al blocco 3 -->
-        <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal" style="margin-top: 0; margin-bottom: 60px;">
+        <div style="text-align: center; width: 100%;">
+            <img src="numeri.png" alt="Numeri" class="illustrazione-web reveal">
+        </div>
 
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
             <div class="card reveal">
