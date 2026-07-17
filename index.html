@@ -34,7 +34,7 @@ body {
     overflow-x: hidden;
 }
 
-/* FIX SFONDO IOS / ANDROID (Tornato all'originale 100vw) */
+/* FIX SFONDO IOS / ANDROID / MAC (Ripristinato ESATTAMENTE come l'originale funzionante) */
 .bg-fixed {
     position: fixed;
     top: 0;
@@ -55,7 +55,7 @@ body {
 .green { color: #22c55e; }
 
 /* =========================================
-   NUOVE CLASSI PER BANDE BIANCHE (MAC FIX)
+   NUOVE CLASSI PER BANDE BIANCHE
 ========================================= */
 .white-band {
     background-color: white !important;
@@ -63,17 +63,23 @@ body {
     position: relative;
     z-index: 2;
     
-    /* Layout */
-    width: calc(100% - 40px);
+    /* Layout solido: usiamo margini fissi invece di percentuali ballerine (calc) per evitare i saltellamenti su Mac */
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     border-radius: 24px;
     
-    /* MAC FIX: riattiviamo l'overflow per tagliare gli angoli, ma forziamo l'accelerazione hardware per evitare il saltellamento */
-    overflow: hidden;
+    /* Aiuta il motore grafico a renderizzare il blocco senza sforzo */
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+}
+
+/* Su schermi larghi, la fascia si centra automaticamente */
+@media (min-width: 1240px) {
+    .white-band {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .white-band .section {
@@ -133,7 +139,9 @@ body {
     font-variant-numeric: tabular-nums; 
 }
 
-/* ANIMAZIONI ESTREMAMENTE LENTE */
+/* =========================================
+   ANIMAZIONI ESTREMAMENTE LENTE
+========================================= */
 .reveal {
     opacity: 0; 
 }
@@ -505,8 +513,10 @@ body {
     
     .linkedin-cta { display: flex; text-align: center; font-size: 14px; padding: 14px 20px;}
 
+    /* Margini fissi per mobile senza percentuali calc */
     .white-band {
-        width: calc(100% - 30px); 
+        margin-left: 15px; 
+        margin-right: 15px; 
         border-radius: 20px; 
     }
 
