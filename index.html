@@ -141,14 +141,16 @@ body {
     50% { transform: translateY(-8px) scale(1.03); } 
 }
 
-.counter-container {
-    text-align: center;
-    font-size: 55px;
+/* Stile per i numeri giganti dentro le card */
+.card-number {
+    font-size: clamp(38px, 5vw, 48px);
     font-weight: 700;
     color: #22c55e;
-    margin: 0px 0 60px 0;
-    text-shadow: 0 0 15px rgba(34,197,94,0.3);
-    font-variant-numeric: tabular-nums; 
+    display: block;
+    margin-bottom: 5px;
+    text-shadow: 0 0 15px rgba(34,197,94,0.4);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
 }
 
 /* =========================================
@@ -686,17 +688,20 @@ body {
 
         <div class="grid grid-3" id="numbers-grid">
             <div class="card reveal">
-                <h3 class="green"><span class="dynamic-counter" data-target="47" data-is-float="false">0</span>% Retention</h3>
+                <span class="card-number"><span class="dynamic-counter" data-target="47" data-is-float="false">0</span>%</span>
+                <h3>Retention</h3>
                 <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
                 <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
             </div>
             <div class="card reveal">
-                <h3 class="green">+ €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M Fatturato Generato</h3>
+                <span class="card-number">+ €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M</span>
+                <h3>Fatturato Generato</h3>
                 <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
-                <p>Gestisco ogni trattativacon un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
+                <p>Gestisco ogni trattativa con un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
             </div>
             <div class="card reveal">
-                <h3 class="green">+<span class="dynamic-counter" data-target="27" data-is-float="false">0</span>% Closing Rate</h3>
+                <span class="card-number">+<span class="dynamic-counter" data-target="27" data-is-float="false">0</span>%</span>
+                <h3>Closing Rate</h3>
                 <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
                 <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
             </div>
