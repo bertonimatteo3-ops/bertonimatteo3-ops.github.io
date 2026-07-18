@@ -778,50 +778,63 @@ body {
             });
         }
         
-        // SCRIPT CONTATORE NUMERI MULTIPLI
+        // SCRIPT CONTATORE NUMERI MULTIPLI CON LOGICA INDIVIDUALE E RITARDO MOBILE
         const counters = document.querySelectorAll('.dynamic-counter');
-        let hasCounted = false;
         
-        const counterObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !hasCounted) {
-                hasCounted = true;
-                
-                counters.forEach(counter => {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
                     const duration = 5000; // Esattamente 5 secondi (5000 ms)
-                    let startTimestamp = null;
                     
-                    const step = (timestamp) => {
-                        if (!startTimestamp) startTimestamp = timestamp;
-                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                        
-                        // Curva Ease-Out Cubic: rallenta progressivamente ed in modo molto evidente gli ultimi numeri
-                        const easeProgress = 1 - Math.pow(1 - progress, 3);
-                        const currentVal = target * easeProgress;
-                        
-                        if (isFloat) {
-                            counter.innerText = currentVal.toFixed(1).replace('.', ',');
-                        } else {
-                            counter.innerText = Math.floor(currentVal);
-                        }
-                        
-                        if (progress < 1) {
-                            window.requestAnimationFrame(step);
-                        } else {
-                            // Assicura che l'esatto valore finale sia stampato alla fine
-                            counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
-                        }
-                    };
+                    // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
+                    const isMobile = window.innerWidth <= 768;
+                    // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
+                    // per permettere all'utente di scrollare fino in fondo e vederlo salire
+                    const delay = (target === 27 && isMobile) ? 700 : 0;
                     
-                    window.requestAnimationFrame(step);
-                });
-            }
-        }, { threshold: 0.5 }); 
+                    setTimeout(() => {
+                        let startTimestamp = null;
+                        
+                        const step = (timestamp) => {
+                            if (!startTimestamp) startTimestamp = timestamp;
+                            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                            
+                            // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
+                            const easeProgress = 1 - Math.pow(1 - progress, 3);
+                            const currentVal = target * easeProgress;
+                            
+                            if (isFloat) {
+                                counter.innerText = currentVal.toFixed(1).replace('.', ',');
+                            } else {
+                                counter.innerText = Math.floor(currentVal);
+                            }
+                            
+                            if (progress < 1) {
+                                window.requestAnimationFrame(step);
+                            } else {
+                                // Assicura che l'esatto valore finale sia stampato alla fine
+                                counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
+                            }
+                        };
+                        
+                        window.requestAnimationFrame(step);
+                    }, delay);
+                    
+                    // Smette di osservare il singolo contatore dopo averlo avviato
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.3 }); // Il numero partirà solo quando la sua card diventa effettivamente visibile nel browser
         
-        const numbersGrid = document.getElementById('numbers-grid');
-        if(numbersGrid) counterObserver.observe(numbersGrid);
+        // Assegno l'observer ad ogni contatore in modo indipendente
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
 
+        // REVEAL ANIMATIONS (Rimosso lo stacco anticipato per renderle pulite)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -840,6 +853,7 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
+        // CTA FINALE OBSERVER
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
