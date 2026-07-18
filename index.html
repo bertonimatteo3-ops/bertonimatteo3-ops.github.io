@@ -29,12 +29,12 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #1c1c1c; 
+    background: #ea580c; /* TEMA ARANCIONE PRINCIPALE */
     color: white;
     overflow-x: hidden;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC (Originale) */
+/* FIX SFONDO IOS / ANDROID / MAC (Adattato al tema arancione) */
 .bg-fixed {
     position: fixed;
     top: 0;
@@ -44,7 +44,7 @@ body {
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.35; 
+    opacity: 0.15; /* Abbassata l'opacità per far risaltare l'arancione senza coprirlo */
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
@@ -52,7 +52,15 @@ body {
     will-change: transform;
 }
 
-.green { color: #22c55e; }
+/* Testi verdi mantenuti come richiesto */
+.green { 
+    color: #22c55e !important; 
+}
+
+/* Ombra sottile per rendere leggibile il verde sull'arancione/bianco */
+.hero-title .green, .section h2.green, .final-cta .line2, .counter-container, .contact-role {
+    text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
 
 /* =========================================
    STRUTTURA BLOCCHI BIANCHI
@@ -68,6 +76,7 @@ body {
     margin-top: 60px;
     margin-bottom: 60px;
     border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 1240px) {
@@ -84,18 +93,22 @@ body {
 }
 
 .white-band h2 {
-    color: #16a34a !important; 
+    color: #16a34a !important; /* Verde mantenuto scuro per leggibilità sul bianco */
     text-align: center;
     margin-bottom: 40px;
 }
 
 .white-band .card {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: rgba(234, 88, 12, 0.05) !important; /* Riflesso arancione chiaro sulle card interne */
+    border: 1px solid rgba(234, 88, 12, 0.15) !important;
 }
 
 .white-band .card h3 {
-    color: #0f172a !important;
+    color: #ea580c !important; /* Titoli arancioni se non verdi */
+}
+
+.white-band .card h3.green {
+    color: #16a34a !important; /* Forza il verde se la classe .green è presente (es. Numeri) */
 }
 
 .white-band .card p {
@@ -109,10 +122,9 @@ body {
     max-width: 500px;
     height: auto;
     margin: 40px auto;
-    filter: contrast(1.1) brightness(1.08); /* Filtro bianco puro */
+    filter: contrast(1.1) brightness(1.08);
 }
 
-/* Modifiche spaziature specifiche */
 .img-bottom-compact { margin-bottom: 0 !important; }
 .img-top-compact { margin-top: 0 !important; }
 .gap-extra-large { margin-top: 120px !important; }
@@ -147,7 +159,6 @@ body {
     font-weight: 700;
     color: #22c55e;
     margin: 0px 0 60px 0;
-    text-shadow: 0 0 15px rgba(34,197,94,0.3);
     font-variant-numeric: tabular-nums; 
 }
 
@@ -217,7 +228,7 @@ body {
 
 .hero-left p {
     font-size: clamp(16px, 2vw, 20px);
-    color: #cccccc;
+    color: #ffedd5; /* Grigio/Arancio molto chiaro */
     margin-bottom: 30px;
     line-height: 1.5;
 }
@@ -225,8 +236,8 @@ body {
 .hero-right img {
     width: clamp(140px, 20vw, 220px);
     border-radius: 50%;
-    border: 4px solid #22c55e;
-    box-shadow: 0 0 30px rgba(34,197,94,0.3);
+    border: 4px solid #ffffff; /* Bordo bianco per contrasto sull'arancio */
+    box-shadow: 0 0 30px rgba(255,255,255,0.2);
 }
 
 /* =========================================
@@ -255,13 +266,13 @@ body {
 }
 
 .btn { 
-    background: #22c55e; 
-    color: black; 
+    background: #ffffff; 
+    color: #ea580c; 
 }
 
 .linkedin { 
-    border: 2px solid #22c55e; 
-    color: #22c55e; 
+    border: 2px solid #ffffff; 
+    color: #ffffff; 
     background: transparent;
 }
 
@@ -270,7 +281,7 @@ body {
     height: 20px;
     flex-shrink: 0;
 }
-.linkedin .btn-icon { fill: #22c55e; }
+.linkedin .btn-icon { fill: #ffffff; }
 
 /* =========================================
    CAROSELLO LOGHI (INTEGRALE)
@@ -279,14 +290,14 @@ body {
     position: relative;
     z-index: 3;
     padding: 40px 0;
-    background: linear-gradient(to right, rgba(28,28,28,1), rgba(28,28,28,0) 10%, rgba(28,28,28,0) 90%, rgba(28,28,28,1));
+    background: linear-gradient(to right, rgba(234,88,12,1), rgba(234,88,12,0) 10%, rgba(234,88,12,0) 90%, rgba(234,88,12,1));
     overflow: hidden;
 }
 
 .logos-title {
     text-align: center;
     margin-bottom: 25px;
-    color: #aaa;
+    color: #ffedd5;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -354,10 +365,10 @@ body {
 }
 
 .card {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
     padding: 35px 25px;
     border-radius: 12px;
     transition: all 0.3s ease;
@@ -378,7 +389,7 @@ body {
 }
 
 .card p {
-    color: #cccccc;
+    color: #ffedd5;
     margin-bottom: 15px;
     line-height: 1.6;
 }
@@ -396,7 +407,7 @@ body {
 .arrow-icon {
     width: 40px;
     height: 40px;
-    fill: #22c55e;
+    fill: #ffffff;
     animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
 }
 
@@ -408,7 +419,7 @@ body {
 
 @media (min-width: 769px) {
     .card-closing { order: 1; }
-    .card-social { order: 2; border: 1px solid rgba(34,197,94,0.3); background: rgba(15, 23, 42, 0.8); } 
+    .card-social { order: 2; border: 1px solid rgba(255,255,255,0.4); background: rgba(255, 255, 255, 0.15); } 
     .card-ltv { order: 3; }
 }
 
@@ -416,43 +427,45 @@ body {
    ANIMAZIONI E INTERAZIONI
 ========================================= */
 @media (hover: hover) {
-    .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
-    .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
-    .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
+    .btn:hover { background: #ffedd5; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,255,255,0.2); }
+    .linkedin:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+    .card:hover { transform: translateY(-5px); background: rgba(255, 255, 255, 0.2); border-color: rgba(255,255,255,0.4); }
+    
+    /* Hover specifico per le card dentro le fasce bianche */
+    .white-band .card:hover { background: rgba(234, 88, 12, 0.1) !important; border-color: rgba(234, 88, 12, 0.3) !important; }
 }
 
 .linkedin-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px; /* Incrementato spazio per icona */
+    gap: 12px;
     margin: 40px auto;
-    padding: 20px 40px; /* Bottone più grande */
-    font-size: 20px; /* Font più grande */
+    padding: 20px 40px; 
+    font-size: 20px; 
     background: #ffffff;
-    color: #064e3b; 
-    border: 2px solid #22c55e;
+    color: #ea580c; 
+    border: 2px solid #ffffff;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     animation: premiumCTA 4s ease-in-out infinite;
     position: relative;
     z-index: 3;
-    max-width: 95%; /* Evita che esca dallo schermo sui dispositivi più piccoli */
+    max-width: 95%; 
 }
 
-/* Icona LinkedIn interna al CTA */
 .linkedin-cta .btn-icon { 
-    fill: #064e3b; 
+    fill: #ea580c; 
     width: 32px; 
     height: 32px; 
     flex-shrink: 0; 
 }
 
 @keyframes premiumCTA {
-    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
-    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
-    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
+    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(255,255,255,0.4); }
+    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(255,255,255,0.6); }
     70% { transform: translateY(-3px); }
     80%, 84% { transform: translateX(-2px); }
     82%, 86% { transform: translateX(2px); }
@@ -480,7 +493,7 @@ body {
     filter: blur(0);
 }
 
-.line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
+.line1 { font-size: clamp(20px, 3vw, 24px); color: #ffedd5; margin-bottom: 10px; }
 .line2 { font-size: clamp(26px, 4.5vw, 40px); color: #22c55e; font-weight: 700; text-shadow: 0 0 15px rgba(34,197,94,0.4); }
 
 .final-cta.visible .line1 { transition-delay: 0.2s; }
@@ -490,10 +503,10 @@ body {
    WHATSAPP BUTTON E CONTATTI
 ========================================= */
 .contatti { text-align: center; }
-.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
+.contact-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; border: 1px solid rgba(255,255,255,0.2); }
 .contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
 .contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-.contact-info p { margin-bottom: 10px; font-size: 16px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; color: #ffedd5; }
 
 .whatsapp {
     position: fixed;
@@ -531,7 +544,6 @@ body {
     .logos-section { margin-top: 0; padding: 20px 0; }
     .section { padding: 50px 20px; }
     
-    /* Adatta il bottone LinkedIn sui dispositivi mobile per mantenerlo ordinato e visibile */
     .linkedin-cta { 
         display: flex; 
         text-align: center; 
@@ -642,7 +654,7 @@ body {
     </section>
 </div>
 
-<!-- SEZIONE SCURA: COME PORTO RISULTATI + LINKEDIN -->
+<!-- SEZIONE PRINCIPALE: COME PORTO RISULTATI + LINKEDIN -->
 <section class="section" style="padding-top: 60px;">
     <h2 class="green reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
     
@@ -708,13 +720,12 @@ body {
     </section>
 </div>
 
-<!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO (SPAZIATO) -->
+<!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO -->
 <div class="white-band gap-extra-large">
     <section class="section">
-        <!-- Nuovo Titolo "Il mio framework" -->
+        <!-- Titolo Framework richiesto precedentemente -->
         <h2 class="reveal">Il mio framework</h2>
         
-        <!-- Immagine centrata sotto il titolo -->
         <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal img-top-compact">
 
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
@@ -730,13 +741,13 @@ body {
     </section>
 </div>
 
-<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
+<!-- CTA FINALE ANIMATA SCROLL -->
 <div class="final-cta" id="final-cta" style="margin-top: 80px;">
     <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
 </div>
 
-<!-- CONTATTI (Sfondo Mac) -->
+<!-- CONTATTI -->
 <section class="section contatti reveal">
     <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
     <div class="contact-box">
@@ -757,10 +768,10 @@ body {
 </a>
 
 <!-- FOOTER IUBENDA -->
-<div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
+<div style="text-align:center; padding: 20px; font-size:13px; color: #ffedd5; margin-bottom: 60px;">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#ffedd5; text-decoration:none;">Privacy Policy</a>
     |
-    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#ffedd5; text-decoration:none;">Cookie Policy</a>
 </div>
 
 <script>
