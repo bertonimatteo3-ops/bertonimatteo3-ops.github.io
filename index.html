@@ -306,7 +306,7 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-    will-change: transform; /* Ottimizzazione fluidità PC */
+    will-change: transform; /* Ottimizzazione per fluidità PC/Mac */
 }
 
 @keyframes scrollMarquee {
@@ -339,11 +339,11 @@ body {
     padding: 0 !important; 
 }
 
-/* CAPPELLINI: Stessa dimensione degli altri, ma logo più grande all'interno */
+/* CAPPELLINI: Contenitore Bianco, Scritta Nera, Grande internamente */
 .logos-track img.cappellini-mod {
     padding: 0 !important; 
     background-color: white !important; 
-    filter: invert(1) !important; /* Inverte per avere testo nero su bianco */
+    filter: brightness(0) !important; /* Forza la scritta a diventare nera */
 }
 
 /* ARCARI */
@@ -353,11 +353,11 @@ body {
     filter: invert(1) !important;
 }
 
-/* BERTON: Sfondo bianco, colori originali (B Oro, testo nero), grande all'interno */
+/* BERTON: Sfondo Bianco, Colori Originali (Dorato/Nero), Grande internamente */
 .logos-track img.berton-mod {
     padding: 0 !important; 
     background-color: white !important;
-    filter: none !important; /* Rimosso filtro per mantenere colori originali */
+    filter: none !important; /* Rimosso ogni filtro per colori nativi */
 }
 
 /* SLYM */
