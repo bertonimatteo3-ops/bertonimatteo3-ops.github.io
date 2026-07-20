@@ -317,6 +317,7 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
+/* Base per tutti i contenitori: Dimensioni e forma inalterate */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -329,9 +330,24 @@ body {
     -webkit-user-drag: none;
 }
 
-/* NUOVA CLASSE: INGRANDISCE IL LOGO INTERNO ALLA CARD */
+/* Rende i loghi normali leggermente più grandi togliendo margine, mantenendo intatta la card */
 .logos-track img.logo-enlarged {
-    padding: 2px; /* Riducendo lo spazio bianco ai bordi, il logo si estende di più ma la dimensione della "card" non cambia */
+    padding: 2px;
+}
+
+/* TRUCCO CSS PER CAPPELLINI: 
+   Inverte i colori (sfondo diventa bianco, scritta nera),
+   azzera il padding per ingrandirlo senza cambiare il contenitore */
+.logos-track img.cappellini-mod {
+    padding: 0 !important; 
+    background-color: #000 !important; /* Base nera, fondamentale per il trucco */
+    filter: invert(1) !important; /* L'inversione fa diventare lo sfondo bianco e la scritta nera! */
+}
+
+/* TRUCCO PER PREZZI FARMACO: 
+   Azzera del tutto lo spazio bianco interno in modo che occupi il 100% della card */
+.logos-track img.prezzifarmaco-mod {
+    padding: 0 !important; 
 }
 
 /* =========================================
@@ -432,10 +448,10 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px; /* Incrementato spazio per icona */
+    gap: 12px;
     margin: 40px auto;
-    padding: 20px 40px; /* Bottone più grande */
-    font-size: 20px; /* Font più grande */
+    padding: 20px 40px;
+    font-size: 20px;
     background: #ffffff;
     color: #064e3b; 
     border: 2px solid #22c55e;
@@ -445,10 +461,9 @@ body {
     animation: premiumCTA 4s ease-in-out infinite;
     position: relative;
     z-index: 3;
-    max-width: 95%; /* Evita che esca dallo schermo sui dispositivi più piccoli */
+    max-width: 95%;
 }
 
-/* Icona LinkedIn interna al CTA */
 .linkedin-cta .btn-icon { 
     fill: #064e3b; 
     width: 32px; 
@@ -538,7 +553,6 @@ body {
     .logos-section { margin-top: 0; padding: 20px 0; }
     .section { padding: 50px 20px; }
     
-    /* Adatta il bottone LinkedIn sui dispositivi mobile per mantenerlo ordinato e visibile */
     .linkedin-cta { 
         display: flex; 
         text-align: center; 
@@ -616,10 +630,11 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <!-- AGGIUNTA CLASSE "logo-enlarged" AI LOGHI SPECIFICI (Primo Gruppo) -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
-            <!-- AGGIUNTA CLASSE "logo-enlarged" AI LOGHI SPECIFICI (Secondo Gruppo Duplicato per l'infinito) -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <!-- GRUPPO 1 -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            
+            <!-- GRUPPO 2 (Duplicato per animazione infinita fluida) -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
 </section>
@@ -798,8 +813,7 @@ body {
                     
                     // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
-                    // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
-                    // per permettere all'utente di scrollare fino in fondo e vederlo salire
+                    
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -809,7 +823,7 @@ body {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                             
-                            // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
+                            // Curva Ease-Out Cubic
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
                             const currentVal = target * easeProgress;
                             
@@ -822,7 +836,6 @@ body {
                             if (progress < 1) {
                                 window.requestAnimationFrame(step);
                             } else {
-                                // Assicura che l'esatto valore finale sia stampato alla fine
                                 counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
                             }
                         };
@@ -830,18 +843,16 @@ body {
                         window.requestAnimationFrame(step);
                     }, delay);
                     
-                    // Smette di osservare il singolo contatore dopo averlo avviato
                     observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.3 }); // Il numero partirà solo quando la sua card diventa effettivamente visibile nel browser
+        }, { threshold: 0.3 }); 
         
-        // Assegno l'observer ad ogni contatore in modo indipendente
         counters.forEach(counter => {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS (Rimosso lo stacco anticipato per renderle pulite)
+        // REVEAL ANIMATIONS 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
