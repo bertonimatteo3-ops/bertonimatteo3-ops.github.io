@@ -317,7 +317,7 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* --- BASE CARD LOGHI: Dimensioni bloccate per tutti --- */
+/* --- BASE CARD LOGHI: Dimensioni bloccate e identiche per tutti --- */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -330,17 +330,48 @@ body {
     -webkit-user-drag: none;
 }
 
-/* 1. LOGHI DA INGRANDIRE (Senza cambiare colore).
-   Azzerando il padding, l'immagine tocca i bordi ma la card rimane IDENTICA. */
+/* INGRANDIMENTO DI BASE (Senza cambiare colore) */
 .logos-track img.logo-enlarged {
     padding: 0 !important;
 }
 
-/* 2. LOGHI DA INVERTIRE (Sfondo bianco, scritta nera) E INGRANDIRE. 
-   Azzerando il padding si ingrandiscono senza sformare la card. */
-.logos-track img.logo-invert-enlarged {
+/* --- MODIFICHE SPECIFICHE AI LOGHI --- */
+
+/* ARCARI: Sfondo bianco, testo nero */
+.logos-track img.arcari-mod {
     padding: 0 !important;
-    background-color: #000 !important; /* Diventa bianco con il filtro sotto */
+    background-color: #000 !important;
+    filter: invert(1) !important;
+}
+
+/* CAPPELLINI: Più grande. Il contenitore rimane identico, l'immagine sfrutta più spazio. */
+.logos-track img.cappellini-mod {
+    padding: 0 !important; 
+    background-color: #000 !important; 
+    filter: invert(1) !important; 
+    transform: scale(1.4) !important; /* Ingrandisce visivamente il logo, senza toccare la "scatola" */
+}
+
+/* BERTON: PIU' PICCOLO. 
+   Aumentando il padding (lo spazio vuoto interno), il logo si rimpicciolisce 
+   senza che la scatola del contenitore cambi la sua dimensione. */
+.logos-track img.berton-mod {
+    padding: 28px !important; /* Più lo spazio vuoto è grande, più il logo al centro diventa piccolo */
+    background-color: #000 !important;
+    filter: invert(1) !important;
+}
+
+/* PREZZI FARMACO */
+.logos-track img.prezzifarmaco-mod {
+    padding: 0 !important; 
+    transform: scale(1.3); 
+}
+
+/* SLYM: Sfondo bianco, testo nero. 
+   (La colorazione verde di mezza parola va fatta sul file immagine originale). */
+.logos-track img.slym-mod {
+    padding: 0 !important;
+    background-color: #000 !important;
     filter: invert(1) !important;
 }
 
@@ -625,10 +656,10 @@ body {
     <div class="logos-container">
         <div class="logos-track">
             <!-- GRUPPO 1 -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-invert-enlarged"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-invert-enlarged"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="logo-invert-enlarged"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-invert-enlarged">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="arcari-mod"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="berton-mod"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="slym-mod">
             
             <!-- GRUPPO 2 (Duplicato per animazione infinita fluida) -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-invert-enlarged"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-invert-enlarged"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="logo-invert-enlarged"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-invert-enlarged">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="arcari-mod"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="berton-mod"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="slym-mod">
         </div>
     </div>
 </section>
