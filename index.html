@@ -317,7 +317,6 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* --- BASE CARD LOGHI: Dimensioni bloccate e identiche per tutti --- */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -328,45 +327,6 @@ body {
     flex-shrink: 0;
     user-select: none;
     -webkit-user-drag: none;
-}
-
-/* --- MODIFICHE SPECIFICHE AI LOGHI --- */
-
-/* LOGHI INGRANDITI */
-.logos-track img.logo-enlarged {
-    padding: 0 !important;
-}
-
-/* PREZZI FARMACO */
-.logos-track img.prezzifarmaco-mod {
-    padding: 0 !important; 
-}
-
-/* CAPPELLINI: Sfondo bianco, scritta nera (invertito), MOLTO PIÙ GRANDE internamente */
-.logos-track img.cappellini-mod {
-    padding: 0 !important; 
-    background-color: #000 !important; 
-    filter: invert(1) !important; 
-    transform: scale(1.15); /* Ingrandisce l'immagine mantenendo il container fisso */
-}
-
-/* ARCARI */
-.logos-track img.arcari-mod {
-    padding: 0 !important;
-    background-color: #000 !important;
-    filter: invert(1) !important;
-}
-
-/* BERTON: MOLTO PIÙ GRANDE all'interno (rimosso il padding 24px) */
-.logos-track img.berton-mod {
-    padding: 0 !important; 
-.logos-track img.berton-mod {
-    padding: 0 !important;
-}
-
-/* SLYM */
-.logos-track img.slym-mod {
-    padding: 0 !important;
 }
 
 /* =========================================
@@ -467,10 +427,10 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 12px; /* Incrementato spazio per icona */
     margin: 40px auto;
-    padding: 20px 40px;
-    font-size: 20px;
+    padding: 20px 40px; /* Bottone più grande */
+    font-size: 20px; /* Font più grande */
     background: #ffffff;
     color: #064e3b; 
     border: 2px solid #22c55e;
@@ -480,9 +440,10 @@ body {
     animation: premiumCTA 4s ease-in-out infinite;
     position: relative;
     z-index: 3;
-    max-width: 95%;
+    max-width: 95%; /* Evita che esca dallo schermo sui dispositivi più piccoli */
 }
 
+/* Icona LinkedIn interna al CTA */
 .linkedin-cta .btn-icon { 
     fill: #064e3b; 
     width: 32px; 
@@ -572,6 +533,7 @@ body {
     .logos-section { margin-top: 0; padding: 20px 0; }
     .section { padding: 50px 20px; }
     
+    /* Adatta il bottone LinkedIn sui dispositivi mobile per mantenerlo ordinato e visibile */
     .linkedin-cta { 
         display: flex; 
         text-align: center; 
@@ -649,11 +611,8 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <!-- GRUPPO 1 -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="arcari-mod"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="berton-mod"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="slym-mod">
-            
-            <!-- GRUPPO 2 (Duplicato per animazione infinita fluida) -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="arcari-mod"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="cappellini-mod"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy" class="logo-enlarged"><img src="berton.png" alt="Berton" loading="lazy" class="berton-mod"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="prezzifarmaco-mod"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-enlarged"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="slym-mod">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
 </section>
@@ -832,7 +791,8 @@ body {
                     
                     // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
-                    
+                    // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
+                    // per permettere all'utente di scrollare fino in fondo e vederlo salire
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -842,7 +802,7 @@ body {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                             
-                            // Curva Ease-Out Cubic
+                            // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
                             const currentVal = target * easeProgress;
                             
@@ -855,6 +815,7 @@ body {
                             if (progress < 1) {
                                 window.requestAnimationFrame(step);
                             } else {
+                                // Assicura che l'esatto valore finale sia stampato alla fine
                                 counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
                             }
                         };
@@ -862,16 +823,18 @@ body {
                         window.requestAnimationFrame(step);
                     }, delay);
                     
+                    // Smette di osservare il singolo contatore dopo averlo avviato
                     observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.3 }); 
+        }, { threshold: 0.3 }); // Il numero partirà solo quando la sua card diventa effettivamente visibile nel browser
         
+        // Assegno l'observer ad ogni contatore in modo indipendente
         counters.forEach(counter => {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS 
+        // REVEAL ANIMATIONS (Rimosso lo stacco anticipato per renderle pulite)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
