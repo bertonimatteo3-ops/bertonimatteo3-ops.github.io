@@ -275,7 +275,7 @@ body {
 .linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI (INTEGRALE)
+   CAROSELLO LOGHI (OTTIMIZZATO)
 ========================================= */
 .logos-section {
     position: relative;
@@ -306,18 +306,15 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-}
-
-.logos-track:hover, .logos-track:active {
-    animation-play-state: paused;
+    will-change: transform; /* Ottimizzazione fluidità PC */
 }
 
 @keyframes scrollMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); } 
 }
 
-/* --- BASE CARD LOGHI: Dimensioni bloccate e identiche per tutti --- */
+/* --- BASE CARD LOGHI --- */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -332,7 +329,7 @@ body {
 
 /* --- MODIFICHE SPECIFICHE AI LOGHI --- */
 
-/* LOGHI INGRANDITI */
+/* LOGHI INGRANDITI ALL'INTERNO */
 .logos-track img.logo-enlarged {
     padding: 0 !important;
 }
@@ -342,12 +339,11 @@ body {
     padding: 0 !important; 
 }
 
-/* CAPPELLINI: Sfondo bianco, scritta nera (invertito), MOLTO PIÙ GRANDE internamente */
+/* CAPPELLINI: Stessa dimensione degli altri, ma logo più grande all'interno */
 .logos-track img.cappellini-mod {
     padding: 0 !important; 
-    background-color: #000 !important; 
-    filter: invert(1) !important; 
-    transform: scale(1.15); /* Ingrandisce l'immagine mantenendo il container fisso */
+    background-color: white !important; 
+    filter: invert(1) !important; /* Inverte per avere testo nero su bianco */
 }
 
 /* ARCARI */
@@ -357,11 +353,11 @@ body {
     filter: invert(1) !important;
 }
 
-/* BERTON: MOLTO PIÙ GRANDE all'interno (rimosso il padding 24px) */
+/* BERTON: Sfondo bianco, colori originali (B Oro, testo nero), grande all'interno */
 .logos-track img.berton-mod {
     padding: 0 !important; 
-    background-color: #000 !important;
-    filter: invert(1) !important;
+    background-color: white !important;
+    filter: none !important; /* Rimosso filtro per mantenere colori originali */
 }
 
 /* SLYM */
@@ -808,17 +804,6 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // FIX PER CAROSELLO
-        const logosTrack = document.querySelector('.logos-track');
-        if (logosTrack) {
-            logosTrack.addEventListener('touchstart', function() {
-                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
-            }, { passive: true });
-            logosTrack.addEventListener('touchend', function() {
-                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
-            });
-        }
-        
         // SCRIPT CONTATORE NUMERI MULTIPLI CON LOGICA INDIVIDUALE E RITARDO MOBILE
         const counters = document.querySelectorAll('.dynamic-counter');
         
@@ -830,9 +815,7 @@ body {
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
                     const duration = 5000; // Esattamente 5 secondi (5000 ms)
                     
-                    // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
-                    
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -841,8 +824,6 @@ body {
                         const step = (timestamp) => {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                            
-                            // Curva Ease-Out Cubic
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
                             const currentVal = target * easeProgress;
                             
@@ -876,10 +857,6 @@ body {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); 
-                    setTimeout(() => {
-                        entry.target.classList.remove('reveal', 'active');
-                    }, 5000);
                 }
             });
         }, { 
