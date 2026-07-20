@@ -330,45 +330,42 @@ body {
     -webkit-user-drag: none;
 }
 
-/* INGRANDIMENTO DI BASE (Senza cambiare colore) */
+/* --- MODIFICHE SPECIFICHE AI LOGHI --- */
+/* Tutti i contenitori mantengono la stessa identica grandezza (nessun 'transform: scale') */
+
+/* LOGHI INGRANDITI: Azzerando il padding, l'immagine tocca i bordi, ma il contenitore resta uguale. */
 .logos-track img.logo-enlarged {
     padding: 0 !important;
 }
 
-/* --- MODIFICHE SPECIFICHE AI LOGHI --- */
+/* PREZZI FARMACO: Più grande all'interno, contenitore identico. */
+.logos-track img.prezzifarmaco-mod {
+    padding: 0 !important; 
+}
 
-/* ARCARI: Sfondo bianco, testo nero */
+/* CAPPELLINI: Più grande all'interno, contenitore identico. Invertito (sfondo bianco, scritta nera). */
+.logos-track img.cappellini-mod {
+    padding: 0 !important; 
+    background-color: #000 !important; 
+    filter: invert(1) !important; 
+}
+
+/* ARCARI: Invertito (sfondo bianco, testo nero). */
 .logos-track img.arcari-mod {
     padding: 0 !important;
     background-color: #000 !important;
     filter: invert(1) !important;
 }
 
-/* CAPPELLINI: Più grande. Il contenitore rimane identico, l'immagine sfrutta più spazio. */
-.logos-track img.cappellini-mod {
-    padding: 0 !important; 
-    background-color: #000 !important; 
-    filter: invert(1) !important; 
-    transform: scale(1.4) !important; /* Ingrandisce visivamente il logo, senza toccare la "scatola" */
-}
-
-/* BERTON: PIU' PICCOLO. 
-   Aumentando il padding (lo spazio vuoto interno), il logo si rimpicciolisce 
-   senza che la scatola del contenitore cambi la sua dimensione. */
+/* BERTON: PIU' PICCOLO all'interno, contenitore identico. 
+   Aumentando il padding (lo spazio vuoto interno), il logo si rimpicciolisce. */
 .logos-track img.berton-mod {
-    padding: 28px !important; /* Più lo spazio vuoto è grande, più il logo al centro diventa piccolo */
+    padding: 24px !important; 
     background-color: #000 !important;
     filter: invert(1) !important;
 }
 
-/* PREZZI FARMACO */
-.logos-track img.prezzifarmaco-mod {
-    padding: 0 !important; 
-    transform: scale(1.3); 
-}
-
-/* SLYM: Sfondo bianco, testo nero. 
-   (La colorazione verde di mezza parola va fatta sul file immagine originale). */
+/* SLYM: Sfondo bianco, testo nero. */
 .logos-track img.slym-mod {
     padding: 0 !important;
     background-color: #000 !important;
