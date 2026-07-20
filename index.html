@@ -109,13 +109,15 @@ body {
     max-width: 500px;
     height: auto;
     margin: 40px auto;
-    filter: contrast(1.1) brightness(1.08);
+    filter: contrast(1.1) brightness(1.08); /* Filtro bianco puro */
 }
 
+/* Modifiche spaziature specifiche */
 .img-bottom-compact { margin-bottom: 0 !important; }
 .img-top-compact { margin-top: 0 !important; }
 .gap-extra-large { margin-top: 120px !important; }
 
+/* TITOLO CONTATTI MODIFICATO */
 .section h2.titolo-contatti {
     font-size: clamp(20px, 3vw, 24px) !important;
     font-weight: 400 !important;
@@ -139,6 +141,7 @@ body {
     50% { transform: translateY(-8px) scale(1.03); } 
 }
 
+/* Stile per i numeri giganti dentro le card */
 .card-number {
     font-size: clamp(38px, 5vw, 48px);
     font-weight: 700;
@@ -150,6 +153,9 @@ body {
     line-height: 1.1;
 }
 
+/* =========================================
+   ANIMAZIONI ESTREMAMENTE LENTE
+========================================= */
 .reveal {
     opacity: 0; 
 }
@@ -311,7 +317,7 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* --- CONTENITORI LOGHI IDENTICI PER TUTTI --- */
+/* --- BASE CARD LOGHI: Dimensioni bloccate e identiche per tutti --- */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -324,34 +330,41 @@ body {
     -webkit-user-drag: none;
 }
 
-/* Loghi ingranditi all'interno (padding azzerato) */
+/* --- MODIFICHE SPECIFICHE AI LOGHI --- */
+
+/* LOGHI INGRANDITI */
 .logos-track img.logo-enlarged {
     padding: 0 !important;
 }
 
-/* PREZZI FARMACO: Più grande all'interno */
+/* PREZZI FARMACO */
 .logos-track img.prezzifarmaco-mod {
     padding: 0 !important; 
 }
 
-/* CAPPELLINI: Più grande all'interno */
+/* CAPPELLINI: Sfondo bianco, scritta nera (invertito), MOLTO PIÙ GRANDE internamente */
 .logos-track img.cappellini-mod {
     padding: 0 !important; 
+    background-color: #000 !important; 
+    filter: invert(1) !important; 
+    transform: scale(1.15); /* Ingrandisce l'immagine mantenendo il container fisso */
 }
 
-/* ARCARI: Sfondo bianco nativo o adattato */
+/* ARCARI */
 .logos-track img.arcari-mod {
     padding: 0 !important;
     background-color: #000 !important;
     filter: invert(1) !important;
 }
 
-/* BERTON: Più piccolo all'interno (tramite padding maggiore) */
+/* BERTON: MOLTO PIÙ GRANDE all'interno (rimosso il padding 24px) */
 .logos-track img.berton-mod {
-    padding: 24px !important; 
+    padding: 0 !important; 
+    background-color: #000 !important;
+    filter: invert(1) !important;
 }
 
-/* SLYM: Scritta verde e testo nero (con la nuova immagine) */
+/* SLYM */
 .logos-track img.slym-mod {
     padding: 0 !important;
 }
@@ -740,7 +753,10 @@ body {
 <!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO (SPAZIATO) -->
 <div class="white-band gap-extra-large">
     <section class="section">
+        <!-- Nuovo Titolo "Il mio framework" -->
         <h2 class="reveal">Il mio framework</h2>
+        
+        <!-- Immagine centrata sotto il titolo -->
         <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal img-top-compact">
 
         <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
@@ -792,6 +808,7 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
+        // FIX PER CAROSELLO
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -802,6 +819,7 @@ body {
             });
         }
         
+        // SCRIPT CONTATORE NUMERI MULTIPLI CON LOGICA INDIVIDUALE E RITARDO MOBILE
         const counters = document.querySelectorAll('.dynamic-counter');
         
         const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -810,9 +828,11 @@ body {
                     const counter = entry.target;
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
-                    const duration = 5000;
+                    const duration = 5000; // Esattamente 5 secondi (5000 ms)
                     
+                    // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
+                    
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -822,6 +842,7 @@ body {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                             
+                            // Curva Ease-Out Cubic
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
                             const currentVal = target * easeProgress;
                             
@@ -850,6 +871,7 @@ body {
             counterObserver.observe(counter);
         });
 
+        // REVEAL ANIMATIONS 
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -868,6 +890,7 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
+        // CTA FINALE OBSERVER
         const ctaObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
