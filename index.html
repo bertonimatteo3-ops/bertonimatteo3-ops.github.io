@@ -317,6 +317,7 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
+/* Stile CONTENITORE e BASE per tutti i loghi */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -329,34 +330,23 @@ body {
     -webkit-user-drag: none;
 }
 
-/* --- INIZIO MODIFICHE LOGHI RICHIESTE --- */
-/* Contenitore fittizio 1:1 identico all'originale per colorare di nero senza alterare i bordi bianchi */
-.logo-wrapper-box {
-    width: clamp(150px, 25vw, 200px);
-    height: clamp(75px, 12vw, 100px);
-    background: white;
-    border-radius: 10px;
-    flex-shrink: 0;
-    display: block;
-    overflow: hidden;
-}
-.logos-track .logo-wrapper-box img {
-    width: 100% !important;
-    height: 100% !important;
-    background: transparent !important;
+/* =========================================
+   MODIFICHE SPECIFICHE LOGHI
+========================================= */
+/* Mantiene il bianco puro dello sfondo/contenitore, ma fa diventare NERO il testo/logo interno.
+   Inoltre riduce il padding per farli apparire più grandi (senza cambiare la dimensione del blocco) */
+.logos-track img.logo-black-text {
+    filter: grayscale(100%) contrast(500%) !important;
     padding: 4px !important; 
-    filter: brightness(0) !important;
-    border-radius: 0 !important;
 }
 
-/* Classi per massimizzare lo spazio interno dei loghi senza toccare i contenitori esterni */
+/* Classi per massimizzare lo spazio interno di altri loghi */
 .logos-track img.logo-large {
-    padding: 4px !important; /* Rende i loghi più grandi all'interno */
+    padding: 4px !important;
 }
 .logos-track img.logo-wide {
-    padding: 2px !important; /* Rende i loghi più larghi all'interno */
+    padding: 2px !important;
 }
-/* --- FINE MODIFICHE LOGHI RICHIESTE --- */
 
 /* =========================================
    SEZIONI E GRIGLIE
@@ -640,8 +630,11 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><span class="logo-wrapper-box"><img src="arcari.png" alt="Arcari" loading="lazy"></span><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><span class="logo-wrapper-box"><img src="cappellini.png" alt="Logo" loading="lazy"></span><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><span class="logo-wrapper-box"><img src="arcari.png" alt="Arcari" loading="lazy"></span><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><span class="logo-wrapper-box"><img src="cappellini.png" alt="Logo" loading="lazy"></span><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
+            <!-- NOTA: i tag sono tornati i classici <img> originali per NON sballare alcun contenitore, usando solo le classi per colore nero + ingrandimento -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
+            
+            <!-- Duplicato loghi per effetto scorrimento -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
         </div>
     </div>
 </section>
