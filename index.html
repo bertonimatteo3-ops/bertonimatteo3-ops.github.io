@@ -179,13 +179,66 @@ body {
 .grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
 .grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
 
-/* RITARDO ELEGANTE BLOCCO FIDUCIA */
+/* RITARDO ELEGANTE BLOCCO FIDUCIA - ANIMAZIONE A COPPIE */
 .block-fiducia h2.reveal.active {
-    animation-delay: 0.4s;
+    animation-delay: 0.5s; /* Il testo appare per primo con eleganza */
 }
+
+/* Rimuovo l'animazione di blocco sulla griglia madre, per applicarla ai singoli loghi */
 .block-fiducia .logos-grid.reveal.active {
-    animation-delay: 0.8s;
+    animation: none; 
+    opacity: 1; 
+    transform: none;
 }
+
+/* Imposto lo stato iniziale dei loghi (nascosti e spostati in basso) */
+.block-fiducia .logos-grid img {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* Quando la griglia diventa attiva, i loghi si animano con effetto morbido */
+.block-fiducia .logos-grid.active img {
+    animation: elegantReveal 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Assegnazione dei ritardi a coppie (2 loghi alla volta) */
+.block-fiducia .logos-grid.active img:nth-child(1),
+.block-fiducia .logos-grid.active img:nth-child(2) { animation-delay: 1.2s; }
+
+.block-fiducia .logos-grid.active img:nth-child(3),
+.block-fiducia .logos-grid.active img:nth-child(4) { animation-delay: 1.6s; }
+
+.block-fiducia .logos-grid.active img:nth-child(5),
+.block-fiducia .logos-grid.active img:nth-child(6) { animation-delay: 2.0s; }
+
+.block-fiducia .logos-grid.active img:nth-child(7),
+.block-fiducia .logos-grid.active img:nth-child(8) { animation-delay: 2.4s; }
+
+.block-fiducia .logos-grid.active img:nth-child(9),
+.block-fiducia .logos-grid.active img:nth-child(10) { animation-delay: 2.8s; }
+
+.block-fiducia .logos-grid.active img:nth-child(11),
+.block-fiducia .logos-grid.active img:nth-child(12) { animation-delay: 3.2s; }
+
+.block-fiducia .logos-grid.active img:nth-child(13),
+.block-fiducia .logos-grid.active img:nth-child(14) { animation-delay: 3.6s; }
+
+.block-fiducia .logos-grid.active img:nth-child(15),
+.block-fiducia .logos-grid.active img:nth-child(16) { animation-delay: 4.0s; }
+
+.block-fiducia .logos-grid.active img:nth-child(17),
+.block-fiducia .logos-grid.active img:nth-child(18) { animation-delay: 4.4s; }
+
+.block-fiducia .logos-grid.active img:nth-child(19),
+.block-fiducia .logos-grid.active img:nth-child(20) { animation-delay: 4.8s; }
+
+.block-fiducia .logos-grid.active img:nth-child(21),
+.block-fiducia .logos-grid.active img:nth-child(22) { animation-delay: 5.2s; }
+
+.block-fiducia .logos-grid.active img:nth-child(23),
+.block-fiducia .logos-grid.active img:nth-child(24) { animation-delay: 5.6s; }
+
 
 /* =========================================
    HERO SECTION
@@ -791,7 +844,7 @@ body {
     </div>
 </section>
 
-<!-- BLOCCO BIANCO 3: LOGHI GRIGLIA FISSA CON RITARDO ELEGANTE -->
+<!-- BLOCCO BIANCO 3: LOGHI GRIGLIA FISSA CON RITARDO ELEGANTE IN COPPIA -->
 <div class="white-band block-fiducia" style="margin-top: 100px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
@@ -935,7 +988,7 @@ body {
                     revealObserver.unobserve(entry.target); 
                     setTimeout(() => {
                         entry.target.classList.remove('reveal', 'active');
-                    }, 5000);
+                    }, 10000); // <-- ESTESO A 10 SECONDI (10000) PER PERMETTERE ALL'ANIMAZIONE A CASCATA DI COMPLETARE TUTTE LE COPPIE SENZA INTERRUZIONI
                 }
             });
         }, { 
