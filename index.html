@@ -661,7 +661,6 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <!-- NOTA: i tag sono tornati i classici <img> originali per NON sballare alcun contenitore, usando solo le classi per colore nero + ingrandimento -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text logo-small"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
             
             <!-- Duplicato loghi per effetto scorrimento -->
@@ -697,7 +696,7 @@ body {
     </section>
 </div>
 
-<!-- SEZIONE SCURA: COME PORTO RISULTATI + LINKEDIN -->
+<!-- SEZIONE SCURA 1: COME PORTO RISULTATI + LINKEDIN -->
 <section class="section" style="padding-top: 60px;">
     <h2 class="green reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
     
@@ -735,7 +734,7 @@ body {
 </section>
 
 <!-- BLOCCO BIANCO 2: I MIEI NUMERI -->
-<div class="white-band">
+<div class="white-band" style="margin-top: 100px;">
     <section class="section">
         <h2 class="reveal">I miei numeri</h2>
 
@@ -762,32 +761,32 @@ body {
     </section>
 </div>
 
-<!-- BLOCCO BIANCO 3: IMMAGINE NUMERI + STRATEGIA + COLLABORO (SPAZIATO) -->
-<div class="white-band gap-extra-large">
-    <section class="section">
-        <!-- Nuovo Titolo "Il mio framework" -->
-        <h2 class="reveal">Il mio framework</h2>
-        
-        <!-- Immagine centrata sotto il titolo -->
-        <img src="numeri.png" alt="Numeri" class="illustrazione-centrata reveal img-top-compact">
+<!-- SEZIONE SCURA 2: IL MIO FRAMEWORK -->
+<section class="section" style="padding-top: 80px;">
+    <h2 class="green reveal" style="margin-bottom: 40px;">Il mio framework</h2>
+    
+    <!-- Immagine centrata inserita in una "Card" bianca dedicata -->
+    <div class="reveal" style="background-color: #ffffff; border-radius: 20px; padding: 40px 20px; max-width: 650px; margin: 0 auto 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <img src="numeri.png" alt="Numeri" style="display: block; width: 90%; max-width: 500px; height: auto; margin: 0 auto; filter: contrast(1.1) brightness(1.08);">
+    </div>
 
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
-            <div class="card reveal">
-                <h3 class="green">Strategia e Processo</h3>
-                <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
-            </div>
-            <div class="card reveal">
-                <h3 class="green">Con chi Collaboro</h3>
-                <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
-            </div>
+    <!-- Riquadri testo resi identici a "Come porto risultati" (scuri semitrasparenti) -->
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+        <div class="card reveal">
+            <h3 class="green">Strategia e Processo</h3>
+            <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
         </div>
-    </section>
-</div>
+        <div class="card reveal">
+            <h3 class="green">Con chi Collaboro</h3>
+            <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
+        </div>
+    </div>
+</section>
 
-<!-- BLOCCO BIANCO 4: LOGHI GRIGLIA FISSA (AGGIUNTO COME RICHIESTO) -->
-<div class="white-band gap-extra-large">
+<!-- BLOCCO BIANCO 3: LOGHI GRIGLIA FISSA -->
+<div class="white-band" style="margin-top: 100px;">
     <section class="section">
-        <h2 class="reveal">Chi mi ha dato fiducia</h2>
+        <h2 class="reveal">Aziende con cui ho collaborato</h2>
         
         <div class="logos-grid reveal">
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
@@ -914,14 +913,13 @@ body {
                     observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.3 }); // Il numero partirà solo quando la sua card diventa effettivamente visibile nel browser
+        }, { threshold: 0.3 }); 
         
-        // Assegno l'observer ad ogni contatore in modo indipendente
         counters.forEach(counter => {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS (Rimosso lo stacco anticipato per renderle pulite)
+        // REVEAL ANIMATIONS
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
