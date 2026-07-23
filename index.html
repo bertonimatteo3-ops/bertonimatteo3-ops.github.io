@@ -333,14 +333,11 @@ body {
 /* =========================================
    MODIFICHE SPECIFICHE LOGHI
 ========================================= */
-/* Mantiene il bianco puro dello sfondo/contenitore, ma fa diventare NERO il testo/logo interno.
-   Inoltre riduce il padding per farli apparire più grandi (senza cambiare la dimensione del blocco) */
 .logos-track img.logo-black-text {
     filter: grayscale(100%) contrast(500%) !important;
     padding: 4px !important; 
 }
 
-/* Classi per massimizzare lo spazio interno di altri loghi */
 .logos-track img.logo-large {
     padding: 4px !important;
 }
@@ -446,10 +443,10 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px; /* Incrementato spazio per icona */
+    gap: 12px; 
     margin: 40px auto;
-    padding: 20px 40px; /* Bottone più grande */
-    font-size: 20px; /* Font più grande */
+    padding: 20px 40px; 
+    font-size: 20px; 
     background: #ffffff;
     color: #064e3b; 
     border: 2px solid #22c55e;
@@ -459,10 +456,9 @@ body {
     animation: premiumCTA 4s ease-in-out infinite;
     position: relative;
     z-index: 3;
-    max-width: 95%; /* Evita che esca dallo schermo sui dispositivi più piccoli */
+    max-width: 95%; 
 }
 
-/* Icona LinkedIn interna al CTA */
 .linkedin-cta .btn-icon { 
     fill: #064e3b; 
     width: 32px; 
@@ -540,6 +536,42 @@ body {
 .whatsapp:hover { transform: translateY(-4px) scale(1.05); }
 
 /* =========================================
+   GRIGLIA LOGHI FISSA (NUOVA SEZIONE AGGIUNTA)
+========================================= */
+.logos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 40px;
+}
+
+.logos-grid img {
+    width: 100%;
+    max-width: 130px;
+    height: 70px;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.logos-grid img.logo-black-text {
+    filter: grayscale(100%) contrast(500%) !important;
+}
+
+@media (min-width: 576px) {
+    .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; }
+}
+@media (min-width: 768px) {
+    .logos-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
+    .logos-grid img { max-width: 150px; height: 80px; }
+}
+@media (min-width: 1024px) {
+    .logos-grid { grid-template-columns: repeat(6, 1fr); gap: 40px; }
+}
+
+/* =========================================
    MEDIA QUERIES (MOBILE RESPONSIVE)
 ========================================= */
 @media (max-width: 768px) {
@@ -552,7 +584,6 @@ body {
     .logos-section { margin-top: 0; padding: 20px 0; }
     .section { padding: 50px 20px; }
     
-    /* Adatta il bottone LinkedIn sui dispositivi mobile per mantenerlo ordinato e visibile */
     .linkedin-cta { 
         display: flex; 
         text-align: center; 
@@ -749,6 +780,40 @@ body {
                 <h3 class="green">Con chi Collaboro</h3>
                 <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
             </div>
+        </div>
+    </section>
+</div>
+
+<!-- BLOCCO BIANCO 4: LOGHI GRIGLIA FISSA (AGGIUNTO COME RICHIESTO) -->
+<div class="white-band gap-extra-large">
+    <section class="section">
+        <h2 class="reveal">Aziende con cui ho collaborato</h2>
+        
+        <div class="logos-grid reveal">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
+            <img src="herbalife.png" alt="Logo" loading="lazy">
+            <img src="Realmaps.png" alt="Logo" loading="lazy">
+            <img src="assocral.png" alt="Logo" loading="lazy">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy">
+            <img src="homei.jpeg" alt="Logo" loading="lazy">
+            <img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
+            <img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy">
+            <img src="wayan.png" alt="Logo" loading="lazy">
+            <img src="verona.jpg" alt="Logo" loading="lazy">
+            <img src="berton.png" alt="Berton" loading="lazy">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy">
+            <img src="sales.png" alt="Logo" loading="lazy">
+            <img src="farmacisti.png" alt="Logo" loading="lazy">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy">
+            <img src="ilaria.png" alt="Logo" loading="lazy">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
+            <img src="gizia.png" alt="Gizia" loading="lazy">
+            <img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </section>
 </div>
