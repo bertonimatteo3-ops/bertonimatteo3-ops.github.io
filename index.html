@@ -150,7 +150,7 @@ body {
     width: clamp(130px, 15vw, 160px); 
     height: clamp(130px, 15vw, 160px);
     margin-bottom: 25px;
-    align-self: flex-start; /* Mantiene l'allineamento a sinistra nella card */
+    align-self: flex-start; /* Mantiene l'allineamento a sinistra nella card su Desktop/Tablet */
 }
 
 .circular-progress svg {
@@ -721,6 +721,11 @@ body {
         padding: 10px 24px;
         font-size: 14px;
         z-index: 999999; 
+    }
+
+    /* MODIFICA: Centra i cerchi di progresso su dispositivi mobili */
+    .circular-progress {
+        align-self: center;
     }
 }
 
