@@ -141,17 +141,67 @@ body {
     50% { transform: translateY(-8px) scale(1.03); } 
 }
 
-/* Stile per i numeri giganti dentro le card */
-.card-number {
-    font-size: clamp(38px, 5vw, 48px);
+/* =========================================
+   NUOVO STILE CERCHIO DI PROGRESSO
+========================================= */
+.circular-progress {
+    position: relative;
+    /* Usa clamp per essere responsive e adattarsi a desktop e mobile */
+    width: clamp(130px, 15vw, 160px); 
+    height: clamp(130px, 15vw, 160px);
+    margin-bottom: 25px;
+    align-self: flex-start; /* Mantiene l'allineamento a sinistra nella card */
+}
+
+.circular-progress svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); /* Ruota il cerchio per farlo partire dall'alto */
+    overflow: visible;
+}
+
+/* Binario di sfondo (grigio chiaro/trasparente) */
+.circle-bg {
+    fill: none;
+    stroke: rgba(0, 0, 0, 0.1); 
+    stroke-width: 8;
+}
+
+/* Linea di progresso rossa */
+.circle-progress {
+    fill: none;
+    stroke: #ef4444; /* Colore rosso richiesto */
+    stroke-width: 8;
+    stroke-linecap: round; /* Bordi arrotondati come nell'immagine */
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100; /* Nascosto all'inizio (100 = vuoto, 0 = pieno) */
+    /* L'animazione è gestita dal Javascript, non dal CSS, per essere sincronizzata con i numeri! */
+}
+
+/* Contenitore per il testo al centro del cerchio */
+.circle-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(30px, 4vw, 40px);
     font-weight: 700;
     color: #22c55e;
-    display: block;
-    margin-bottom: 5px;
     text-shadow: 0 0 15px rgba(34,197,94,0.4);
     font-variant-numeric: tabular-nums;
-    line-height: 1.1;
+    line-height: 1;
+    white-space: nowrap;
 }
+
+/* Riduce leggermente la grandezza del testo per la card dei milioni per farlo stare bene nel cerchio */
+.card:nth-child(2) .circle-content {
+    font-size: clamp(22px, 3vw, 28px);
+}
+
 
 /* =========================================
    ANIMAZIONI ESTREMAMENTE LENTE
@@ -548,9 +598,10 @@ body {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
     filter: blur(8px); 
-    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                filter 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Tempi allungati a 3.5s per rendere la comparsa ancora più lenta ed elegante */
+    transition: opacity 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                filter 3.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .final-cta.visible .cta-line {
@@ -579,9 +630,8 @@ body {
     bottom: 15px; 
     left: 30px; 
     background: #22c55e; 
-    width: 60px; 
-    height: 60px; 
-    border-radius: 50%;
+    padding: 12px 28px;
+    border-radius: 12px; /* Riquadro al posto del cerchio */
     z-index: 9998;
     text-decoration: none;
     box-shadow: 0 4px 15px rgba(34,197,94,0.4);
@@ -589,11 +639,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.whatsapp .btn-icon { 
-    fill: white; 
-    width: 32px; 
-    height: 32px; 
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1px;
 }
 .whatsapp:hover { transform: translateY(-4px) scale(1.05); }
 
@@ -667,8 +716,10 @@ body {
     .whatsapp {
         bottom: 15px; 
         left: 15px;
-        width: 60px;
-        height: 60px;
+        width: auto;
+        height: auto;
+        padding: 10px 24px;
+        font-size: 14px;
         z-index: 999999; 
     }
 }
@@ -802,19 +853,48 @@ body {
 
         <div class="grid grid-3" id="numbers-grid">
             <div class="card reveal">
-                <span class="card-number"><span class="dynamic-counter" data-target="47" data-is-float="false">0</span>%</span>
+                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
+                <div class="circular-progress" data-circle-target="100">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="dynamic-counter" data-target="47" data-is-float="false">0</span>%
+                    </div>
+                </div>
                 <h3>Retention</h3>
                 <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
                 <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
             </div>
+            
             <div class="card reveal">
-                <span class="card-number">+ €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M</span>
+                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
+                <div class="circular-progress" data-circle-target="100">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        + €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M
+                    </div>
+                </div>
                 <h3>Fatturato Generato</h3>
                 <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
                 <p>Gestisco ogni trattativa con un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
             </div>
+            
             <div class="card reveal">
-                <span class="card-number">+<span class="dynamic-counter" data-target="27" data-is-float="false">0</span>%</span>
+                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
+                <div class="circular-progress" data-circle-target="100">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        +<span class="dynamic-counter" data-target="27" data-is-float="false">0</span>%
+                    </div>
+                </div>
                 <h3>Closing Rate</h3>
                 <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
                 <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
@@ -898,11 +978,9 @@ body {
     </div>
 </section>
 
-<!-- TASTO WHATSAPP FISSO -->
+<!-- TASTO WHATSAPP FISSO MODIFICATO IN TESTO CHAT -->
 <a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
-    <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.031 0C5.39 0 .01 5.38.01 12.02c0 2.12.55 4.19 1.59 6.02L.03 24l6.11-1.6c1.78.96 3.79 1.47 5.89 1.47 6.64 0 12.02-5.38 12.02-12.02S18.67 0 12.031 0zm0 21.96c-1.78 0-3.52-.48-5.06-1.39l-.36-.21-3.76.99.99-3.66-.23-.37c-1-1.59-1.53-3.41-1.53-5.3 0-5.54 4.51-10.05 10.05-10.05 5.54 0 10.05 4.51 10.05 10.05 0 5.54-4.51 10.05-10.05 10.05zm5.51-7.53c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.23-.65.08-1.52-.77-2.67-1.42-3.68-2.6-.28-.32.03-.3.32-.88.1-.2.05-.38-.03-.53-.08-.15-.68-1.63-.93-2.23-.24-.59-.48-.51-.68-.52h-.58c-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.15 4.55.72.31 1.28.5 1.72.64.72.23 1.38.2 1.9.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
-    </svg>
+    CHAT
 </a>
 
 <!-- FOOTER IUBENDA -->
@@ -926,7 +1004,7 @@ body {
             });
         }
         
-        // SCRIPT CONTATORE NUMERI MULTIPLI CON LOGICA INDIVIDUALE E RITARDO MOBILE
+        // SCRIPT CONTATORE + CERCHIO DI PROGRESSO
         const counters = document.querySelectorAll('.dynamic-counter');
         
         const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -935,12 +1013,17 @@ body {
                     const counter = entry.target;
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
+                    
+                    // Identifico il cerchio associato a questo contatore e il suo target di riempimento (ora 100)
+                    const circleContainer = counter.closest('.circular-progress');
+                    const progressCircle = circleContainer.querySelector('.circle-progress');
+                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); // 100
+                    
                     const duration = 5000; // Esattamente 5 secondi (5000 ms)
                     
                     // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
                     // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
-                    // per permettere all'utente di scrollare fino in fondo e vederlo salire
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -952,19 +1035,30 @@ body {
                             
                             // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
-                            const currentVal = target * easeProgress;
                             
+                            // Calcolo il valore corrente del numero
+                            const currentVal = target * easeProgress;
+                            // Calcolo il valore corrente del cerchio rosso
+                            const currentCircleVal = circleTarget * easeProgress;
+                            
+                            // Aggiorno il testo del numero
                             if (isFloat) {
                                 counter.innerText = currentVal.toFixed(1).replace('.', ',');
                             } else {
                                 counter.innerText = Math.floor(currentVal);
                             }
                             
+                            // Aggiorno in diretta l'animazione della linea rossa
+                            // 100 è completamente vuoto, 0 è completamente pieno.
+                            progressCircle.style.strokeDashoffset = 100 - currentCircleVal;
+                            
                             if (progress < 1) {
                                 window.requestAnimationFrame(step);
                             } else {
                                 // Assicura che l'esatto valore finale sia stampato alla fine
                                 counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
+                                // Assicura che il cerchio si chiuda perfettamente
+                                progressCircle.style.strokeDashoffset = 100 - circleTarget;
                             }
                         };
                         
@@ -988,8 +1082,6 @@ body {
                     entry.target.classList.add('active');
                     // Smettiamo di osservare l'elemento, così l'animazione scatta una sola volta
                     revealObserver.unobserve(entry.target); 
-                    
-                    // Rimosso il timer (setTimeout) che toglieva le classi e faceva scomparire i loghi!
                 }
             });
         }, { 
@@ -1000,18 +1092,16 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // CTA FINALE OBSERVER
-        const ctaObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    ctaObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-
+        // CTA FINALE ANIMAZIONE SU FINE SCROLL
         const ctaElement = document.getElementById('final-cta');
-        if(ctaElement) ctaObserver.observe(ctaElement);
+        if(ctaElement) {
+            window.addEventListener('scroll', function() {
+                // Se l'utente ha scrollato fino a raggiungere (quasi) la fine del body, la CTA si attiva 
+                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 150) {
+                    ctaElement.classList.add('visible');
+                }
+            }, { passive: true });
+        }
     });
 </script>
 
