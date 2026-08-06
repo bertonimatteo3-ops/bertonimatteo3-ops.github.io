@@ -102,16 +102,6 @@ body {
     color: #475569 !important;
 }
 
-/* Spaziature immagini richieste */
-.illustrazione-centrata {
-    display: block;
-    width: 90%;
-    max-width: 500px;
-    height: auto;
-    margin: 40px auto;
-    filter: contrast(1.1) brightness(1.08); /* Filtro bianco puro */
-}
-
 /* Modifiche spaziature specifiche */
 .img-bottom-compact { margin-bottom: 0 !important; }
 .img-top-compact { margin-top: 0 !important; }
@@ -175,7 +165,6 @@ body {
     stroke-linecap: round; /* Bordi arrotondati come nell'immagine */
     stroke-dasharray: 100;
     stroke-dashoffset: 100; /* Nascosto all'inizio (100 = vuoto, 0 = pieno) */
-    /* L'animazione è gestita dal Javascript, non dal CSS, per essere sincronizzata con i numeri! */
 }
 
 /* Contenitore per il testo al centro del cerchio */
@@ -231,29 +220,25 @@ body {
 
 /* RITARDO ELEGANTE BLOCCO FIDUCIA - ANIMAZIONE LENTA A COPPIE */
 .block-fiducia h2.reveal.active {
-    animation-delay: 0.5s; /* Il testo appare per primo con eleganza */
+    animation-delay: 0.5s; 
 }
 
-/* Rimuovo l'animazione di blocco sulla griglia madre, per applicarla ai singoli loghi */
 .block-fiducia .logos-grid.reveal.active {
     animation: none; 
     opacity: 1; 
     transform: none;
 }
 
-/* Imposto lo stato iniziale dei loghi (nascosti e spostati in basso) */
 .block-fiducia .logos-grid img {
     opacity: 0;
     transform: translateY(40px);
 }
 
-/* Quando la griglia diventa attiva, i loghi si animano con effetto morbido e lento */
 .block-fiducia .logos-grid.active img {
-    /* Durata dell'apparizione allungata a 3.5 secondi */
     animation: elegantReveal 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
 }
 
-/* Assegnazione dei ritardi a coppie (stacco più lungo tra le coppie) */
+/* Assegnazione dei ritardi a coppie */
 .block-fiducia .logos-grid.active img:nth-child(1),
 .block-fiducia .logos-grid.active img:nth-child(2) { animation-delay: 1.2s; }
 
@@ -429,7 +414,6 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* Stile CONTENITORE e BASE per tutti i loghi */
 .logos-track img {
     width: clamp(150px, 25vw, 200px);
     height: clamp(75px, 12vw, 100px);
@@ -598,7 +582,6 @@ body {
     opacity: 0;
     transform: translateY(40px) scale(0.95);
     filter: blur(8px); 
-    /* Tempi allungati a 3.5s per rendere la comparsa ancora più lenta ed elegante */
     transition: opacity 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 filter 3.5s cubic-bezier(0.25, 1, 0.5, 1);
@@ -625,16 +608,31 @@ body {
 .contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
 .contact-info p { margin-bottom: 10px; font-size: 16px; }
 
+/* NUOVO TASTO CHAT LAMPEGGIANTE ELEGANTE */
+@keyframes elegantGlow {
+    0% { 
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); 
+        background-color: #22c55e;
+    }
+    50% { 
+        box-shadow: 0 0 0 12px rgba(34, 197, 94, 0); 
+        background-color: #3bdf77; /* Verde leggermente più luminoso */
+    }
+    100% { 
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); 
+        background-color: #22c55e;
+    }
+}
+
 .whatsapp {
     position: fixed;
-    bottom: 15px; 
-    left: 30px; 
+    bottom: 25px; 
+    left: 25px; 
     background: #22c55e; 
     padding: 12px 28px;
-    border-radius: 12px; /* Riquadro al posto del cerchio */
+    border-radius: 12px; 
     z-index: 9998;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(34,197,94,0.4);
     transition: transform 0.3s ease;
     display: flex;
     align-items: center;
@@ -643,11 +641,14 @@ body {
     font-weight: bold;
     font-size: 16px;
     letter-spacing: 1px;
+    animation: elegantGlow 2.5s infinite; /* Effetto lampeggiante */
 }
-.whatsapp:hover { transform: translateY(-4px) scale(1.05); }
+.whatsapp:hover { 
+    transform: translateY(-4px) scale(1.05); 
+}
 
 /* =========================================
-   GRIGLIA LOGHI FISSA (NUOVA SEZIONE AGGIUNTA)
+   GRIGLIA LOGHI FISSA
 ========================================= */
 .logos-grid {
     display: grid;
@@ -683,7 +684,7 @@ body {
 }
 
 /* =========================================
-   MEDIA QUERIES (MOBILE RESPONSIVE)
+   MEDIA QUERIES (MOBILE RESPONSIVE GLOBALE)
 ========================================= */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
@@ -713,6 +714,7 @@ body {
         border-radius: 20px; 
     }
 
+    /* Adattamento tasto lampeggiante su Mobile */
     .whatsapp {
         bottom: 15px; 
         left: 15px;
@@ -723,7 +725,6 @@ body {
         z-index: 999999; 
     }
 
-    /* MODIFICA: Centra i cerchi di progresso su dispositivi mobili */
     .circular-progress {
         align-self: center;
     }
@@ -810,7 +811,6 @@ body {
             </div>
         </div>
 
-        <img src="aiuto.png" alt="Aiuto" class="illustrazione-centrata reveal img-bottom-compact">
     </section>
 </div>
 
@@ -858,7 +858,6 @@ body {
 
         <div class="grid grid-3" id="numbers-grid">
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -874,7 +873,6 @@ body {
             </div>
             
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -890,7 +888,6 @@ body {
             </div>
             
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -912,11 +909,6 @@ body {
 <section class="section" style="padding-top: 80px;">
     <h2 class="green reveal" style="margin-bottom: 40px;">Il mio framework</h2>
     
-    <!-- Immagine centrata inserita in una "Card" bianca dedicata -->
-    <div class="reveal" style="background-color: #ffffff; border-radius: 20px; padding: 40px 20px; max-width: 650px; margin: 0 auto 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-        <img src="numeri.png" alt="Numeri" style="display: block; width: 90%; max-width: 500px; height: auto; margin: 0 auto; filter: contrast(1.1) brightness(1.08);">
-    </div>
-
     <!-- Riquadri testo resi identici a "Come porto risultati" (scuri semitrasparenti) -->
     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
         <div class="card reveal">
@@ -983,7 +975,7 @@ body {
     </div>
 </section>
 
-<!-- TASTO WHATSAPP FISSO MODIFICATO IN TESTO CHAT -->
+<!-- TASTO CHAT WHATSAPP FISSO E LAMPEGGIANTE -->
 <a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
     CHAT
 </a>
@@ -1019,16 +1011,13 @@ body {
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
                     
-                    // Identifico il cerchio associato a questo contatore e il suo target di riempimento (ora 100)
                     const circleContainer = counter.closest('.circular-progress');
                     const progressCircle = circleContainer.querySelector('.circle-progress');
-                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); // 100
+                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); 
                     
-                    const duration = 5000; // Esattamente 5 secondi (5000 ms)
+                    const duration = 5000; 
                     
-                    // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
-                    // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
                     const delay = (target === 27 && isMobile) ? 700 : 0;
                     
                     setTimeout(() => {
@@ -1038,31 +1027,23 @@ body {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                             
-                            // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
                             const easeProgress = 1 - Math.pow(1 - progress, 3);
                             
-                            // Calcolo il valore corrente del numero
                             const currentVal = target * easeProgress;
-                            // Calcolo il valore corrente del cerchio rosso
                             const currentCircleVal = circleTarget * easeProgress;
                             
-                            // Aggiorno il testo del numero
                             if (isFloat) {
                                 counter.innerText = currentVal.toFixed(1).replace('.', ',');
                             } else {
                                 counter.innerText = Math.floor(currentVal);
                             }
                             
-                            // Aggiorno in diretta l'animazione della linea rossa
-                            // 100 è completamente vuoto, 0 è completamente pieno.
                             progressCircle.style.strokeDashoffset = 100 - currentCircleVal;
                             
                             if (progress < 1) {
                                 window.requestAnimationFrame(step);
                             } else {
-                                // Assicura che l'esatto valore finale sia stampato alla fine
                                 counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
-                                // Assicura che il cerchio si chiuda perfettamente
                                 progressCircle.style.strokeDashoffset = 100 - circleTarget;
                             }
                         };
@@ -1070,7 +1051,6 @@ body {
                         window.requestAnimationFrame(step);
                     }, delay);
                     
-                    // Smette di osservare il singolo contatore dopo averlo avviato
                     observer.unobserve(counter);
                 }
             });
@@ -1080,12 +1060,11 @@ body {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS (Ora le animazioni rimangono per sempre una volta apparse)
+        // REVEAL ANIMATIONS
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // Smettiamo di osservare l'elemento, così l'animazione scatta una sola volta
                     revealObserver.unobserve(entry.target); 
                 }
             });
@@ -1101,7 +1080,6 @@ body {
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) {
             window.addEventListener('scroll', function() {
-                // Se l'utente ha scrollato fino a raggiungere (quasi) la fine del body, la CTA si attiva 
                 if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 150) {
                     ctaElement.classList.add('visible');
                 }
