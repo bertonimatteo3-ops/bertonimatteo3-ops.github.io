@@ -350,13 +350,13 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* Immagini a colori originali */
+/* Immagini a colori originali all'interno delle card fisse */
 .logos-track img {
-    width: 160px;
-    height: 100px;
+    width: 160px; /* Dimensione fissa della card */
+    height: 100px; /* Dimensione fissa della card */
     background: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px;
+    padding: 15px; /* Spazio interno standard */
     border-radius: 8px;
     object-fit: contain;
     flex-shrink: 0;
@@ -365,6 +365,11 @@ body {
     opacity: 1; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     transition: all 0.4s ease;
+}
+
+/* Classe per ingrandire specifici loghi all'interno della card fissa */
+.logos-track img.logo-enlarged {
+    padding: 4px !important; /* Riducendo il padding, il logo ha più spazio per espandersi */
 }
 
 .logos-track img:hover {
@@ -751,10 +756,57 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <!-- Appliata la classe "logo-enlarged" ai loghi richiesti per farli sembrare più grandi all'interno della card -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
+            <img src="herbalife.png" alt="Logo" loading="lazy">
+            <img src="Realmaps.png" alt="Logo" loading="lazy">
+            <img src="assocral.png" alt="Logo" loading="lazy">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy">
+            <img src="homei.jpeg" alt="Logo" loading="lazy">
+            <img src="arcari.png" alt="Arcari" loading="lazy">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
+            <img src="cappellini.png" alt="Logo" loading="lazy">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy">
+            <img src="wayan.png" alt="Logo" loading="lazy">
+            <img src="verona.jpg" alt="Logo" loading="lazy">
+            <img src="berton.png" alt="Berton" loading="lazy" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy">
+            <img src="sales.png" alt="Logo" loading="lazy">
+            <img src="farmacisti.png" alt="Logo" loading="lazy">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
+            <img src="gizia.png" alt="Gizia" loading="lazy">
+            <img src="slym.png" alt="Slym" loading="lazy" class="logo-enlarged">
             
             <!-- Duplicato loghi per effetto scorrimento -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
+            <img src="herbalife.png" alt="Logo" loading="lazy">
+            <img src="Realmaps.png" alt="Logo" loading="lazy">
+            <img src="assocral.png" alt="Logo" loading="lazy">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy">
+            <img src="homei.jpeg" alt="Logo" loading="lazy">
+            <img src="arcari.png" alt="Arcari" loading="lazy">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
+            <img src="cappellini.png" alt="Logo" loading="lazy">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy">
+            <img src="wayan.png" alt="Logo" loading="lazy">
+            <img src="verona.jpg" alt="Logo" loading="lazy">
+            <img src="berton.png" alt="Berton" loading="lazy" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy">
+            <img src="sales.png" alt="Logo" loading="lazy">
+            <img src="farmacisti.png" alt="Logo" loading="lazy">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
+            <img src="gizia.png" alt="Gizia" loading="lazy">
+            <img src="slym.png" alt="Slym" loading="lazy" class="logo-enlarged">
         </div>
     </div>
 </section>
@@ -892,7 +944,7 @@ body {
     </div>
 </section>
 
-<!-- BLOCCO 3: LOGHI GRIGLIA FISSA -->
+<!-- BLOCCO 3: LOGHI GRIGLIA FISSA (APPARIZIONE A COPPIE PIU' GRANDI E DEFINITI) -->
 <div class="white-band block-fiducia" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
