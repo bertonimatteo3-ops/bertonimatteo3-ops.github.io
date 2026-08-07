@@ -479,7 +479,7 @@ body {
 .linkedin-cta .btn-icon { fill: #22c55e; width: 24px; height: 24px; }
 
 /* =========================================
-   BLOCCO FIDUCIA (BIANCO ELEGANTE, LOGHI A COPPIE)
+   BLOCCO FIDUCIA (BIANCO ELEGANTE, LOGHI A COPPIE PIU' GRANDI)
 ========================================= */
 .block-fiducia {
     background: #ffffff !important;
@@ -533,17 +533,19 @@ body {
     margin-top: 50px;
 }
 
+/* Modifica fondamentale: loghi più grandi e di qualità superiore */
 .block-fiducia .logos-grid img {
     width: 100%;
-    max-width: 130px;
-    height: 70px;
+    max-width: 160px; /* Aumentato per migliorare la resa grafica */
+    height: 90px;     /* Aumentato per evitare schiacciamenti */
     background: transparent !important;
     border: none !important;
     padding: 10px;
     object-fit: contain;
+    image-rendering: high-quality; /* Forza il browser a mantenere la nitidezza */
     user-select: none;
     -webkit-user-drag: none;
-    filter: none !important; /* Colori originali */
+    filter: none !important; 
     opacity: 1 !important;
     box-shadow: none !important;
     transition: all 0.3s ease;
@@ -558,10 +560,13 @@ body {
 }
 @media (min-width: 768px) {
     .logos-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
-    .block-fiducia .logos-grid img { max-width: 150px; height: 80px; }
+    /* Ingranditi anche su tablet/piccoli schermi PC */
+    .block-fiducia .logos-grid img { max-width: 180px; height: 100px; }
 }
 @media (min-width: 1024px) {
     .logos-grid { grid-template-columns: repeat(6, 1fr); gap: 30px; }
+    /* Ingranditi ulteriormente su schermi grandi per massima qualità */
+    .block-fiducia .logos-grid img { max-width: 190px; height: 110px; }
 }
 
 /* =========================================
@@ -889,7 +894,7 @@ body {
     </div>
 </section>
 
-<!-- BLOCCO 3: LOGHI GRIGLIA FISSA (APPARIZIONE A COPPIE) -->
+<!-- BLOCCO 3: LOGHI GRIGLIA FISSA (APPARIZIONE A COPPIE PIU' GRANDI E DEFINITI) -->
 <div class="white-band block-fiducia" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
