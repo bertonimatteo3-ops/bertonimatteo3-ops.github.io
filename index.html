@@ -15,11 +15,11 @@
 <!-- Preload Font per caricamento più veloce -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================
-   BASE E RESET
+   BASE E RESET (DARK PREMIUM)
 ========================================= */
 * {
     box-sizing: border-box;
@@ -29,12 +29,12 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #1c1c1c; 
-    color: white;
+    background: #050505; /* Nero più profondo */
+    color: #e2e8f0;
     overflow-x: hidden;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC (Originale) */
+/* FIX SFONDO IOS / ANDROID / MAC */
 .bg-fixed {
     position: fixed;
     top: 0;
@@ -44,30 +44,38 @@ body {
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
-    opacity: 0.35; 
+    opacity: 0.18;
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
+    filter: contrast(1.2) grayscale(0.2);
 }
 
-.green { color: #22c55e; }
+.green { 
+    color: #22c55e; 
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.4); 
+}
 
 /* =========================================
-   STRUTTURA BLOCCHI BIANCHI
+   STRUTTURA PANNELLI (Vetro scuro e metallo)
 ========================================= */
 .white-band {
-    background-color: white !important;
-    color: #1c1c1c !important;
+    background: linear-gradient(145deg, rgba(20, 20, 20, 0.7), rgba(5, 5, 5, 0.9)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #ffffff !important;
     position: relative;
     z-index: 2;
     max-width: 1200px;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    border-radius: 24px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-radius: 12px; 
 }
 
 @media (min-width: 1240px) {
@@ -84,101 +92,68 @@ body {
 }
 
 .white-band h2 {
-    color: #16a34a !important; 
+    color: #ffffff !important; 
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 800;
 }
 
 .white-band .card {
-    background: rgba(0, 0, 0, 0.05) !important;
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
-.white-band .card h3 {
-    color: #0f172a !important;
-}
-
-.white-band .card p {
-    color: #475569 !important;
-}
-
-/* Spaziature immagini richieste */
-.illustrazione-centrata {
-    display: block;
-    width: 90%;
-    max-width: 500px;
-    height: auto;
-    margin: 40px auto;
-    filter: contrast(1.1) brightness(1.08); /* Filtro bianco puro */
-}
-
-/* Modifiche spaziature specifiche */
-.img-bottom-compact { margin-bottom: 0 !important; }
-.img-top-compact { margin-top: 0 !important; }
-.gap-extra-large { margin-top: 120px !important; }
+.white-band .card h3 { color: #ffffff !important; }
+.white-band .card p { color: #94a3b8 !important; }
 
 /* TITOLO CONTATTI MODIFICATO */
 .section h2.titolo-contatti {
-    font-size: clamp(20px, 3vw, 24px) !important;
-    font-weight: 400 !important;
-    color: #22c55e !important;
-    margin-bottom: 25px !important;
+    font-size: clamp(22px, 3.5vw, 28px) !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px !important;
 }
 
 /* =========================================
-   ANIMAZIONI E COMPONENTI
-========================================= */
-.handshake-img {
-    display: block;
-    margin: -10px auto 35px auto;
-    width: 120px; 
-    height: auto;
-    animation: handshakeImageAnim 2.5s infinite ease-in-out;
-    transform-origin: center;
-}
-@keyframes handshakeImageAnim {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-8px) scale(1.03); } 
-}
-
-/* =========================================
-   NUOVO STILE CERCHIO DI PROGRESSO
+   NUOVO STILE CERCHIO DI PROGRESSO 
 ========================================= */
 .circular-progress {
     position: relative;
-    /* Usa clamp per essere responsive e adattarsi a desktop e mobile */
     width: clamp(130px, 15vw, 160px); 
     height: clamp(130px, 15vw, 160px);
-    margin-bottom: 25px;
-    align-self: flex-start; /* Mantiene l'allineamento a sinistra nella card su Desktop/Tablet */
+    margin-bottom: 30px;
+    align-self: flex-start; 
 }
 
 .circular-progress svg {
     width: 100%;
     height: 100%;
-    transform: rotate(-90deg); /* Ruota il cerchio per farlo partire dall'alto */
+    transform: rotate(-90deg); 
     overflow: visible;
 }
 
-/* Binario di sfondo (grigio chiaro/trasparente) */
 .circle-bg {
     fill: none;
-    stroke: rgba(0, 0, 0, 0.1); 
-    stroke-width: 8;
+    stroke: rgba(255, 255, 255, 0.03); 
+    stroke-width: 6;
 }
 
-/* Linea di progresso rossa */
 .circle-progress {
     fill: none;
-    stroke: #ef4444; /* Colore rosso richiesto */
-    stroke-width: 8;
-    stroke-linecap: round; /* Bordi arrotondati come nell'immagine */
+    stroke: #22c55e;
+    stroke-width: 6;
+    stroke-linecap: square; 
     stroke-dasharray: 100;
-    stroke-dashoffset: 100; /* Nascosto all'inizio (100 = vuoto, 0 = pieno) */
-    /* L'animazione è gestita dal Javascript, non dal CSS, per essere sincronizzata con i numeri! */
+    stroke-dashoffset: 100; 
+    filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
 }
 
-/* Contenitore per il testo al centro del cerchio */
 .circle-content {
     position: absolute;
     top: 0;
@@ -189,107 +164,31 @@ body {
     align-items: center;
     justify-content: center;
     font-size: clamp(30px, 4vw, 40px);
-    font-weight: 700;
-    color: #22c55e;
-    text-shadow: 0 0 15px rgba(34,197,94,0.4);
+    font-weight: 800;
+    color: #ffffff;
     font-variant-numeric: tabular-nums;
     line-height: 1;
     white-space: nowrap;
 }
 
-/* Riduce leggermente la grandezza del testo per la card dei milioni per farlo stare bene nel cerchio */
 .card:nth-child(2) .circle-content {
     font-size: clamp(22px, 3vw, 28px);
 }
 
-
 /* =========================================
-   ANIMAZIONI ESTREMAMENTE LENTE
+   ANIMAZIONI
 ========================================= */
-.reveal {
-    opacity: 0; 
+.reveal { opacity: 0; }
+.reveal.active { animation: aggressiveReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) both; }
+
+@keyframes aggressiveReveal {
+    0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.reveal.active {
-    animation: elegantReveal 3s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes elegantReveal {
-    0% {
-        opacity: 0;
-        transform: translateY(80px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
-.grid .card.reveal:nth-child(2) { animation-delay: 0.6s; }
-.grid .card.reveal:nth-child(3) { animation-delay: 1.0s; }
-
-/* RITARDO ELEGANTE BLOCCO FIDUCIA - ANIMAZIONE LENTA A COPPIE */
-.block-fiducia h2.reveal.active {
-    animation-delay: 0.5s; /* Il testo appare per primo con eleganza */
-}
-
-/* Rimuovo l'animazione di blocco sulla griglia madre, per applicarla ai singoli loghi */
-.block-fiducia .logos-grid.reveal.active {
-    animation: none; 
-    opacity: 1; 
-    transform: none;
-}
-
-/* Imposto lo stato iniziale dei loghi (nascosti e spostati in basso) */
-.block-fiducia .logos-grid img {
-    opacity: 0;
-    transform: translateY(40px);
-}
-
-/* Quando la griglia diventa attiva, i loghi si animano con effetto morbido e lento */
-.block-fiducia .logos-grid.active img {
-    /* Durata dell'apparizione allungata a 3.5 secondi */
-    animation: elegantReveal 3.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
-}
-
-/* Assegnazione dei ritardi a coppie (stacco più lungo tra le coppie) */
-.block-fiducia .logos-grid.active img:nth-child(1),
-.block-fiducia .logos-grid.active img:nth-child(2) { animation-delay: 1.2s; }
-
-.block-fiducia .logos-grid.active img:nth-child(3),
-.block-fiducia .logos-grid.active img:nth-child(4) { animation-delay: 1.8s; }
-
-.block-fiducia .logos-grid.active img:nth-child(5),
-.block-fiducia .logos-grid.active img:nth-child(6) { animation-delay: 2.4s; }
-
-.block-fiducia .logos-grid.active img:nth-child(7),
-.block-fiducia .logos-grid.active img:nth-child(8) { animation-delay: 3.0s; }
-
-.block-fiducia .logos-grid.active img:nth-child(9),
-.block-fiducia .logos-grid.active img:nth-child(10) { animation-delay: 3.6s; }
-
-.block-fiducia .logos-grid.active img:nth-child(11),
-.block-fiducia .logos-grid.active img:nth-child(12) { animation-delay: 4.2s; }
-
-.block-fiducia .logos-grid.active img:nth-child(13),
-.block-fiducia .logos-grid.active img:nth-child(14) { animation-delay: 4.8s; }
-
-.block-fiducia .logos-grid.active img:nth-child(15),
-.block-fiducia .logos-grid.active img:nth-child(16) { animation-delay: 5.4s; }
-
-.block-fiducia .logos-grid.active img:nth-child(17),
-.block-fiducia .logos-grid.active img:nth-child(18) { animation-delay: 6.0s; }
-
-.block-fiducia .logos-grid.active img:nth-child(19),
-.block-fiducia .logos-grid.active img:nth-child(20) { animation-delay: 6.6s; }
-
-.block-fiducia .logos-grid.active img:nth-child(21),
-.block-fiducia .logos-grid.active img:nth-child(22) { animation-delay: 7.2s; }
-
-.block-fiducia .logos-grid.active img:nth-child(23),
-.block-fiducia .logos-grid.active img:nth-child(24) { animation-delay: 7.8s; }
-
+.grid .card.reveal:nth-child(1) { animation-delay: 0.1s; }
+.grid .card.reveal:nth-child(2) { animation-delay: 0.3s; }
+.grid .card.reveal:nth-child(3) { animation-delay: 0.5s; }
 
 /* =========================================
    HERO SECTION
@@ -316,35 +215,38 @@ body {
 .hero-left { flex: 1; }
 
 .hero-title {
-    font-size: clamp(32px, 5vw, 52px);
-    line-height: 1.1;
+    font-size: clamp(38px, 5.5vw, 62px);
+    line-height: 1.05;
     margin-bottom: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.hero-subtitle {
-    font-size: 0.8em; 
-    font-weight: 700; 
-}
+.hero-subtitle { font-size: 0.7em; font-weight: 800; color: #ffffff; }
 
 .desktop-only { display: block; }
 .mobile-only { display: none; }
 
 .hero-left p {
     font-size: clamp(16px, 2vw, 20px);
-    color: #cccccc;
-    margin-bottom: 30px;
-    line-height: 1.5;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 90%;
 }
 
+/* IMMAGINE CERCHIO */
 .hero-right img {
-    width: clamp(140px, 20vw, 220px);
+    width: clamp(180px, 25vw, 300px);
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-    border: 4px solid #22c55e;
-    box-shadow: 0 0 30px rgba(34,197,94,0.3);
+    object-fit: cover;
+    border: 2px solid rgba(34,197,94,0.3);
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0,0,0,0.5); 
 }
 
 /* =========================================
-   BOTTONI GLOBALI E ICONE
+   BOTTONI GLOBALI
 ========================================= */
 .btn-group {
     display: flex;
@@ -353,16 +255,19 @@ body {
 }
 
 .btn, .linkedin {
-    padding: 16px 24px;
-    border-radius: 8px;
+    padding: 18px 24px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
-    max-width: 280px;
+    max-width: 320px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
     transition: all 0.3s ease;
     box-sizing: border-box;
     text-decoration: none;
@@ -370,46 +275,61 @@ body {
 
 .btn { 
     background: #22c55e; 
-    color: black; 
+    color: #000000; 
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
+}
+
+.btn:hover {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
 }
 
 .linkedin { 
-    border: 2px solid #22c55e; 
-    color: #22c55e; 
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    color: #ffffff; 
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+}
+
+.linkedin:hover {
+    border-color: #22c55e;
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.05);
 }
 
 .btn-icon {
     width: 20px;
     height: 20px;
     flex-shrink: 0;
+    fill: currentColor;
 }
-.linkedin .btn-icon { fill: #22c55e; }
 
 /* =========================================
-   CAROSELLO LOGHI (INTEGRALE)
+   CAROSELLO LOGHI (CARD BIANCHE UGUALI)
 ========================================= */
 .logos-section {
     position: relative;
     z-index: 3;
     padding: 40px 0;
-    background: linear-gradient(to right, rgba(28,28,28,1), rgba(28,28,28,0) 10%, rgba(28,28,28,0) 90%, rgba(28,28,28,1));
+    background: linear-gradient(to right, #050505, rgba(5,5,5,0.4) 15%, rgba(5,5,5,0.4) 85%, #050505);
+    border-top: 1px solid rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.02);
     overflow: hidden;
 }
 
 .logos-title {
     text-align: center;
-    margin-bottom: 25px;
-    color: #aaa;
-    font-size: 14px;
+    margin-bottom: 30px;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
-.logos-container {
-    width: 100%;
-    overflow: hidden; 
-}
+.logos-container { width: 100%; overflow: hidden; }
 
 .logos-track {
     display: flex;
@@ -429,39 +349,35 @@ body {
     100% { transform: translateX(-50%); } 
 }
 
-/* Stile CONTENITORE e BASE per tutti i loghi */
+/* Immagini impostate come card bianche fisse */
 .logos-track img {
-    width: clamp(150px, 25vw, 200px);
-    height: clamp(75px, 12vw, 100px);
-    background: white;
-    padding: 12px;
-    border-radius: 10px;
+    width: 160px;
+    height: 100px;
+    background: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
     object-fit: contain;
     flex-shrink: 0;
     user-select: none;
     -webkit-user-drag: none;
+    filter: grayscale(100%) opacity(0.7);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: all 0.4s ease;
 }
 
-/* =========================================
-   MODIFICHE SPECIFICHE LOGHI
-========================================= */
-.logos-track img.logo-black-text {
-    filter: grayscale(100%) contrast(500%) !important;
-    padding: 4px !important; 
-}
-
-.logos-track img.logo-large {
-    padding: 4px !important;
-}
-.logos-track img.logo-wide {
-    padding: 2px !important;
+.logos-track img:hover {
+    filter: grayscale(0%) opacity(1);
+    border-color: #22c55e;
+    box-shadow: 0 10px 20px rgba(34,197,94,0.2);
+    transform: translateY(-5px);
 }
 
 /* =========================================
    SEZIONI E GRIGLIE
 ========================================= */
 .section {
-    padding: 80px 20px;
+    padding: 100px 20px;
     max-width: 1100px;
     margin: auto;
     position: relative;
@@ -469,263 +385,322 @@ body {
 }
 
 .section h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    margin-bottom: 40px;
+    font-size: clamp(30px, 4.5vw, 46px);
+    margin-bottom: 60px;
     text-align: center;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.grid {
-    display: grid;
-    gap: 25px;
-}
-
-.grid-3 {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-}
+.grid { display: grid; gap: 30px; }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 
 .card {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(10, 10, 10, 0.7);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.05);
-    padding: 35px 25px;
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 2px solid transparent;
+    padding: 45px 35px;
+    border-radius: 8px; 
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-.card h3 {
-    font-weight: 700;
-    font-size: 22px;
-    color: #ffffff;
-    margin-bottom: 15px;
-    line-height: 1.3;
-}
+.card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; line-height: 1.2; }
+.card p { color: #94a3b8; margin-bottom: 20px; line-height: 1.7; font-size: 16px; }
+.card p:last-child { margin-bottom: 0; }
 
-.card h3.green-title {
-    color: #22c55e;
-}
-
-.card p {
-    color: #cccccc;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.card p:last-child {
-    margin-bottom: 0;
-}
-
-.arrow-down-container {
-    margin-top: auto; 
-    padding-top: 20px;
-    text-align: center;
-}
-
-.arrow-icon {
-    width: 40px;
-    height: 40px;
-    fill: #22c55e;
-    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-}
+.arrow-down-container { margin-top: auto; padding-top: 30px; text-align: center; }
+.arrow-icon { width: 30px; height: 30px; fill: #22c55e; animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1); }
 
 @keyframes bounceDown {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-12px); }
-    60% { transform: translateY(-6px); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
 }
 
 @media (min-width: 769px) {
     .card-closing { order: 1; }
-    .card-social { order: 2; border: 1px solid rgba(34,197,94,0.3); background: rgba(15, 23, 42, 0.8); } 
+    .card-social { order: 2; border-bottom: 2px solid #22c55e; background: linear-gradient(180deg, rgba(15,15,15,0.8) 0%, rgba(10,10,10,0.95) 100%); } 
     .card-ltv { order: 3; }
 }
 
-/* =========================================
-   ANIMAZIONI E INTERAZIONI
-========================================= */
 @media (hover: hover) {
-    .btn:hover { background: #1da44d; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(34,197,94,0.3); }
-    .linkedin:hover { background: rgba(34,197,94,0.1); transform: translateY(-3px); }
-    .card:hover { transform: translateY(-5px); background: rgba(15, 23, 42, 0.9); border-color: rgba(34,197,94,0.3); }
+    .card:hover { 
+        transform: translateY(-8px); 
+        background: rgba(15, 15, 15, 0.9); 
+        border-color: rgba(255,255,255,0.1);
+        border-bottom: 2px solid #22c55e;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
 }
 
 .linkedin-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px; 
-    margin: 40px auto;
-    padding: 20px 40px; 
-    font-size: 20px; 
-    background: #ffffff;
-    color: #064e3b; 
-    border: 2px solid #22c55e;
-    border-radius: 8px;
+    gap: 15px; 
+    margin: 60px auto 20px auto;
+    padding: 22px 45px; 
+    font-size: 18px; 
+    background: transparent;
+    color: #ffffff; 
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
     text-decoration: none;
-    font-weight: 700;
-    animation: premiumCTA 4s ease-in-out infinite;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     position: relative;
     z-index: 3;
     max-width: 95%; 
+    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.linkedin-cta .btn-icon { 
-    fill: #064e3b; 
-    width: 32px; 
-    height: 32px; 
-    flex-shrink: 0; 
+.linkedin-cta::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
+    animation: premiumGlow 3s infinite linear;
 }
 
-@keyframes premiumCTA {
-    0%, 100% { transform: translateY(0); box-shadow: 0 0 15px rgba(34,197,94,0.3); }
-    25% { transform: translateY(-6px); box-shadow: 0 0 30px rgba(34,197,94,0.6); }
-    50% { transform: translateY(0); box-shadow: 0 0 45px rgba(34,197,94,0.9); }
-    70% { transform: translateY(-3px); }
-    80%, 84% { transform: translateX(-2px); }
-    82%, 86% { transform: translateX(2px); }
+@keyframes premiumGlow { 0% { left: -100%; } 100% { left: 100%; } }
+
+.linkedin-cta:hover {
+    border-color: #22c55e;
+    box-shadow: 0 0 30px rgba(34,197,94,0.2);
+    background: rgba(34,197,94,0.05);
 }
 
+.linkedin-cta .btn-icon { fill: #22c55e; width: 24px; height: 24px; }
+
+/* =========================================
+   BLOCCO FIDUCIA (BIANCO ELEGANTE) E LOGHI A COLORI
+========================================= */
+.block-fiducia {
+    background: #ffffff !important;
+    color: #050505 !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
+    border: none !important;
+}
+
+.block-fiducia h2 {
+    color: #050505 !important;
+}
+
+.block-fiducia .logos-grid.reveal.active {
+    animation: none; opacity: 1; transform: none;
+}
+
+.block-fiducia .logos-grid img {
+    opacity: 0; transform: translateY(20px);
+}
+
+.block-fiducia .logos-grid.active img {
+    animation: aggressiveReveal 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+}
+
+.block-fiducia .logos-grid.active img:nth-child(n) { animation-delay: calc(0.05s * var(--i, 1)); }
+.block-fiducia .logos-grid.active img:nth-child(1) { --i: 1; }
+.block-fiducia .logos-grid.active img:nth-child(2) { --i: 2; }
+.block-fiducia .logos-grid.active img:nth-child(3) { --i: 3; }
+.block-fiducia .logos-grid.active img:nth-child(4) { --i: 4; }
+.block-fiducia .logos-grid.active img:nth-child(5) { --i: 5; }
+.block-fiducia .logos-grid.active img:nth-child(6) { --i: 6; }
+.block-fiducia .logos-grid.active img:nth-child(7) { --i: 7; }
+.block-fiducia .logos-grid.active img:nth-child(8) { --i: 8; }
+.block-fiducia .logos-grid.active img:nth-child(9) { --i: 9; }
+.block-fiducia .logos-grid.active img:nth-child(10) { --i: 10; }
+.block-fiducia .logos-grid.active img:nth-child(11) { --i: 11; }
+.block-fiducia .logos-grid.active img:nth-child(12) { --i: 12; }
+.block-fiducia .logos-grid.active img:nth-child(13) { --i: 13; }
+.block-fiducia .logos-grid.active img:nth-child(14) { --i: 14; }
+.block-fiducia .logos-grid.active img:nth-child(15) { --i: 15; }
+.block-fiducia .logos-grid.active img:nth-child(16) { --i: 16; }
+.block-fiducia .logos-grid.active img:nth-child(17) { --i: 17; }
+.block-fiducia .logos-grid.active img:nth-child(18) { --i: 18; }
+.block-fiducia .logos-grid.active img:nth-child(19) { --i: 19; }
+.block-fiducia .logos-grid.active img:nth-child(20) { --i: 20; }
+.block-fiducia .logos-grid.active img:nth-child(21) { --i: 21; }
+.block-fiducia .logos-grid.active img:nth-child(22) { --i: 22; }
+.block-fiducia .logos-grid.active img:nth-child(23) { --i: 23; }
+.block-fiducia .logos-grid.active img:nth-child(24) { --i: 24; }
+
+.logos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 50px;
+}
+
+/* LOGHI A COLORI NELLA GRIGLIA BIANCA */
+.block-fiducia .logos-grid img {
+    width: 100%;
+    max-width: 130px;
+    height: 70px;
+    background: transparent !important;
+    border: none !important;
+    padding: 10px;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: none !important; /* Colori originali */
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease;
+}
+
+.block-fiducia .logos-grid img:hover {
+    transform: scale(1.1);
+}
+
+@media (min-width: 576px) {
+    .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media (min-width: 768px) {
+    .logos-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+    .block-fiducia .logos-grid img { max-width: 150px; height: 80px; }
+}
+@media (min-width: 1024px) {
+    .logos-grid { grid-template-columns: repeat(6, 1fr); gap: 30px; }
+}
+
+
+/* =========================================
+   CTA FINALE SCROLL (VERDE)
+========================================= */
 .final-cta {
     text-align: center;
-    padding: 100px 20px 140px; 
+    padding: 120px 20px 140px; 
     position: relative;
     z-index: 2;
 }
 
 .cta-line {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    filter: blur(8px); 
-    /* Tempi allungati a 3.5s per rendere la comparsa ancora più lenta ed elegante */
-    transition: opacity 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                transform 3.5s cubic-bezier(0.25, 1, 0.5, 1), 
-                filter 3.5s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(40px);
+    transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1), 
+                transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.final-cta.visible .cta-line {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-}
+.final-cta.visible .cta-line { opacity: 1; transform: translateY(0); }
 
-.line1 { font-size: clamp(20px, 3vw, 24px); color: #aaa; margin-bottom: 10px; }
-.line2 { font-size: clamp(26px, 4.5vw, 40px); color: #22c55e; font-weight: 700; text-shadow: 0 0 15px rgba(34,197,94,0.4); }
+/* SCRITTE IN VERDE */
+.line1 { font-size: clamp(20px, 3vw, 24px); color: #22c55e; margin-bottom: 15px; font-weight: 600; text-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
+.line2 { font-size: clamp(28px, 4.5vw, 46px); color: #22c55e; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
 
-.final-cta.visible .line1 { transition-delay: 0.2s; }
-.final-cta.visible .line2 { transition-delay: 1.4s; }
+.final-cta.visible .line1 { transition-delay: 0.1s; }
+.final-cta.visible .line2 { transition-delay: 0.4s; }
 
 /* =========================================
-   WHATSAPP BUTTON E CONTATTI
+   CONTATTI E BOX FINALE
 ========================================= */
 .contatti { text-align: center; }
-.contact-box { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 12px; display: inline-block; width: 100%; max-width: 400px; }
-.contact-name { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
-.contact-role { color: #22c55e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-.contact-info p { margin-bottom: 10px; font-size: 16px; }
+.contact-box { 
+    background: rgba(10,10,10,0.8); 
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 40px; 
+    border-radius: 8px; 
+    display: inline-block; 
+    width: 100%; 
+    max-width: 450px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+.contact-name { font-size: 28px; font-weight: 800; margin-bottom: 5px; color: #fff;}
+.contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
+
+@keyframes aggressivePulse {
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8); }
+    70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
 
 .whatsapp {
     position: fixed;
-    bottom: 15px; 
+    bottom: 30px; 
     left: 30px; 
     background: #22c55e; 
-    padding: 12px 28px;
-    border-radius: 12px; /* Riquadro al posto del cerchio */
+    padding: 14px 32px;
+    border-radius: 4px; 
     z-index: 9998;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(34,197,94,0.4);
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: bold;
+    color: #000;
+    font-weight: 900;
     font-size: 16px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    animation: aggressivePulse 2s infinite;
 }
-.whatsapp:hover { transform: translateY(-4px) scale(1.05); }
+.whatsapp:hover { transform: scale(1.05); background: #ffffff; }
 
 /* =========================================
-   GRIGLIA LOGHI FISSA (NUOVA SEZIONE AGGIUNTA)
-========================================= */
-.logos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    align-items: center;
-    justify-items: center;
-    margin-top: 40px;
-}
-
-.logos-grid img {
-    width: 100%;
-    max-width: 130px;
-    height: 70px;
-    object-fit: contain;
-    user-select: none;
-    -webkit-user-drag: none;
-}
-
-.logos-grid img.logo-black-text {
-    filter: grayscale(100%) contrast(500%) !important;
-}
-
-@media (min-width: 576px) {
-    .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; }
-}
-@media (min-width: 768px) {
-    .logos-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; }
-    .logos-grid img { max-width: 150px; height: 80px; }
-}
-@media (min-width: 1024px) {
-    .logos-grid { grid-template-columns: repeat(6, 1fr); gap: 40px; }
-}
-
-/* =========================================
-   MEDIA QUERIES (MOBILE RESPONSIVE)
+   MEDIA QUERIES (MOBILE RESPONSIVE CENTRATO)
 ========================================= */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: block !important; }
     
-    .hero { min-height: auto; padding-top: 60px; }
-    .hero-content { flex-direction: column-reverse; text-align: center; gap: 30px; }
-    .btn-group { align-items: center; }
-    .logos-section { margin-top: 0; padding: 20px 0; }
-    .section { padding: 50px 20px; }
+    .hero { min-height: auto; padding-top: 80px; }
+    
+    /* MODIFICA: TUTTO CENTRATO DA SMARTPHONE */
+    .hero-content { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 40px; 
+        align-items: center;
+    }
+    
+    .hero-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-left p {
+        margin: 0 auto 40px auto;
+    }
+
+    .hero-right img { 
+        width: 160px; 
+        margin: 0 auto;
+    }
+    
+    .btn-group { align-items: center; width: 100%; }
+    /* FINE MODIFICA CENTRAMENTO */
+
+    .logos-section { margin-top: 20px; padding: 25px 0; }
+    .section { padding: 60px 20px; }
     
     .linkedin-cta { 
         display: flex; 
         text-align: center; 
-        font-size: 16px; 
+        font-size: 14px; 
         padding: 16px 20px; 
         flex-wrap: wrap; 
-    }
-    .linkedin-cta .btn-icon {
-        width: 24px;
-        height: 24px;
+        letter-spacing: 0;
     }
 
     .white-band {
         margin-left: 15px; 
         margin-right: 15px; 
-        border-radius: 20px; 
+        border-radius: 8px; 
     }
 
     .whatsapp {
-        bottom: 15px; 
-        left: 15px;
-        width: auto;
-        height: auto;
-        padding: 10px 24px;
+        bottom: 20px; 
+        left: 20px;
+        padding: 12px 24px;
         font-size: 14px;
         z-index: 999999; 
-    }
-
-    /* MODIFICA: Centra i cerchi di progresso su dispositivi mobili */
-    .circular-progress {
-        align-self: center;
     }
 }
 
@@ -737,8 +712,10 @@ body {
     left: 0 !important;
     width: 100% !important;
     z-index: 99999 !important;
+    background: #000 !important;
+    border-top: 1px solid #333 !important;
     padding: 12px 20px !important;
-    font-size: 13px !important;
+    font-size: 12px !important;
 }
 </style>
 </head>
@@ -752,19 +729,19 @@ body {
     <div class="hero-content">
         <div class="hero-left">
             <h1 class="hero-title">
-                <span class="desktop-only">Remote Closing Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green">clienti reali</span></span></span>
-                <span class="mobile-only">Remote Closing Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span></span>
+                <span class="desktop-only">Remote Closing<br>Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green">clienti reali</span></span></span>
+                <span class="mobile-only">Remote Closing<br>Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span></span>
             </h1>
             
-            <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
+            <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
             <div class="btn-group">
-                <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota una call gratuita</a>
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota Call Gratuita</a>
                 
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
                     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
-                    Scopri chi sono su LinkedIn
+                    Il mio profilo LinkedIn
                 </a>
             </div>
         </div>
@@ -774,20 +751,20 @@ body {
     </div>
 </section>
 
-<!-- CAROSELLO LOGHI (INTEGRALE) -->
+<!-- CAROSELLO LOGHI (INTEGRALE - ORA NELLE CARD BIANCHE) -->
 <section class="logos-section reveal">
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text logo-small"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
             
             <!-- Duplicato loghi per effetto scorrimento -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text logo-small"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy" class="logo-large"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-wide"><img src="velocissimo.webp" alt="Logo" loading="lazy" class="logo-wide"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy" class="logo-wide"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy" class="logo-wide">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy"><img src="herbalife.png" alt="Logo" loading="lazy"><img src="Realmaps.png" alt="Logo" loading="lazy"><img src="assocral.png" alt="Logo" loading="lazy"><img src="prima-scelta.png" alt="Logo" loading="lazy"><img src="homei.jpeg" alt="Logo" loading="lazy"><img src="arcari.png" alt="Arcari" loading="lazy"><img src="gruppo-soraci.jpg" alt="Logo" loading="lazy"><img src="marchi-cucine.jpg" alt="Logo" loading="lazy"><img src="pruiti-marketing.png" alt="Logo" loading="lazy"><img src="cappellini.png" alt="Logo" loading="lazy"><img src="webapp.jpeg" alt="Logo" loading="lazy"><img src="wayan.png" alt="Logo" loading="lazy"><img src="verona.jpg" alt="Logo" loading="lazy"><img src="berton.png" alt="Berton" loading="lazy"><img src="prezzi-farmaco.png" alt="Logo" loading="lazy"><img src="velocissimo.webp" alt="Logo" loading="lazy"><img src="sales.png" alt="Logo" loading="lazy"><img src="farmacisti.png" alt="Logo" loading="lazy"><img src="app-in-farma.png" alt="Logo" loading="lazy"><img src="ilaria.png" alt="Logo" loading="lazy"><img src="foglietto-illustrativo.png" alt="Logo" loading="lazy"><img src="gizia.png" alt="Gizia" loading="lazy"><img src="slym.png" alt="Slym" loading="lazy">
         </div>
     </div>
 </section>
 
-<!-- BLOCCO BIANCO 1: CHI AIUTO -->
+<!-- BLOCCO 1: CHI AIUTO -->
 <div class="white-band" style="margin-top: 80px;">
     <section class="section">
         <h2 class="reveal">Chi posso aiutare davvero</h2>
@@ -810,13 +787,12 @@ body {
             </div>
         </div>
 
-        <img src="aiuto.png" alt="Aiuto" class="illustrazione-centrata reveal img-bottom-compact">
     </section>
 </div>
 
-<!-- SEZIONE SCURA 1: COME PORTO RISULTATI + LINKEDIN -->
-<section class="section" style="padding-top: 60px;">
-    <h2 class="green reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
+<!-- SEZIONE 1: COME PORTO RISULTATI + LINKEDIN -->
+<section class="section" style="padding-top: 40px;">
+    <h2 class="reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
     
     <div class="grid grid-3">
         <div class="card card-closing reveal">
@@ -846,19 +822,18 @@ body {
             <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
-            Guarda sul mio LinkedIn come comunico per vendere
+            Come comunico per vendere
         </a>
     </div>
 </section>
 
-<!-- BLOCCO BIANCO 2: I MIEI NUMERI -->
-<div class="white-band" style="margin-top: 100px;">
+<!-- BLOCCO 2: I MIEI NUMERI -->
+<div class="white-band" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">I miei numeri</h2>
 
         <div class="grid grid-3" id="numbers-grid">
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -874,7 +849,6 @@ body {
             </div>
             
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -890,7 +864,6 @@ body {
             </div>
             
             <div class="card reveal">
-                <!-- Il cerchio target ora è 100, quindi si caricherà sempre al 100% -->
                 <div class="circular-progress" data-circle-target="100">
                     <svg viewBox="0 0 100 100">
                         <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
@@ -908,16 +881,10 @@ body {
     </section>
 </div>
 
-<!-- SEZIONE SCURA 2: IL MIO FRAMEWORK -->
-<section class="section" style="padding-top: 80px;">
-    <h2 class="green reveal" style="margin-bottom: 40px;">Il mio framework</h2>
+<!-- SEZIONE 2: IL MIO FRAMEWORK -->
+<section class="section" style="padding-top: 60px;">
+    <h2 class="reveal" style="margin-bottom: 40px;">Il mio framework</h2>
     
-    <!-- Immagine centrata inserita in una "Card" bianca dedicata -->
-    <div class="reveal" style="background-color: #ffffff; border-radius: 20px; padding: 40px 20px; max-width: 650px; margin: 0 auto 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-        <img src="numeri.png" alt="Numeri" style="display: block; width: 90%; max-width: 500px; height: auto; margin: 0 auto; filter: contrast(1.1) brightness(1.08);">
-    </div>
-
-    <!-- Riquadri testo resi identici a "Come porto risultati" (scuri semitrasparenti) -->
     <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
         <div class="card reveal">
             <h3 class="green">Strategia e Processo</h3>
@@ -930,8 +897,8 @@ body {
     </div>
 </section>
 
-<!-- BLOCCO BIANCO 3: LOGHI GRIGLIA FISSA CON RITARDO ELEGANTE IN COPPIA -->
-<div class="white-band block-fiducia" style="margin-top: 100px;">
+<!-- BLOCCO 3: LOGHI GRIGLIA FISSA (ORA BIANCO ELEGANTE CON LOGHI A COLORI) -->
+<div class="white-band block-fiducia" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
         
@@ -942,11 +909,11 @@ body {
             <img src="assocral.png" alt="Logo" loading="lazy">
             <img src="prima-scelta.png" alt="Logo" loading="lazy">
             <img src="homei.jpeg" alt="Logo" loading="lazy">
-            <img src="arcari.png" alt="Arcari" loading="lazy" class="logo-black-text">
+            <img src="arcari.png" alt="Arcari" loading="lazy">
             <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
             <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
             <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
-            <img src="cappellini.png" alt="Logo" loading="lazy" class="logo-black-text">
+            <img src="cappellini.png" alt="Logo" loading="lazy">
             <img src="webapp.jpeg" alt="Logo" loading="lazy">
             <img src="wayan.png" alt="Logo" loading="lazy">
             <img src="verona.jpg" alt="Logo" loading="lazy">
@@ -964,13 +931,13 @@ body {
     </section>
 </div>
 
-<!-- CTA FINALE ANIMATA SCROLL (Sfondo Mac) -->
-<div class="final-cta" id="final-cta" style="margin-top: 80px;">
+<!-- CTA FINALE ANIMATA SCROLL (ORA VERDE) -->
+<div class="final-cta" id="final-cta" style="margin-top: 40px;">
     <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
 </div>
 
-<!-- CONTATTI (Sfondo Mac) -->
+<!-- CONTATTI -->
 <section class="section contatti reveal">
     <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
     <div class="contact-box">
@@ -983,22 +950,22 @@ body {
     </div>
 </section>
 
-<!-- TASTO WHATSAPP FISSO MODIFICATO IN TESTO CHAT -->
+<!-- TASTO CHAT WHATSAPP FISSO -->
 <a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
     CHAT
 </a>
 
 <!-- FOOTER IUBENDA -->
-<div style="text-align:center; padding: 20px; font-size:13px; color: #666; margin-bottom: 60px;">
-    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#aaa; text-decoration:none;">Privacy Policy</a>
+<div style="text-align:center; padding: 20px; font-size:12px; color: #475569; margin-bottom: 80px;">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#64748b; text-decoration:none;">Privacy Policy</a>
     |
-    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#aaa; text-decoration:none;">Cookie Policy</a>
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#64748b; text-decoration:none;">Cookie Policy</a>
 </div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // FIX PER CAROSELLO
+        // FIX PER CAROSELLO SU MOBILE
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1019,17 +986,14 @@ body {
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
                     
-                    // Identifico il cerchio associato a questo contatore e il suo target di riempimento (ora 100)
                     const circleContainer = counter.closest('.circular-progress');
                     const progressCircle = circleContainer.querySelector('.circle-progress');
-                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); // 100
+                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); 
                     
-                    const duration = 5000; // Esattamente 5 secondi (5000 ms)
+                    const duration = 4000;
                     
-                    // Controlla se è il numero 27 e se siamo su mobile (<= 768px)
                     const isMobile = window.innerWidth <= 768;
-                    // Se su smartphone e per la terza card (27%), ritarda extra 700ms 
-                    const delay = (target === 27 && isMobile) ? 700 : 0;
+                    const delay = (target === 27 && isMobile) ? 500 : 0;
                     
                     setTimeout(() => {
                         let startTimestamp = null;
@@ -1038,31 +1002,23 @@ body {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
                             
-                            // Curva Ease-Out Cubic: rallenta in modo molto evidente la fine
-                            const easeProgress = 1 - Math.pow(1 - progress, 3);
+                            const easeProgress = 1 - Math.pow(1 - progress, 4);
                             
-                            // Calcolo il valore corrente del numero
                             const currentVal = target * easeProgress;
-                            // Calcolo il valore corrente del cerchio rosso
                             const currentCircleVal = circleTarget * easeProgress;
                             
-                            // Aggiorno il testo del numero
                             if (isFloat) {
                                 counter.innerText = currentVal.toFixed(1).replace('.', ',');
                             } else {
                                 counter.innerText = Math.floor(currentVal);
                             }
                             
-                            // Aggiorno in diretta l'animazione della linea rossa
-                            // 100 è completamente vuoto, 0 è completamente pieno.
                             progressCircle.style.strokeDashoffset = 100 - currentCircleVal;
                             
                             if (progress < 1) {
                                 window.requestAnimationFrame(step);
                             } else {
-                                // Assicura che l'esatto valore finale sia stampato alla fine
                                 counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
-                                // Assicura che il cerchio si chiuda perfettamente
                                 progressCircle.style.strokeDashoffset = 100 - circleTarget;
                             }
                         };
@@ -1070,7 +1026,6 @@ body {
                         window.requestAnimationFrame(step);
                     }, delay);
                     
-                    // Smette di osservare il singolo contatore dopo averlo avviato
                     observer.unobserve(counter);
                 }
             });
@@ -1080,12 +1035,11 @@ body {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS (Ora le animazioni rimangono per sempre una volta apparse)
+        // REVEAL ANIMATIONS
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    // Smettiamo di osservare l'elemento, così l'animazione scatta una sola volta
                     revealObserver.unobserve(entry.target); 
                 }
             });
@@ -1101,8 +1055,7 @@ body {
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) {
             window.addEventListener('scroll', function() {
-                // Se l'utente ha scrollato fino a raggiungere (quasi) la fine del body, la CTA si attiva 
-                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 150) {
+                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 200) {
                     ctaElement.classList.add('visible');
                 }
             }, { passive: true });
