@@ -27,10 +27,6 @@
     padding: 0;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Inter', sans-serif;
     background: #050505; 
@@ -39,23 +35,20 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC (Ottimizzato) */
+/* FIX SFONDO IOS / ANDROID / MAC (Ottimizzato GPU) */
 .bg-fixed {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
-    /* Hardware Acceleration profonda per evitare repaint */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    will-change: transform;
+    transform: translate3d(0,0,0); /* Forza la GPU */
     backface-visibility: hidden;
     filter: contrast(1.1) grayscale(0.2);
 }
@@ -72,8 +65,8 @@ body {
     background: linear-gradient(145deg, rgba(20, 20, 20, 0.7), rgba(5, 5, 5, 0.9)) !important;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(12px); /* Ridotto leggermente per performance perfette su mobile */
+    -webkit-backdrop-filter: blur(12px);
     color: #ffffff !important;
     position: relative;
     z-index: 2;
@@ -82,10 +75,7 @@ body {
     margin-right: 20px;
     margin-top: 80px;
     margin-bottom: 80px;
-    border-radius: 12px;
-    /* Isolamento per prestazioni scroll */
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    border-radius: 12px; 
 }
 
 @media (min-width: 1240px) {
@@ -111,8 +101,9 @@ body {
     font-weight: 800;
 }
 
+/* Card interne ottimizzate (Eliminato il doppio blur scattoso) */
 .white-band .card {
-    background: rgba(0, 0, 0, 0.4) !important;
+    background: rgba(15, 15, 15, 0.75) !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
@@ -162,8 +153,6 @@ body {
     stroke-dasharray: 100;
     stroke-dashoffset: 100; 
     filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
-    /* Ottimizzazione filter GPU */
-    transform: translateZ(0);
 }
 
 .circle-content {
@@ -188,9 +177,9 @@ body {
 }
 
 /* =========================================
-   ANIMAZIONI (Ottimizzate GPU con translate3d)
+   ANIMAZIONI (Lisce e Accelerate Hardware)
 ========================================= */
-.reveal { opacity: 0; will-change: transform, opacity; }
+.reveal { opacity: 0; }
 .reveal.active { animation: elegantReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
 
 @keyframes elegantReveal {
@@ -256,7 +245,6 @@ body {
     object-fit: cover;
     border: 2px solid rgba(34,197,94,0.3);
     box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0,0,0,0.5); 
-    transform: translateZ(0); /* Anti-sgranamento sui bordi */
 }
 
 /* =========================================
@@ -285,7 +273,6 @@ body {
     transition: all 0.3s ease;
     box-sizing: border-box;
     text-decoration: none;
-    backface-visibility: hidden;
 }
 
 .btn { 
@@ -304,14 +291,13 @@ body {
 .linkedin { 
     border: 1px solid rgba(255, 255, 255, 0.2); 
     color: #ffffff; 
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .linkedin:hover {
     border-color: #22c55e;
     color: #22c55e;
-    background: rgba(34, 197, 94, 0.05);
+    background: rgba(34, 197, 94, 0.1);
 }
 
 .btn-icon {
@@ -322,7 +308,7 @@ body {
 }
 
 /* =========================================
-   CAROSELLO LOGHI (Ottimizzato GPU)
+   CAROSELLO LOGHI (Prestazioni Massime)
 ========================================= */
 .logos-section {
     position: relative;
@@ -344,7 +330,7 @@ body {
     letter-spacing: 3px;
 }
 
-.logos-container { width: 100%; overflow: hidden; transform: translateZ(0); }
+.logos-container { width: 100%; overflow: hidden; transform: translate3d(0,0,0); }
 
 .logos-track {
     display: flex;
@@ -353,7 +339,7 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-    will-change: transform;
+    will-change: transform; /* Isola l'animazione per evitare ricalcoli */
 }
 
 .logos-track:hover, .logos-track:active {
@@ -379,10 +365,10 @@ body {
     -webkit-user-drag: none;
     opacity: 1; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    transition: all 0.4s ease;
-    transform: translateZ(0); /* Previene repaint sgranati al passaggio mouse */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Classe per ingrandire specifici loghi all'interno della card fissa */
 .logos-track img.logo-enlarged {
     padding: 4px !important; 
 }
@@ -416,19 +402,14 @@ body {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 
 .card {
-    background: rgba(10, 10, 10, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(15, 15, 15, 0.85); /* Nessun blur, super leggero e visivamente identico */
     border: 1px solid rgba(255, 255, 255, 0.04);
     border-bottom: 2px solid transparent;
     padding: 45px 35px;
     border-radius: 8px; 
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    /* Ottimizzazione GPU rendering */
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
 .card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; line-height: 1.2; }
@@ -438,8 +419,7 @@ body {
 .arrow-down-container { margin-top: auto; padding-top: 30px; text-align: center; }
 .arrow-icon { 
     width: 30px; height: 30px; fill: #22c55e; 
-    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
-    will-change: transform;
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1); 
 }
 
 @keyframes bounceDown {
@@ -450,14 +430,14 @@ body {
 
 @media (min-width: 769px) {
     .card-closing { order: 1; }
-    .card-social { order: 2; border-bottom: 2px solid #22c55e; background: linear-gradient(180deg, rgba(15,15,15,0.8) 0%, rgba(10,10,10,0.95) 100%); } 
+    .card-social { order: 2; border-bottom: 2px solid #22c55e; background: linear-gradient(180deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%); } 
     .card-ltv { order: 3; }
 }
 
 @media (hover: hover) {
     .card:hover { 
-        transform: translate3d(0, -8px, 0) scale(1.01); /* translate3d usa la GPU, scroll più liscio */
-        background: rgba(15, 15, 15, 0.9); 
+        transform: translate3d(0, -8px, 0); 
+        background: rgba(20, 20, 20, 0.95); 
         border-color: rgba(255,255,255,0.1);
         border-bottom: 2px solid #22c55e;
         box-shadow: 0 20px 40px rgba(0,0,0,0.8);
@@ -485,7 +465,6 @@ body {
     max-width: 95%; 
     transition: all 0.3s ease;
     overflow: hidden;
-    transform: translateZ(0); /* GPU */
 }
 
 .linkedin-cta::before {
@@ -525,10 +504,9 @@ body {
 
 .block-fiducia .logos-grid img {
     opacity: 0; transform: translate3d(0, 15px, 0);
-    will-change: opacity, transform;
 }
 
-/* Animazione morbida loghi fiducia con accelerazione 3D */
+/* Animazione morbida loghi fiducia */
 .block-fiducia .logos-grid.active img {
     animation: elegantFadeIn 1.2s ease-out forwards; 
 }
@@ -580,7 +558,7 @@ body {
 }
 
 .block-fiducia .logos-grid img:hover {
-    transform: scale(1.1) translateZ(0);
+    transform: scale(1.1);
 }
 
 @media (min-width: 576px) {
@@ -596,7 +574,7 @@ body {
 }
 
 /* =========================================
-   CTA FINALE SCROLL (Ottimizzazione Hardware)
+   CTA FINALE SCROLL (Più lenta ed elegante)
 ========================================= */
 .final-cta {
     text-align: center;
@@ -610,7 +588,6 @@ body {
     transform: translate3d(0, 30px, 0);
     transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: opacity, transform;
 }
 
 .final-cta.visible .cta-line { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -636,19 +613,15 @@ body {
     width: 100%; 
     max-width: 450px; 
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    transform: translateZ(0); /* Previene repaint al passaggio di elementi scrollanti sotto */
 }
 .contact-name { font-size: 28px; font-weight: 800; margin-bottom: 5px; color: #fff;}
 .contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
 .contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
 
-/* Pulse ultra fluido per non appesantire */
-@keyframes aggressivePulse {
-    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8); }
-    70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-}
-
+/* 
+  ANIMAZIONE WHATSAPP OTTIMIZZATA PER SCROLL
+  Sostituita l'ombra (pesantissima) con uno scale sulla GPU 
+*/
 .whatsapp {
     position: fixed;
     bottom: 30px; 
@@ -666,11 +639,25 @@ body {
     font-weight: 900;
     font-size: 16px;
     letter-spacing: 2px;
-    animation: aggressivePulse 2s infinite;
-    transform: translateZ(0); /* GPU acceleration per evitare sfarfallii su fissi */
-    will-change: box-shadow, transform;
 }
-.whatsapp:hover { transform: scale(1.05) translateZ(0); background: #ffffff; }
+
+/* L'onda verde viene creata da un livello sotto al bottone a costo zero per il processore */
+.whatsapp::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #22c55e;
+    border-radius: 4px;
+    z-index: -1;
+    animation: pulseGPU 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulseGPU {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.25, 1.5); opacity: 0; }
+}
+
+.whatsapp:hover { transform: scale(1.05); background: #ffffff; }
 
 /* =========================================
    MEDIA QUERIES (MOBILE RESPONSIVE CENTRATO)
@@ -775,7 +762,7 @@ body {
             </div>
         </div>
         <div class="hero-right">
-            <!-- Aggiunto decoding async per prestazioni di scroll ottimali -->
+            <!-- Aggiunto decoding async per alleggerire lo scroll durante il caricamento -->
             <img src="foto.png" alt="Matteo Bertoni Sales Closer" decoding="async">
         </div>
     </div>
@@ -786,7 +773,6 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <!-- Aggiunto decoding="async" ovunque per scorrimento fluido del device -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
             <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
             <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
@@ -812,7 +798,7 @@ body {
             <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
             <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
             
-            <!-- Duplicato loghi per effetto scorrimento -->
+            <!-- Duplicato loghi -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
             <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
             <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
@@ -1042,7 +1028,7 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // FIX PER CAROSELLO SU MOBILE (PERFORMANCE)
+        // FIX PER CAROSELLO SU MOBILE
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1112,7 +1098,7 @@ body {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS CON INTERSECTION OBSERVER (OTTIMIZZATO)
+        // REVEAL ANIMATIONS (OTTIMIZZATO)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1128,7 +1114,7 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // NUOVO SCRIPT CTA FINALE (ELIMINATO EVENTO SCROLL PESANTE, INSERITO OBSERVER LEGGERO)
+        // CTA FINALE ANIMAZIONE SU FINE SCROLL (OTTIMIZZATA SENZA EVENT LISTENER SCROLL)
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) {
             const ctaObserver = new IntersectionObserver((entries) => {
