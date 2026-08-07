@@ -27,6 +27,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: #050505; 
@@ -35,20 +39,21 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC (Ottimizzato GPU) */
+/* FIX SFONDO IOS / ANDROID / MAC (Risolto il Bug della barra degli indirizzi) */
 .bg-fixed {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    /* Facciamo sbordare l'immagine del 5% per lato, così i cambi di viewport non la modificano visivamente */
+    top: -5vh; 
+    left: -5vw;
+    width: 110vw;
+    height: 110vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
     background-position: center;
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
-    transform: translate3d(0,0,0); /* Forza la GPU */
+    transform: translateZ(0); 
     backface-visibility: hidden;
     filter: contrast(1.1) grayscale(0.2);
 }
@@ -65,7 +70,7 @@ body {
     background: linear-gradient(145deg, rgba(20, 20, 20, 0.7), rgba(5, 5, 5, 0.9)) !important;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
-    backdrop-filter: blur(12px); /* Ridotto leggermente per performance perfette su mobile */
+    backdrop-filter: blur(12px); 
     -webkit-backdrop-filter: blur(12px);
     color: #ffffff !important;
     position: relative;
@@ -75,7 +80,9 @@ body {
     margin-right: 20px;
     margin-top: 80px;
     margin-bottom: 80px;
-    border-radius: 12px; 
+    border-radius: 12px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 @media (min-width: 1240px) {
@@ -101,7 +108,6 @@ body {
     font-weight: 800;
 }
 
-/* Card interne ottimizzate (Eliminato il doppio blur scattoso) */
 .white-band .card {
     background: rgba(15, 15, 15, 0.75) !important;
     border: 1px solid rgba(255, 255, 255, 0.03) !important;
@@ -111,7 +117,7 @@ body {
 .white-band .card h3 { color: #ffffff !important; }
 .white-band .card p { color: #94a3b8 !important; }
 
-/* TITOLO CONTATTI (Più piccolo e maiuscolo) */
+/* TITOLO CONTATTI */
 .section h2.titolo-contatti {
     font-size: clamp(14px, 2.5vw, 18px) !important; 
     font-weight: 800 !important;
@@ -153,6 +159,7 @@ body {
     stroke-dasharray: 100;
     stroke-dashoffset: 100; 
     filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
+    transform: translateZ(0);
 }
 
 .circle-content {
@@ -179,7 +186,7 @@ body {
 /* =========================================
    ANIMAZIONI (Lisce e Accelerate Hardware)
 ========================================= */
-.reveal { opacity: 0; }
+.reveal { opacity: 0; will-change: transform, opacity; }
 .reveal.active { animation: elegantReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
 
 @keyframes elegantReveal {
@@ -237,7 +244,6 @@ body {
     max-width: 90%;
 }
 
-/* IMMAGINE CERCHIO */
 .hero-right img {
     width: clamp(180px, 25vw, 300px);
     aspect-ratio: 1 / 1;
@@ -245,6 +251,7 @@ body {
     object-fit: cover;
     border: 2px solid rgba(34,197,94,0.3);
     box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0,0,0,0.5); 
+    transform: translateZ(0);
 }
 
 /* =========================================
@@ -273,6 +280,7 @@ body {
     transition: all 0.3s ease;
     box-sizing: border-box;
     text-decoration: none;
+    backface-visibility: hidden;
 }
 
 .btn { 
@@ -308,7 +316,7 @@ body {
 }
 
 /* =========================================
-   CAROSELLO LOGHI (Prestazioni Massime)
+   CAROSELLO LOGHI
 ========================================= */
 .logos-section {
     position: relative;
@@ -339,7 +347,7 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
-    will-change: transform; /* Isola l'animazione per evitare ricalcoli */
+    will-change: transform; 
 }
 
 .logos-track:hover, .logos-track:active {
@@ -351,7 +359,6 @@ body {
     100% { transform: translate3d(-50%, 0, 0); } 
 }
 
-/* Immagini a colori originali all'interno delle card fisse */
 .logos-track img {
     width: 160px; 
     height: 100px; 
@@ -366,9 +373,9 @@ body {
     opacity: 1; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transform: translateZ(0);
 }
 
-/* Classe per ingrandire specifici loghi all'interno della card fissa */
 .logos-track img.logo-enlarged {
     padding: 4px !important; 
 }
@@ -402,7 +409,7 @@ body {
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 
 .card {
-    background: rgba(15, 15, 15, 0.85); /* Nessun blur, super leggero e visivamente identico */
+    background: rgba(15, 15, 15, 0.85); 
     border: 1px solid rgba(255, 255, 255, 0.04);
     border-bottom: 2px solid transparent;
     padding: 45px 35px;
@@ -410,6 +417,8 @@ body {
     transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; line-height: 1.2; }
@@ -419,7 +428,8 @@ body {
 .arrow-down-container { margin-top: auto; padding-top: 30px; text-align: center; }
 .arrow-icon { 
     width: 30px; height: 30px; fill: #22c55e; 
-    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1); 
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+    will-change: transform;
 }
 
 @keyframes bounceDown {
@@ -436,7 +446,7 @@ body {
 
 @media (hover: hover) {
     .card:hover { 
-        transform: translate3d(0, -8px, 0); 
+        transform: translate3d(0, -8px, 0) scale(1.01); 
         background: rgba(20, 20, 20, 0.95); 
         border-color: rgba(255,255,255,0.1);
         border-bottom: 2px solid #22c55e;
@@ -465,6 +475,7 @@ body {
     max-width: 95%; 
     transition: all 0.3s ease;
     overflow: hidden;
+    transform: translateZ(0); 
 }
 
 .linkedin-cta::before {
@@ -485,7 +496,7 @@ body {
 .linkedin-cta .btn-icon { fill: #22c55e; width: 24px; height: 24px; }
 
 /* =========================================
-   BLOCCO FIDUCIA (BIANCO ELEGANTE, LOGHI A COPPIE PIU' GRANDI)
+   BLOCCO FIDUCIA
 ========================================= */
 .block-fiducia {
     background: #ffffff !important;
@@ -504,9 +515,9 @@ body {
 
 .block-fiducia .logos-grid img {
     opacity: 0; transform: translate3d(0, 15px, 0);
+    will-change: opacity, transform;
 }
 
-/* Animazione morbida loghi fiducia */
 .block-fiducia .logos-grid.active img {
     animation: elegantFadeIn 1.2s ease-out forwards; 
 }
@@ -516,7 +527,6 @@ body {
     100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-/* Apparizione a coppie (Aumento di 0.5s per ogni coppia) */
 .block-fiducia .logos-grid.active img:nth-child(1), .block-fiducia .logos-grid.active img:nth-child(2) { animation-delay: 0.2s; }
 .block-fiducia .logos-grid.active img:nth-child(3), .block-fiducia .logos-grid.active img:nth-child(4) { animation-delay: 0.7s; }
 .block-fiducia .logos-grid.active img:nth-child(5), .block-fiducia .logos-grid.active img:nth-child(6) { animation-delay: 1.2s; }
@@ -539,7 +549,6 @@ body {
     margin-top: 50px;
 }
 
-/* Loghi più grandi e definiti */
 .block-fiducia .logos-grid img {
     width: 100%;
     max-width: 160px; 
@@ -558,7 +567,7 @@ body {
 }
 
 .block-fiducia .logos-grid img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(0);
 }
 
 @media (min-width: 576px) {
@@ -574,7 +583,7 @@ body {
 }
 
 /* =========================================
-   CTA FINALE SCROLL (Più lenta ed elegante)
+   CTA FINALE SCROLL
 ========================================= */
 .final-cta {
     text-align: center;
@@ -588,15 +597,14 @@ body {
     transform: translate3d(0, 30px, 0);
     transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
 }
 
 .final-cta.visible .cta-line { opacity: 1; transform: translate3d(0, 0, 0); }
 
-/* SCRITTE FINALI (PRIMA RIGA BIANCA, SECONDA VERDE) */
 .line1 { font-size: clamp(20px, 3vw, 24px); color: #ffffff; margin-bottom: 15px; font-weight: 600; text-shadow: none; }
 .line2 { font-size: clamp(28px, 4.5vw, 46px); color: #22c55e; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
 
-/* Ritardo maggiore (1.2s) per creare suspense elegante per la seconda riga */
 .final-cta.visible .line1 { transition-delay: 0.2s; }
 .final-cta.visible .line2 { transition-delay: 1.2s; }
 
@@ -613,14 +621,15 @@ body {
     width: 100%; 
     max-width: 450px; 
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transform: translateZ(0); 
 }
 .contact-name { font-size: 28px; font-weight: 800; margin-bottom: 5px; color: #fff;}
 .contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
 .contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
 
 /* 
-  ANIMAZIONE WHATSAPP OTTIMIZZATA PER SCROLL
-  Sostituita l'ombra (pesantissima) con uno scale sulla GPU 
+   WHATSAPP (RISOLTO PROBLEMA SCATTI)
+   Rimosso lampeggiamento infinito per non affaticare CPU
 */
 .whatsapp {
     position: fixed;
@@ -631,7 +640,7 @@ body {
     border-radius: 4px; 
     z-index: 9998;
     text-decoration: none;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -639,25 +648,13 @@ body {
     font-weight: 900;
     font-size: 16px;
     letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
-
-/* L'onda verde viene creata da un livello sotto al bottone a costo zero per il processore */
-.whatsapp::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: #22c55e;
-    border-radius: 4px;
-    z-index: -1;
-    animation: pulseGPU 2s infinite cubic-bezier(0.66, 0, 0, 1);
+.whatsapp:hover { 
+    transform: translateY(-3px); 
+    background: #ffffff; 
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
 }
-
-@keyframes pulseGPU {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(1.25, 1.5); opacity: 0; }
-}
-
-.whatsapp:hover { transform: scale(1.05); background: #ffffff; }
 
 /* =========================================
    MEDIA QUERIES (MOBILE RESPONSIVE CENTRATO)
@@ -762,13 +759,13 @@ body {
             </div>
         </div>
         <div class="hero-right">
-            <!-- Aggiunto decoding async per alleggerire lo scroll durante il caricamento -->
+            <!-- Immagini caricate in background per non bloccare lo scroll -->
             <img src="foto.png" alt="Matteo Bertoni Sales Closer" decoding="async">
         </div>
     </div>
 </section>
 
-<!-- CAROSELLO LOGHI (INTEGRALE - COLORI ORIGINALI) -->
+<!-- CAROSELLO LOGHI -->
 <section class="logos-section reveal">
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
@@ -798,7 +795,7 @@ body {
             <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
             <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
             
-            <!-- Duplicato loghi -->
+            <!-- Duplicato -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
             <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
             <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
@@ -1013,7 +1010,7 @@ body {
     </div>
 </section>
 
-<!-- TASTO CHAT WHATSAPP FISSO -->
+<!-- TASTO CHAT WHATSAPP FISSO STATICO (Zero impatto CPU) -->
 <a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
     CHAT
 </a>
@@ -1028,7 +1025,6 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // FIX PER CAROSELLO SU MOBILE
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1039,7 +1035,6 @@ body {
             });
         }
         
-        // SCRIPT CONTATORE + CERCHIO DI PROGRESSO
         const counters = document.querySelectorAll('.dynamic-counter');
         
         const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -1098,7 +1093,6 @@ body {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS (OTTIMIZZATO)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1114,7 +1108,6 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // CTA FINALE ANIMAZIONE SU FINE SCROLL (OTTIMIZZATA SENZA EVENT LISTENER SCROLL)
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) {
             const ctaObserver = new IntersectionObserver((entries) => {
