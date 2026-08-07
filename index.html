@@ -19,7 +19,7 @@
 
 <style>
 /* =========================================
-   BASE E RESET (DARK PREMIUM)
+   BASE E RESET (DARK PREMIUM) + PERFORMANCE
 ========================================= */
 * {
     box-sizing: border-box;
@@ -27,14 +27,19 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: #050505; 
     color: #e2e8f0;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC */
+/* FIX SFONDO IOS / ANDROID / MAC (Ottimizzato) */
 .bg-fixed {
     position: fixed;
     top: 0;
@@ -47,9 +52,11 @@ body {
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
+    /* Hardware Acceleration profonda per evitare repaint */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;
+    backface-visibility: hidden;
     filter: contrast(1.1) grayscale(0.2);
 }
 
@@ -75,7 +82,10 @@ body {
     margin-right: 20px;
     margin-top: 80px;
     margin-bottom: 80px;
-    border-radius: 12px; 
+    border-radius: 12px;
+    /* Isolamento per prestazioni scroll */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 @media (min-width: 1240px) {
@@ -152,6 +162,8 @@ body {
     stroke-dasharray: 100;
     stroke-dashoffset: 100; 
     filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
+    /* Ottimizzazione filter GPU */
+    transform: translateZ(0);
 }
 
 .circle-content {
@@ -176,14 +188,14 @@ body {
 }
 
 /* =========================================
-   ANIMAZIONI (Card eleganti e ritardate)
+   ANIMAZIONI (Ottimizzate GPU con translate3d)
 ========================================= */
-.reveal { opacity: 0; }
+.reveal { opacity: 0; will-change: transform, opacity; }
 .reveal.active { animation: elegantReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
 
 @keyframes elegantReveal {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translate3d(0, 30px, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 .grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
@@ -244,6 +256,7 @@ body {
     object-fit: cover;
     border: 2px solid rgba(34,197,94,0.3);
     box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0,0,0,0.5); 
+    transform: translateZ(0); /* Anti-sgranamento sui bordi */
 }
 
 /* =========================================
@@ -272,6 +285,7 @@ body {
     transition: all 0.3s ease;
     box-sizing: border-box;
     text-decoration: none;
+    backface-visibility: hidden;
 }
 
 .btn { 
@@ -284,7 +298,7 @@ body {
     background: #ffffff;
     color: #000000;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
 }
 
 .linkedin { 
@@ -308,7 +322,7 @@ body {
 }
 
 /* =========================================
-   CAROSELLO LOGHI (CARD BIANCHE E A COLORI)
+   CAROSELLO LOGHI (Ottimizzato GPU)
 ========================================= */
 .logos-section {
     position: relative;
@@ -330,7 +344,7 @@ body {
     letter-spacing: 3px;
 }
 
-.logos-container { width: 100%; overflow: hidden; }
+.logos-container { width: 100%; overflow: hidden; transform: translateZ(0); }
 
 .logos-track {
     display: flex;
@@ -339,6 +353,7 @@ body {
     width: max-content;
     animation: scrollMarquee 70s linear infinite;
     align-items: center;
+    will-change: transform;
 }
 
 .logos-track:hover, .logos-track:active {
@@ -346,17 +361,17 @@ body {
 }
 
 @keyframes scrollMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } 
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); } 
 }
 
 /* Immagini a colori originali all'interno delle card fisse */
 .logos-track img {
-    width: 160px; /* Dimensione fissa della card */
-    height: 100px; /* Dimensione fissa della card */
+    width: 160px; 
+    height: 100px; 
     background: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px; /* Spazio interno standard */
+    padding: 15px; 
     border-radius: 8px;
     object-fit: contain;
     flex-shrink: 0;
@@ -365,17 +380,17 @@ body {
     opacity: 1; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     transition: all 0.4s ease;
+    transform: translateZ(0); /* Previene repaint sgranati al passaggio mouse */
 }
 
-/* Classe per ingrandire specifici loghi all'interno della card fissa */
 .logos-track img.logo-enlarged {
-    padding: 4px !important; /* Riducendo il padding, il logo ha più spazio per espandersi */
+    padding: 4px !important; 
 }
 
 .logos-track img:hover {
     border-color: #22c55e;
     box-shadow: 0 10px 20px rgba(34,197,94,0.2);
-    transform: translateY(-5px);
+    transform: translate3d(0, -5px, 0);
 }
 
 /* =========================================
@@ -411,6 +426,9 @@ body {
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    /* Ottimizzazione GPU rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; line-height: 1.2; }
@@ -418,12 +436,16 @@ body {
 .card p:last-child { margin-bottom: 0; }
 
 .arrow-down-container { margin-top: auto; padding-top: 30px; text-align: center; }
-.arrow-icon { width: 30px; height: 30px; fill: #22c55e; animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1); }
+.arrow-icon { 
+    width: 30px; height: 30px; fill: #22c55e; 
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+    will-change: transform;
+}
 
 @keyframes bounceDown {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+    0%, 20%, 50%, 80%, 100% { transform: translate3d(0, 0, 0); }
+    40% { transform: translate3d(0, -10px, 0); }
+    60% { transform: translate3d(0, -5px, 0); }
 }
 
 @media (min-width: 769px) {
@@ -434,7 +456,7 @@ body {
 
 @media (hover: hover) {
     .card:hover { 
-        transform: translateY(-8px); 
+        transform: translate3d(0, -8px, 0) scale(1.01); /* translate3d usa la GPU, scroll più liscio */
         background: rgba(15, 15, 15, 0.9); 
         border-color: rgba(255,255,255,0.1);
         border-bottom: 2px solid #22c55e;
@@ -463,15 +485,17 @@ body {
     max-width: 95%; 
     transition: all 0.3s ease;
     overflow: hidden;
+    transform: translateZ(0); /* GPU */
 }
 
 .linkedin-cta::before {
     content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
     animation: premiumGlow 3s infinite linear;
+    pointer-events: none;
 }
 
-@keyframes premiumGlow { 0% { left: -100%; } 100% { left: 100%; } }
+@keyframes premiumGlow { 0% { transform: translate3d(-100%, 0, 0); } 100% { transform: translate3d(200%, 0, 0); } }
 
 .linkedin-cta:hover {
     border-color: #22c55e;
@@ -500,17 +524,18 @@ body {
 }
 
 .block-fiducia .logos-grid img {
-    opacity: 0; transform: translateY(15px);
+    opacity: 0; transform: translate3d(0, 15px, 0);
+    will-change: opacity, transform;
 }
 
-/* Animazione morbida loghi fiducia */
+/* Animazione morbida loghi fiducia con accelerazione 3D */
 .block-fiducia .logos-grid.active img {
     animation: elegantFadeIn 1.2s ease-out forwards; 
 }
 
 @keyframes elegantFadeIn {
-    0% { opacity: 0; transform: translateY(15px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translate3d(0, 15px, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 /* Apparizione a coppie (Aumento di 0.5s per ogni coppia) */
@@ -551,11 +576,11 @@ body {
     filter: none !important; 
     opacity: 1 !important;
     box-shadow: none !important;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .block-fiducia .logos-grid img:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(0);
 }
 
 @media (min-width: 576px) {
@@ -571,7 +596,7 @@ body {
 }
 
 /* =========================================
-   CTA FINALE SCROLL (Più lenta ed elegante)
+   CTA FINALE SCROLL (Ottimizzazione Hardware)
 ========================================= */
 .final-cta {
     text-align: center;
@@ -580,15 +605,15 @@ body {
     z-index: 2;
 }
 
-/* Tempi aumentati (2.5s) e curva più morbida (ease-out) per la comparsa finale */
 .cta-line {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translate3d(0, 30px, 0);
     transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
                 transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
 }
 
-.final-cta.visible .cta-line { opacity: 1; transform: translateY(0); }
+.final-cta.visible .cta-line { opacity: 1; transform: translate3d(0, 0, 0); }
 
 /* SCRITTE FINALI (PRIMA RIGA BIANCA, SECONDA VERDE) */
 .line1 { font-size: clamp(20px, 3vw, 24px); color: #ffffff; margin-bottom: 15px; font-weight: 600; text-shadow: none; }
@@ -611,11 +636,13 @@ body {
     width: 100%; 
     max-width: 450px; 
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transform: translateZ(0); /* Previene repaint al passaggio di elementi scrollanti sotto */
 }
 .contact-name { font-size: 28px; font-weight: 800; margin-bottom: 5px; color: #fff;}
 .contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
 .contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
 
+/* Pulse ultra fluido per non appesantire */
 @keyframes aggressivePulse {
     0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8); }
     70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
@@ -640,8 +667,10 @@ body {
     font-size: 16px;
     letter-spacing: 2px;
     animation: aggressivePulse 2s infinite;
+    transform: translateZ(0); /* GPU acceleration per evitare sfarfallii su fissi */
+    will-change: box-shadow, transform;
 }
-.whatsapp:hover { transform: scale(1.05); background: #ffffff; }
+.whatsapp:hover { transform: scale(1.05) translateZ(0); background: #ffffff; }
 
 /* =========================================
    MEDIA QUERIES (MOBILE RESPONSIVE CENTRATO)
@@ -746,7 +775,8 @@ body {
             </div>
         </div>
         <div class="hero-right">
-            <img src="foto.png" alt="Matteo Bertoni Sales Closer">
+            <!-- Aggiunto decoding async per prestazioni di scroll ottimali -->
+            <img src="foto.png" alt="Matteo Bertoni Sales Closer" decoding="async">
         </div>
     </div>
 </section>
@@ -756,57 +786,57 @@ body {
     <p class="logos-title">Hanno scelto di collaborare con me</p>
     <div class="logos-container">
         <div class="logos-track">
-            <!-- Appliata la classe "logo-enlarged" ai loghi richiesti per farli sembrare più grandi all'interno della card -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
-            <img src="herbalife.png" alt="Logo" loading="lazy">
-            <img src="Realmaps.png" alt="Logo" loading="lazy">
-            <img src="assocral.png" alt="Logo" loading="lazy">
-            <img src="prima-scelta.png" alt="Logo" loading="lazy">
-            <img src="homei.jpeg" alt="Logo" loading="lazy">
-            <img src="arcari.png" alt="Arcari" loading="lazy">
-            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
-            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
-            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
-            <img src="cappellini.png" alt="Logo" loading="lazy">
-            <img src="webapp.jpeg" alt="Logo" loading="lazy">
-            <img src="wayan.png" alt="Logo" loading="lazy">
-            <img src="verona.jpg" alt="Logo" loading="lazy">
-            <img src="berton.png" alt="Berton" loading="lazy" class="logo-enlarged">
-            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="velocissimo.webp" alt="Logo" loading="lazy">
-            <img src="sales.png" alt="Logo" loading="lazy">
-            <img src="farmacisti.png" alt="Logo" loading="lazy">
-            <img src="app-in-farma.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
-            <img src="gizia.png" alt="Gizia" loading="lazy">
-            <img src="slym.png" alt="Slym" loading="lazy" class="logo-enlarged">
+            <!-- Aggiunto decoding="async" ovunque per scorrimento fluido del device -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
             
             <!-- Duplicato loghi per effetto scorrimento -->
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
-            <img src="herbalife.png" alt="Logo" loading="lazy">
-            <img src="Realmaps.png" alt="Logo" loading="lazy">
-            <img src="assocral.png" alt="Logo" loading="lazy">
-            <img src="prima-scelta.png" alt="Logo" loading="lazy">
-            <img src="homei.jpeg" alt="Logo" loading="lazy">
-            <img src="arcari.png" alt="Arcari" loading="lazy">
-            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
-            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
-            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
-            <img src="cappellini.png" alt="Logo" loading="lazy">
-            <img src="webapp.jpeg" alt="Logo" loading="lazy">
-            <img src="wayan.png" alt="Logo" loading="lazy">
-            <img src="verona.jpg" alt="Logo" loading="lazy">
-            <img src="berton.png" alt="Berton" loading="lazy" class="logo-enlarged">
-            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="velocissimo.webp" alt="Logo" loading="lazy">
-            <img src="sales.png" alt="Logo" loading="lazy">
-            <img src="farmacisti.png" alt="Logo" loading="lazy">
-            <img src="app-in-farma.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="ilaria.png" alt="Logo" loading="lazy" class="logo-enlarged">
-            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
-            <img src="gizia.png" alt="Gizia" loading="lazy">
-            <img src="slym.png" alt="Slym" loading="lazy" class="logo-enlarged">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
         </div>
     </div>
 </section>
@@ -944,36 +974,36 @@ body {
     </div>
 </section>
 
-<!-- BLOCCO 3: LOGHI GRIGLIA FISSA (APPARIZIONE A COPPIE PIU' GRANDI E DEFINITI) -->
+<!-- BLOCCO 3: LOGHI GRIGLIA FISSA -->
 <div class="white-band block-fiducia" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
         
         <div class="logos-grid reveal">
-            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy">
-            <img src="herbalife.png" alt="Logo" loading="lazy">
-            <img src="Realmaps.png" alt="Logo" loading="lazy">
-            <img src="assocral.png" alt="Logo" loading="lazy">
-            <img src="prima-scelta.png" alt="Logo" loading="lazy">
-            <img src="homei.jpeg" alt="Logo" loading="lazy">
-            <img src="arcari.png" alt="Arcari" loading="lazy">
-            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy">
-            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy">
-            <img src="pruiti-marketing.png" alt="Logo" loading="lazy">
-            <img src="cappellini.png" alt="Logo" loading="lazy">
-            <img src="webapp.jpeg" alt="Logo" loading="lazy">
-            <img src="wayan.png" alt="Logo" loading="lazy">
-            <img src="verona.jpg" alt="Logo" loading="lazy">
-            <img src="berton.png" alt="Berton" loading="lazy">
-            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy">
-            <img src="velocissimo.webp" alt="Logo" loading="lazy">
-            <img src="sales.png" alt="Logo" loading="lazy">
-            <img src="farmacisti.png" alt="Logo" loading="lazy">
-            <img src="app-in-farma.png" alt="Logo" loading="lazy">
-            <img src="ilaria.png" alt="Logo" loading="lazy">
-            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy">
-            <img src="gizia.png" alt="Gizia" loading="lazy">
-            <img src="slym.png" alt="Slym" loading="lazy">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async">
         </div>
     </section>
 </div>
@@ -1012,7 +1042,7 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // FIX PER CAROSELLO SU MOBILE
+        // FIX PER CAROSELLO SU MOBILE (PERFORMANCE)
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1082,7 +1112,7 @@ body {
             counterObserver.observe(counter);
         });
 
-        // REVEAL ANIMATIONS
+        // REVEAL ANIMATIONS CON INTERSECTION OBSERVER (OTTIMIZZATO)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1098,14 +1128,19 @@ body {
         const revealElements = document.querySelectorAll('.reveal');
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // CTA FINALE ANIMAZIONE SU FINE SCROLL
+        // NUOVO SCRIPT CTA FINALE (ELIMINATO EVENTO SCROLL PESANTE, INSERITO OBSERVER LEGGERO)
         const ctaElement = document.getElementById('final-cta');
         if(ctaElement) {
-            window.addEventListener('scroll', function() {
-                if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 200) {
-                    ctaElement.classList.add('visible');
-                }
-            }, { passive: true });
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        ctaObserver.unobserve(entry.target); 
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            ctaObserver.observe(ctaElement);
         }
     });
 </script>
