@@ -53,7 +53,8 @@ body.loading {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #050505; /* Nero profondo */
+    /* Sfumatura elegante verde scuro verso nero profondo */
+    background: radial-gradient(circle at center, #0a1f12 0%, #050505 70%);
     z-index: 9999999;
     display: flex;
     flex-direction: column;
@@ -103,7 +104,7 @@ body.loading {
     width: 0%;
     background: #22c55e;
     box-shadow: 0 0 10px rgba(34,197,94,0.6);
-    transition: width 0.1s linear;
+    transition: width 0.15s ease-out;
 }
 
 /* =========================================
@@ -126,10 +127,11 @@ body.loading {
     filter: contrast(1.1) grayscale(0.2);
 }
 
-/* FIX LOGO APPLE SU SMARTPHONE (Spostiamo lo sfondo per nasconderlo) */
+/* NASCONDINO LOGO APPLE SU SMARTPHONE */
 @media (max-width: 768px) {
     .bg-fixed {
-        background-position: 15% center; /* Sposta l'immagine a sinistra, togliendo la mela dal centro */
+        /* Centrato orizzontalmente, sollevato verticalmente per stare dietro la foto */
+        background-position: center 20%; 
     }
 }
 
@@ -302,7 +304,7 @@ body.loading {
     font-size: clamp(38px, 5.5vw, 62px);
     line-height: 1.05;
     margin-bottom: 20px;
-    font-weight: 800; /* Questo dà il grassetto alla base */
+    font-weight: 800; 
     letter-spacing: -1px;
 }
 
@@ -330,7 +332,7 @@ body.loading {
 }
 
 /* =========================================
-   BOTTONI GLOBALI
+   BOTTONI GLOBALI (UNIFICATI CON EFFETTO LUCE)
 ========================================= */
 .btn-group {
     display: flex;
@@ -338,27 +340,30 @@ body.loading {
     gap: 15px;
 }
 
-.btn, .linkedin {
-    padding: 18px 24px;
+/* Stili condivisi tra Bottone Verde e Bottoni LinkedIn */
+.btn, .linkedin, .linkedin-cta {
     border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 320px;
     text-align: center;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 14px;
     transition: all 0.3s ease;
     box-sizing: border-box;
     text-decoration: none;
     backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
+/* Bottone Verde Primary */
 .btn { 
+    padding: 18px 24px;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 14px;
     background: #22c55e; 
     color: #000000; 
     box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
@@ -371,24 +376,65 @@ body.loading {
     transform: translate3d(0, -2px, 0);
 }
 
-.linkedin { 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    color: #ffffff; 
-    background: rgba(255, 255, 255, 0.05);
+/* Stile Condiviso Bottoni LinkedIn (Hero + Footer) */
+.linkedin, .linkedin-cta {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
 }
 
-.linkedin:hover {
+/* Scia Luminosa per entrambi i bottoni LinkedIn */
+.linkedin::before, .linkedin-cta::before {
+    content: ''; 
+    position: absolute; 
+    top: 0; 
+    left: -100%; 
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
+    animation: premiumGlow 3s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes premiumGlow { 
+    0% { transform: translate3d(-100%, 0, 0); } 
+    100% { transform: translate3d(200%, 0, 0); } 
+}
+
+.linkedin:hover, .linkedin-cta:hover {
     border-color: #22c55e;
-    color: #22c55e;
-    background: rgba(34, 197, 94, 0.1);
+    box-shadow: 0 0 30px rgba(34,197,94,0.2);
+    background: rgba(34,197,94,0.05);
 }
 
-.btn-icon {
-    width: 20px;
-    height: 20px;
+.linkedin .btn-icon, .linkedin-cta .btn-icon {
+    fill: #22c55e; /* Icona Verde */
     flex-shrink: 0;
-    fill: currentColor;
 }
+
+/* Dimensioni specifiche per il LinkedIn della Hero */
+.linkedin {
+    padding: 18px 24px;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+    font-size: 14px;
+}
+.linkedin .btn-icon { width: 20px; height: 20px; }
+
+/* Dimensioni specifiche per il LinkedIn in fondo */
+.linkedin-cta {
+    gap: 15px; 
+    margin: 60px auto 20px auto;
+    padding: 22px 45px; 
+    font-size: 18px; 
+    max-width: 95%; 
+}
+.linkedin-cta .btn-icon { width: 24px; height: 24px; }
+
 
 /* =========================================
    CAROSELLO LOGHI
@@ -528,47 +574,6 @@ body.loading {
         box-shadow: 0 20px 40px rgba(0,0,0,0.8);
     }
 }
-
-.linkedin-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px; 
-    margin: 60px auto 20px auto;
-    padding: 22px 45px; 
-    font-size: 18px; 
-    background: transparent;
-    color: #ffffff; 
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    z-index: 3;
-    max-width: 95%; 
-    transition: all 0.3s ease;
-    overflow: hidden;
-    transform: translateZ(0); 
-}
-
-.linkedin-cta::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
-    animation: premiumGlow 3s infinite linear;
-    pointer-events: none;
-}
-
-@keyframes premiumGlow { 0% { transform: translate3d(-100%, 0, 0); } 100% { transform: translate3d(200%, 0, 0); } }
-
-.linkedin-cta:hover {
-    border-color: #22c55e;
-    box-shadow: 0 0 30px rgba(34,197,94,0.2);
-    background: rgba(34,197,94,0.05);
-}
-
-.linkedin-cta .btn-icon { fill: #22c55e; width: 24px; height: 24px; }
 
 /* =========================================
    BLOCCO FIDUCIA
@@ -767,15 +772,6 @@ body.loading {
     .logos-section { margin-top: 20px; padding: 25px 0; }
     .section { padding: 60px 20px; }
     
-    .linkedin-cta { 
-        display: flex; 
-        text-align: center; 
-        font-size: 14px; 
-        padding: 16px 20px; 
-        flex-wrap: wrap; 
-        letter-spacing: 0;
-    }
-
     .white-band {
         margin-left: 15px; 
         margin-right: 15px; 
@@ -827,7 +823,7 @@ body.loading {
     <div class="hero-content">
         <div class="hero-left">
             <h1 class="hero-title">
-                <!-- TITOLO MODIFICATO: Corsivo, Maiuscolo, Ottimizzato SEO -->
+                <!-- TITOLO MODIFICATO (Corsivo, Maiuscolo, SEO-Friendly) -->
                 <span class="desktop-only">
                     <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
                     <span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green" style="font-style: italic;">clienti reali</span></span>
@@ -842,6 +838,7 @@ body.loading {
             <div class="btn-group">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota Call Gratuita</a>
                 
+                <!-- TASTO LINKEDIN UNIFICATO -->
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
                     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -886,7 +883,7 @@ body.loading {
             <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
             <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
             
-            <!-- Duplicato -->
+            <!-- Duplicato per scroll continuo -->
             <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
             <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
             <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
@@ -1117,45 +1114,40 @@ body.loading {
     document.addEventListener("DOMContentLoaded", function() {
         
         // ==========================================
-        // GESTIONE PRELOADER (CARICAMENTO)
+        // GESTIONE PRELOADER PIÙ LENTO ED ELEGANTE
         // ==========================================
         const preloader = document.getElementById('preloader');
         const preloaderPercentage = document.getElementById('preloader-percentage');
         const preloaderBar = document.getElementById('preloader-bar');
         let progress = 0;
         
-        // Simula un caricamento fluido di circa 1 secondo
+        // Intervallo di caricamento rallentato (da 80ms a 120ms) e avanzamento ridotto
         const loadingInterval = setInterval(() => {
-            progress += Math.floor(Math.random() * 15) + 5;
+            progress += Math.floor(Math.random() * 8) + 2; 
             
             if (progress >= 100) {
                 progress = 100;
                 clearInterval(loadingInterval);
                 
-                // Aggiorna grafica al 100%
                 preloaderPercentage.innerText = '100%';
                 preloaderBar.style.width = '100%';
                 
-                // Aspetta un istante per far vedere il 100% e poi nasconde
                 setTimeout(() => {
                     preloader.classList.add('preloader-hidden');
                     document.body.classList.remove('loading');
                     
-                    // Avvia le animazioni di ingresso solo DOPO che il preloader è svanito
                     initReveals();
-                    
                 }, 400); 
             } else {
                 preloaderPercentage.innerText = progress + '%';
                 preloaderBar.style.width = progress + '%';
             }
-        }, 80);
+        }, 120);
 
         // ==========================================
         // FUNZIONI PRINCIPALI DEL SITO
         // ==========================================
         
-        // FIX PER CAROSELLO SU MOBILE
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1166,7 +1158,6 @@ body.loading {
             });
         }
         
-        // SCRIPT CONTATORE NUMERI
         const counters = document.querySelectorAll('.dynamic-counter');
         const counterObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -1217,7 +1208,6 @@ body.loading {
         
         counters.forEach(counter => counterObserver.observe(counter));
 
-        // FUNZIONE PER AVVIARE LE ANIMAZIONI (chiamata alla fine del preloader)
         function initReveals() {
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
