@@ -15,7 +15,7 @@
 <!-- Preload Font per caricamento più veloce -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================
@@ -39,23 +39,98 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* FIX SFONDO IOS / ANDROID / MAC (Risolto il Bug della barra degli indirizzi) */
+/* Blocca lo scroll mentre carica il Preloader */
+body.loading {
+    overflow: hidden;
+}
+
+/* =========================================
+   PRELOADER (SCHERMATA DI CARICAMENTO)
+========================================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #050505; /* Nero profondo */
+    z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s ease;
+}
+
+#preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-text {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.preloader-percentage {
+    font-size: clamp(40px, 8vw, 60px);
+    font-weight: 900;
+    color: #22c55e;
+    text-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.preloader-bar-container {
+    width: 150px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    margin: 25px auto 0;
+    overflow: hidden;
+}
+
+.preloader-bar {
+    height: 100%;
+    width: 0%;
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(34,197,94,0.6);
+    transition: width 0.1s linear;
+}
+
+/* =========================================
+   FIX SFONDO IOS / ANDROID / MAC 
+========================================= */
 .bg-fixed {
     position: fixed;
-    /* Facciamo sbordare l'immagine del 5% per lato, così i cambi di viewport non la modificano visivamente */
     top: -5vh; 
     left: -5vw;
     width: 110vw;
     height: 110vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
-    background-position: center;
+    background-position: center; /* Su Desktop resta centrato */
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
     transform: translateZ(0); 
     backface-visibility: hidden;
     filter: contrast(1.1) grayscale(0.2);
+}
+
+/* FIX LOGO APPLE SU SMARTPHONE (Spostiamo lo sfondo per nasconderlo) */
+@media (max-width: 768px) {
+    .bg-fixed {
+        background-position: 15% center; /* Sposta l'immagine a sinistra, togliendo la mela dal centro */
+    }
 }
 
 .green { 
@@ -184,7 +259,7 @@ body {
 }
 
 /* =========================================
-   ANIMAZIONI (Lisce e Accelerate Hardware)
+   ANIMAZIONI 
 ========================================= */
 .reveal { opacity: 0; will-change: transform, opacity; }
 .reveal.active { animation: elegantReveal 1.8s cubic-bezier(0.25, 1, 0.5, 1) both; }
@@ -227,11 +302,11 @@ body {
     font-size: clamp(38px, 5.5vw, 62px);
     line-height: 1.05;
     margin-bottom: 20px;
-    font-weight: 800;
+    font-weight: 800; /* Questo dà il grassetto alla base */
     letter-spacing: -1px;
 }
 
-.hero-subtitle { font-size: 0.7em; font-weight: 800; color: #ffffff; }
+.hero-subtitle { font-size: 0.7em; font-weight: 800; color: #ffffff; font-style: normal; }
 
 .desktop-only { display: block; }
 .mobile-only { display: none; }
@@ -627,10 +702,9 @@ body {
 .contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
 .contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
 
-/* 
-   WHATSAPP (RISOLTO PROBLEMA SCATTI)
-   Rimosso lampeggiamento infinito per non affaticare CPU
-*/
+/* =========================================
+   WHATSAPP BUTTON (Fisso, senza scatti)
+========================================= */
 .whatsapp {
     position: fixed;
     bottom: 30px; 
@@ -657,7 +731,7 @@ body {
 }
 
 /* =========================================
-   MEDIA QUERIES (MOBILE RESPONSIVE CENTRATO)
+   MEDIA QUERIES (MOBILE)
 ========================================= */
 @media (max-width: 768px) {
     .desktop-only { display: none !important; }
@@ -733,7 +807,18 @@ body {
 </style>
 </head>
 
-<body>
+<body class="loading">
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="preloader-content">
+        <div class="preloader-text">Loading</div>
+        <div class="preloader-percentage" id="preloader-percentage">0%</div>
+        <div class="preloader-bar-container">
+            <div class="preloader-bar" id="preloader-bar"></div>
+        </div>
+    </div>
+</div>
 
 <div class="bg-fixed"></div>
 
@@ -742,8 +827,15 @@ body {
     <div class="hero-content">
         <div class="hero-left">
             <h1 class="hero-title">
-                <span class="desktop-only">Remote Closing<br>Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green">clienti reali</span></span></span>
-                <span class="mobile-only">Remote Closing<br>Specialist<br><br><span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green">clienti reali</span></span></span>
+                <!-- TITOLO MODIFICATO: Corsivo, Maiuscolo, Ottimizzato SEO -->
+                <span class="desktop-only">
+                    <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
+                    <span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green" style="font-style: italic;">clienti reali</span></span>
+                </span>
+                <span class="mobile-only">
+                    <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
+                    <span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green" style="font-style: italic;">clienti reali</span></span>
+                </span>
             </h1>
             
             <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
@@ -759,7 +851,6 @@ body {
             </div>
         </div>
         <div class="hero-right">
-            <!-- Immagini caricate in background per non bloccare lo scroll -->
             <img src="foto.png" alt="Matteo Bertoni Sales Closer" decoding="async">
         </div>
     </div>
@@ -1010,7 +1101,7 @@ body {
     </div>
 </section>
 
-<!-- TASTO CHAT WHATSAPP FISSO STATICO (Zero impatto CPU) -->
+<!-- TASTO CHAT WHATSAPP FISSO STATICO -->
 <a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
     CHAT
 </a>
@@ -1025,6 +1116,46 @@ body {
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
+        // ==========================================
+        // GESTIONE PRELOADER (CARICAMENTO)
+        // ==========================================
+        const preloader = document.getElementById('preloader');
+        const preloaderPercentage = document.getElementById('preloader-percentage');
+        const preloaderBar = document.getElementById('preloader-bar');
+        let progress = 0;
+        
+        // Simula un caricamento fluido di circa 1 secondo
+        const loadingInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 15) + 5;
+            
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                
+                // Aggiorna grafica al 100%
+                preloaderPercentage.innerText = '100%';
+                preloaderBar.style.width = '100%';
+                
+                // Aspetta un istante per far vedere il 100% e poi nasconde
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden');
+                    document.body.classList.remove('loading');
+                    
+                    // Avvia le animazioni di ingresso solo DOPO che il preloader è svanito
+                    initReveals();
+                    
+                }, 400); 
+            } else {
+                preloaderPercentage.innerText = progress + '%';
+                preloaderBar.style.width = progress + '%';
+            }
+        }, 80);
+
+        // ==========================================
+        // FUNZIONI PRINCIPALI DEL SITO
+        // ==========================================
+        
+        // FIX PER CAROSELLO SU MOBILE
         const logosTrack = document.querySelector('.logos-track');
         if (logosTrack) {
             logosTrack.addEventListener('touchstart', function() {
@@ -1035,8 +1166,8 @@ body {
             });
         }
         
+        // SCRIPT CONTATORE NUMERI
         const counters = document.querySelectorAll('.dynamic-counter');
-        
         const counterObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1049,17 +1180,14 @@ body {
                     const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); 
                     
                     const duration = 4000;
-                    
                     const isMobile = window.innerWidth <= 768;
                     const delay = (target === 27 && isMobile) ? 500 : 0;
                     
                     setTimeout(() => {
                         let startTimestamp = null;
-                        
                         const step = (timestamp) => {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                            
                             const easeProgress = 1 - Math.pow(1 - progress, 4);
                             
                             const currentVal = target * easeProgress;
@@ -1080,46 +1208,43 @@ body {
                                 progressCircle.style.strokeDashoffset = 100 - circleTarget;
                             }
                         };
-                        
                         window.requestAnimationFrame(step);
                     }, delay);
-                    
                     observer.unobserve(counter);
                 }
             });
         }, { threshold: 0.3 }); 
         
-        counters.forEach(counter => {
-            counterObserver.observe(counter);
-        });
+        counters.forEach(counter => counterObserver.observe(counter));
 
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target); 
-                }
-            });
-        }, { 
-            threshold: 0.1, 
-            rootMargin: "0px 0px -50px 0px" 
-        });
-
-        const revealElements = document.querySelectorAll('.reveal');
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        const ctaElement = document.getElementById('final-cta');
-        if(ctaElement) {
-            const ctaObserver = new IntersectionObserver((entries) => {
+        // FUNZIONE PER AVVIARE LE ANIMAZIONI (chiamata alla fine del preloader)
+        function initReveals() {
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        ctaObserver.unobserve(entry.target); 
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target); 
                     }
                 });
-            }, { threshold: 0.3 });
-            
-            ctaObserver.observe(ctaElement);
+            }, { 
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px" 
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            const ctaElement = document.getElementById('final-cta');
+            if(ctaElement) {
+                const ctaObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            ctaObserver.unobserve(entry.target); 
+                        }
+                    });
+                }, { threshold: 0.3 });
+                ctaObserver.observe(ctaElement);
+            }
         }
     });
 </script>
