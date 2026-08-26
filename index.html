@@ -12,14 +12,14 @@
 <meta property="og:url" content="https://matteobertoni.net/">
 <meta property="og:type" content="website">
 
-<!-- Preload Font -->
+<!-- Preload Font per caricamento più veloce -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================
-   BASE E RESET (DARK PREMIUM)
+   BASE E RESET (DARK PREMIUM) + PERFORMANCE
 ========================================= */
 * {
     box-sizing: border-box;
@@ -39,12 +39,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Blocca lo scroll mentre carica il Preloader */
 body.loading {
     overflow: hidden;
 }
 
 /* =========================================
-   PRELOADER
+   PRELOADER (SCHERMATA DI CARICAMENTO)
 ========================================= */
 #preloader {
     position: fixed;
@@ -52,6 +53,7 @@ body.loading {
     left: 0;
     width: 100%;
     height: 100%;
+    /* Sfumatura elegante verde scuro verso nero profondo */
     background: radial-gradient(circle at center, #0a1f12 0%, #050505 70%);
     z-index: 9999999;
     display: flex;
@@ -106,7 +108,7 @@ body.loading {
 }
 
 /* =========================================
-   SFONDO FISSO
+   FIX SFONDO IOS / ANDROID / MAC 
 ========================================= */
 .bg-fixed {
     position: fixed;
@@ -116,7 +118,7 @@ body.loading {
     height: 110vh;
     background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8');
     background-size: cover;
-    background-position: center;
+    background-position: center; /* Su Desktop resta centrato */
     opacity: 0.35; 
     z-index: 0;
     pointer-events: none;
@@ -125,8 +127,10 @@ body.loading {
     filter: contrast(1.1) grayscale(0.2);
 }
 
+/* NASCONDINO LOGO APPLE SU SMARTPHONE */
 @media (max-width: 768px) {
     .bg-fixed {
+        /* Centrato orizzontalmente, sollevato verticalmente per stare dietro la foto */
         background-position: center 20%; 
     }
 }
@@ -137,7 +141,7 @@ body.loading {
 }
 
 /* =========================================
-   STRUTTURA PANNELLI
+   STRUTTURA PANNELLI (Vetro scuro e metallo)
 ========================================= */
 .white-band {
     background: linear-gradient(145deg, rgba(20, 20, 20, 0.7), rgba(5, 5, 5, 0.9)) !important;
@@ -154,6 +158,8 @@ body.loading {
     margin-top: 80px;
     margin-bottom: 80px;
     border-radius: 12px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 @media (min-width: 1240px) {
@@ -188,6 +194,7 @@ body.loading {
 .white-band .card h3 { color: #ffffff !important; }
 .white-band .card p { color: #94a3b8 !important; }
 
+/* TITOLO CONTATTI */
 .section h2.titolo-contatti {
     font-size: clamp(14px, 2.5vw, 18px) !important; 
     font-weight: 800 !important;
@@ -198,13 +205,14 @@ body.loading {
 }
 
 /* =========================================
-   CERCHIO DI PROGRESSO
+   NUOVO STILE CERCHIO DI PROGRESSO 
 ========================================= */
 .circular-progress {
     position: relative;
     width: clamp(130px, 15vw, 160px); 
     height: clamp(130px, 15vw, 160px);
     margin-bottom: 30px;
+    align-self: flex-start; 
 }
 
 .circular-progress svg {
@@ -228,6 +236,7 @@ body.loading {
     stroke-dasharray: 100;
     stroke-dashoffset: 100; 
     filter: drop-shadow(0 0 8px rgba(34,197,94,0.6));
+    transform: translateZ(0);
 }
 
 .circle-content {
@@ -244,6 +253,11 @@ body.loading {
     color: #ffffff;
     font-variant-numeric: tabular-nums;
     line-height: 1;
+    white-space: nowrap;
+}
+
+.card:nth-child(2) .circle-content {
+    font-size: clamp(22px, 3vw, 28px);
 }
 
 /* =========================================
@@ -256,6 +270,11 @@ body.loading {
     0% { opacity: 0; transform: translate3d(0, 30px, 0); }
     100% { opacity: 1; transform: translate3d(0, 0, 0); }
 }
+
+.grid .card.reveal:nth-child(1) { animation-delay: 0.2s; }
+.grid .card.reveal:nth-child(2) { animation-delay: 0.5s; }
+.grid .card.reveal:nth-child(3) { animation-delay: 0.8s; }
+.grid .card.reveal:nth-child(4) { animation-delay: 1.1s; }
 
 /* =========================================
    HERO SECTION
@@ -289,13 +308,17 @@ body.loading {
     letter-spacing: -1px;
 }
 
-.hero-subtitle { font-size: 0.7em; font-weight: 800; color: #ffffff; }
+.hero-subtitle { font-size: 0.7em; font-weight: 800; color: #ffffff; font-style: normal; }
+
+.desktop-only { display: block; }
+.mobile-only { display: none; }
 
 .hero-left p {
     font-size: clamp(16px, 2vw, 20px);
     color: #94a3b8;
     margin-bottom: 40px;
     line-height: 1.6;
+    max-width: 90%;
 }
 
 .hero-right img {
@@ -305,10 +328,11 @@ body.loading {
     object-fit: cover;
     border: 2px solid rgba(34,197,94,0.3);
     box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.1), 0 20px 50px rgba(0,0,0,0.5); 
+    transform: translateZ(0);
 }
 
 /* =========================================
-   BOTTONI 
+   BOTTONI GLOBALI (UNIFICATI CON EFFETTO LUCE)
 ========================================= */
 .btn-group {
     display: flex;
@@ -316,6 +340,7 @@ body.loading {
     gap: 15px;
 }
 
+/* Stili condivisi tra Bottone Verde e Bottoni LinkedIn */
 .btn, .linkedin, .linkedin-cta {
     border-radius: 4px;
     display: inline-flex;
@@ -326,23 +351,32 @@ body.loading {
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+    box-sizing: border-box;
     text-decoration: none;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
+/* Bottone Verde Primary */
 .btn { 
     padding: 18px 24px;
+    gap: 10px;
     width: 100%;
     max-width: 320px;
     font-size: 14px;
     background: #22c55e; 
     color: #000000; 
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.2);
 }
 
 .btn:hover {
     background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
     transform: translate3d(0, -2px, 0);
 }
 
+/* Stile Condiviso Bottoni LinkedIn (Hero + Footer) */
 .linkedin, .linkedin-cta {
     background: transparent;
     color: #ffffff;
@@ -352,6 +386,7 @@ body.loading {
     overflow: hidden;
 }
 
+/* Scia Luminosa per entrambi i bottoni LinkedIn */
 .linkedin::before, .linkedin-cta::before {
     content: ''; 
     position: absolute; 
@@ -361,6 +396,7 @@ body.loading {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent);
     animation: premiumGlow 3s infinite linear;
+    pointer-events: none;
 }
 
 @keyframes premiumGlow { 
@@ -370,9 +406,16 @@ body.loading {
 
 .linkedin:hover, .linkedin-cta:hover {
     border-color: #22c55e;
+    box-shadow: 0 0 30px rgba(34,197,94,0.2);
     background: rgba(34,197,94,0.05);
 }
 
+.linkedin .btn-icon, .linkedin-cta .btn-icon {
+    fill: #22c55e; /* Icona Verde */
+    flex-shrink: 0;
+}
+
+/* Dimensioni specifiche per il LinkedIn della Hero */
 .linkedin {
     padding: 18px 24px;
     gap: 10px;
@@ -380,18 +423,21 @@ body.loading {
     max-width: 320px;
     font-size: 14px;
 }
-.linkedin .btn-icon { width: 20px; height: 20px; fill: #22c55e; }
+.linkedin .btn-icon { width: 20px; height: 20px; }
 
+/* Dimensioni specifiche per il LinkedIn in fondo */
 .linkedin-cta {
     gap: 15px; 
     margin: 60px auto 20px auto;
     padding: 22px 45px; 
     font-size: 18px; 
+    max-width: 95%; 
 }
-.linkedin-cta .btn-icon { width: 24px; height: 24px; fill: #22c55e; }
+.linkedin-cta .btn-icon { width: 24px; height: 24px; }
+
 
 /* =========================================
-   CAROSELLO LOGHI (FIXED FLUIDITY)
+   CAROSELLO LOGHI
 ========================================= */
 .logos-section {
     position: relative;
@@ -413,20 +459,25 @@ body.loading {
     letter-spacing: 3px;
 }
 
-.logos-container { 
-    width: 100%; 
-    overflow: hidden; 
-    cursor: grab;
-    user-select: none;
-}
+.logos-container { width: 100%; overflow: hidden; transform: translate3d(0,0,0); }
 
 .logos-track {
     display: flex;
     gap: 30px;
     padding: 10px 0;
     width: max-content;
+    animation: scrollMarquee 70s linear infinite;
     align-items: center;
     will-change: transform; 
+}
+
+.logos-track:hover, .logos-track:active {
+    animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); } 
 }
 
 .logos-track img {
@@ -438,10 +489,22 @@ body.loading {
     border-radius: 8px;
     object-fit: contain;
     flex-shrink: 0;
+    user-select: none;
+    -webkit-user-drag: none;
+    opacity: 1; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transform: translateZ(0);
 }
 
 .logos-track img.logo-enlarged {
     padding: 4px !important; 
+}
+
+.logos-track img:hover {
+    border-color: #22c55e;
+    box-shadow: 0 10px 20px rgba(34,197,94,0.2);
+    transform: translate3d(0, -5px, 0);
 }
 
 /* =========================================
@@ -469,19 +532,25 @@ body.loading {
 .card {
     background: rgba(15, 15, 15, 0.85); 
     border: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 2px solid transparent;
     padding: 45px 35px;
     border-radius: 8px; 
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-.card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; }
+.card h3 { font-weight: 800; font-size: 24px; color: #ffffff; margin-bottom: 20px; line-height: 1.2; }
 .card p { color: #94a3b8; margin-bottom: 20px; line-height: 1.7; font-size: 16px; }
+.card p:last-child { margin-bottom: 0; }
 
-.card-social { border-bottom: 2px solid #22c55e; }
-
+.arrow-down-container { margin-top: auto; padding-top: 30px; text-align: center; }
 .arrow-icon { 
     width: 30px; height: 30px; fill: #22c55e; 
-    animation: bounceDown 2s infinite;
+    animation: bounceDown 2s infinite cubic-bezier(0.28, 0.84, 0.42, 1);
+    will-change: transform;
 }
 
 @keyframes bounceDown {
@@ -490,46 +559,138 @@ body.loading {
     60% { transform: translate3d(0, -5px, 0); }
 }
 
+@media (min-width: 769px) {
+    .card-closing { order: 1; }
+    .card-social { order: 2; border-bottom: 2px solid #22c55e; background: linear-gradient(180deg, rgba(20,20,20,0.85) 0%, rgba(10,10,10,0.95) 100%); } 
+    .card-ltv { order: 3; }
+}
+
+@media (hover: hover) {
+    .card:hover { 
+        transform: translate3d(0, -8px, 0) scale(1.01); 
+        background: rgba(20, 20, 20, 0.95); 
+        border-color: rgba(255,255,255,0.1);
+        border-bottom: 2px solid #22c55e;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+}
+
 /* =========================================
    BLOCCO FIDUCIA
 ========================================= */
 .block-fiducia {
     background: #ffffff !important;
     color: #050505 !important;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3) !important;
+    border: none !important;
 }
 
-.block-fiducia h2 { color: #050505 !important; }
+.block-fiducia h2 {
+    color: #050505 !important;
+}
+
+.block-fiducia .logos-grid.reveal.active {
+    animation: none; opacity: 1; transform: none;
+}
+
+.block-fiducia .logos-grid img {
+    opacity: 0; transform: translate3d(0, 15px, 0);
+    will-change: opacity, transform;
+}
+
+.block-fiducia .logos-grid.active img {
+    animation: elegantFadeIn 1.2s ease-out forwards; 
+}
+
+@keyframes elegantFadeIn {
+    0% { opacity: 0; transform: translate3d(0, 15px, 0); }
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.block-fiducia .logos-grid.active img:nth-child(1), .block-fiducia .logos-grid.active img:nth-child(2) { animation-delay: 0.2s; }
+.block-fiducia .logos-grid.active img:nth-child(3), .block-fiducia .logos-grid.active img:nth-child(4) { animation-delay: 0.7s; }
+.block-fiducia .logos-grid.active img:nth-child(5), .block-fiducia .logos-grid.active img:nth-child(6) { animation-delay: 1.2s; }
+.block-fiducia .logos-grid.active img:nth-child(7), .block-fiducia .logos-grid.active img:nth-child(8) { animation-delay: 1.7s; }
+.block-fiducia .logos-grid.active img:nth-child(9), .block-fiducia .logos-grid.active img:nth-child(10) { animation-delay: 2.2s; }
+.block-fiducia .logos-grid.active img:nth-child(11), .block-fiducia .logos-grid.active img:nth-child(12) { animation-delay: 2.7s; }
+.block-fiducia .logos-grid.active img:nth-child(13), .block-fiducia .logos-grid.active img:nth-child(14) { animation-delay: 3.2s; }
+.block-fiducia .logos-grid.active img:nth-child(15), .block-fiducia .logos-grid.active img:nth-child(16) { animation-delay: 3.7s; }
+.block-fiducia .logos-grid.active img:nth-child(17), .block-fiducia .logos-grid.active img:nth-child(18) { animation-delay: 4.2s; }
+.block-fiducia .logos-grid.active img:nth-child(19), .block-fiducia .logos-grid.active img:nth-child(20) { animation-delay: 4.7s; }
+.block-fiducia .logos-grid.active img:nth-child(21), .block-fiducia .logos-grid.active img:nth-child(22) { animation-delay: 5.2s; }
+.block-fiducia .logos-grid.active img:nth-child(23), .block-fiducia .logos-grid.active img:nth-child(24) { animation-delay: 5.7s; }
 
 .logos-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
-    margin-top: 50px;
+    align-items: center;
     justify-items: center;
+    margin-top: 50px;
 }
 
 .block-fiducia .logos-grid img {
     width: 100%;
     max-width: 160px; 
     height: 90px;     
+    background: transparent !important;
+    border: none !important;
+    padding: 10px;
     object-fit: contain;
+    image-rendering: high-quality; 
+    user-select: none;
+    -webkit-user-drag: none;
+    filter: none !important; 
+    opacity: 1 !important;
+    box-shadow: none !important;
+    transition: transform 0.3s ease;
 }
 
+.block-fiducia .logos-grid img:hover {
+    transform: scale(1.1) translateZ(0);
+}
+
+@media (min-width: 576px) {
+    .logos-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
 @media (min-width: 768px) {
-    .logos-grid { grid-template-columns: repeat(4, 1fr); }
+    .logos-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+    .block-fiducia .logos-grid img { max-width: 180px; height: 100px; }
 }
 @media (min-width: 1024px) {
-    .logos-grid { grid-template-columns: repeat(6, 1fr); }
+    .logos-grid { grid-template-columns: repeat(6, 1fr); gap: 30px; }
+    .block-fiducia .logos-grid img { max-width: 190px; height: 110px; }
 }
 
 /* =========================================
-   CTA E CONTATTI
+   CTA FINALE SCROLL
 ========================================= */
-.final-cta { text-align: center; padding: 120px 20px; }
-.cta-line { opacity: 0; transform: translate3d(0, 30px, 0); transition: 2s ease; }
-.final-cta.visible .cta-line { opacity: 1; transform: translate3d(0, 0, 0); }
-.line2 { font-size: clamp(28px, 4.5vw, 46px); color: #22c55e; font-weight: 800; }
+.final-cta {
+    text-align: center;
+    padding: 120px 20px 140px; 
+    position: relative;
+    z-index: 2;
+}
 
+.cta-line {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+    transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+.final-cta.visible .cta-line { opacity: 1; transform: translate3d(0, 0, 0); }
+
+.line1 { font-size: clamp(20px, 3vw, 24px); color: #ffffff; margin-bottom: 15px; font-weight: 600; text-shadow: none; }
+.line2 { font-size: clamp(28px, 4.5vw, 46px); color: #22c55e; font-weight: 800; letter-spacing: -1px; text-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+
+.final-cta.visible .line1 { transition-delay: 0.2s; }
+.final-cta.visible .line2 { transition-delay: 1.2s; }
+
+/* =========================================
+   CONTATTI E BOX FINALE
+========================================= */
 .contatti { text-align: center; }
 .contact-box { 
     background: rgba(10,10,10,0.8); 
@@ -539,8 +700,16 @@ body.loading {
     display: inline-block; 
     width: 100%; 
     max-width: 450px; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    transform: translateZ(0); 
 }
+.contact-name { font-size: 28px; font-weight: 800; margin-bottom: 5px; color: #fff;}
+.contact-role { color: #22c55e; margin-bottom: 25px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+.contact-info p { margin-bottom: 10px; font-size: 16px; color: #cbd5e1; }
 
+/* =========================================
+   WHATSAPP BUTTON (Fisso, senza scatti)
+========================================= */
 .whatsapp {
     position: fixed;
     bottom: 30px; 
@@ -550,17 +719,86 @@ body.loading {
     border-radius: 4px; 
     z-index: 9998;
     text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #000;
     font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.whatsapp:hover { 
+    transform: translateY(-3px); 
+    background: #ffffff; 
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
 }
 
 /* =========================================
-   MEDIA QUERIES 
+   MEDIA QUERIES (MOBILE)
 ========================================= */
 @media (max-width: 768px) {
-    .hero-content { flex-direction: column-reverse; text-align: center; }
-    .hero-left { display: flex; flex-direction: column; align-items: center; }
-    .whatsapp { bottom: 20px; left: 20px; }
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+    
+    .hero { min-height: auto; padding-top: 80px; }
+    
+    .hero-content { 
+        flex-direction: column-reverse; 
+        text-align: center; 
+        gap: 40px; 
+        align-items: center;
+    }
+    
+    .hero-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-left p {
+        margin: 0 auto 40px auto;
+    }
+
+    .hero-right img { 
+        width: 160px; 
+        margin: 0 auto;
+    }
+    
+    .btn-group { align-items: center; width: 100%; }
+
+    .logos-section { margin-top: 20px; padding: 25px 0; }
+    .section { padding: 60px 20px; }
+    
+    .white-band {
+        margin-left: 15px; 
+        margin-right: 15px; 
+        border-radius: 8px; 
+    }
+
+    .whatsapp {
+        bottom: 20px; 
+        left: 20px;
+        padding: 12px 24px;
+        font-size: 14px;
+        z-index: 999999; 
+    }
+}
+
+/* FIX IUBENDA BANNER */
+#iubenda-cs-banner, .iubenda-cs-banner {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+    background: #000 !important;
+    border-top: 1px solid #333 !important;
+    padding: 12px 20px !important;
+    font-size: 12px !important;
 }
 </style>
 </head>
@@ -585,12 +823,22 @@ body.loading {
     <div class="hero-content">
         <div class="hero-left">
             <h1 class="hero-title">
-                <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
-                <span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green" style="font-style: italic;">clienti reali</span></span>
+                <!-- TITOLO MODIFICATO (Corsivo, Maiuscolo, SEO-Friendly) -->
+                <span class="desktop-only">
+                    <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
+                    <span class="hero-subtitle">Trasformo i tuoi lead in <br><span class="green" style="font-style: italic;">clienti reali</span></span>
+                </span>
+                <span class="mobile-only">
+                    <span style="font-style: italic; text-transform: uppercase;">Remote Closing<br>Specialist</span><br><br>
+                    <span class="hero-subtitle">Trasformo i tuoi lead in<br><span class="green" style="font-style: italic;">clienti reali</span></span>
+                </span>
             </h1>
+            
             <p>Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
             <div class="btn-group">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn">Prenota Call Gratuita</a>
+                
+                <!-- TASTO LINKEDIN UNIFICATO -->
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin">
                     <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
@@ -600,192 +848,240 @@ body.loading {
             </div>
         </div>
         <div class="hero-right">
-            <img src="foto.png" alt="Matteo Bertoni Sales Closer">
+            <img src="foto.png" alt="Matteo Bertoni Sales Closer" decoding="async">
         </div>
     </div>
 </section>
 
-<!-- CAROSELLO LOGHI (24 LOGHI ORIGINALI X 2 PER LOOP) -->
+<!-- CAROSELLO LOGHI -->
 <section class="logos-section reveal">
     <p class="logos-title">Hanno scelto di collaborare con me</p>
-    <div class="logos-container" id="logosContainer">
-        <div class="logos-track" id="logosTrack">
-            <!-- Prima serie di 24 loghi -->
-            <img src="venditore-a-distanza.jpg" alt="Logo">
-            <img src="herbalife.png" alt="Logo">
-            <img src="Realmaps.png" alt="Logo">
-            <img src="assocral.png" alt="Logo">
-            <img src="prima-scelta.png" alt="Logo">
-            <img src="homei.jpeg" alt="Logo">
-            <img src="arcari.png" alt="Logo">
-            <img src="gruppo-soraci.jpg" alt="Logo">
-            <img src="marchi-cucine.jpg" alt="Logo">
-            <img src="pruiti-marketing.png" alt="Logo">
-            <img src="cappellini.png" alt="Logo">
-            <img src="webapp.jpeg" alt="Logo">
-            <img src="wayan.png" alt="Logo">
-            <img src="verona.jpg" alt="Logo">
-            <img src="berton.png" alt="Logo" class="logo-enlarged">
-            <img src="prezzi-farmaco.png" alt="Logo" class="logo-enlarged">
-            <img src="velocissimo.webp" alt="Logo">
-            <img src="sales.png" alt="Logo">
-            <img src="farmacisti.png" alt="Logo">
-            <img src="app-in-farma.png" alt="Logo" class="logo-enlarged">
-            <img src="ilaria.png" alt="Logo" class="logo-enlarged">
-            <img src="foglietto-illustrativo.png" alt="Logo">
-            <img src="gizia.png" alt="Logo">
-            <img src="slym.png" alt="Logo" class="logo-enlarged">
+    <div class="logos-container">
+        <div class="logos-track">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
             
-            <!-- Copia identica per loop infinito -->
-            <img src="venditore-a-distanza.jpg" alt="Logo">
-            <img src="herbalife.png" alt="Logo">
-            <img src="Realmaps.png" alt="Logo">
-            <img src="assocral.png" alt="Logo">
-            <img src="prima-scelta.png" alt="Logo">
-            <img src="homei.jpeg" alt="Logo">
-            <img src="arcari.png" alt="Logo">
-            <img src="gruppo-soraci.jpg" alt="Logo">
-            <img src="marchi-cucine.jpg" alt="Logo">
-            <img src="pruiti-marketing.png" alt="Logo">
-            <img src="cappellini.png" alt="Logo">
-            <img src="webapp.jpeg" alt="Logo">
-            <img src="wayan.png" alt="Logo">
-            <img src="verona.jpg" alt="Logo">
-            <img src="berton.png" alt="Logo" class="logo-enlarged">
-            <img src="prezzi-farmaco.png" alt="Logo" class="logo-enlarged">
-            <img src="velocissimo.webp" alt="Logo">
-            <img src="sales.png" alt="Logo">
-            <img src="farmacisti.png" alt="Logo">
-            <img src="app-in-farma.png" alt="Logo" class="logo-enlarged">
-            <img src="ilaria.png" alt="Logo" class="logo-enlarged">
-            <img src="foglietto-illustrativo.png" alt="Logo">
-            <img src="gizia.png" alt="Logo">
-            <img src="slym.png" alt="Logo" class="logo-enlarged">
+            <!-- Duplicato per scroll continuo -->
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async" class="logo-enlarged">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async" class="logo-enlarged">
         </div>
     </div>
 </section>
 
-<!-- CHI AIUTO -->
-<div class="white-band">
+<!-- BLOCCO 1: CHI AIUTO -->
+<div class="white-band" style="margin-top: 80px;">
     <section class="section">
         <h2 class="reveal">Chi posso aiutare davvero</h2>
+
         <div class="grid grid-3">
             <div class="card reveal">
                 <h3>Aziende e Agenzie</h3>
                 <p>Per realtà che hanno un flusso di contatti ma faticano a gestirli e convertirli in contratti firmati.</p>
-                <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi di un assunto.</p>
+                <p>Intervengo come Closer esterno per scalare il fatturato immediatamente, senza i costi fissi e la gestione burocratica di un nuovo assunto.</p>
             </div>
             <div class="card reveal">
                 <h3>Startup e Nuovi Progetti</h3>
-                <p>Per chi vuole lanciare nuovi servizi definendo l'angolo d'attacco più efficace.</p>
-                <p>Studio il posizionamento e la strategia di vendita fin dal primo giorno.</p>
+                <p>Per chi vuole lanciare nuovi servizi o prodotti definendo l'angolo d'attacco più efficace.</p>
+                <p>Studio il posizionamento e la strategia di vendita per far sì che la tua offerta sia desiderabile dal mercato fin dal primo giorno.</p>
             </div>
             <div class="card reveal">
                 <h3>Freelance & Partner</h3>
                 <p>Per professionisti che vogliono delegare la fase finale della trattativa o creare partnership strategiche.</p>
-                <p>Tu focalizzati sul servizio, io chiudo la vendita.</p>
+                <p>Collaboro con esperti che vogliono focalizzarsi sulla delivery del servizio, lasciando a me l'onere e l'onore di chiudere la vendita.</p>
             </div>
         </div>
+
     </section>
 </div>
 
-<!-- COME PORTO RISULTATI -->
-<section class="section">
-    <h2 class="reveal">Come porto risultati</h2>
+<!-- SEZIONE 1: COME PORTO RISULTATI + LINKEDIN -->
+<section class="section" style="padding-top: 40px;">
+    <h2 class="reveal" style="margin-bottom: 60px;">Come porto risultati</h2>
+    
     <div class="grid grid-3">
-        <div class="card reveal">
-            <h3>Sales Closing</h3>
-            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo.</p>
+        <div class="card card-closing reveal">
+            <h3>Chiusura Trattative<br>(Sales Closing)</h3>
+            <p>Gestisco l'ultimo miglio della tua pipeline commerciale.</p>
+            <p>Trasformo i lead qualificati in contratti firmati attraverso call strategiche, superando le barriere del prezzo. Porto 'cash collected' immediato.</p>
         </div>
-        <div class="card reveal">
-            <h3>Sviluppo LTV</h3>
-            <p>Aumento retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
+        <div class="card card-ltv reveal">
+            <h3>Sviluppo Lifetime Value (LTV)</h3>
+            <p>Non mi fermo alla firma del contratto.</p>
+            <p>Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
         </div>
         <div class="card card-social reveal">
-            <h3>Social Selling</h3>
-            <p>Gestisco il posizionamento e il piano editoriale sui canali social per costruire autorità e fiducia.</p>
-            <div style="text-align:center; margin-top:30px;">
-                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M12 22L3 13h18l-9 9z"/></svg>
+            <h3>Corporate Content & Social</h3>
+            <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social, perché anche questo è un aspetto importantissimo della vendita.</p>
+            <p>Trasformo il tuo profilo in una calamita per lead qualificati: scrivo e creo contenuti che costruiscono autorità e fiducia.</p>
+            <div class="arrow-down-container">
+                <svg class="arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C11.7348 22 11.4804 21.8946 11.2929 21.7071L3.29289 13.7071C2.90237 13.3166 2.90237 12.6834 3.29289 12.2929C3.68342 11.9024 4.31658 11.9024 4.70711 12.2929L11 18.5858L11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3L13 18.5858L19.2929 12.2929C19.6834 11.9024 20.3166 11.9024 20.7071 12.2929C21.0976 12.6834 21.0976 13.3166 20.7071 13.7071L12.7071 21.7071C12.5196 21.8946 12.2652 22 12 22Z"/>
+                </svg>
             </div>
         </div>
     </div>
-    <div style="text-align:center;" class="reveal">
+    
+    <div class="reveal" style="text-align:center;">
         <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="linkedin-cta">
-            <svg class="btn-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <svg class="btn-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
             Come comunico per vendere
         </a>
     </div>
 </section>
 
-<!-- I MIEI NUMERI -->
-<div class="white-band">
+<!-- BLOCCO 2: I MIEI NUMERI -->
+<div class="white-band" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">I miei numeri</h2>
-        <div class="grid grid-3">
+
+        <div class="grid grid-3" id="numbers-grid">
             <div class="card reveal">
                 <div class="circular-progress" data-circle-target="100">
-                    <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle></svg>
-                    <div class="circle-content"><span class="dynamic-counter" data-target="47">0</span>%</div>
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        <span class="dynamic-counter" data-target="47" data-is-float="false">0</span>%
+                    </div>
                 </div>
                 <h3>Retention</h3>
-                <p>Quasi 1 su 2 riacquista grazie alla qualificazione del lead iniziale.</p>
+                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
+                <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto per lui. Risultato? Quasi 1 su 2 riacquista.</p>
             </div>
+            
             <div class="card reveal">
                 <div class="circular-progress" data-circle-target="100">
-                    <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle></svg>
-                    <div class="circle-content">+ €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M</div>
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        + €<span class="dynamic-counter" data-target="2.7" data-is-float="true">0</span>M
+                    </div>
                 </div>
-                <h3>Fatturato</h3>
-                <p>Generato direttamente attraverso le mie vendite in diversi settori.</p>
+                <h3>Fatturato Generato</h3>
+                <p>Fatturato prodotto direttamente attraverso le mie vendite, in diversi settori e modelli di business.</p>
+                <p>Gestisco ogni trattativa con un approccio consulenziale: qualificazione del lead, gestione delle obiezioni e chiusura orientata al valore.</p>
             </div>
+            
             <div class="card reveal">
                 <div class="circular-progress" data-circle-target="100">
-                    <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle></svg>
-                    <div class="circle-content">+<span class="dynamic-counter" data-target="32">0</span>%</div>
+                    <svg viewBox="0 0 100 100">
+                        <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="circle-progress" cx="50" cy="50" r="45" pathLength="100"></circle>
+                    </svg>
+                    <div class="circle-content">
+                        +<span class="dynamic-counter" data-target="32" data-is-float="false">0</span>%
+                    </div>
                 </div>
                 <h3>Closing Rate</h3>
-                <p>Tasso medio calcolato sull'intero storico della mia attività.</p>
+                <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
+                <p>So come gestire le obiezioni e portare a termine la vendita, indipendentemente dal settore.</p>
             </div>
         </div>
     </section>
 </div>
 
-<!-- FIDUCIA GRID FISSA -->
-<div class="white-band block-fiducia">
+<!-- SEZIONE 2: IL MIO FRAMEWORK -->
+<section class="section" style="padding-top: 60px;">
+    <h2 class="reveal" style="margin-bottom: 40px;">Il mio framework</h2>
+    
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));">
+        <div class="card reveal">
+            <h3 class="green">Strategia e Processo</h3>
+            <p>Analizzo domanda, posizionamento e comportamento del cliente per costruire strategie orientate alla conversione e alla marginalità.</p>
+        </div>
+        <div class="card reveal">
+            <h3 class="green">Con chi Collaboro</h3>
+            <p>Startup, e-commerce, PMI e multinazionali: adatto strategia e acquisizione a modelli di business diversi. Obiettivo: trasformare contatti in fatturato.</p>
+        </div>
+    </div>
+</section>
+
+<!-- BLOCCO 3: LOGHI GRIGLIA FISSA -->
+<div class="white-band block-fiducia" style="margin-top: 60px;">
     <section class="section">
         <h2 class="reveal">Chi mi ha dato fiducia</h2>
+        
         <div class="logos-grid reveal">
-            <img src="venditore-a-distanza.jpg" alt="Logo">
-            <img src="herbalife.png" alt="Logo">
-            <img src="Realmaps.png" alt="Logo">
-            <img src="assocral.png" alt="Logo">
-            <img src="prima-scelta.png" alt="Logo">
-            <img src="homei.jpeg" alt="Logo">
-            <img src="arcari.png" alt="Logo">
-            <img src="gruppo-soraci.jpg" alt="Logo">
-            <img src="marchi-cucine.jpg" alt="Logo">
-            <img src="pruiti-marketing.png" alt="Logo">
-            <img src="cappellini.png" alt="Logo">
-            <img src="webapp.jpeg" alt="Logo">
-            <img src="wayan.png" alt="Logo">
-            <img src="verona.jpg" alt="Logo">
-            <img src="berton.png" alt="Logo">
-            <img src="prezzi-farmaco.png" alt="Logo">
-            <img src="velocissimo.webp" alt="Logo">
-            <img src="sales.png" alt="Logo">
-            <img src="farmacisti.png" alt="Logo">
-            <img src="app-in-farma.png" alt="Logo">
-            <img src="ilaria.png" alt="Logo">
-            <img src="foglietto-illustrativo.png" alt="Logo">
-            <img src="gizia.png" alt="Logo">
-            <img src="slym.png" alt="Logo">
+            <img src="venditore-a-distanza.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="herbalife.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="Realmaps.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="assocral.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="prima-scelta.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="homei.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="arcari.png" alt="Arcari" loading="lazy" decoding="async">
+            <img src="gruppo-soraci.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="marchi-cucine.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="pruiti-marketing.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="cappellini.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="webapp.jpeg" alt="Logo" loading="lazy" decoding="async">
+            <img src="wayan.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="verona.jpg" alt="Logo" loading="lazy" decoding="async">
+            <img src="berton.png" alt="Berton" loading="lazy" decoding="async">
+            <img src="prezzi-farmaco.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="velocissimo.webp" alt="Logo" loading="lazy" decoding="async">
+            <img src="sales.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="farmacisti.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="app-in-farma.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="ilaria.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="foglietto-illustrativo.png" alt="Logo" loading="lazy" decoding="async">
+            <img src="gizia.png" alt="Gizia" loading="lazy" decoding="async">
+            <img src="slym.png" alt="Slym" loading="lazy" decoding="async">
         </div>
     </section>
 </div>
 
-<!-- CTA FINALE -->
-<div class="final-cta" id="final-cta">
-    <p class="cta-line">I lead non sono il problema.</p>
+<!-- CTA FINALE ANIMATA SCROLL -->
+<div class="final-cta" id="final-cta" style="margin-top: 40px;">
+    <p class="cta-line line1">I lead non sono il problema.</p>
     <p class="cta-line line2">È quello che succede dopo a fare la differenza.</p>
 </div>
 
@@ -793,123 +1089,152 @@ body.loading {
 <section class="section contatti reveal">
     <h2 class="titolo-contatti">Contattami e collaboriamo</h2>
     <div class="contact-box">
-        <p style="font-size: 28px; font-weight:800; color:#fff;">Matteo Bertoni</p>
-        <p style="color:#22c55e; font-weight:800; text-transform:uppercase; font-size:12px; margin-bottom:20px;">Remote Closing Specialist (Verona)</p>
-        <p>Email: bertonimatteo3@gmail.com</p>
-        <p>WhatsApp: 350 579 1061</p>
+        <p class="contact-name">Matteo Bertoni</p>
+        <p class="contact-role">Remote Closing Specialist (Verona)</p>
+        <div class="contact-info">
+            <p>Email: bertonimatteo3@gmail.com</p>
+            <p>WhatsApp: 350 579 1061</p>
+        </div>
     </div>
 </section>
 
-<a href="https://wa.me/393505791061" class="whatsapp">CHAT</a>
+<!-- TASTO CHAT WHATSAPP FISSO STATICO -->
+<a href="https://wa.me/393505791061" class="whatsapp" aria-label="Contattami su WhatsApp">
+    CHAT
+</a>
+
+<!-- FOOTER IUBENDA -->
+<div style="text-align:center; padding: 20px; font-size:12px; color: #475569; margin-bottom: 80px;">
+    <a href="https://www.iubenda.com/privacy-policy/62758775" target="_blank" style="color:#64748b; text-decoration:none;">Privacy Policy</a>
+    |
+    <a href="https://www.iubenda.com/privacy-policy/62758775/cookie-policy" target="_blank" style="color:#64748b; text-decoration:none;">Cookie Policy</a>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         
-        // 1. PRELOADER
+        // ==========================================
+        // GESTIONE PRELOADER PIÙ LENTO ED ELEGANTE
+        // ==========================================
         const preloader = document.getElementById('preloader');
         const preloaderPercentage = document.getElementById('preloader-percentage');
         const preloaderBar = document.getElementById('preloader-bar');
         let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 8) + 2;
+        
+        // Intervallo di caricamento rallentato (da 80ms a 120ms) e avanzamento ridotto
+        const loadingInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 8) + 2; 
+            
             if (progress >= 100) {
                 progress = 100;
-                clearInterval(interval);
+                clearInterval(loadingInterval);
+                
+                preloaderPercentage.innerText = '100%';
+                preloaderBar.style.width = '100%';
+                
                 setTimeout(() => {
                     preloader.classList.add('preloader-hidden');
                     document.body.classList.remove('loading');
+                    
                     initReveals();
-                }, 400);
+                }, 400); 
+            } else {
+                preloaderPercentage.innerText = progress + '%';
+                preloaderBar.style.width = progress + '%';
             }
-            preloaderPercentage.innerText = progress + '%';
-            preloaderBar.style.width = progress + '%';
-        }, 100);
+        }, 120);
 
-        // 2. CAROSELLO LOGHI ULTRA-FLUIDO
-        const container = document.getElementById('logosContainer');
-        const track = document.getElementById('logosTrack');
+        // ==========================================
+        // FUNZIONI PRINCIPALI DEL SITO
+        // ==========================================
         
-        let scrollSpeed = 1.1; 
-        let currentX = 0;
-        let isPaused = false;
-        let resumeTimeout;
-
-        function animateCarousel() {
-            if (!isPaused) {
-                currentX += scrollSpeed;
-                
-                // Reset a metà tracciato (perché i loghi sono doppi)
-                if (currentX >= track.scrollWidth / 2) {
-                    currentX = 0;
-                }
-                container.scrollLeft = currentX;
-            }
-            requestAnimationFrame(animateCarousel);
+        const logosTrack = document.querySelector('.logos-track');
+        if (logosTrack) {
+            logosTrack.addEventListener('touchstart', function() {
+                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
+            }, { passive: true });
+            logosTrack.addEventListener('touchend', function() {
+                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+            });
         }
-
-        requestAnimationFrame(animateCarousel);
-
-        // Gestione manuale scorrimento
-        container.addEventListener('mousedown', () => isPaused = true);
-        container.addEventListener('touchstart', () => isPaused = true, {passive: true});
-
-        const resumeLogic = () => {
-            clearTimeout(resumeTimeout);
-            resumeTimeout = setTimeout(() => {
-                currentX = container.scrollLeft;
-                isPaused = false;
-            }, 2000); // Riprende dopo 2 secondi
-        };
-
-        window.addEventListener('mouseup', resumeLogic);
-        container.addEventListener('touchend', resumeLogic);
-
-        // 3. COUNTERS E OBSERVERS
-        const counterObserver = new IntersectionObserver((entries) => {
+        
+        const counters = document.querySelectorAll('.dynamic-counter');
+        const counterObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const counter = entry.target;
                     const target = parseFloat(counter.getAttribute('data-target'));
                     const isFloat = counter.getAttribute('data-is-float') === 'true';
-                    let start = 0;
-                    const duration = 2500;
-                    const startTime = performance.now();
-
-                    function updateCounter(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const easeOutQuad = progress * (2 - progress);
-                        const value = easeOutQuad * target;
-
-                        counter.innerText = isFloat ? value.toFixed(1).replace('.', ',') : Math.floor(value);
-                        
-                        if (progress < 1) requestAnimationFrame(updateCounter);
-                        else counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
-                    }
-                    requestAnimationFrame(updateCounter);
-
-                    // Animazione cerchio
-                    const circle = counter.closest('.card').querySelector('.circle-progress');
-                    circle.style.transition = 'stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1)';
-                    circle.style.strokeDashoffset = '0';
                     
-                    counterObserver.unobserve(counter);
+                    const circleContainer = counter.closest('.circular-progress');
+                    const progressCircle = circleContainer.querySelector('.circle-progress');
+                    const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); 
+                    
+                    const duration = 4000;
+                    const isMobile = window.innerWidth <= 768;
+                    const delay = (target === 27 && isMobile) ? 500 : 0;
+                    
+                    setTimeout(() => {
+                        let startTimestamp = null;
+                        const step = (timestamp) => {
+                            if (!startTimestamp) startTimestamp = timestamp;
+                            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                            const easeProgress = 1 - Math.pow(1 - progress, 4);
+                            
+                            const currentVal = target * easeProgress;
+                            const currentCircleVal = circleTarget * easeProgress;
+                            
+                            if (isFloat) {
+                                counter.innerText = currentVal.toFixed(1).replace('.', ',');
+                            } else {
+                                counter.innerText = Math.floor(currentVal);
+                            }
+                            
+                            progressCircle.style.strokeDashoffset = 100 - currentCircleVal;
+                            
+                            if (progress < 1) {
+                                window.requestAnimationFrame(step);
+                            } else {
+                                counter.innerText = isFloat ? target.toFixed(1).replace('.', ',') : target;
+                                progressCircle.style.strokeDashoffset = 100 - circleTarget;
+                            }
+                        };
+                        window.requestAnimationFrame(step);
+                    }, delay);
+                    observer.unobserve(counter);
                 }
             });
-        }, { threshold: 0.4 });
+        }, { threshold: 0.3 }); 
+        
+        counters.forEach(counter => counterObserver.observe(counter));
 
         function initReveals() {
             const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('active'); revealObserver.unobserve(e.target); }});
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-            document.querySelectorAll('.dynamic-counter').forEach(c => counterObserver.observe(c));
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target); 
+                    }
+                });
+            }, { 
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px" 
+            });
 
-            const cta = document.getElementById('final-cta');
-            const ctaObs = new IntersectionObserver((entries) => {
-                if(entries[0].isIntersecting) { cta.classList.add('visible'); ctaObs.unobserve(cta); }
-            }, { threshold: 0.4 });
-            ctaObs.observe(cta);
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            const ctaElement = document.getElementById('final-cta');
+            if(ctaElement) {
+                const ctaObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            ctaObserver.unobserve(entry.target); 
+                        }
+                    });
+                }, { threshold: 0.3 });
+                ctaObserver.observe(ctaElement);
+            }
         }
     });
 </script>
