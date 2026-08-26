@@ -459,25 +459,26 @@ body.loading {
     letter-spacing: 3px;
 }
 
-.logos-container { width: 100%; overflow: hidden; transform: translate3d(0,0,0); }
+.logos-container { 
+    width: 100%; 
+    overflow-x: auto; 
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    scroll-behavior: smooth;
+    transform: translate3d(0,0,0); 
+}
+
+.logos-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
 
 .logos-track {
     display: flex;
     gap: 30px;
     padding: 10px 0;
     width: max-content;
-    animation: scrollMarquee 70s linear infinite;
     align-items: center;
     will-change: transform; 
-}
-
-.logos-track:hover, .logos-track:active {
-    animation-play-state: paused;
-}
-
-@keyframes scrollMarquee {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(-50%, 0, 0); } 
 }
 
 .logos-track img {
@@ -1148,13 +1149,41 @@ body.loading {
         // FUNZIONI PRINCIPALI DEL SITO
         // ==========================================
         
-        const logosTrack = document.querySelector('.logos-track');
-        if (logosTrack) {
-            logosTrack.addEventListener('touchstart', function() {
-                logosTrack.style.setProperty('animation-play-state', 'paused', 'important');
-            }, { passive: true });
-            logosTrack.addEventListener('touchend', function() {
-                logosTrack.style.setProperty('animation-play-state', 'running', 'important');
+        const logosContainer = document.querySelector('.logos-container');
+        if (logosContainer) {
+            let autoScroll;
+            const startScroll = () => {
+                autoScroll = setInterval(() => {
+                    logosContainer.scrollLeft += 1;
+                    // Reset al centro per simulare il ciclo continuo (dato che le immagini sono esattamente raddoppiate)
+                    if (logosContainer.scrollLeft >= logosContainer.scrollWidth / 2) {
+                        logosContainer.scrollLeft = 0;
+                    }
+                }, 20); // Velocità morbida
+            };
+            const stopScroll = () => clearInterval(autoScroll);
+
+            startScroll();
+
+            // Interazione touch o hover fermano lo scroll
+            logosContainer.addEventListener('mouseenter', stopScroll);
+            logosContainer.addEventListener('mouseleave', startScroll);
+            logosContainer.addEventListener('touchstart', stopScroll, { passive: true });
+            logosContainer.addEventListener('touchend', startScroll);
+
+            // Supporto frecce da tastiera
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    stopScroll();
+                    logosContainer.scrollBy({ left: 200, behavior: 'smooth' });
+                    clearTimeout(logosContainer.scrollTimeout);
+                    logosContainer.scrollTimeout = setTimeout(startScroll, 1000);
+                } else if (e.key === 'ArrowLeft') {
+                    stopScroll();
+                    logosContainer.scrollBy({ left: -200, behavior: 'smooth' });
+                    clearTimeout(logosContainer.scrollTimeout);
+                    logosContainer.scrollTimeout = setTimeout(startScroll, 1000);
+                }
             });
         }
         
@@ -1170,7 +1199,10 @@ body.loading {
                     const progressCircle = circleContainer.querySelector('.circle-progress');
                     const circleTarget = parseFloat(circleContainer.getAttribute('data-circle-target')); 
                     
-                    const duration = 4000;
+                    // Modifica per velocizzare specificamente il target del 32% (meno tempo totale e decelerazione più rapida)
+                    const duration = target === 32 ? 2500 : 4000;
+                    const easePower = target === 32 ? 2 : 4;
+                    
                     const isMobile = window.innerWidth <= 768;
                     const delay = (target === 27 && isMobile) ? 500 : 0;
                     
@@ -1179,7 +1211,9 @@ body.loading {
                         const step = (timestamp) => {
                             if (!startTimestamp) startTimestamp = timestamp;
                             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                            const easeProgress = 1 - Math.pow(1 - progress, 4);
+                            
+                            // Applica l'easing specifico
+                            const easeProgress = 1 - Math.pow(1 - progress, easePower);
                             
                             const currentVal = target * easeProgress;
                             const currentCircleVal = circleTarget * easeProgress;
