@@ -65,11 +65,45 @@ body.loading { overflow: hidden; }
     position: absolute; top:0; left:0; width:100%; height:100%; 
     background-image: radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.5px); 
     background-size: 40px 40px; 
-    background-position: center center; /* Centra i puntini */
+    background-position: center center;
     pointer-events: none;
-    /* Maschera circolare per rendere visibili solo le 5-6 file centrali */
     -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
+}
+
+/* MENU NAVIGAZIONE (Pulsanti in alto) */
+.top-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    z-index: 50;
+    flex-wrap: wrap;
+}
+.top-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.top-nav a:hover {
+    border-color: var(--accent-mint);
+    color: var(--accent-mint);
+    background: rgba(110, 241, 149, 0.05);
 }
 
 /* HERO */
@@ -89,7 +123,11 @@ body.loading { overflow: hidden; }
     text-align: center; 
 }
 .hero-subtitle br { display: none; }
-@media (max-width: 768px) { .hero-subtitle br { display: block; } }
+@media (max-width: 768px) { 
+    .hero-subtitle br { display: block; }
+    .top-nav { padding: 20px 10px; gap: 8px; }
+    .top-nav a { font-size: 11px; padding: 8px 12px; }
+}
 .green { color: var(--accent-mint) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
 .hero-right img { 
@@ -229,6 +267,15 @@ body.loading { overflow: hidden; }
 <!-- HERO SECTION -->
 <section class="dark-section hero-section">
     <div class="bg-pattern"></div>
+    
+    <!-- MENU DI NAVIGAZIONE IN ALTO -->
+    <nav class="top-nav">
+        <a href="#partner">I miei partner</a>
+        <a href="#risultati">Come porto risultati</a>
+        <a href="#numeri">I miei numeri</a>
+        <a href="#contatti">Contattami</a>
+    </nav>
+
     <div class="container reveal">
         <div class="hero-content">
             <div class="hero-left">
@@ -280,7 +327,7 @@ body.loading { overflow: hidden; }
 </div>
 
 <!-- SEZIONE RISULTATI CON MONDO -->
-<section class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
+<section id="risultati" class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
     <div class="globe-overlay"></div>
     <div class="container">
         <h2 style="color:white; text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:900; margin-bottom:80px; letter-spacing: -1px;">Come porto risultati</h2>
@@ -310,7 +357,7 @@ body.loading { overflow: hidden; }
 </section>
 
 <!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE -->
-<div class="light-layer">
+<div id="numeri" class="light-layer">
     <div class="container">
         <h2 style="text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:800; margin-bottom:80px; letter-spacing: -1px;">I miei numeri</h2>
         <div class="grid-3">
@@ -342,7 +389,7 @@ body.loading { overflow: hidden; }
                 <p>So come gestire le obiezioni e portare a termine la vendita.</p>
             </div>
         </div>
-        <h2 style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
+        <h2 id="partner" style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
         <div class="logos-grid reveal">
             <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo"><img src="wayan.png" alt="Logo"><img src="verona.jpg" alt="Logo"><img src="berton.png" alt="Logo"><img src="prezzi-farmaco.png" alt="Logo"><img src="velocissimo.webp" alt="Logo"><img src="sales.png" alt="Logo"><img src="farmacisti.png" alt="Logo"><img src="app-in-farma.png" alt="Logo"><img src="ilaria.png" alt="Logo"><img src="foglietto-illustrativo.png" alt="Logo"><img src="gizia.png" alt="Logo"><img src="slym.png" alt="Logo">
         </div>
@@ -350,7 +397,7 @@ body.loading { overflow: hidden; }
 </div>
 
 <!-- CTA E CONTATTI -->
-<section class="dark-section" style="text-align:center; padding-top: 240px;">
+<section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px;">
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
@@ -359,7 +406,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="reveal">
             <span class="contact-label">Contattami</span>
-            <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT</h2>
+            <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT e lavoriamo insieme</h2>
             <div class="contact-box-elegant">
                 <p style="font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 15px;">Matteo Bertoni</p>
                 <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Remote Closing Specialist (Verona)</p>
