@@ -22,7 +22,6 @@
     --bg-light: #f4f6f5;        
     --accent-mint: #6ef195;     
     --accent-orange: #ff9f43;
-    --accent-linkedin: #2ecc71;
     --card-dark: #123324;       
     --card-light: #ffffff;      
     --text-dark: #071910;       
@@ -57,13 +56,15 @@ body.loading { overflow: hidden; }
 .preloader-bar-container { width: 180px; height: 4px; background: rgba(255,255,255,0.1); margin-top: 20px; border-radius: 4px; overflow: hidden; }
 .preloader-bar { height: 100%; width: 0%; background: var(--accent-mint); }
 
-/* SFONDO PUNTINI SFUMATI */
+/* STRUTTURA */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
+.dark-section { background: var(--bg-dark); padding: 180px 0; position: relative; overflow: hidden; width: 100%; }
 .bg-pattern { 
     position: absolute; top:0; left:0; width:100%; height:100%; 
-    background-image: radial-gradient(rgba(255,255,255,0.3) 1.5px, transparent 1.5px); 
+    background-image: radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.5px); 
     background-size: 40px 40px; pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
 }
 
 /* HERO */
@@ -74,9 +75,6 @@ body.loading { overflow: hidden; }
     line-height: 0.95; letter-spacing: -2px; margin-bottom: 30px;
 }
 .hero-subtitle { font-size: clamp(20px, 3.5vw, 28px); font-weight: 600; color: #fff; display: block; margin-top: 20px; text-transform: uppercase; }
-.hero-subtitle br { display: none; }
-@media (max-width: 768px) { .hero-subtitle br { display: block; } }
-
 .green { color: var(--accent-mint) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
 .hero-right img { 
@@ -91,39 +89,45 @@ body.loading { overflow: hidden; }
     width: 95%; max-width: 1200px;
 }
 
-/* LOGHI TITOLO E GRIGLIA */
-.logos-title { text-align: center !important; width: 100%; display: block; margin-bottom: 30px; color: var(--text-muted-light); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
+/* LOGHI TITOLO - FISSO SU UNA RIGA */
+.logos-title { 
+    text-align: center !important; width: 100%; display: block; margin-bottom: 30px; 
+    color: var(--text-muted-light); font-size: clamp(11px, 3vw, 14px); font-weight: 700; 
+    text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; 
+}
+
+/* CAROSELLO E GRIGLIA LOGHI - CARD IDENTICHE */
+.logos-track img, .logos-grid img { 
+    width: 160px; height: 95px; background: #fff; border-radius: 18px; 
+    padding: 22px; /* Padding standard per tutti */
+    object-fit: contain; display: block;
+}
+
+/* Ingrandimento SOLO LOGO riducendo il padding (Card rimane 160x95) */
+.logos-track img[src*="berton"], .logos-grid img[src*="berton"],
+.logos-track img[src*="prezzi-farmaco"], .logos-grid img[src*="prezzi-farmaco"],
+.logos-track img[src*="slym"], .logos-grid img[src*="slym"] {
+    padding: 6px !important; /* Meno padding = logo più grande */
+}
+
 .logos-container { width: 100%; overflow: hidden; margin-bottom: 100px; }
 .logos-track { display: flex; gap: 30px; width: max-content; animation: scrollTrack 60s linear infinite; }
 @keyframes scrollTrack { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-.logos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 70px; width: 100%; justify-items: center; }
+.logos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 70px; width: 100%; }
 @media (min-width: 768px) { .logos-grid { grid-template-columns: repeat(6, 1fr); } }
 
-/* STILE CARD LOGHI - TUTTE UGUALI */
-.logos-track img, .logos-grid img { 
-    width: 160px; height: 95px; background: #fff; border-radius: 18px; 
-    padding: 24px; object-fit: contain; box-shadow: 0 5px 15px rgba(0,0,0,0.06);
-}
-
-/* LOGHI SPECIFICI PIU' GRANDI (riducendo il padding interno) */
-img[src*="verona"], img[src*="prezzi-farmaco"], img[src*="velocissimo"], 
-img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
-    padding: 6px !important;
-}
-
-/* CARDS CHI AIUTO E RISULTATI */
+/* CARDS */
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; }
 .card-light { background: #fff; padding: 50px 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
 .card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
 
-/* MONDO DIGITALE - PIU' ALTO E VISIBILE */
+/* MONDO DIGITALE - VISIBILE SEMPRE */
 .globe-overlay {
-    position: absolute; top: 10%; left:50%; transform:translateX(-50%); 
+    position: absolute; bottom:-25%; left:50%; transform:translateX(-50%); 
     width:160vw; height:160vw; 
     background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'); 
-    background-size: cover; border-radius: 50%; opacity: 0.35; 
+    background-size: cover; border-radius: 50%; opacity: 0.3; 
     filter: sepia(1) hue-rotate(100deg) saturate(2); 
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
@@ -131,7 +135,7 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
 }
 
 /* FRECCIA ANIMATA */
-.arrow-icon { width: 30px; height: 30px; fill: var(--accent-mint); margin: 30px auto; display: block; animation: arrowBounce 2s infinite; }
+.arrow-icon { width: 30px; height: 30px; fill: var(--accent-mint); margin: 20px auto; display: block; animation: arrowBounce 2s infinite; }
 @keyframes arrowBounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
 /* NUMERI */
@@ -142,7 +146,7 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
 .progress-money .circle-content { font-size: 24px !important; }
 
-/* CHAT ANIMATA CON TRILLO */
+/* CHAT ANIMATA */
 .whatsapp-fixed {
     position: fixed; bottom: 30px; left: 30px; 
     padding: 18px 30px; border-radius: 12px; 
@@ -150,33 +154,22 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); font-size: 16px;
     background: linear-gradient(90deg, var(--accent-mint), var(--accent-orange), var(--accent-mint));
     background-size: 200% auto; color: #000;
-    animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
-}
-@keyframes chatTrill {
-    0%, 90% { transform: rotate(0); }
-    92% { transform: rotate(5deg); }
-    94% { transform: rotate(-5deg); }
-    96% { transform: rotate(5deg); }
-    98% { transform: rotate(-5deg); }
-    100% { transform: rotate(0); }
+    animation: flowGradient 4s linear infinite;
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-/* LINKEDIN SHIMMER DA DESTRA A SINISTRA */
-.btn-shimmer-inv {
+/* BOTTONI SHIMMER */
+.btn-shimmer {
     position: relative; overflow: hidden; background: transparent; color: #fff;
     border: 1px solid var(--accent-mint); padding: 20px 30px; border-radius: 14px;
     text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
     gap: 12px; text-transform: uppercase; font-size: 15px; transition: 0.3s; width: 100%; max-width: 340px;
 }
-.btn-shimmer-inv::before {
-    content: ''; position: absolute; top: 0; right: -100%; width: 100%; height: 100%;
-    background: linear-gradient(-90deg, transparent, rgba(46, 204, 113, 0.4), transparent);
-    animation: shimmerLeft 3s infinite linear;
+.btn-shimmer::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.4), transparent);
+    animation: shimmerEffect 3s infinite linear;
 }
-@keyframes shimmerLeft { 0% { right: -100%; } 100% { right: 100%; } }
-.btn-shimmer-inv:hover { background: rgba(46, 204, 113, 0.1); transform: translateY(-2px); }
-
 .btn-main { background: var(--accent-mint); color: #000; padding: 20px 30px; border-radius: 14px; text-decoration: none; font-weight: 800; text-align: center; text-transform: uppercase; width: 100%; max-width: 340px; display: block; margin-bottom: 20px; font-size: 16px; }
 
 /* CONTATTI */
@@ -193,14 +186,16 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
 @media (max-width: 768px) {
     .hero-content { flex-direction: column-reverse; text-align: center; gap: 40px; }
     .hero-left { display: flex; flex-direction: column; align-items: center; }
-    .btn-main, .btn-shimmer-inv { max-width: 100%; }
-    .light-layer { border-radius: 40px; width: 94%; }
+    .btn-main, .btn-shimmer { max-width: 100%; }
+    .light-layer { border-radius: 40px; width: 95%; }
+    .globe-overlay { width: 200vw; height: 200vw; }
 }
 </style>
 </head>
 
 <body class="loading">
 
+<!-- PRELOADER -->
 <div id="preloader">
     <div class="preloader-globe"></div>
     <div class="loading-text">LOADING<span>...</span></div>
@@ -208,18 +203,19 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
+<!-- HERO SECTION -->
 <section class="dark-section hero-section">
     <div class="bg-pattern"></div>
     <div class="container reveal">
         <div class="hero-content">
             <div class="hero-left">
                 <h1 class="hero-title">Remote Closing<br>Specialist</h1>
-                <span class="hero-subtitle">TRASFORMO I TUOI LEAD IN <br><span class="green">CLIENTI REALI</span></span>
+                <span class="hero-subtitle">TRASFORMO I TUOI LEAD IN <span class="green">CLIENTI REALI</span></span>
                 <div style="height: 30px;"></div>
-                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 500px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
+                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 500px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
                 <div style="height: 40px;"></div>
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
-                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer-inv">
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
                     <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     Il mio profilo LinkedIn
                 </a>
@@ -229,6 +225,7 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
     </div>
 </section>
 
+<!-- LIGHT LAYER CON LOGHI -->
 <div class="light-layer">
     <div class="container">
         <p class="logos-title">Hanno scelto di collaborare con me</p>
@@ -259,6 +256,7 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
     </div>
 </div>
 
+<!-- SEZIONE RISULTATI CON MONDO -->
 <section class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
     <div class="globe-overlay"></div>
     <div class="container">
@@ -274,19 +272,21 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
                 <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
                 <p>Il mio obiettivo é portarti lead qualificati. Perché anche questo fa parte della vendita.</p>
                 <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M12 21l-12-18h24z"/></svg>
-                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer-inv">
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     COME COMUNICO PER VENDERE
                 </a>
             </div>
             <div class="card-dark reveal">
-                <h3 class="green" style="font-size:26px; margin-bottom:25px;">Sviluppo LTV</h3>
-                <p>Non mi fermo alla firma del contratto. Accompagno ogni cliente aumentando retention e fiducia nel tempo. Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
+                <h3 class="green" style="font-size:26px; margin-bottom:25px;">Sviluppo Lifetime Value LTV</h3>
+                <p>Non mi fermo alla firma del contratto. Accompagno ogni cliente aumentando retention e fiducia nel tempo.<p>
+                <p>Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
             </div>
         </div>
     </div>
 </section>
 
+<!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE -->
 <div class="light-layer">
     <div class="container">
         <h2 style="text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:800; margin-bottom:80px; letter-spacing: -1px;">I miei numeri</h2>
@@ -297,7 +297,8 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
                     <div class="circle-content"><span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Retention</h3>
-                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'. Qualifico ogni lead per assicurarmi che il servizio sia perfetto.</p>
+                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.<p>
+                <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto.</p>
             </div>
             <div class="card-dark reveal num-card progress-money">
                 <div class="circular-progress" data-target="100" data-val="2.7">
@@ -305,7 +306,8 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
                     <div class="circle-content">+€<span class="num">0</span>M</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Fatturato Generato</h3>
-                <p>Fatturato prodotto direttamente attraverso le mie vendite. Gestisco ogni trattativa con un approccio consulenziale e orientato al valore.</p>
+                <p>Fatturato prodotto direttamente attraverso le mie vendite.<p>
+                <p>Gestisco ogni trattativa con un approccio consulenziale e orientato al valore.</p>
             </div>
             <div class="card-dark reveal num-card">
                 <div class="circular-progress" data-target="32">
@@ -313,7 +315,8 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
                     <div class="circle-content"><span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Closing Rate</h3>
-                <p>Tasso medio calcolato sull'intero storico della mia attività da closer. So come gestire le obiezioni e portare a termine la vendita.</p>
+                <p>Tasso medio calcolato sull'intero storico della mia attività da closer.<p>
+                <p>So come gestire le obiezioni e portare a termine la vendita.</p>
             </div>
         </div>
         <h2 style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
@@ -323,11 +326,13 @@ img[src*="farma"], img[src*="ilaria"], img[src*="foglietto"] {
     </div>
 </div>
 
+<!-- CTA E CONTATTI -->
 <section class="dark-section" style="text-align:center; padding-top: 240px;">
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
             <p style="font-size: clamp(22px, 3.5vw, 28px); color: #fff; margin-bottom: 20px; font-weight: 500;">I lead non sono il problema.</p>
+            <!-- TESTO ORIGINALE: MINUSCOLO, VERDE, GRASSETTO -->
             <p style="font-size: clamp(30px, 5vw, 52px); color: var(--accent-mint); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
         </div>
         <div class="reveal">
