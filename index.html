@@ -33,7 +33,7 @@
 /* RESET E BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; background: var(--bg-dark); }
-body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; }
+body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; position: relative; }
 body.loading { overflow: hidden; }
 
 /* PRELOADER */
@@ -61,7 +61,7 @@ body.loading { overflow: hidden; }
 .dark-section { background: var(--bg-dark); padding: 180px 0; position: relative; overflow: hidden; width: 100%; }
 .bg-pattern { 
     position: absolute; top:0; left:0; width:100%; height:100%; 
-    background-image: radial-gradient(rgba(255,255,255,0.2) 1.5px, transparent 1.5px); 
+    background-image: radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.5px); 
     background-size: 40px 40px; pointer-events: none;
     -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
     mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
@@ -82,37 +82,34 @@ body.loading { overflow: hidden; }
     border: 3px solid var(--accent-mint); box-shadow: 0 0 40px rgba(0,0,0,0.4); 
 }
 
-/* LIGHT LAYER - CENTRATURA FIX */
+/* LIGHT LAYER */
 .light-layer { 
     background: var(--bg-light); border-radius: 60px; padding: 60px 0 180px 0; 
     margin: -60px auto; position: relative; z-index: 10; box-shadow: 0 0 60px rgba(0,0,0,0.15);
-    width: calc(100% - 10px); max-width: 1300px;
+    width: 95%; max-width: 1200px;
 }
 
-/* BOTTONI */
-.btn-shimmer {
-    position: relative; overflow: hidden; background: transparent; color: #fff;
-    border: 1px solid var(--accent-mint); padding: 20px 30px; border-radius: 14px;
-    text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
-    gap: 12px; text-transform: uppercase; font-size: 15px; transition: 0.3s; width: 100%; max-width: 340px;
+/* LOGHI TITOLO - FISSO SU UNA RIGA */
+.logos-title { 
+    text-align: center !important; width: 100%; display: block; margin-bottom: 30px; 
+    color: var(--text-muted-light); font-size: clamp(11px, 3vw, 14px); font-weight: 700; 
+    text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; 
 }
-.btn-shimmer::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.4), transparent);
-    animation: shimmerEffect 3s infinite linear;
-}
-@keyframes shimmerEffect { 0% { left: -100%; } 100% { left: 100%; } }
-.btn-main { background: var(--accent-mint); color: #000; padding: 20px 30px; border-radius: 14px; text-decoration: none; font-weight: 800; text-align: center; text-transform: uppercase; width: 100%; max-width: 340px; display: block; margin-bottom: 20px; font-size: 16px; }
 
-/* LOGHI */
-.logos-title { text-align: center !important; width: 100%; display: block; margin-bottom: 30px; color: var(--text-muted-light); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; }
-.logos-track img, .logos-grid img { width: 160px; height: 95px; background: #fff; border-radius: 18px; padding: 18px; object-fit: contain; }
-/* Ingrandimento specifici */
+/* CAROSELLO E GRIGLIA LOGHI - CARD IDENTICHE */
+.logos-track img, .logos-grid img { 
+    width: 160px; height: 95px; background: #fff; border-radius: 18px; 
+    padding: 22px; /* Padding standard per tutti */
+    object-fit: contain; display: block;
+}
+
+/* Ingrandimento SOLO LOGO riducendo il padding (Card rimane 160x95) */
 .logos-track img[src*="berton"], .logos-grid img[src*="berton"],
 .logos-track img[src*="prezzi-farmaco"], .logos-grid img[src*="prezzi-farmaco"],
 .logos-track img[src*="slym"], .logos-grid img[src*="slym"] {
-    transform: scale(1.3); padding: 8px !important;
+    padding: 6px !important; /* Meno padding = logo più grande */
 }
+
 .logos-container { width: 100%; overflow: hidden; margin-bottom: 100px; }
 .logos-track { display: flex; gap: 30px; width: max-content; animation: scrollTrack 60s linear infinite; }
 @keyframes scrollTrack { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -123,19 +120,23 @@ body.loading { overflow: hidden; }
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; }
 .card-light { background: #fff; padding: 50px 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
-.card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 2; }
+.card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
 
-/* MONDO DIGITALE */
+/* MONDO DIGITALE - VISIBILE SEMPRE */
 .globe-overlay {
     position: absolute; bottom:-25%; left:50%; transform:translateX(-50%); 
     width:160vw; height:160vw; 
     background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop'); 
-    background-size: cover; border-radius: 50%; opacity: 0.25; 
+    background-size: cover; border-radius: 50%; opacity: 0.3; 
     filter: sepia(1) hue-rotate(100deg) saturate(2); 
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
     pointer-events: none; z-index: 1;
 }
+
+/* FRECCIA ANIMATA */
+.arrow-icon { width: 30px; height: 30px; fill: var(--accent-mint); margin: 20px auto; display: block; animation: arrowBounce 2s infinite; }
+@keyframes arrowBounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
 /* NUMERI */
 .circular-progress { position: relative; width: 160px; height: 160px; margin-bottom: 30px; }
@@ -143,10 +144,9 @@ body.loading { overflow: hidden; }
 .circle-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
 .circle-progress { fill: none; stroke: var(--accent-mint); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; transition: stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1); }
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
-/* Fix fatturato dentro cerchio */
-.progress-money .circle-content { font-size: 24px !important; letter-spacing: -1px; }
+.progress-money .circle-content { font-size: 24px !important; }
 
-/* CHAT ANIMATA VERDE-ARANCIO */
+/* CHAT ANIMATA */
 .whatsapp-fixed {
     position: fixed; bottom: 30px; left: 30px; 
     padding: 18px 30px; border-radius: 12px; 
@@ -158,7 +158,21 @@ body.loading { overflow: hidden; }
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 
-/* CONTATTI BOX */
+/* BOTTONI SHIMMER */
+.btn-shimmer {
+    position: relative; overflow: hidden; background: transparent; color: #fff;
+    border: 1px solid var(--accent-mint); padding: 20px 30px; border-radius: 14px;
+    text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
+    gap: 12px; text-transform: uppercase; font-size: 15px; transition: 0.3s; width: 100%; max-width: 340px;
+}
+.btn-shimmer::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.4), transparent);
+    animation: shimmerEffect 3s infinite linear;
+}
+.btn-main { background: var(--accent-mint); color: #000; padding: 20px 30px; border-radius: 14px; text-decoration: none; font-weight: 800; text-align: center; text-transform: uppercase; width: 100%; max-width: 340px; display: block; margin-bottom: 20px; font-size: 16px; }
+
+/* CONTATTI */
 .contact-label { font-size: 14px; font-weight: 400; color: var(--accent-mint); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 12px; display: block; text-align: center; }
 .contact-box-elegant {
     background: rgba(18, 51, 36, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -173,13 +187,15 @@ body.loading { overflow: hidden; }
     .hero-content { flex-direction: column-reverse; text-align: center; gap: 40px; }
     .hero-left { display: flex; flex-direction: column; align-items: center; }
     .btn-main, .btn-shimmer { max-width: 100%; }
-    .light-layer { border-radius: 40px; width: 94%; }
+    .light-layer { border-radius: 40px; width: 95%; }
+    .globe-overlay { width: 200vw; height: 200vw; }
 }
 </style>
 </head>
 
 <body class="loading">
 
+<!-- PRELOADER -->
 <div id="preloader">
     <div class="preloader-globe"></div>
     <div class="loading-text">LOADING<span>...</span></div>
@@ -187,6 +203,7 @@ body.loading { overflow: hidden; }
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
+<!-- HERO SECTION -->
 <section class="dark-section hero-section">
     <div class="bg-pattern"></div>
     <div class="container reveal">
@@ -195,7 +212,7 @@ body.loading { overflow: hidden; }
                 <h1 class="hero-title">Remote Closing<br>Specialist</h1>
                 <span class="hero-subtitle">TRASFORMO I TUOI LEAD IN <span class="green">CLIENTI REALI</span></span>
                 <div style="height: 30px;"></div>
-                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 500px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
+                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 500px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato.</p>
                 <div style="height: 40px;"></div>
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
@@ -208,13 +225,13 @@ body.loading { overflow: hidden; }
     </div>
 </section>
 
+<!-- LIGHT LAYER CON LOGHI -->
 <div class="light-layer">
     <div class="container">
         <p class="logos-title">Hanno scelto di collaborare con me</p>
         <div class="logos-container reveal">
             <div class="logos-track">
                 <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo"><img src="wayan.png" alt="Logo"><img src="verona.jpg" alt="Logo"><img src="berton.png" alt="Logo"><img src="prezzi-farmaco.png" alt="Logo"><img src="velocissimo.webp" alt="Logo"><img src="sales.png" alt="Logo"><img src="farmacisti.png" alt="Logo"><img src="app-in-farma.png" alt="Logo"><img src="ilaria.png" alt="Logo"><img src="foglietto-illustrativo.png" alt="Logo"><img src="gizia.png" alt="Logo"><img src="slym.png" alt="Logo">
-                <!-- Duplicate -->
                 <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo"><img src="wayan.png" alt="Logo"><img src="verona.jpg" alt="Logo"><img src="berton.png" alt="Logo"><img src="prezzi-farmaco.png" alt="Logo"><img src="velocissimo.webp" alt="Logo"><img src="sales.png" alt="Logo"><img src="farmacisti.png" alt="Logo"><img src="app-in-farma.png" alt="Logo"><img src="ilaria.png" alt="Logo"><img src="foglietto-illustrativo.png" alt="Logo"><img src="gizia.png" alt="Logo"><img src="slym.png" alt="Logo">
             </div>
         </div>
@@ -239,6 +256,7 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
+<!-- SEZIONE RISULTATI CON MONDO -->
 <section class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
     <div class="globe-overlay"></div>
     <div class="container">
@@ -253,7 +271,7 @@ body.loading { overflow: hidden; }
                 <h3 class="green" style="font-size:26px; margin-bottom:25px;">Corporate Content & Social</h3>
                 <p>Gestisco il posizionamento e il piano editoriale della tua azienda sui canali social.</p>
                 <p>Il mio obiettivo é portarti lead qualificati. Perché anche questo fa parte della vendita.</p>
-                <div style="height: 30px;"></div>
+                <svg class="arrow-icon" viewBox="0 0 24 24"><path d="M12 21l-12-18h24z"/></svg>
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="margin-right:8px;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     COME COMUNICO PER VENDERE
@@ -267,6 +285,7 @@ body.loading { overflow: hidden; }
     </div>
 </section>
 
+<!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE -->
 <div class="light-layer">
     <div class="container">
         <h2 style="text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:800; margin-bottom:80px; letter-spacing: -1px;">I miei numeri</h2>
@@ -303,12 +322,14 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
+<!-- CTA E CONTATTI -->
 <section class="dark-section" style="text-align:center; padding-top: 240px;">
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
             <p style="font-size: clamp(22px, 3.5vw, 28px); color: #fff; margin-bottom: 20px; font-weight: 500;">I lead non sono il problema.</p>
-            <p style="font-size: clamp(30px, 5vw, 52px); color: var(--accent-mint); font-weight: 900; letter-spacing: -2px;">È QUELLO CHE SUCCEDE DOPO A FARE LA DIFFERENZA.</p>
+            <!-- TESTO ORIGINALE: MINUSCOLO, VERDE, GRASSETTO -->
+            <p style="font-size: clamp(30px, 5vw, 52px); color: var(--accent-mint); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
         </div>
         <div class="reveal">
             <span class="contact-label">Contattami</span>
