@@ -32,7 +32,7 @@
 
 /* RESET E BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: var(--bg-dark); }
+html { scroll-behavior: smooth; background: var(--bg-dark); scroll-padding-top: 120px; }
 body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; position: relative; }
 body.loading { overflow: hidden; }
 
@@ -110,7 +110,7 @@ h2[id], div[id="contatti"] {
     padding: 10px 20px;
     border: 1px solid var(--accent-orange); 
     border-radius: 30px;
-    background: #ffffff; /* Bianco puro non trasparente */
+    background: #ffffff; 
     transition: all 0.3s ease;
 }
 .top-nav a:hover {
@@ -118,6 +118,32 @@ h2[id], div[id="contatti"] {
     border-color: var(--accent-mint);
     color: #0a2418;
     box-shadow: 0 4px 15px rgba(110, 241, 149, 0.4);
+    transform: translateY(-2px);
+}
+
+/* FRECCIA BACK TO TOP NELLA NAV */
+.top-nav .back-to-top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+    color: var(--accent-orange);
+    background: #ffffff;
+    transition: all 0.3s ease;
+}
+.top-nav .back-to-top-btn svg {
+    width: 18px;
+    height: 18px;
+}
+.top-nav .back-to-top-btn:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.5);
     transform: translateY(-2px);
 }
 
@@ -142,8 +168,11 @@ h2[id], div[id="contatti"] {
     .hero-subtitle br { display: block; } 
     .top-nav { padding: 12px 10px; gap: 8px; justify-content: center; }
     .top-nav a { font-size: 11px; padding: 8px 12px; }
-    .hero-section { padding-top: 160px; }
     
+    .top-nav .back-to-top-btn { width: 32px; height: 32px; }
+    .top-nav .back-to-top-btn svg { width: 16px; height: 16px; }
+
+    .hero-section { padding-top: 160px; }
     .hero-section .bg-pattern {
         -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
         mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
@@ -265,7 +294,7 @@ h2[id], div[id="contatti"] {
     100% { transform: scale(1) rotate(0deg); }
 }
 
-/* BOTTONI SHIMMER (Scia verde continua) */
+/* BOTTONI SHIMMER */
 @keyframes shimmerEffect {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
@@ -282,7 +311,6 @@ h2[id], div[id="contatti"] {
     animation: shimmerEffect 2.5s infinite linear;
     pointer-events: none;
 }
-/* BOTTONE PRENOTA CALL GRATUITA - ARANCIONE CON BORDO VERDE */
 .btn-main { 
     background: var(--accent-orange); 
     border: 2px solid var(--accent-mint); 
@@ -331,12 +359,19 @@ h2[id], div[id="contatti"] {
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- MENU DI NAVIGAZIONE FISSO IN ALTO -->
+<!-- MENU DI NAVIGAZIONE FISSO IN ALTO CON FRECCIA TOP -->
 <nav class="top-nav">
     <a href="#partner">Collaborazioni</a>
     <a href="#risultati">Come porto risultati</a>
     <a href="#numeri">I miei numeri</a>
     <a href="#contatti">Contattami</a>
+    <!-- TASTO FRECCIA (Torna su) -->
+    <a href="#" class="back-to-top-btn" title="Torna all'inizio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </a>
 </nav>
 
 <!-- HERO SECTION -->
@@ -362,7 +397,7 @@ h2[id], div[id="contatti"] {
     </div>
 </section>
 
-<!-- LIGHT LAYER CON LOGHI (Ancora rimossa, passata al titolo più in basso) -->
+<!-- LIGHT LAYER CON LOGHI -->
 <div class="light-layer">
     <div class="container">
         <p class="logos-title">Hanno scelto di collaborare con me</p>
@@ -393,7 +428,7 @@ h2[id], div[id="contatti"] {
     </div>
 </div>
 
-<!-- SEZIONE RISULTATI CON MONDO/PUNTINI (Ancora spostata sul titolo H2) -->
+<!-- SEZIONE RISULTATI CON MONDO/PUNTINI -->
 <section class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
     <!-- Mondo visibile solo da mobile -->
     <div class="globe-overlay mobile-globe"></div>
@@ -428,7 +463,7 @@ h2[id], div[id="contatti"] {
     </div>
 </section>
 
-<!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE (Ancore spostate sui titoli H2) -->
+<!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE -->
 <div class="light-layer">
     <div class="container">
         <!-- PUNTO DI ANCORAGGIO: I MIEI NUMERI -->
@@ -482,7 +517,7 @@ h2[id], div[id="contatti"] {
             <p style="font-size: clamp(30px, 5vw, 52px); color: var(--accent-mint); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
         </div>
         
-        <!-- PUNTO DI ANCORAGGIO: CONTATTAMI (salta lo spazio inutile) -->
+        <!-- PUNTO DI ANCORAGGIO: CONTATTAMI -->
         <div id="contatti" class="reveal">
             <span class="contact-label">Contattami</span>
             <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT e lavoriamo insieme</h2>
