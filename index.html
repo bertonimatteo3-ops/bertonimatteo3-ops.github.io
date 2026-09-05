@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; background: var(--bg-dark); scroll-padding-top: 
 body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; position: relative; }
 body.loading { overflow: hidden; }
 
-/* CENTRATURA PERFETTA DELLE ANCORE MENU CON NAVBAR */
+/* CENTRATURA DELLE ANCORE MENU CON NAVBAR */
 h2[id], div[id="contatti"] {
     scroll-margin-top: 140px;
 }
@@ -77,7 +77,7 @@ h2[id], div[id="contatti"] {
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE FISSO (BANNER IN ALTO) */
+/* MENU NAVIGAZIONE FISSO: SFONDO COMPLETAMENTE BIANCO, BORDO INFERIORE E BOTTONI ARANCIONI */
 .top-nav {
     position: fixed;
     top: 0;
@@ -86,10 +86,6 @@ h2[id], div[id="contatti"] {
     padding: 12px 16px;
     z-index: 9998;
     background-color: #ffffff;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%230a2418' d='M 450 100 C 750 100, 950 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%236ef195' d='M 500 100 C 800 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
-    background-size: cover;
-    background-position: right center;
-    background-repeat: no-repeat;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-bottom: 3px solid var(--accent-orange);
     transition: all 0.3s ease;
@@ -152,9 +148,7 @@ h2[id], div[id="contatti"] {
     transform: translateY(0);
 }
 
-/* ==========================================================================
-   FRECCIA TORNA IN CIMA: SOTTO AL BANNER, IN ALTO A DESTRA, FISSA LÌ
-   ========================================================================== */
+/* FRECCIA TORNA IN CIMA */
 .fixed-back-to-top {
     position: fixed;
     top: 92px;
@@ -191,7 +185,6 @@ h2[id], div[id="contatti"] {
     transform: translateY(1px) scale(0.96);
 }
 
-/* STATO ILLUMINATO ELEGANTE (QUANDO SI CLICCA UNO DEI 4 TASTI MENU) */
 .fixed-back-to-top.illuminated {
     background: #0a2418;
     border-color: var(--accent-mint);
@@ -235,17 +228,10 @@ h2[id], div[id="contatti"] {
 }
 
 @keyframes radarWave {
-    0% {
-        opacity: 0.9;
-        transform: scale(0.85);
-    }
-    100% {
-        opacity: 0;
-        transform: scale(1.6);
-    }
+    0% { opacity: 0.9; transform: scale(0.85); }
+    100% { opacity: 0; transform: scale(1.6); }
 }
 
-/* TOOLTIP SUGGERIMENTO ELEGANTE */
 .fixed-back-to-top .arrow-tooltip {
     position: absolute;
     right: 58px;
@@ -273,44 +259,21 @@ h2[id], div[id="contatti"] {
     transform: translateY(-50%) translateX(0);
 }
 
-/* ADATTAMENTO RESPONSIVO PER SMARTPHONE E TABLET */
+/* RESPONSIVE PER SMARTPHONE E TABLET */
 @media (max-width: 768px) { 
-    .top-nav {
-        padding: 10px 8px;
-    }
-    .top-nav-inner {
-        min-height: 72px;
-    }
-    .nav-links-wrapper {
-        gap: 6px;
-    }
-    .nav-row {
-        gap: 8px;
-    }
-    .top-nav a {
-        font-size: 11px;
-        padding: 7px 12px;
-        letter-spacing: 0.4px;
-    }
+    .top-nav { padding: 10px 8px; }
+    .top-nav-inner { min-height: 72px; }
+    .nav-links-wrapper { gap: 6px; }
+    .nav-row { gap: 8px; }
+    .top-nav a { font-size: 11px; padding: 7px 12px; letter-spacing: 0.4px; }
 
-    /* FRECCIA SU SMARTPHONE, SOTTO IL BANNER A DESTRA */
-    .fixed-back-to-top {
-        top: 84px;
-        right: 14px;
-        width: 48px;
-        height: 48px;
-    }
-    .fixed-back-to-top svg {
-        width: 24px;
-        height: 24px;
-    }
-    .fixed-back-to-top .arrow-tooltip {
-        font-size: 10px;
-        padding: 5px 10px;
-        right: 54px;
-    }
+    .fixed-back-to-top { top: 84px; right: 14px; width: 48px; height: 48px; }
+    .fixed-back-to-top svg { width: 24px; height: 24px; }
+    .fixed-back-to-top .arrow-tooltip { font-size: 10px; padding: 5px 10px; right: 54px; }
 
-    .hero-subtitle br { display: block; } 
+    /* A CAPO SU SMARTPHONE: TRASFORMO I TUOI LEAD IN (BIANCO) -> A CAPO CLIENTI REALI (VERDE) */
+    .hero-subtitle br { display: block !important; }
+    
     .hero-section { padding-top: 160px; }
     .hero-section .bg-pattern {
         -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
@@ -318,26 +281,11 @@ h2[id], div[id="contatti"] {
     }
 }
 
-/* FORMATI SMARTPHONE PIÙ STRETTI */
 @media (max-width: 380px) {
-    .nav-row {
-        gap: 5px;
-    }
-    .top-nav a {
-        font-size: 10px;
-        padding: 6px 9px;
-        letter-spacing: 0.2px;
-    }
-    .fixed-back-to-top {
-        top: 80px;
-        right: 10px;
-        width: 44px;
-        height: 44px;
-    }
-    .fixed-back-to-top svg {
-        width: 22px;
-        height: 22px;
-    }
+    .nav-row { gap: 5px; }
+    .top-nav a { font-size: 10px; padding: 6px 9px; letter-spacing: 0.2px; }
+    .fixed-back-to-top { top: 80px; right: 10px; width: 44px; height: 44px; }
+    .fixed-back-to-top svg { width: 22px; height: 22px; }
 }
 
 /* HERO */
@@ -358,6 +306,7 @@ h2[id], div[id="contatti"] {
 }
 .hero-subtitle br { display: none; }
 .green { color: var(--accent-mint) !important; }
+.orange { color: var(--accent-orange) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
 .hero-right img { 
     width: clamp(160px, 20vw, 280px); border-radius: 50%; 
@@ -372,14 +321,12 @@ h2[id], div[id="contatti"] {
     width: 95%; max-width: 1200px;
 }
 
-/* LOGHI TITOLO */
 .logos-title { 
     text-align: center !important; width: 100%; display: block; margin-bottom: 30px; 
     color: var(--text-muted-light); font-size: clamp(11px, 3vw, 14px); font-weight: 700; 
     text-transform: uppercase; letter-spacing: 3px; white-space: nowrap; 
 }
 
-/* CAROSELLO E GRIGLIA LOGHI */
 .logos-track img, .logos-grid img { 
     width: 160px; height: 95px; background: #fff; border-radius: 18px; 
     padding: 16px; 
@@ -413,7 +360,7 @@ h2[id], div[id="contatti"] {
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
 .card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
 
-/* MONDO DIGITALE */
+/* MONDO DIGITALE SEZIONE RISULTATI */
 .globe-overlay {
     position: absolute; bottom:-25%; left:50%; transform:translateX(-50%); 
     width:160vw; height:160vw; 
@@ -425,27 +372,43 @@ h2[id], div[id="contatti"] {
     pointer-events: none; z-index: 1;
 }
 
-/* GESTIONE SFONDI DESKTOP vs MOBILE */
 .desktop-pattern { display: none; }
 .mobile-globe { display: block; }
 
 @media (min-width: 769px) {
     .mobile-globe { display: none !important; }
     .desktop-pattern { display: block; }
-    
-    .contatti-section .globe-overlay {
-        width: 800px !important;
-        height: 800px !important;
-        bottom: -400px !important;
-        opacity: 0.25 !important;
-    }
 }
 
-/* FRECCIA ANIMATA */
+/* MONDO DIGITALE SEZIONE CONTATTI E FRASE FINALE (COME DA SCREENSHOT) */
+.contatti-section {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+}
+.contatti-section .globe-overlay-finale {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    opacity: 0.85;
+    filter: sepia(1) hue-rotate(100deg) saturate(2.4) brightness(0.95);
+    pointer-events: none;
+    z-index: 1;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 6%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 88%, rgba(0,0,0,0.3) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 6%, rgba(0,0,0,1) 16%, rgba(0,0,0,1) 88%, rgba(0,0,0,0.3) 100%);
+}
+
 .arrow-icon { width: 30px; height: 30px; fill: var(--accent-mint); margin: 20px auto; display: block; animation: arrowBounce 2s infinite; }
 @keyframes arrowBounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-12px);} 60% {transform: translateY(-6px);} }
 
-/* NUMERI */
 .circular-progress { position: relative; width: 160px; height: 160px; margin-bottom: 30px; }
 .circular-progress svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .circle-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
@@ -453,7 +416,6 @@ h2[id], div[id="contatti"] {
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
 .progress-money .circle-content { font-size: 24px !important; }
 
-/* CHAT ANIMATA CHE TRILLA CON BORDO ARANCIO FISSO */
 .whatsapp-fixed {
     position: fixed; bottom: 30px; left: 30px; 
     padding: 18px 30px; border-radius: 12px; 
@@ -476,7 +438,6 @@ h2[id], div[id="contatti"] {
     100% { transform: scale(1) rotate(0deg); }
 }
 
-/* BOTTONI SHIMMER */
 @keyframes shimmerEffect {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
@@ -512,7 +473,6 @@ h2[id], div[id="contatti"] {
     box-sizing: border-box;
 }
 
-/* CONTATTI */
 .contact-label { font-size: 14px; font-weight: 400; color: var(--accent-mint); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 12px; display: block; text-align: center; }
 .contact-box-elegant {
     background: rgba(18, 51, 36, 0.4); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
@@ -531,6 +491,7 @@ h2[id], div[id="contatti"] {
     .globe-overlay { width: 200vw; height: 200vw; }
     .whatsapp-fixed { bottom: 20px; left: 20px; padding: 14px 24px; font-size: 14px; }
     .contact-box-elegant { padding: 40px 20px; }
+    .contatti-section { padding-top: 170px !important; padding-bottom: 50px !important; }
 }
 </style>
 </head>
@@ -545,7 +506,7 @@ h2[id], div[id="contatti"] {
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO CON I MENU CENTRATI -->
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO BIANCO CON BORDO INFERIORE E BOTTONI ARANCIONI -->
 <nav class="top-nav" aria-label="Navigazione principale">
     <div class="top-nav-inner">
         <div class="nav-links-wrapper">
@@ -561,7 +522,7 @@ h2[id], div[id="contatti"] {
     </div>
 </nav>
 
-<!-- FRECCIA FISSA IN ALTO A DESTRA, SOTTO AL BANNER -->
+<!-- FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER -->
 <a href="#" id="fixed-back-to-top" class="fixed-back-to-top" title="Torna in cima" aria-label="Torna in cima alla pagina">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -626,13 +587,10 @@ h2[id], div[id="contatti"] {
 
 <!-- SEZIONE RISULTATI CON MONDO/PUNTINI -->
 <section class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
-    <!-- Mondo visibile solo da mobile -->
     <div class="globe-overlay mobile-globe"></div>
-    <!-- Puntini sfumati visibili solo da PC -->
     <div class="bg-pattern desktop-pattern"></div>
     
     <div class="container">
-        <!-- PUNTO DI ANCORAGGIO: COME PORTO RISULTATI -->
         <h2 id="risultati" style="color:white; text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:900; margin-bottom:80px; letter-spacing: -1px;">Come porto risultati</h2>
         <div class="grid-3">
             <div class="card-dark reveal">
@@ -652,7 +610,7 @@ h2[id], div[id="contatti"] {
             </div>
             <div class="card-dark reveal">
                 <h3 class="green" style="font-size:26px; margin-bottom:25px;">Sviluppo Lifetime Value LTV</h3>
-                <p>Non mi fermo alla firma del contratto. Accompagno ogni cliente aumentando retention e fiducia nel tempo.<p>
+                <p>Non mi fermo alla firma del contratto. Accompagno ogni cliente aumentando retention e fiducia nel tempo.</p>
                 <p>Creo opportunità di upsell e cross-sell per massimizzare la redditività.</p>
             </div>
         </div>
@@ -662,7 +620,6 @@ h2[id], div[id="contatti"] {
 <!-- SEZIONE NUMERI E GRIGLIA LOGHI FINALE -->
 <div class="light-layer">
     <div class="container">
-        <!-- PUNTO DI ANCORAGGIO: I MIEI NUMERI -->
         <h2 id="numeri" style="text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:800; margin-bottom:80px; letter-spacing: -1px;">I miei numeri</h2>
         <div class="grid-3">
             <div class="card-dark reveal num-card">
@@ -671,7 +628,7 @@ h2[id], div[id="contatti"] {
                     <div class="circle-content"><span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Retention</h3>
-                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.<p>
+                <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
                 <p>Qualifico ogni lead per assicurarmi che il servizio sia perfetto.</p>
             </div>
             <div class="card-dark reveal num-card progress-money">
@@ -680,7 +637,7 @@ h2[id], div[id="contatti"] {
                     <div class="circle-content">+€<span class="num">0</span>M</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Fatturato Generato</h3>
-                <p>Fatturato prodotto direttamente attraverso le mie vendite.<p>
+                <p>Fatturato prodotto direttamente attraverso le mie vendite.</p>
                 <p>Gestisco ogni trattativa con un approccio consulenziale e orientato al valore.</p>
             </div>
             <div class="card-dark reveal num-card">
@@ -689,12 +646,11 @@ h2[id], div[id="contatti"] {
                     <div class="circle-content"><span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Closing Rate</h3>
-                <p>Tasso medio calcolato sull'intero storico della mia attività da closer.<p>
+                <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
                 <p>So come gestire le obiezioni e portare a termine la vendita.</p>
             </div>
         </div>
         
-        <!-- PUNTO DI ANCORAGGIO: COLLABORAZIONI -->
         <h2 id="partner" style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
         <div class="logos-grid reveal">
             <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo"><img src="wayan.png" alt="Logo"><img src="verona.jpg" alt="Logo"><img src="berton.png" alt="Logo"><img src="prezzi-farmaco.png" alt="Logo"><img src="velocissimo.webp" alt="Logo"><img src="sales.png" alt="Logo"><img src="farmacisti.png" alt="Logo"><img src="app-in-farma.png" alt="Logo"><img src="ilaria.png" alt="Logo"><img src="foglietto-illustrativo.png" alt="Logo"><img src="gizia.png" alt="Logo"><img src="slym.png" alt="Logo">
@@ -702,18 +658,17 @@ h2[id], div[id="contatti"] {
     </div>
 </div>
 
-<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO -->
-<section class="dark-section contatti-section" style="text-align:center; padding-top: 240px; padding-bottom: 40px;">
-    <!-- MONDO DIGITALE -->
-    <div class="globe-overlay" style="bottom: 0%; opacity: 0.4;"></div>
+<!-- CTA E CONTATTI CON MONDO IN DIGITALE IN SOTTOFONDO -->
+<section class="dark-section contatti-section" style="text-align:center; padding-top: 220px; padding-bottom: 50px;">
+    <!-- MONDO DIGITALE VISIBILE SOTTO LA FRASE E I CONTATTI -->
+    <div class="globe-overlay-finale"></div>
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
             <p style="font-size: clamp(22px, 3.5vw, 28px); color: #fff; margin-bottom: 20px; font-weight: 500;">I lead non sono il problema.</p>
-            <p style="font-size: clamp(30px, 5vw, 52px); color: var(--accent-mint); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
+            <p class="orange" style="font-size: clamp(30px, 5vw, 52px); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
         </div>
         
-        <!-- PUNTO DI ANCORAGGIO: CONTATTAMI -->
         <div id="contatti" class="reveal">
             <span class="contact-label">Contattami</span>
             <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT per una collaborazione</h2>
@@ -750,7 +705,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const menuButtons = document.querySelectorAll('.nav-links-wrapper .menu-btn');
     let glowTimer = null;
 
-    // Quando l'utente clicca su uno dei quattro tasti (collaborazione, risultati, numeri, contatti)
     menuButtons.forEach(btn => {
         btn.addEventListener('click', function() {
             if (!backToTopBtn) return;
@@ -762,7 +716,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Click sulla freccia per risalire alla testa della landing
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', function(e) {
             e.preventDefault();
