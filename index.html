@@ -77,7 +77,7 @@ h2[id], div[id="contatti"] {
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE FISSO */
+/* MENU NAVIGAZIONE FISSO (BANNER IN ALTO) */
 .top-nav {
     position: fixed;
     top: 0;
@@ -98,50 +98,10 @@ h2[id], div[id="contatti"] {
 .top-nav-inner {
     max-width: 1100px;
     margin: 0 auto;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 74px;
-}
-
-/* FRECCIA BACK TO TOP: SPOSTATA A SINISTRA, NESSUN BOTTONE SOPRA */
-.top-nav .back-to-top-btn {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-orange);
-    color: var(--accent-orange);
-    background: #ffffff;
-    box-shadow: 0 3px 10px rgba(255, 159, 67, 0.25);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 20;
-    flex-shrink: 0;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-.top-nav .back-to-top-btn svg {
-    width: 22px;
-    height: 22px;
-    transition: transform 0.2s ease;
-}
-.top-nav .back-to-top-btn:hover {
-    background: var(--accent-orange);
-    border-color: var(--accent-orange);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.5);
-    transform: translateY(-50%) scale(1.06);
-}
-.top-nav .back-to-top-btn:active {
-    transform: translateY(-50%) scale(0.95);
 }
 
 /* WRAPPER BOTTONI MENU: DUE RIGHE CENTRATE */
@@ -162,7 +122,7 @@ h2[id], div[id="contatti"] {
     flex-wrap: nowrap;
 }
 
-.top-nav a:not(.back-to-top-btn) {
+.top-nav a {
     color: #071910;
     text-decoration: none;
     font-size: 13px;
@@ -179,13 +139,138 @@ h2[id], div[id="contatti"] {
     display: inline-block;
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
     -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
-.top-nav a:not(.back-to-top-btn):hover {
+.top-nav a:hover {
     background: var(--accent-mint);
     border-color: var(--accent-mint);
     color: #0a2418;
     box-shadow: 0 4px 15px rgba(110, 241, 149, 0.4);
     transform: translateY(-2px);
+}
+.top-nav a:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   FRECCIA TORNA IN CIMA: SOTTO AL BANNER, IN ALTO A DESTRA, FISSA LÌ
+   ========================================================================== */
+.fixed-back-to-top {
+    position: fixed;
+    top: 92px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--accent-orange);
+    color: var(--accent-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9995;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+.fixed-back-to-top svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.25s ease;
+}
+.fixed-back-to-top:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(255, 159, 67, 0.55);
+    transform: translateY(-2px) scale(1.06);
+}
+.fixed-back-to-top:active {
+    transform: translateY(1px) scale(0.96);
+}
+
+/* STATO ILLUMINATO ELEGANTE (QUANDO SI CLICCA UNO DEI 4 TASTI MENU) */
+.fixed-back-to-top.illuminated {
+    background: #0a2418;
+    border-color: var(--accent-mint);
+    color: var(--accent-mint);
+    animation: elegantPulse 1.8s infinite ease-in-out;
+}
+
+.fixed-back-to-top.illuminated::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-mint);
+    animation: radarWave 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+.fixed-back-to-top.illuminated::after {
+    content: '';
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px dashed var(--accent-orange);
+    animation: radarWave 2.2s infinite 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+@keyframes elegantPulse {
+    0%, 100% {
+        box-shadow: 0 0 16px rgba(110, 241, 149, 0.9), 0 0 35px rgba(255, 159, 67, 0.5), 0 4px 15px rgba(0,0,0,0.4);
+        transform: scale(1.05);
+        color: var(--accent-mint);
+        border-color: var(--accent-mint);
+    }
+    50% {
+        box-shadow: 0 0 28px rgba(110, 241, 149, 1), 0 0 50px rgba(255, 159, 67, 0.8), 0 8px 25px rgba(0,0,0,0.5);
+        transform: scale(1.14);
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+    }
+}
+
+@keyframes radarWave {
+    0% {
+        opacity: 0.9;
+        transform: scale(0.85);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+/* TOOLTIP SUGGERIMENTO ELEGANTE */
+.fixed-back-to-top .arrow-tooltip {
+    position: absolute;
+    right: 58px;
+    top: 50%;
+    transform: translateY(-50%) translateX(8px);
+    background: rgba(10, 36, 24, 0.95);
+    border: 1px solid var(--accent-mint);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.fixed-back-to-top.illuminated .arrow-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
 }
 
 /* ADATTAMENTO RESPONSIVO PER SMARTPHONE E TABLET */
@@ -196,28 +281,33 @@ h2[id], div[id="contatti"] {
     .top-nav-inner {
         min-height: 72px;
     }
-    /* FRECCIA PIÙ GRANDE SU SMARTPHONE */
-    .top-nav .back-to-top-btn {
-        width: 44px;
-        height: 44px;
-        left: 6px;
-    }
-    .top-nav .back-to-top-btn svg {
-        width: 22px;
-        height: 22px;
-    }
     .nav-links-wrapper {
         gap: 6px;
-        padding-left: 48px;
-        padding-right: 8px;
     }
     .nav-row {
-        gap: 6px;
+        gap: 8px;
     }
-    .top-nav a:not(.back-to-top-btn) {
+    .top-nav a {
         font-size: 11px;
-        padding: 7px 11px;
+        padding: 7px 12px;
         letter-spacing: 0.4px;
+    }
+
+    /* FRECCIA SU SMARTPHONE, SOTTO IL BANNER A DESTRA */
+    .fixed-back-to-top {
+        top: 84px;
+        right: 14px;
+        width: 48px;
+        height: 48px;
+    }
+    .fixed-back-to-top svg {
+        width: 24px;
+        height: 24px;
+    }
+    .fixed-back-to-top .arrow-tooltip {
+        font-size: 10px;
+        padding: 5px 10px;
+        right: 54px;
     }
 
     .hero-subtitle br { display: block; } 
@@ -230,27 +320,23 @@ h2[id], div[id="contatti"] {
 
 /* FORMATI SMARTPHONE PIÙ STRETTI */
 @media (max-width: 380px) {
-    .nav-links-wrapper {
-        padding-left: 42px;
-        padding-right: 4px;
+    .nav-row {
         gap: 5px;
     }
-    .nav-row {
-        gap: 4px;
-    }
-    .top-nav a:not(.back-to-top-btn) {
-        font-size: 9.5px;
-        padding: 6px 8px;
+    .top-nav a {
+        font-size: 10px;
+        padding: 6px 9px;
         letter-spacing: 0.2px;
     }
-    .top-nav .back-to-top-btn {
-        width: 40px;
-        height: 40px;
-        left: 2px;
+    .fixed-back-to-top {
+        top: 80px;
+        right: 10px;
+        width: 44px;
+        height: 44px;
     }
-    .top-nav .back-to-top-btn svg {
-        width: 20px;
-        height: 20px;
+    .fixed-back-to-top svg {
+        width: 22px;
+        height: 22px;
     }
 }
 
@@ -459,30 +545,30 @@ h2[id], div[id="contatti"] {
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- MENU DI NAVIGAZIONE FISSO IN ALTO CON FRECCIA TOP A SINISTRA -->
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO CON I MENU CENTRATI -->
 <nav class="top-nav" aria-label="Navigazione principale">
     <div class="top-nav-inner">
-        <!-- TASTO FRECCIA (Torna su): SPOSTATA A SINISTRA, NESSUN BOTTONE SOPRA -->
-        <a href="#" class="back-to-top-btn" title="Torna all'inizio" aria-label="Torna all'inizio">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="19" x2="12" y2="5"></line>
-                <polyline points="5 12 12 5 19 12"></polyline>
-            </svg>
-        </a>
-
-        <!-- GRUPPO MENU CENTRATO SU DUE RIGHE -->
         <div class="nav-links-wrapper">
             <div class="nav-row nav-row-top">
-                <a href="#partner">Collaborazioni</a>
-                <a href="#risultati">Come porto risultati</a>
+                <a href="#partner" class="menu-btn">Collaborazioni</a>
+                <a href="#risultati" class="menu-btn">Come porto risultati</a>
             </div>
             <div class="nav-row nav-row-bottom">
-                <a href="#numeri">I miei numeri</a>
-                <a href="#contatti">Contattami</a>
+                <a href="#numeri" class="menu-btn">I miei numeri</a>
+                <a href="#contatti" class="menu-btn">Contattami</a>
             </div>
         </div>
     </div>
 </nav>
+
+<!-- FRECCIA FISSA IN ALTO A DESTRA, SOTTO AL BANNER -->
+<a href="#" id="fixed-back-to-top" class="fixed-back-to-top" title="Torna in cima" aria-label="Torna in cima alla pagina">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+    <span class="arrow-tooltip">Torna in cima ↑</span>
+</a>
 
 <!-- HERO SECTION -->
 <section class="dark-section hero-section">
@@ -659,6 +745,31 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         perc.innerText = p + '%'; bar.style.width = p + '%';
     }, 110);
+
+    const backToTopBtn = document.getElementById('fixed-back-to-top');
+    const menuButtons = document.querySelectorAll('.nav-links-wrapper .menu-btn');
+    let glowTimer = null;
+
+    // Quando l'utente clicca su uno dei quattro tasti (collaborazione, risultati, numeri, contatti)
+    menuButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (!backToTopBtn) return;
+            backToTopBtn.classList.add('illuminated');
+            if (glowTimer) clearTimeout(glowTimer);
+            glowTimer = setTimeout(() => {
+                backToTopBtn.classList.remove('illuminated');
+            }, 6000);
+        });
+    });
+
+    // Click sulla freccia per risalire alla testa della landing
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            backToTopBtn.classList.remove('illuminated');
+        });
+    }
 
     function init() {
         const observer = new IntersectionObserver((entries) => {
