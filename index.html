@@ -60,7 +60,7 @@ body.loading { overflow: hidden; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
 .dark-section { background: var(--bg-dark); padding: 180px 0; position: relative; overflow: hidden; width: 100%; }
 
-/* PUNTINI DI SFONDO MODIFICATI (Centrati e Sfumati a cerchio) */
+/* PUNTINI DI SFONDO (Centrati e Sfumati a cerchio) */
 .bg-pattern { 
     position: absolute; top:0; left:0; width:100%; height:100%; 
     background-image: radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.5px); 
@@ -71,43 +71,48 @@ body.loading { overflow: hidden; }
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE (Pulsanti in alto) */
+/* MENU NAVIGAZIONE (Fisso, bianco con tocchi verdi e pattern grafico) */
 .top-nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 24px;
+    padding: 15px 24px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 15px;
-    z-index: 50;
+    z-index: 9998;
     flex-wrap: wrap;
-}
-.top-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.02);
+    background-color: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--accent-mint);
+    /* Sfondo grafico accattivante */
+    background-image: radial-gradient(rgba(110, 241, 149, 0.35) 1px, transparent 1px);
+    background-size: 20px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.top-nav a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 18px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    transition: all 0.3s ease;
 }
 .top-nav a:hover {
     border-color: var(--accent-mint);
-    color: var(--accent-mint);
-    background: rgba(110, 241, 149, 0.05);
+    color: #0a2418;
+    background: rgba(110, 241, 149, 0.2);
 }
 
 /* HERO */
-.hero-section { padding-top: 120px; padding-bottom: 240px; }
+.hero-section { padding-top: 180px; padding-bottom: 240px; } /* Aumentato padding per la barra fissa */
 .hero-title {
     color: #ffffff; font-size: clamp(38px, 7vw, 82px); font-weight: 900 !important;
     font-style: italic !important; text-transform: uppercase !important;
@@ -124,9 +129,10 @@ body.loading { overflow: hidden; }
 }
 .hero-subtitle br { display: none; }
 @media (max-width: 768px) { 
-    .hero-subtitle br { display: block; }
-    .top-nav { padding: 20px 10px; gap: 8px; }
-    .top-nav a { font-size: 11px; padding: 8px 12px; }
+    .hero-subtitle br { display: block; } 
+    .top-nav { padding: 10px; gap: 8px; }
+    .top-nav a { font-size: 11px; padding: 6px 10px; }
+    .hero-section { padding-top: 160px; }
 }
 .green { color: var(--accent-mint) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
@@ -207,7 +213,7 @@ body.loading { overflow: hidden; }
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
 .progress-money .circle-content { font-size: 24px !important; }
 
-/* CHAT ANIMATA */
+/* CHAT ANIMATA CHE TRILLA */
 .whatsapp-fixed {
     position: fixed; bottom: 30px; left: 30px; 
     padding: 18px 30px; border-radius: 12px; 
@@ -215,11 +221,25 @@ body.loading { overflow: hidden; }
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); font-size: 16px;
     background: linear-gradient(90deg, var(--accent-mint), var(--accent-orange), var(--accent-mint));
     background-size: 200% auto; color: #000;
-    animation: flowGradient 4s linear infinite;
+    /* Due animazioni: scorrimento colore + squillo occasionale */
+    animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+@keyframes chatTrill {
+    0%, 85% { transform: scale(1) rotate(0deg); }
+    87% { transform: scale(1.1) rotate(5deg); }
+    89% { transform: scale(1.1) rotate(-5deg); }
+    91% { transform: scale(1.1) rotate(5deg); }
+    93% { transform: scale(1.1) rotate(-5deg); }
+    95% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
 
-/* BOTTONI SHIMMER */
+/* BOTTONI SHIMMER (Scia verde continua) */
+@keyframes shimmerEffect {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
 .btn-shimmer {
     position: relative; overflow: hidden; background: transparent; color: #fff;
     border: 1px solid var(--accent-mint); padding: 20px 30px; border-radius: 14px;
@@ -227,9 +247,11 @@ body.loading { overflow: hidden; }
     gap: 12px; text-transform: uppercase; font-size: 15px; transition: 0.3s; width: 100%; max-width: 340px;
 }
 .btn-shimmer::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.4), transparent);
-    animation: shimmerEffect 3s infinite linear;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    /* Gradiente molto elegante per far vedere il passaggio */
+    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.5), transparent);
+    animation: shimmerEffect 2.5s infinite linear;
+    pointer-events: none;
 }
 .btn-main { background: var(--accent-mint); color: #000; padding: 20px 30px; border-radius: 14px; text-decoration: none; font-weight: 800; text-align: center; text-transform: uppercase; width: 100%; max-width: 340px; display: block; margin-bottom: 20px; font-size: 16px; }
 
@@ -264,18 +286,18 @@ body.loading { overflow: hidden; }
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
+<!-- MENU DI NAVIGAZIONE FISSO IN ALTO -->
+<nav class="top-nav">
+    <a href="#partner">I miei partner</a>
+    <a href="#risultati">Come porto risultati</a>
+    <a href="#numeri">I miei numeri</a>
+    <a href="#contatti">Contattami</a>
+</nav>
+
 <!-- HERO SECTION -->
 <section class="dark-section hero-section">
     <div class="bg-pattern"></div>
     
-    <!-- MENU DI NAVIGAZIONE IN ALTO -->
-    <nav class="top-nav">
-        <a href="#partner">I miei partner</a>
-        <a href="#risultati">Come porto risultati</a>
-        <a href="#numeri">I miei numeri</a>
-        <a href="#contatti">Contattami</a>
-    </nav>
-
     <div class="container reveal">
         <div class="hero-content">
             <div class="hero-left">
@@ -396,8 +418,10 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- CTA E CONTATTI -->
+<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO -->
 <section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px;">
+    <!-- MONDO DIGITALE ANCHE IN BASSO -->
+    <div class="globe-overlay" style="bottom: -20%; opacity: 0.4;"></div>
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
@@ -406,7 +430,7 @@ body.loading { overflow: hidden; }
         </div>
         <div class="reveal">
             <span class="contact-label">Contattami</span>
-            <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT e collaboriamo</h2>
+            <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su CHAT e lavoriamo insieme</h2>
             <div class="contact-box-elegant">
                 <p style="font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 15px;">Matteo Bertoni</p>
                 <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Remote Closing Specialist (Verona)</p>
