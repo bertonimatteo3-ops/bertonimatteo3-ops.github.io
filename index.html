@@ -32,13 +32,13 @@
 
 /* RESET E BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: var(--bg-dark); scroll-padding-top: 120px; }
+html { scroll-behavior: smooth; background: var(--bg-dark); scroll-padding-top: 140px; }
 body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; position: relative; }
 body.loading { overflow: hidden; }
 
-/* CENTRATURA PERFETTA DELLE ANCORE MENU */
+/* CENTRATURA PERFETTA DELLE ANCORE MENU CON NAVBAR */
 h2[id], div[id="contatti"] {
-    scroll-margin-top: 130px;
+    scroll-margin-top: 140px;
 }
 
 /* PRELOADER */
@@ -46,8 +46,9 @@ h2[id], div[id="contatti"] {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: var(--bg-dark); z-index: 9999999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
 }
-#preloader.preloader-hidden { opacity: 0; visibility: hidden; transition: opacity 0.8s ease; }
+#preloader.preloader-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .loading-text { color: var(--text-light); font-size: 14px; letter-spacing: 5px; margin-bottom: 15px; font-weight: 300; text-transform: uppercase; }
 .loading-text span { display: inline-block; animation: pulseDots 1.5s infinite; }
 @keyframes pulseDots { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
@@ -59,7 +60,7 @@ h2[id], div[id="contatti"] {
 }
 .preloader-percentage { font-size: 50px; font-weight: 900; color: var(--accent-mint); font-style: italic; }
 .preloader-bar-container { width: 180px; height: 4px; background: rgba(255,255,255,0.1); margin-top: 20px; border-radius: 4px; overflow: hidden; }
-.preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); }
+.preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); transition: width 0.1s linear; }
 
 /* STRUTTURA */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
@@ -82,13 +83,8 @@ h2[id], div[id="contatti"] {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 15px 24px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px;
+    padding: 12px 16px;
     z-index: 9998;
-    flex-wrap: wrap;
     background-color: #ffffff;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%230a2418' d='M 450 100 C 750 100, 950 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%236ef195' d='M 500 100 C 800 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
     background-size: cover;
@@ -96,24 +92,95 @@ h2[id], div[id="contatti"] {
     background-repeat: no-repeat;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-bottom: 3px solid var(--accent-orange);
+    transition: all 0.3s ease;
 }
-@media (min-width: 769px) {
-    .top-nav { justify-content: center; } 
+
+.top-nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 74px;
 }
-.top-nav a {
+
+/* FRECCIA BACK TO TOP: SPOSTATA A SINISTRA, NESSUN BOTTONE SOPRA */
+.top-nav .back-to-top-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+    color: var(--accent-orange);
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(255, 159, 67, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 20;
+    flex-shrink: 0;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.top-nav .back-to-top-btn svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.2s ease;
+}
+.top-nav .back-to-top-btn:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.5);
+    transform: translateY(-50%) scale(1.06);
+}
+.top-nav .back-to-top-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* WRAPPER BOTTONI MENU: DUE RIGHE CENTRATE */
+.nav-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+}
+
+.top-nav a:not(.back-to-top-btn) {
     color: #071910;
     text-decoration: none;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 10px 20px;
-    border: 1px solid var(--accent-orange); 
+    letter-spacing: 0.8px;
+    padding: 8px 18px;
+    border: 1.5px solid var(--accent-orange); 
     border-radius: 30px;
     background: #ffffff; 
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    -webkit-tap-highlight-color: transparent;
 }
-.top-nav a:hover {
+.top-nav a:not(.back-to-top-btn):hover {
     background: var(--accent-mint);
     border-color: var(--accent-mint);
     color: #0a2418;
@@ -121,30 +188,70 @@ h2[id], div[id="contatti"] {
     transform: translateY(-2px);
 }
 
-/* FRECCIA BACK TO TOP NELLA NAV */
-.top-nav .back-to-top-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-orange);
-    color: var(--accent-orange);
-    background: #ffffff;
-    transition: all 0.3s ease;
+/* ADATTAMENTO RESPONSIVO PER SMARTPHONE E TABLET */
+@media (max-width: 768px) { 
+    .top-nav {
+        padding: 10px 8px;
+    }
+    .top-nav-inner {
+        min-height: 72px;
+    }
+    /* FRECCIA PIÙ GRANDE SU SMARTPHONE */
+    .top-nav .back-to-top-btn {
+        width: 44px;
+        height: 44px;
+        left: 6px;
+    }
+    .top-nav .back-to-top-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+    .nav-links-wrapper {
+        gap: 6px;
+        padding-left: 48px;
+        padding-right: 8px;
+    }
+    .nav-row {
+        gap: 6px;
+    }
+    .top-nav a:not(.back-to-top-btn) {
+        font-size: 11px;
+        padding: 7px 11px;
+        letter-spacing: 0.4px;
+    }
+
+    .hero-subtitle br { display: block; } 
+    .hero-section { padding-top: 160px; }
+    .hero-section .bg-pattern {
+        -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
+        mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
+    }
 }
-.top-nav .back-to-top-btn svg {
-    width: 18px;
-    height: 18px;
-}
-.top-nav .back-to-top-btn:hover {
-    background: var(--accent-orange);
-    border-color: var(--accent-orange);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.5);
-    transform: translateY(-2px);
+
+/* FORMATI SMARTPHONE PIÙ STRETTI */
+@media (max-width: 380px) {
+    .nav-links-wrapper {
+        padding-left: 42px;
+        padding-right: 4px;
+        gap: 5px;
+    }
+    .nav-row {
+        gap: 4px;
+    }
+    .top-nav a:not(.back-to-top-btn) {
+        font-size: 9.5px;
+        padding: 6px 8px;
+        letter-spacing: 0.2px;
+    }
+    .top-nav .back-to-top-btn {
+        width: 40px;
+        height: 40px;
+        left: 2px;
+    }
+    .top-nav .back-to-top-btn svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 /* HERO */
@@ -164,25 +271,12 @@ h2[id], div[id="contatti"] {
     text-align: center; 
 }
 .hero-subtitle br { display: none; }
-@media (max-width: 768px) { 
-    .hero-subtitle br { display: block; } 
-    .top-nav { padding: 12px 10px; gap: 8px; justify-content: center; }
-    .top-nav a { font-size: 11px; padding: 8px 12px; }
-    
-    .top-nav .back-to-top-btn { width: 32px; height: 32px; }
-    .top-nav .back-to-top-btn svg { width: 16px; height: 16px; }
-
-    .hero-section { padding-top: 160px; }
-    .hero-section .bg-pattern {
-        -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
-        mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
-    }
-}
 .green { color: var(--accent-mint) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
 .hero-right img { 
     width: clamp(160px, 20vw, 280px); border-radius: 50%; 
     border: 3px solid var(--accent-mint); box-shadow: 0 0 40px rgba(0,0,0,0.4); 
+    object-fit: cover; aspect-ratio: 1 / 1;
 }
 
 /* LIGHT LAYER */
@@ -202,8 +296,9 @@ h2[id], div[id="contatti"] {
 /* CAROSELLO E GRIGLIA LOGHI */
 .logos-track img, .logos-grid img { 
     width: 160px; height: 95px; background: #fff; border-radius: 18px; 
-    padding: 22px; 
+    padding: 16px; 
     object-fit: contain; display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
 
 .logos-track img[src*="berton"], .logos-grid img[src*="berton"],
@@ -227,7 +322,7 @@ h2[id], div[id="contatti"] {
 @media (min-width: 768px) { .logos-grid { grid-template-columns: repeat(6, 1fr); } }
 
 /* CARDS */
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; width: 100%; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; }
 .card-light { background: #fff; padding: 50px 40px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.04); }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
 .card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
@@ -282,6 +377,7 @@ h2[id], div[id="contatti"] {
     background-size: 200% auto; color: #000;
     border: 2px solid var(--accent-orange); 
     animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 @keyframes chatTrill {
@@ -304,6 +400,7 @@ h2[id], div[id="contatti"] {
     border: 1px solid var(--accent-mint); padding: 20px 30px; border-radius: 14px;
     text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; justify-content: center;
     gap: 12px; text-transform: uppercase; font-size: 15px; transition: 0.3s; width: 100%; max-width: 340px;
+    box-sizing: border-box;
 }
 .btn-shimmer::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -326,6 +423,7 @@ h2[id], div[id="contatti"] {
     display: block; 
     margin-bottom: 20px; 
     font-size: 16px; 
+    box-sizing: border-box;
 }
 
 /* CONTATTI */
@@ -345,6 +443,8 @@ h2[id], div[id="contatti"] {
     .btn-main, .btn-shimmer { max-width: 100%; }
     .light-layer { border-radius: 40px; width: 95%; }
     .globe-overlay { width: 200vw; height: 200vw; }
+    .whatsapp-fixed { bottom: 20px; left: 20px; padding: 14px 24px; font-size: 14px; }
+    .contact-box-elegant { padding: 40px 20px; }
 }
 </style>
 </head>
@@ -359,19 +459,29 @@ h2[id], div[id="contatti"] {
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- MENU DI NAVIGAZIONE FISSO IN ALTO CON FRECCIA TOP -->
-<nav class="top-nav">
-    <a href="#partner">Collaborazioni</a>
-    <a href="#risultati">Come porto risultati</a>
-    <a href="#numeri">I miei numeri</a>
-    <a href="#contatti">Contattami</a>
-    <!-- TASTO FRECCIA (Torna su) -->
-    <a href="#" class="back-to-top-btn" title="Torna all'inizio">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
-        </svg>
-    </a>
+<!-- MENU DI NAVIGAZIONE FISSO IN ALTO CON FRECCIA TOP A SINISTRA -->
+<nav class="top-nav" aria-label="Navigazione principale">
+    <div class="top-nav-inner">
+        <!-- TASTO FRECCIA (Torna su): SPOSTATA A SINISTRA, NESSUN BOTTONE SOPRA -->
+        <a href="#" class="back-to-top-btn" title="Torna all'inizio" aria-label="Torna all'inizio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </a>
+
+        <!-- GRUPPO MENU CENTRATO SU DUE RIGHE -->
+        <div class="nav-links-wrapper">
+            <div class="nav-row nav-row-top">
+                <a href="#partner">Collaborazioni</a>
+                <a href="#risultati">Come porto risultati</a>
+            </div>
+            <div class="nav-row nav-row-bottom">
+                <a href="#numeri">I miei numeri</a>
+                <a href="#contatti">Contattami</a>
+            </div>
+        </div>
+    </div>
 </nav>
 
 <!-- HERO SECTION -->
@@ -538,7 +648,7 @@ h2[id], div[id="contatti"] {
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const preloader = document.getElementById('preloader');
-    const bar = document.querySelector('.preloader-bar');
+    const bar = document.getElementById('preloader-bar');
     const perc = document.getElementById('preloader-percentage');
     let p = 0;
     let interval = setInterval(() => {
