@@ -71,7 +71,7 @@ body.loading { overflow: hidden; }
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE FISSO CON ONDA VERDE */
+/* MENU NAVIGAZIONE FISSO CON ONDA VERDE E BORDINO INFERIORE */
 .top-nav {
     position: fixed;
     top: 0;
@@ -91,9 +91,11 @@ body.loading { overflow: hidden; }
     background-position: right center;
     background-repeat: no-repeat;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    /* BORDINO AGGIUNTO */
+    border-bottom: 3px solid var(--accent-mint);
 }
 @media (min-width: 769px) {
-    .top-nav { justify-content: center; } /* Centra i bottoni su PC */
+    .top-nav { justify-content: center; } 
 }
 .top-nav a {
     color: #071910;
@@ -103,7 +105,7 @@ body.loading { overflow: hidden; }
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 10px 20px;
-    border: 1px solid var(--accent-mint); /* Effetto piccolo bottone richiesto */
+    border: 1px solid var(--accent-mint); 
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.9);
     transition: all 0.3s ease;
@@ -137,6 +139,12 @@ body.loading { overflow: hidden; }
     .top-nav { padding: 12px 10px; gap: 8px; justify-content: center; }
     .top-nav a { font-size: 11px; padding: 8px 12px; }
     .hero-section { padding-top: 160px; }
+    
+    /* MODIFICA: Sposta la sfumatura dei puntini più in alto SOLO su smartphone nella hero */
+    .hero-section .bg-pattern {
+        -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
+        mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
+    }
 }
 .green { color: var(--accent-mint) !important; }
 .hero-content { display: flex; align-items: center; gap: 80px; }
@@ -210,11 +218,9 @@ body.loading { overflow: hidden; }
 .mobile-globe { display: block; }
 
 @media (min-width: 769px) {
-    /* Nella sezione risultati nascondo il mondo e mostro i puntini */
     .mobile-globe { display: none !important; }
     .desktop-pattern { display: block; }
     
-    /* Nella sezione contatti, rimpicciolisco il mondo e lo poggio in fondo */
     #contatti .globe-overlay {
         width: 800px !important;
         height: 800px !important;
@@ -306,7 +312,7 @@ body.loading { overflow: hidden; }
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- MENU DI NAVIGAZIONE FISSO IN ALTO (Banner Bianco con Onda Verde) -->
+<!-- MENU DI NAVIGAZIONE FISSO IN ALTO -->
 <nav class="top-nav">
     <a href="#partner">Collaborazioni</a>
     <a href="#risultati">Come porto risultati</a>
@@ -368,7 +374,7 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- SEZIONE RISULTATI CON MONDO/PUNTINI (Responsive desktop/mobile) -->
+<!-- SEZIONE RISULTATI CON MONDO/PUNTINI -->
 <section id="risultati" class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
     <!-- Mondo visibile solo da mobile -->
     <div class="globe-overlay mobile-globe"></div>
@@ -442,7 +448,7 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO (Regolato lato PC) -->
+<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO -->
 <section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px;">
     <!-- MONDO DIGITALE -->
     <div class="globe-overlay" style="bottom: -20%; opacity: 0.4;"></div>
