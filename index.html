@@ -71,7 +71,7 @@ body.loading { overflow: hidden; }
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE FISSO CON ONDA VERDE E BORDINO INFERIORE */
+/* MENU NAVIGAZIONE FISSO CON ONDA VERDE E BORDINO ARANCIONE */
 .top-nav {
     position: fixed;
     top: 0;
@@ -91,8 +91,8 @@ body.loading { overflow: hidden; }
     background-position: right center;
     background-repeat: no-repeat;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    /* BORDINO AGGIUNTO */
-    border-bottom: 3px solid var(--accent-mint);
+    /* BORDINO ARANCIONE */
+    border-bottom: 3px solid var(--accent-orange);
 }
 @media (min-width: 769px) {
     .top-nav { justify-content: center; } 
@@ -140,7 +140,7 @@ body.loading { overflow: hidden; }
     .top-nav a { font-size: 11px; padding: 8px 12px; }
     .hero-section { padding-top: 160px; }
     
-    /* MODIFICA: Sposta la sfumatura dei puntini più in alto SOLO su smartphone nella hero */
+    /* Sposta la sfumatura dei puntini più in alto SOLO su smartphone nella hero */
     .hero-section .bg-pattern {
         -webkit-mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
         mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
@@ -279,7 +279,23 @@ body.loading { overflow: hidden; }
     animation: shimmerEffect 2.5s infinite linear;
     pointer-events: none;
 }
-.btn-main { background: var(--accent-mint); color: #000; padding: 20px 30px; border-radius: 14px; text-decoration: none; font-weight: 800; text-align: center; text-transform: uppercase; width: 100%; max-width: 340px; display: block; margin-bottom: 20px; font-size: 16px; }
+/* BOTTONE PRENOTA CALL GRATUITA - ARANCIONE CON BORDO VERDE */
+.btn-main { 
+    background: var(--accent-orange); 
+    border: 2px solid var(--accent-mint); 
+    color: #000; 
+    padding: 20px 30px; 
+    border-radius: 14px; 
+    text-decoration: none; 
+    font-weight: 800; 
+    text-align: center; 
+    text-transform: uppercase; 
+    width: 100%; 
+    max-width: 340px; 
+    display: block; 
+    margin-bottom: 20px; 
+    font-size: 16px; 
+}
 
 /* CONTATTI */
 .contact-label { font-size: 14px; font-weight: 400; color: var(--accent-mint); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 12px; display: block; text-align: center; }
