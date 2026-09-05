@@ -32,7 +32,8 @@
 
 /* RESET E BASE */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; background: var(--bg-dark); }
+/* scroll-padding-top permette di fermare lo scroll più in alto e far leggere bene i titoli */
+html { scroll-behavior: smooth; background: var(--bg-dark); scroll-padding-top: 120px; }
 body { font-family: 'Inter', sans-serif; color: var(--text-dark); overflow-x: hidden; -webkit-font-smoothing: antialiased; width: 100%; position: relative; }
 body.loading { overflow: hidden; }
 
@@ -54,7 +55,8 @@ body.loading { overflow: hidden; }
 }
 .preloader-percentage { font-size: 50px; font-weight: 900; color: var(--accent-mint); font-style: italic; }
 .preloader-bar-container { width: 180px; height: 4px; background: rgba(255,255,255,0.1); margin-top: 20px; border-radius: 4px; overflow: hidden; }
-.preloader-bar { height: 100%; width: 0%; background: var(--accent-mint); }
+/* Barra di caricamento arancione */
+.preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); }
 
 /* STRUTTURA */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
@@ -71,7 +73,7 @@ body.loading { overflow: hidden; }
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE FISSO CON ONDA VERDE E BORDINO ARANCIONE */
+/* MENU NAVIGAZIONE FISSO */
 .top-nav {
     position: fixed;
     top: 0;
@@ -85,8 +87,8 @@ body.loading { overflow: hidden; }
     z-index: 9998;
     flex-wrap: wrap;
     background-color: #ffffff;
-    /* Sfondo Onda SVG con 2 tonalità di verde posizionata a destra */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%236ef195' d='M 500 100 C 800 100, 1000 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%232ebd59' opacity='0.8' d='M 550 100 C 850 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
+    /* Onda SVG modificata: striscia verde scuro (sfondo) più larga che sormonta quella verde fluo */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%236ef195' d='M 450 100 C 750 100, 950 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%230a2418' opacity='1' d='M 500 100 C 800 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -105,13 +107,14 @@ body.loading { overflow: hidden; }
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 10px 20px;
-    border: 1px solid var(--accent-mint); 
+    border: 1px solid var(--accent-orange); /* Bordo Arancione */
     border-radius: 30px;
     background: rgba(255, 255, 255, 0.9);
     transition: all 0.3s ease;
 }
 .top-nav a:hover {
     background: var(--accent-mint);
+    border-color: var(--accent-mint);
     color: #0a2418;
     box-shadow: 0 4px 15px rgba(110, 241, 149, 0.4);
     transform: translateY(-2px);
@@ -201,7 +204,7 @@ body.loading { overflow: hidden; }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
 .card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
 
-/* MONDO DIGITALE - BASE (Nascondi desktop su alcuni, vedi query sotto) */
+/* MONDO DIGITALE - BASE */
 .globe-overlay {
     position: absolute; bottom:-25%; left:50%; transform:translateX(-50%); 
     width:160vw; height:160vw; 
@@ -241,7 +244,7 @@ body.loading { overflow: hidden; }
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
 .progress-money .circle-content { font-size: 24px !important; }
 
-/* CHAT ANIMATA CHE TRILLA */
+/* CHAT ANIMATA CHE TRILLA CON BORDO ARANCIO FISSO */
 .whatsapp-fixed {
     position: fixed; bottom: 30px; left: 30px; 
     padding: 18px 30px; border-radius: 12px; 
@@ -249,6 +252,7 @@ body.loading { overflow: hidden; }
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); font-size: 16px;
     background: linear-gradient(90deg, var(--accent-mint), var(--accent-orange), var(--accent-mint));
     background-size: 200% auto; color: #000;
+    border: 2px solid var(--accent-orange); /* Contorno arancione richiesto */
     animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
@@ -464,10 +468,10 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO -->
-<section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px;">
+<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO (Spazio in fondo ridotto) -->
+<section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px; padding-bottom: 40px;">
     <!-- MONDO DIGITALE -->
-    <div class="globe-overlay" style="bottom: -20%; opacity: 0.4;"></div>
+    <div class="globe-overlay" style="bottom: 0%; opacity: 0.4;"></div>
     <div class="bg-pattern"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
