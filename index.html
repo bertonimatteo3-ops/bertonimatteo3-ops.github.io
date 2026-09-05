@@ -71,7 +71,7 @@ body.loading { overflow: hidden; }
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
-/* MENU NAVIGAZIONE (Fisso, bianco con tocchi verdi e pattern grafico) */
+/* MENU NAVIGAZIONE FISSO CON ONDA VERDE */
 .top-nav {
     position: fixed;
     top: 0;
@@ -79,40 +79,44 @@ body.loading { overflow: hidden; }
     width: 100%;
     padding: 15px 24px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 15px;
     z-index: 9998;
     flex-wrap: wrap;
-    background-color: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 2px solid var(--accent-mint);
-    /* Sfondo grafico accattivante */
-    background-image: radial-gradient(rgba(110, 241, 149, 0.35) 1px, transparent 1px);
-    background-size: 20px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background-color: #ffffff;
+    /* Sfondo Onda SVG con 2 tonalità di verde posizionata a destra */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%236ef195' d='M 500 100 C 800 100, 1000 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%232ebd59' opacity='0.8' d='M 550 100 C 850 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+@media (min-width: 769px) {
+    .top-nav { justify-content: center; } /* Centra i bottoni su PC */
 }
 .top-nav a {
-    color: var(--text-dark);
+    color: #071910;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 10px 18px;
-    border: 1px solid transparent;
+    padding: 10px 20px;
+    border: 1px solid var(--accent-mint); /* Effetto piccolo bottone richiesto */
     border-radius: 30px;
+    background: rgba(255, 255, 255, 0.9);
     transition: all 0.3s ease;
 }
 .top-nav a:hover {
-    border-color: var(--accent-mint);
+    background: var(--accent-mint);
     color: #0a2418;
-    background: rgba(110, 241, 149, 0.2);
+    box-shadow: 0 4px 15px rgba(110, 241, 149, 0.4);
+    transform: translateY(-2px);
 }
 
 /* HERO */
-.hero-section { padding-top: 180px; padding-bottom: 240px; } /* Aumentato padding per la barra fissa */
+.hero-section { padding-top: 180px; padding-bottom: 240px; }
 .hero-title {
     color: #ffffff; font-size: clamp(38px, 7vw, 82px); font-weight: 900 !important;
     font-style: italic !important; text-transform: uppercase !important;
@@ -130,8 +134,8 @@ body.loading { overflow: hidden; }
 .hero-subtitle br { display: none; }
 @media (max-width: 768px) { 
     .hero-subtitle br { display: block; } 
-    .top-nav { padding: 10px; gap: 8px; }
-    .top-nav a { font-size: 11px; padding: 6px 10px; }
+    .top-nav { padding: 12px 10px; gap: 8px; justify-content: center; }
+    .top-nav a { font-size: 11px; padding: 8px 12px; }
     .hero-section { padding-top: 160px; }
 }
 .green { color: var(--accent-mint) !important; }
@@ -158,15 +162,15 @@ body.loading { overflow: hidden; }
 /* CAROSELLO E GRIGLIA LOGHI - CARD IDENTICHE */
 .logos-track img, .logos-grid img { 
     width: 160px; height: 95px; background: #fff; border-radius: 18px; 
-    padding: 22px; /* Padding standard per tutti */
+    padding: 22px; 
     object-fit: contain; display: block;
 }
 
-/* Ingrandimento SOLO LOGO riducendo il padding (Card rimane 160x95) */
+/* Ingrandimento SOLO LOGO riducendo il padding */
 .logos-track img[src*="berton"], .logos-grid img[src*="berton"],
 .logos-track img[src*="prezzi-farmaco"], .logos-grid img[src*="prezzi-farmaco"],
 .logos-track img[src*="slym"], .logos-grid img[src*="slym"] {
-    padding: 6px !important; /* Meno padding = logo più grande */
+    padding: 6px !important;
 }
 
 .logos-container { width: 100%; overflow: hidden; margin-bottom: 100px; }
@@ -189,7 +193,7 @@ body.loading { overflow: hidden; }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 17px; }
 .card-dark { background: var(--card-dark); padding: 50px 40px; border-radius: 30px; color: #fff; position: relative; z-index: 5; }
 
-/* MONDO DIGITALE - VISIBILE SEMPRE */
+/* MONDO DIGITALE - BASE (Nascondi desktop su alcuni, vedi query sotto) */
 .globe-overlay {
     position: absolute; bottom:-25%; left:50%; transform:translateX(-50%); 
     width:160vw; height:160vw; 
@@ -199,6 +203,24 @@ body.loading { overflow: hidden; }
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
     mask-image: radial-gradient(circle, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
     pointer-events: none; z-index: 1;
+}
+
+/* GESTIONE SFONDI DESKTOP vs MOBILE */
+.desktop-pattern { display: none; }
+.mobile-globe { display: block; }
+
+@media (min-width: 769px) {
+    /* Nella sezione risultati nascondo il mondo e mostro i puntini */
+    .mobile-globe { display: none !important; }
+    .desktop-pattern { display: block; }
+    
+    /* Nella sezione contatti, rimpicciolisco il mondo e lo poggio in fondo */
+    #contatti .globe-overlay {
+        width: 800px !important;
+        height: 800px !important;
+        bottom: -400px !important;
+        opacity: 0.25 !important;
+    }
 }
 
 /* FRECCIA ANIMATA */
@@ -221,7 +243,6 @@ body.loading { overflow: hidden; }
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); font-size: 16px;
     background: linear-gradient(90deg, var(--accent-mint), var(--accent-orange), var(--accent-mint));
     background-size: 200% auto; color: #000;
-    /* Due animazioni: scorrimento colore + squillo occasionale */
     animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
 }
 @keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
@@ -248,7 +269,6 @@ body.loading { overflow: hidden; }
 }
 .btn-shimmer::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    /* Gradiente molto elegante per far vedere il passaggio */
     background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.5), transparent);
     animation: shimmerEffect 2.5s infinite linear;
     pointer-events: none;
@@ -286,9 +306,9 @@ body.loading { overflow: hidden; }
     <div class="preloader-bar-container"><div class="preloader-bar" id="preloader-bar"></div></div>
 </div>
 
-<!-- MENU DI NAVIGAZIONE FISSO IN ALTO -->
+<!-- MENU DI NAVIGAZIONE FISSO IN ALTO (Banner Bianco con Onda Verde) -->
 <nav class="top-nav">
-    <a href="#partner">I miei partner</a>
+    <a href="#partner">Collaborazioni</a>
     <a href="#risultati">Come porto risultati</a>
     <a href="#numeri">I miei numeri</a>
     <a href="#contatti">Contattami</a>
@@ -348,9 +368,13 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- SEZIONE RISULTATI CON MONDO -->
+<!-- SEZIONE RISULTATI CON MONDO/PUNTINI (Responsive desktop/mobile) -->
 <section id="risultati" class="dark-section" style="padding-top: 240px; padding-bottom: 240px;">
-    <div class="globe-overlay"></div>
+    <!-- Mondo visibile solo da mobile -->
+    <div class="globe-overlay mobile-globe"></div>
+    <!-- Puntini sfumati visibili solo da PC -->
+    <div class="bg-pattern desktop-pattern"></div>
+    
     <div class="container">
         <h2 style="color:white; text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:900; margin-bottom:80px; letter-spacing: -1px;">Come porto risultati</h2>
         <div class="grid-3">
@@ -418,9 +442,9 @@ body.loading { overflow: hidden; }
     </div>
 </div>
 
-<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO -->
+<!-- CTA E CONTATTI CON MONDO IN SOTTOFONDO (Regolato lato PC) -->
 <section id="contatti" class="dark-section" style="text-align:center; padding-top: 240px;">
-    <!-- MONDO DIGITALE ANCHE IN BASSO -->
+    <!-- MONDO DIGITALE -->
     <div class="globe-overlay" style="bottom: -20%; opacity: 0.4;"></div>
     <div class="bg-pattern"></div>
     <div class="container">
