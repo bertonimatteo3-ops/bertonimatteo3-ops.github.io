@@ -87,8 +87,8 @@ body.loading { overflow: hidden; }
     z-index: 9998;
     flex-wrap: wrap;
     background-color: #ffffff;
-    /* Onda SVG modificata: striscia verde scuro (sfondo) più larga che sormonta quella verde fluo */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%236ef195' d='M 450 100 C 750 100, 950 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%230a2418' opacity='1' d='M 500 100 C 800 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
+    /* Onda SVG modificata: colori invertiti. La parte piccola è verde scuro, la grande verde chiaro. */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 100' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3E%3Cpath fill='%230a2418' d='M 450 100 C 750 100, 950 0, 1440 0 L 1440 100 Z' /%3E%3Cpath fill='%236ef195' d='M 500 100 C 800 100, 1050 0, 1440 0 L 1440 100 Z' /%3E%3C/svg%3E");
     background-size: cover;
     background-position: right center;
     background-repeat: no-repeat;
@@ -364,7 +364,7 @@ body.loading { overflow: hidden; }
 </section>
 
 <!-- LIGHT LAYER CON LOGHI -->
-<div class="light-layer">
+<div id="partner" class="light-layer">
     <div class="container">
         <p class="logos-title">Hanno scelto di collaborare con me</p>
         <div class="logos-container reveal">
@@ -461,7 +461,7 @@ body.loading { overflow: hidden; }
                 <p>So come gestire le obiezioni e portare a termine la vendita.</p>
             </div>
         </div>
-        <h2 id="partner" style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
+        <h2 style="text-align:center; font-size: clamp(34px, 5vw, 52px); margin: 120px 0 50px 0; font-weight: 800;">Chi mi ha dato fiducia</h2>
         <div class="logos-grid reveal">
             <img src="venditore-a-distanza.jpg" alt="Logo"><img src="herbalife.png" alt="Logo"><img src="Realmaps.png" alt="Logo"><img src="assocral.png" alt="Logo"><img src="prima-scelta.png" alt="Logo"><img src="homei.jpeg" alt="Logo"><img src="arcari.png" alt="Logo"><img src="gruppo-soraci.jpg" alt="Logo"><img src="marchi-cucine.jpg" alt="Logo"><img src="pruiti-marketing.png" alt="Logo"><img src="cappellini.png" alt="Logo"><img src="webapp.jpeg" alt="Logo"><img src="wayan.png" alt="Logo"><img src="verona.jpg" alt="Logo"><img src="berton.png" alt="Logo"><img src="prezzi-farmaco.png" alt="Logo"><img src="velocissimo.webp" alt="Logo"><img src="sales.png" alt="Logo"><img src="farmacisti.png" alt="Logo"><img src="app-in-farma.png" alt="Logo"><img src="ilaria.png" alt="Logo"><img src="foglietto-illustrativo.png" alt="Logo"><img src="gizia.png" alt="Logo"><img src="slym.png" alt="Logo">
         </div>
