@@ -338,23 +338,45 @@ h2[id], div[id="contatti"] {
     pointer-events: none;
 }
 
-/* CERCHIO CON LA FOTO DENTRO LO SCHERMO DEL PC CON BORDO VERDE MINT E GLOW */
+/* SCHERMO DEL PC SPENTO (COMPLETAMENTE NERO) */
+.pc-screen-off-overlay {
+    position: absolute;
+    top: 9.8%;
+    left: 22.8%;
+    width: 54.4%;
+    height: 45.2%;
+    background: #070709;
+    border-radius: 6px;
+    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+}
+.pc-screen-off-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 35%, transparent 60%);
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+/* CERCHIO CON LA FOTO DENTRO LO SCHERMO SPENTO DEL PC (PERFETTAMENTE AL CENTRO) */
 .pc-avatar-circle {
     position: absolute;
-    top: 34%;
+    top: 32.5%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.85);
-    width: clamp(68px, 15vw, 138px);
-    height: clamp(68px, 15vw, 138px);
+    width: clamp(70px, 15vw, 136px);
+    height: clamp(70px, 15vw, 136px);
     border-radius: 50%;
     border: 3.5px solid var(--accent-mint);
-    box-shadow: 0 0 25px rgba(110, 241, 149, 0.5), 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 25px rgba(110, 241, 149, 0.5), 0 8px 24px rgba(0, 0, 0, 0.6);
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #111;
+    background: #050505;
     opacity: 0;
+    z-index: 2;
     transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -397,12 +419,8 @@ h2[id], div[id="contatti"] {
 .hero-subtitle br { display: none; }
 .green { color: var(--accent-mint) !important; }
 .orange { color: var(--accent-orange) !important; }
-.hero-content { display: flex; align-items: center; gap: 80px; }
-.hero-right img { 
-    width: clamp(160px, 20vw, 280px); border-radius: 50%; 
-    border: 4px solid var(--accent-mint); box-shadow: 0 0 35px rgba(110, 241, 149, 0.3), 0 20px 40px rgba(0,0,0,0.4); 
-    object-fit: cover; aspect-ratio: 1 / 1;
-}
+.hero-content { display: flex; align-items: center; justify-content: flex-start; }
+.hero-left { max-width: 680px; width: 100%; }
 
 /* LIGHT LAYER */
 .light-layer { 
@@ -695,11 +713,10 @@ h2[id], div[id="contatti"] {
 
     /* Hero su Mobile */
     .hero-section { padding-top: 80px !important; padding-bottom: 180px !important; }
-    .hero-content { flex-direction: column-reverse; text-align: center; gap: 40px; }
-    .hero-left { display: flex; flex-direction: column; align-items: center; }
+    .hero-content { justify-content: center; text-align: center; }
+    .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
     .hero-subtitle { text-align: center; }
     .hero-subtitle br { display: block !important; }
-    .hero-right img { width: clamp(170px, 45vw, 240px); }
 
     .btn-main, .btn-shimmer { max-width: 100%; padding: 18px 24px; font-size: 15px; }
     .light-layer { border-radius: 30px; width: 95%; margin: -40px auto; padding: 50px 0 140px 0; }
@@ -785,11 +802,12 @@ h2[id], div[id="contatti"] {
 <section class="pc-showcase-section" id="pc-showcase">
     <div class="pc-showcase-container">
         <div class="pc-mockup-wrapper" id="pc-mockup">
-            <!-- IMMAGINE REALISTICA DEL PC VERO CON SFUMATURA MORBIDA AI BORDI -->
-            <img src="real_laptop.jpg" alt="Laptop Professionale" class="pc-real-img" loading="eager">
+            <!-- IMMAGINE REALISTICA DEL PC CON SCHERMO NERO SPENTO E SFUMATURA MORBIDA AI BORDI -->
+            <img src="laptop_black_screen.jpg" alt="Laptop Professionale Schermo Spento" class="pc-real-img" loading="eager">
 
-            <!-- SCHERMO ATTIVO DEL PC CON FOTO DI MATTEO BERTONI NEL CERCHIO -->
+            <!-- SCHERMO NERO SPENTO CON LA FOTO DI MATTEO BERTONI NEL CERCHIO ESATTAMENTE AL CENTRO -->
             <div class="pc-screen-content">
+                <div class="pc-screen-off-overlay"></div>
                 <div class="pc-avatar-circle" id="pc-avatar">
                     <img src="foto.png" alt="Matteo Bertoni" class="pc-avatar-img">
                 </div>
@@ -808,7 +826,7 @@ h2[id], div[id="contatti"] {
                 <h1 class="hero-title">Remote Closing<br>Specialist</h1>
                 <span class="hero-subtitle">TRASFORMO I TUOI LEAD IN <br> <span class="green">CLIENTI REALI</span></span>
                 <div style="height: 30px;"></div>
-                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 500px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
+                <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 550px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
                 <div style="height: 40px;"></div>
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
@@ -816,7 +834,6 @@ h2[id], div[id="contatti"] {
                     Il mio profilo LinkedIn
                 </a>
             </div>
-            <div class="hero-right"><img src="foto.png" alt="Matteo Bertoni"></div>
         </div>
     </div>
 </section>
