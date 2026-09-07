@@ -2,6 +2,12 @@
 <html lang="it">
 <head>
 <script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
+<script>
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <title>Matteo Bertoni | Remote Closing Specialist</title>
@@ -37,7 +43,7 @@
 html { 
     scroll-behavior: smooth; 
     background: var(--bg-dark); 
-    scroll-padding-top: 140px; 
+    scroll-padding-top: 100px; 
     -webkit-text-size-adjust: 100%;
 }
 body { 
@@ -49,11 +55,14 @@ body {
     width: 100%; 
     position: relative; 
 }
-body.loading { overflow: hidden; }
+body.loading { overflow: hidden; height: 100vh; }
 
 /* CENTRATURA DELLE ANCORE MENU CON NAVBAR */
 h2[id], div[id="contatti"] {
-    scroll-margin-top: 140px;
+    scroll-margin-top: 96px;
+}
+#partner, #risultati {
+    scroll-margin-top: 92px;
 }
 
 /* PRELOADER */
@@ -64,7 +73,15 @@ h2[id], div[id="contatti"] {
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 #preloader.preloader-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.loading-text { color: var(--text-light); font-size: 13px; letter-spacing: 6px; margin-bottom: 15px; font-weight: 600; text-transform: uppercase; }
+.loading-text { 
+    color: var(--text-light); 
+    font-size: 15px; 
+    letter-spacing: 5px; 
+    margin-bottom: 12px; 
+    font-weight: 900 !important; 
+    font-style: italic !important; 
+    text-transform: uppercase !important; 
+}
 .loading-text span { display: inline-block; animation: pulseDots 1.5s infinite; }
 @keyframes pulseDots { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 .preloader-globe {
@@ -73,7 +90,15 @@ h2[id], div[id="contatti"] {
     background-size: cover; border-radius: 50%; opacity: 0.15; filter: sepia(1) hue-rotate(100deg) saturate(2);
     -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 70%);
 }
-.preloader-percentage { font-size: 52px; font-weight: 900; color: var(--accent-mint); letter-spacing: -1px; }
+.preloader-percentage { 
+    font-size: 64px; 
+    font-weight: 900 !important; 
+    font-style: italic !important; 
+    color: var(--accent-mint); 
+    letter-spacing: -2px; 
+    line-height: 1; 
+    text-transform: uppercase !important;
+}
 .preloader-bar-container { width: 180px; height: 4px; background: rgba(255,255,255,0.12); margin-top: 20px; border-radius: 4px; overflow: hidden; }
 .preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); box-shadow: 0 0 12px rgba(255, 159, 67, 0.7); transition: width 0.1s linear; }
 
@@ -141,7 +166,7 @@ h2[id], div[id="contatti"] {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     padding: 8px 18px;
-    border: 2px solid var(--accent-mint);
+    border: 2.5px solid #0a2418; /* Bordo verde scuro come la landing */
     border-radius: 30px;
     background: #ffffff;
     transition: all 0.25s ease;
@@ -153,10 +178,10 @@ h2[id], div[id="contatti"] {
     cursor: pointer;
 }
 .top-nav a:hover {
-    background: var(--accent-mint);
-    border-color: var(--accent-mint);
-    color: #0a2418;
-    box-shadow: 0 4px 15px rgba(110, 241, 149, 0.4);
+    background: #0a2418;
+    border-color: #0a2418;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(10, 36, 24, 0.35);
     transform: translateY(-2px);
 }
 .top-nav a:active {
@@ -289,7 +314,7 @@ h2[id], div[id="contatti"] {
 }
 
 .pc-showcase-container {
-    max-width: 600px;
+    max-width: 640px;
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -302,7 +327,7 @@ h2[id], div[id="contatti"] {
 .pc-mockup-wrapper {
     position: relative;
     width: 100%;
-    max-width: 580px;
+    max-width: 620px;
     opacity: 0;
     transform: translateY(20px) scale(0.98);
     transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
@@ -338,17 +363,17 @@ h2[id], div[id="contatti"] {
     pointer-events: none;
 }
 
-/* CERCHIO CON LA FOTO DENTRO LO SCHERMO SPENTO DEL PC (PERFETTAMENTE AL CENTRO DELLO SCHERMO NERO REALE, GRANDE E VISIBILE) */
+/* CERCHIO CON LA FOTO DENTRO LO SCHERMO SPENTO DEL PC (PERFETTAMENTE AL CENTRO DELLO SCHERMO NERO REALE, ANCORA PIÙ GRANDE E VISIBILE) */
 .pc-avatar-circle {
     position: absolute;
     top: 36%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.85);
-    width: clamp(120px, 25vw, 195px);
-    height: clamp(120px, 25vw, 195px);
+    width: clamp(145px, 29vw, 230px);
+    height: clamp(145px, 29vw, 230px);
     border-radius: 50%;
     border: 4px solid var(--accent-mint);
-    box-shadow: 0 0 30px rgba(110, 241, 149, 0.55), 0 10px 28px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 35px rgba(110, 241, 149, 0.6), 0 12px 32px rgba(0, 0, 0, 0.75);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -380,7 +405,7 @@ h2[id], div[id="contatti"] {
     font-size: clamp(30px, 5.5vw, 65px); 
     font-weight: 900 !important;
     font-style: italic !important; 
-    text-transform: uppercase !important;
+    text-transform: uppercase !important; 
     line-height: 0.95; 
     letter-spacing: -2px; 
     margin-bottom: 30px;
@@ -388,18 +413,50 @@ h2[id], div[id="contatti"] {
 .hero-subtitle { 
     font-size: clamp(18px, 3.2vw, 26px); 
     font-weight: 600; 
-    color: var(--accent-mint); 
+    color: #ffffff !important; /* Frase in colore bianco */
     display: block; 
     margin-top: 18px; 
     text-transform: uppercase; 
-    text-align: left;
+    text-align: left; 
     letter-spacing: 0.5px;
 }
 .hero-subtitle br { display: none; }
+.hero-lead-text { color: #ffffff !important; }
 .green { color: var(--accent-mint) !important; }
 .orange { color: var(--accent-orange) !important; }
-.hero-content { display: flex; align-items: center; justify-content: flex-start; }
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; }
 .hero-left { max-width: 680px; width: 100%; }
+.hero-actions { display: flex; flex-direction: column; width: 100%; max-width: 340px; margin-top: 35px; }
+
+/* LINK PRIVACY E COOKIE POLICY SOTTO IL BOX CONTATTI */
+.legal-links-footer {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+}
+.iubenda-legal-link {
+    color: var(--text-muted-dark) !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.25s ease;
+    cursor: pointer;
+}
+.iubenda-legal-link:hover {
+    color: var(--accent-mint) !important;
+    text-decoration: underline;
+}
+.legal-separator {
+    color: var(--text-muted-dark);
+    font-size: 13px;
+    opacity: 0.5;
+}
 
 /* LIGHT LAYER */
 .light-layer { 
@@ -682,18 +739,19 @@ h2[id], div[id="contatti"] {
 
     /* Blocco PC su Mobile */
     .pc-showcase-section { padding-top: 135px; padding-bottom: 25px; }
-    .pc-showcase-container { width: 90%; max-width: 370px; }
+    .pc-showcase-container { width: 92%; max-width: 410px; }
     .pc-avatar-circle { 
-        width: clamp(95px, 27vw, 140px); 
-        height: clamp(95px, 27vw, 140px); 
-        border-width: 3px; 
-        box-shadow: 0 0 22px rgba(110, 241, 149, 0.5), 0 6px 18px rgba(0, 0, 0, 0.6); 
+        width: clamp(115px, 32vw, 165px); 
+        height: clamp(115px, 32vw, 165px); 
+        border-width: 3.5px; 
+        box-shadow: 0 0 25px rgba(110, 241, 149, 0.55), 0 8px 22px rgba(0, 0, 0, 0.65); 
     }
 
     /* Hero su Mobile */
     .hero-section { padding-top: 70px !important; padding-bottom: 170px !important; }
-    .hero-content { justify-content: center; text-align: center; }
+    .hero-content { justify-content: center; align-items: center; text-align: center; }
     .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero-actions { align-items: center; margin-top: 30px; }
     .hero-subtitle { text-align: center; }
     .hero-subtitle br { display: block !important; }
 
@@ -717,11 +775,11 @@ h2[id], div[id="contatti"] {
     .fixed-back-to-top { width: 38px; height: 38px; }
     .fixed-back-to-top svg { width: 18px; height: 18px; }
     .pc-showcase-section { padding-top: 125px; padding-bottom: 20px; }
-    .pc-showcase-container { width: 88%; max-width: 310px; }
+    .pc-showcase-container { width: 90%; max-width: 330px; }
     .pc-avatar-circle { 
-        width: clamp(82px, 28vw, 115px); 
-        height: clamp(82px, 28vw, 115px); 
-        border-width: 2.5px; 
+        width: clamp(98px, 33vw, 135px); 
+        height: clamp(98px, 33vw, 135px); 
+        border-width: 3px; 
     }
     .hero-title { font-size: 28px; }
     .btn-main, .btn-shimmer { padding: 16px 18px; font-size: 14px; }
@@ -731,16 +789,70 @@ h2[id], div[id="contatti"] {
 /* TABLET E IPAD (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
     .hero-section { padding-top: 110px !important; padding-bottom: 200px !important; }
-    .hero-content { gap: 40px; }
-    .hero-right img { width: 210px; }
+    .hero-content { gap: 35px; }
     .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     .logos-grid { grid-template-columns: repeat(4, 1fr); }
     .pc-showcase-container { max-width: 650px; }
 }
 
-/* DESKTOP (>= 769px) */
+/* DESKTOP BASE (>= 769px) */
 @media (min-width: 769px) {
     .hero-section { padding-top: 110px !important; padding-bottom: 220px !important; }
+}
+
+/* SOLO DA PC DESKTOP (>= 1025px): 4 BOTTONI IN LINEA, FRECCIA PIÙ IN BASSO, TASTI HERO A DESTRA A FIANCO */
+@media (min-width: 1025px) {
+    .top-nav {
+        padding: 12px 24px;
+    }
+    .top-nav-inner {
+        min-height: 48px;
+    }
+    .nav-links-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+    .nav-row {
+        display: contents;
+    }
+    .top-nav a {
+        font-size: 13px;
+        padding: 9px 20px;
+    }
+
+    /* Freccia in alto a destra: leggermente più in basso rispetto alla riga arancione */
+    .fixed-back-to-top {
+        top: 86px;
+        right: 32px;
+    }
+
+    /* Hero da PC: i due tasti a destra a fianco del testo */
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 50px;
+    }
+    .hero-left {
+        flex: 1;
+        max-width: 620px;
+        text-align: left;
+    }
+    .hero-actions {
+        flex-shrink: 0;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        min-width: 340px;
+    }
+    .hero-actions .btn-main,
+    .hero-actions .btn-shimmer {
+        width: 340px;
+        max-width: 340px;
+    }
 }
 </style>
 </head>
@@ -807,10 +919,11 @@ h2[id], div[id="contatti"] {
         <div class="hero-content">
             <div class="hero-left">
                 <h1 class="hero-title">Remote Closing<br>Specialist</h1>
-                <span class="hero-subtitle">TRASFORMO I TUOI LEAD IN <br> <span class="green">CLIENTI REALI</span></span>
+                <span class="hero-subtitle"><span class="hero-lead-text">TRASFORMO I TUOI LEAD IN</span> <br> <span class="green">CLIENTI REALI</span></span>
                 <div style="height: 30px;"></div>
                 <p style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 550px;">Aiuto Aziende e Agenzie nel B2B/B2C ad aumentare vendite e scalare il fatturato</p>
-                <div style="height: 40px;"></div>
+            </div>
+            <div class="hero-actions">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
                     <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
@@ -890,9 +1003,9 @@ h2[id], div[id="contatti"] {
         <h2 id="numeri" style="text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:800; margin-bottom:80px; letter-spacing: -1px;">I miei numeri</h2>
         <div class="grid-3">
             <div class="card-dark reveal num-card">
-                <div class="circular-progress" data-target="47">
+                <div class="circular-progress" data-target="100" data-val="47">
                     <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45"></circle></svg>
-                    <div class="circle-content"><span class="num">0</span>%</div>
+                    <div class="circle-content">+<span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Retention</h3>
                 <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a 'chiudere'.</p>
@@ -908,9 +1021,9 @@ h2[id], div[id="contatti"] {
                 <p>Gestisco ogni trattativa con un approccio consulenziale e orientato al valore.</p>
             </div>
             <div class="card-dark reveal num-card">
-                <div class="circular-progress" data-target="32">
+                <div class="circular-progress" data-target="100" data-val="32">
                     <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45"></circle></svg>
-                    <div class="circle-content"><span class="num">0</span>%</div>
+                    <div class="circle-content">+<span class="num">0</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Closing Rate</h3>
                 <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
@@ -942,10 +1055,18 @@ h2[id], div[id="contatti"] {
             <div class="contact-box-elegant">
                 <p style="font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 15px;">Matteo Bertoni</p>
                 <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Remote Closing Specialist (Verona)</p>
-                <div style="color: var(--text-muted-dark); font-size: 17px; line-height: 2;">
+                <div style="color: var(--text-muted-dark); font-size: 17px; line-height: 2.2;">
                     <p>Email: <span style="color: #fff; font-weight: 300;">bertonimatteo3@gmail.com</span></p>
                     <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span></p>
+                    <p>P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
                 </div>
+            </div>
+            
+            <!-- LINK PRIVACY POLICY E COOKIE POLICY IUBENDA (A NORMA PRIVACY) -->
+            <div class="legal-links-footer">
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-nostyle no-brand iubenda-embed iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
+                <span class="legal-separator">•</span>
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-nostyle no-brand iubenda-embed iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
             </div>
         </div>
     </div>
@@ -955,6 +1076,11 @@ h2[id], div[id="contatti"] {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    window.scrollTo(0, 0);
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
     const preloader = document.getElementById('preloader');
     const bar = document.getElementById('preloader-bar');
     const perc = document.getElementById('preloader-percentage');
@@ -966,6 +1092,9 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => { 
                 preloader.classList.add('preloader-hidden'); 
                 document.body.classList.remove('loading'); 
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
                 init();
                 
                 // AVVIO SEQUENZA PC E FOTO: DOPO 1 SECONDO APPARE LEGGERMENTE IL PC E POI LA FOTO
@@ -974,6 +1103,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         perc.innerText = p + '%'; bar.style.width = p + '%';
     }, 110);
+
+    window.addEventListener('beforeunload', function() {
+        window.scrollTo(0, 0);
+    });
 
     const backToTopBtn = document.getElementById('fixed-back-to-top');
     const menuButtons = document.querySelectorAll('.nav-links-wrapper .menu-btn');
