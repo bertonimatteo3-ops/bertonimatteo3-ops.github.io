@@ -486,7 +486,18 @@ h2[id], div[id="contatti"] {
 }
 
 .logos-container { width: 100%; overflow: hidden; margin-bottom: 100px; }
-.logos-track { display: flex; gap: 30px; width: max-content; animation: scrollTrack 60s linear infinite; }
+.logos-track { 
+    display: flex; 
+    gap: 30px; 
+    width: max-content; 
+    animation: scrollTrack 60s linear infinite; 
+    animation-play-state: paused; 
+}
+.logos-container.active .logos-track,
+.logos-container.is-scrolling .logos-track,
+.logos-track.is-scrolling {
+    animation-play-state: running;
+}
 @keyframes scrollTrack { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .logos-grid { 
     display: grid; 
@@ -716,6 +727,33 @@ h2[id], div[id="contatti"] {
 .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.25, 1, 0.5, 1); }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
+/* LINK PRIVACY POLICY E COOKIE POLICY IUBENDA */
+.legal-links-footer {
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-size: 13px;
+}
+.iubenda-legal-link {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+.iubenda-legal-link:hover {
+    color: var(--accent-mint) !important;
+    opacity: 1;
+}
+.legal-separator {
+    color: rgba(255, 255, 255, 0.35);
+    user-select: none;
+}
+
 /* =========================================================
    RESPONSIVE COMPLETO PER TUTTI I DISPOSITIVI (ANDROID, IOS, IPAD, TABLET, DESKTOP)
    ========================================================= */
@@ -728,8 +766,9 @@ h2[id], div[id="contatti"] {
     .nav-row { gap: 8px; }
     .top-nav a { font-size: 11px; padding: 7px 12px; letter-spacing: 0.5px; }
 
+    /* Freccia abbassata per non essere attaccata al bordo arancione su smartphone */
     .fixed-back-to-top { 
-        top: calc(max(8px, env(safe-area-inset-top, 8px)) + 70px); 
+        top: calc(max(8px, env(safe-area-inset-top, 8px)) + 98px); 
         right: max(12px, env(safe-area-inset-right, 12px)); 
         width: 42px; 
         height: 42px; 
@@ -772,7 +811,11 @@ h2[id], div[id="contatti"] {
 @media (max-width: 380px) {
     .nav-row { gap: 5px; }
     .top-nav a { font-size: 10px; padding: 6px 9px; letter-spacing: 0.3px; }
-    .fixed-back-to-top { width: 38px; height: 38px; }
+    .fixed-back-to-top { 
+        top: calc(max(8px, env(safe-area-inset-top, 8px)) + 92px); 
+        width: 38px; 
+        height: 38px; 
+    }
     .fixed-back-to-top svg { width: 18px; height: 18px; }
     .pc-showcase-section { padding-top: 125px; padding-bottom: 20px; }
     .pc-showcase-container { width: 90%; max-width: 330px; }
@@ -1064,9 +1107,9 @@ h2[id], div[id="contatti"] {
             
             <!-- LINK PRIVACY POLICY E COOKIE POLICY IUBENDA (A NORMA PRIVACY) -->
             <div class="legal-links-footer">
-                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-nostyle no-brand iubenda-embed iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy" id="link-privacy-policy">Privacy Policy</a>
                 <span class="legal-separator">•</span>
-                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-nostyle no-brand iubenda-embed iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy" id="link-cookie-policy">Cookie Policy</a>
             </div>
         </div>
     </div>
@@ -1161,6 +1204,64 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }, { threshold: 0.15 });
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // AVVIO DEL CAROSELLO LOGHI SOLO QUANDO SI ARRIVA IN QUELLA PRECISA ZONA
+        const logosContainer = document.querySelector('.logos-container');
+        const logosTrack = document.querySelector('.logos-track');
+        if (logosContainer && logosTrack) {
+            const logosObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        logosTrack.classList.add('is-scrolling');
+                        logosContainer.classList.add('is-scrolling');
+                        logosObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            logosObserver.observe(logosContainer);
+        }
+
+        // APERTURA DEL BANNERINO DI IUBENDA (LE TUE PREFERENZE RELATIVE ALLA PRIVACY)
+        function openIubendaPreferencesModal(e) {
+            if (e) {
+                e.preventDefault();
+            }
+            // 1. API standard Iubenda Cookie Solution per il banner delle preferenze
+            if (window._iub && window._iub.cs && window._iub.cs.api && typeof window._iub.cs.api.openPreferences === 'function') {
+                window._iub.cs.api.openPreferences();
+                return;
+            }
+            // 2. Controllo istanza globale iubenda_cs
+            if (window.iubenda_cs && typeof window.iubenda_cs.openPreferences === 'function') {
+                window.iubenda_cs.openPreferences();
+                return;
+            }
+            // 3. Trigger su eventuale badge o elemento Iubenda nel DOM
+            const iubBtn = document.querySelector('#iubenda-cs-badge, .iubenda-cs-badge, .iub-cs-badge, [data-iub-cs-action="openPreferences"]');
+            if (iubBtn) {
+                iubBtn.click();
+                return;
+            }
+            // 4. Retry temporizzato se lo script Iubenda sta ancora completando l'inizializzazione
+            let attempts = 0;
+            const retryInterval = setInterval(() => {
+                attempts++;
+                if (window._iub && window._iub.cs && window._iub.cs.api && typeof window._iub.cs.api.openPreferences === 'function') {
+                    clearInterval(retryInterval);
+                    window._iub.cs.api.openPreferences();
+                } else if (attempts > 20) {
+                    clearInterval(retryInterval);
+                    if (e && e.currentTarget && e.currentTarget.href) {
+                        window.open(e.currentTarget.href, '_blank');
+                    }
+                }
+            }, 100);
+        }
+
+        const privBtn = document.getElementById('link-privacy-policy');
+        const cookieBtn = document.getElementById('link-cookie-policy');
+        if (privBtn) privBtn.addEventListener('click', openIubendaPreferencesModal);
+        if (cookieBtn) cookieBtn.addEventListener('click', openIubendaPreferencesModal);
     }
 
     function animateCircle(card) {
