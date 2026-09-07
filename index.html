@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="it">
 <head>
 <script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
@@ -45,15 +45,20 @@ html {
     background: var(--bg-dark); 
     scroll-padding-top: 100px; 
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    touch-action: pan-y pinch-zoom;
 }
 body { 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
     color: var(--text-dark); 
-    overflow-x: hidden; 
+    overflow-x: hidden !important; 
+    max-width: 100% !important;
+    width: 100% !important; 
+    position: relative; 
     -webkit-font-smoothing: antialiased; 
     -moz-osx-font-smoothing: grayscale;
-    width: 100%; 
-    position: relative; 
 }
 body.loading { overflow: hidden; height: 100vh; }
 
@@ -103,8 +108,8 @@ h2[id], div[id="contatti"] {
 .preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); box-shadow: 0 0 12px rgba(255, 159, 67, 0.7); transition: width 0.1s linear; }
 
 /* STRUTTURA */
-.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; }
-.dark-section { background: var(--bg-dark); padding: 180px 0; position: relative; overflow: hidden; width: 100%; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; box-sizing: border-box; }
+.dark-section { background: var(--bg-dark); padding: 180px 0; position: relative; overflow: hidden; width: 100%; max-width: 100%; contain: paint; }
 
 /* PUNTINI DI SFONDO */
 .bg-pattern { 
@@ -123,21 +128,26 @@ h2[id], div[id="contatti"] {
     top: 0;
     left: 0;
     width: 100%;
+    max-width: 100%;
     padding: max(10px, env(safe-area-inset-top, 10px)) 16px 10px;
     z-index: 9998;
     background-color: #ffffff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     border-bottom: 3px solid var(--accent-orange);
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .top-nav-inner {
     max-width: 1100px;
+    width: 100%;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 74px;
+    box-sizing: border-box;
 }
 
 /* WRAPPER BOTTONI MENU: DUE RIGHE CENTRATE */
@@ -148,6 +158,7 @@ h2[id], div[id="contatti"] {
     justify-content: center;
     gap: 8px;
     width: 100%;
+    max-width: 100%;
 }
 
 .nav-row {
@@ -156,6 +167,8 @@ h2[id], div[id="contatti"] {
     justify-content: center;
     gap: 12px;
     flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
 }
 
 .top-nav a {
@@ -463,12 +476,26 @@ h2[id], div[id="contatti"] {
     background: var(--bg-light); border-radius: 40px; padding: 70px 0 180px 0; 
     margin: -60px auto; position: relative; z-index: 10; box-shadow: 0 0 60px rgba(0,0,0,0.12);
     width: 95%; max-width: 1200px;
+    box-sizing: border-box;
+    overflow: hidden;
+    contain: paint;
 }
 
 .logos-title { 
-    text-align: center !important; width: 100%; display: block; margin-bottom: 30px; 
-    color: var(--text-muted-light); font-size: clamp(11px, 3vw, 13px); font-weight: 700; 
-    text-transform: uppercase; letter-spacing: 3.5px; white-space: nowrap; 
+    text-align: center !important; 
+    width: 100%; 
+    max-width: 100%;
+    display: block; 
+    margin: 0 auto 30px auto; 
+    color: var(--text-muted-light); 
+    font-size: clamp(11px, 3vw, 13px); 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    padding: 0 16px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
 
 .logos-track img, .logos-grid img { 
@@ -485,7 +512,14 @@ h2[id], div[id="contatti"] {
     padding: 6px !important;
 }
 
-.logos-container { width: 100%; overflow: hidden; margin-bottom: 100px; }
+.logos-container { 
+    width: 100%; 
+    max-width: 100%;
+    overflow: hidden; 
+    margin-bottom: 100px; 
+    position: relative;
+    contain: paint;
+}
 .logos-track { 
     display: flex; 
     gap: 30px; 
@@ -511,7 +545,7 @@ h2[id], div[id="contatti"] {
 @media (min-width: 768px) { .logos-grid { grid-template-columns: repeat(6, 1fr); } }
 
 /* CARDS */
-.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 40px; width: 100%; }
 .card-light { 
     background: #ffffff; 
     padding: 50px 40px; 
@@ -597,7 +631,7 @@ h2[id], div[id="contatti"] {
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 38px; font-weight: 900; letter-spacing: -1px; }
 .progress-money .circle-content { font-size: 24px !important; }
 
-/* PULSANTE WHATSAPP FISSO CON EFFETTO GRADIENTE FLOW E SHAKE */
+/* PULSANTE WHATSAPP FISSO: SEMPRE VERDE, CON BORDO ARANCIONE E TRILLO */
 .whatsapp-fixed {
     position: fixed; 
     bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
@@ -609,19 +643,20 @@ h2[id], div[id="contatti"] {
     z-index: 9999; 
     box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
     font-size: 16px;
-    background: linear-gradient(90deg, var(--accent-mint), var(--accent-orange), var(--accent-mint));
-    background-size: 200% auto; 
-    color: #000;
-    border: 2px solid var(--accent-orange); 
-    animation: flowGradient 4s linear infinite, chatTrill 5s ease-in-out infinite;
+    background: var(--accent-mint) !important; /* RIMANE VERDE, NON CAMBIA COLORE */
+    color: #071910 !important;
+    border: 2px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
+    animation: chatTrill 5s ease-in-out infinite !important; /* E CHE COMUNQUE TRILLI */
     -webkit-tap-highlight-color: transparent;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .whatsapp-fixed:hover {
     transform: scale(1.04);
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    background: var(--accent-mint) !important; /* RIMANE VERDE ANCHE IN HOVER */
+    color: #071910 !important;
+    border-color: var(--accent-orange) !important;
 }
-@keyframes flowGradient { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
 @keyframes chatTrill {
     0%, 85% { transform: scale(1) rotate(0deg); }
     87% { transform: scale(1.08) rotate(4deg); }
@@ -760,11 +795,25 @@ h2[id], div[id="contatti"] {
 
 /* SMARTPHONE & TABLET FINO A 768px */
 @media (max-width: 768px) {
-    .top-nav { padding: max(8px, env(safe-area-inset-top, 8px)) 8px 8px; }
-    .top-nav-inner { min-height: 70px; }
-    .nav-links-wrapper { gap: 6px; }
-    .nav-row { gap: 8px; }
-    .top-nav a { font-size: 11px; padding: 7px 12px; letter-spacing: 0.5px; }
+    .top-nav { 
+        padding: max(8px, env(safe-area-inset-top, 8px)) 10px 8px; 
+        overflow: hidden;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+    }
+    .top-nav-inner { min-height: 68px; width: 100%; max-width: 100%; }
+    .nav-links-wrapper { gap: 6px; width: 100%; max-width: 100%; }
+    .nav-row { gap: 8px; width: 100%; max-width: 100%; justify-content: center; }
+    .top-nav a { 
+        font-size: 11px; 
+        padding: 7px 11px; 
+        letter-spacing: 0.4px; 
+        white-space: nowrap;
+        max-width: calc(50% - 4px);
+        text-align: center;
+        box-sizing: border-box;
+    }
 
     /* Freccia abbassata per non essere attaccata al bordo arancione su smartphone */
     .fixed-back-to-top { 
@@ -795,22 +844,56 @@ h2[id], div[id="contatti"] {
     .hero-subtitle br { display: block !important; }
 
     .btn-main, .btn-shimmer { max-width: 100%; padding: 18px 24px; font-size: 15px; }
-    .light-layer { border-radius: 30px; width: 95%; margin: -40px auto; padding: 50px 0 140px 0; }
-    .globe-overlay { width: 200vw; height: 200vw; }
+    .light-layer { 
+        border-radius: 30px; 
+        width: calc(100% - 20px); 
+        max-width: 1200px;
+        margin: -40px auto; 
+        padding: 50px 0 140px 0; 
+        box-sizing: border-box;
+        overflow: hidden;
+        contain: paint;
+    }
+    .logos-title {
+        font-size: clamp(10px, 2.7vw, 12px);
+        letter-spacing: 1.4px;
+        padding: 0 10px;
+        margin-bottom: 25px;
+        width: 100%;
+        max-width: 100%;
+        text-align: center !important;
+    }
+    .globe-overlay { 
+        width: 100%; 
+        max-width: 100%; 
+        left: 0; 
+        transform: none; 
+        border-radius: 0; 
+        overflow: hidden;
+    }
     .whatsapp-fixed { 
         bottom: max(16px, env(safe-area-inset-bottom, 16px)); 
         left: max(16px, env(safe-area-inset-left, 16px)); 
         padding: 15px 24px; 
         font-size: 14px; 
+        background: var(--accent-mint) !important;
+        color: #071910 !important;
+        border: 2px solid var(--accent-orange) !important;
     }
     .contact-box-elegant { padding: 40px 20px; border-radius: 24px; }
+    .card-light, .card-dark { padding: 36px 20px; border-radius: 24px; }
+    .grid-3 { gap: 24px; }
     .contatti-section { padding-top: 170px !important; padding-bottom: 50px !important; }
 }
 
 /* SMARTPHONE PICCOLI (IPHONE SE, COMPACT ANDROID) <= 380px */
 @media (max-width: 380px) {
+    .top-nav { padding: max(6px, env(safe-area-inset-top, 6px)) 6px 6px; }
     .nav-row { gap: 5px; }
-    .top-nav a { font-size: 10px; padding: 6px 9px; letter-spacing: 0.3px; }
+    .top-nav a { font-size: 9.5px; padding: 6px 8px; letter-spacing: 0.2px; }
+    .logos-title { font-size: 9.5px; letter-spacing: 0.8px; padding: 0 4px; }
+    .light-layer { width: calc(100% - 14px); }
+    .container { padding: 0 14px; }
     .fixed-back-to-top { 
         top: calc(max(8px, env(safe-area-inset-top, 8px)) + 92px); 
         width: 38px; 
