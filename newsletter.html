@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -66,8 +65,8 @@ window.scrollTo(0, 0);
     --bg-card: #ffffff;          /* Card bianca */
     --brand-green-dark: #0a2418; /* Verde scuro della landing */
     --brand-green-mid: #123324;  
-    --accent-mint: #25a25a;      
-    --accent-mint-light: #eaf8f0;
+    --accent-mint: #6ef195;      /* Verde menta/WhatsApp brillante */
+    --accent-mint-dark: #25d366;  /* Verde WhatsApp ufficiale */
     --accent-orange: #ff9f43;    /* Arancione identitario */
     --accent-orange-hover: #f38b2b;
     --text-main: #14221b;        
@@ -169,7 +168,7 @@ body {
     max-width: 100%;
 }
 
-/* BOTTONI DEL BANNER BIANCHI CON CONTORNO VERDE (COME DA LANDING) */
+/* BOTTONI DEL BANNER BIANCHI CON CONTORNO VERDE */
 .top-nav a, .top-nav .menu-btn {
     color: #071910;
     text-decoration: none;
@@ -178,7 +177,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     padding: 8px 18px;
-    border: 2.5px solid #0a2418; /* BIANCO CON CONTORNI VERDI SCURO */
+    border: 2.5px solid #0a2418;
     border-radius: 30px;
     background: #ffffff;
     transition: all 0.25s ease;
@@ -290,37 +289,47 @@ body {
 }
 
 /* =========================================================
-   TASTO WHATSAPP / CHAT FISSO A SINISTRA (COME RICHIESTO)
+   PULSANTE WHATSAPP FISSO: TONDO, UGUALE AL LOGO WHATSAPP UFFICIALE
+   CON ICONA UFFICIALE WHATSAPP, BORDO ARANCIONE E TRILLO
    ========================================================= */
-.whatsapp-fixed {
+.whatsapp-fixed-circle {
     position: fixed; 
     bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
-    left: max(24px, env(safe-area-inset-left, 24px)); /* A SINISTRA */
+    left: max(24px, env(safe-area-inset-left, 24px)); 
     right: auto !important;
-    padding: 18px 30px; 
-    border-radius: 12px; 
-    text-decoration: none; 
-    font-weight: 900; 
-    z-index: 9999; 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
-    font-size: 16px;
-    background: #6ef195 !important; 
-    color: #071910 !important;
-    border: 2px solid var(--accent-orange) !important; 
-    animation: chatTrill 5s ease-in-out infinite !important; 
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: inline-flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50% !important; /* PERFETTAMENTE TONDO */
+    background: #25d366 !important; /* VERDE UFFICIALE WHATSAPP */
+    color: #ffffff !important;
+    border: 2.5px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    text-decoration: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    animation: chatTrill 5s ease-in-out infinite !important;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
 }
 
-.whatsapp-fixed:hover {
-    transform: scale(1.04);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    background: #6ef195 !important;
-    color: #071910 !important;
+.whatsapp-fixed-circle svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+}
+
+.whatsapp-fixed-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.6), 0 0 20px rgba(255, 159, 67, 0.5);
+    background: #20ba5a !important;
     border-color: var(--accent-orange) !important;
+}
+
+.whatsapp-fixed-circle:active {
+    transform: scale(0.95);
 }
 
 @keyframes chatTrill {
@@ -432,7 +441,7 @@ body {
     box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
 }
 
-/* 1. FOTO DEL BONSAI POSTA PRIMA DI TUTTO (IN TESTA) */
+/* FOTO DEL BONSAI POSTA IN TESTA (SENZA SCRITTE O BADGE SOVRAPPOSTI) */
 .newsletter-hero-image-box {
     position: relative;
     border-radius: 22px;
@@ -446,7 +455,7 @@ body {
 .newsletter-hero-img {
     width: 100%;
     height: auto;
-    max-height: 520px;
+    max-height: 540px;
     object-fit: cover;
     display: block;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -454,24 +463,6 @@ body {
 
 .newsletter-card:hover .newsletter-hero-img {
     transform: scale(1.015);
-}
-
-.newsletter-hero-badge {
-    position: absolute;
-    bottom: 18px;
-    left: 20px;
-    background: rgba(10, 36, 24, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid #6ef195;
-    color: #ffffff;
-    padding: 8px 18px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* BARRA META SOTTO L'IMMAGINE */
@@ -490,7 +481,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--accent-mint-light);
+    background: #eaf8f0;
     color: #176538;
     border: 1px solid #bce6cb;
     padding: 6px 15px;
@@ -507,7 +498,7 @@ body {
     font-weight: 600;
 }
 
-/* 2. TITOLO ARTICOLO SUBITO DOPO LA FOTO */
+/* TITOLO ARTICOLO */
 .newsletter-article-h1 {
     color: var(--brand-green-dark);
     font-size: clamp(28px, 4.4vw, 44px);
@@ -517,7 +508,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* 3. I 4 PILASTRI DELLA VENDITA CONSULENZIALE */
+/* I 4 PILASTRI DELLA VENDITA CONSULENZIALE */
 .newsletter-pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -560,7 +551,7 @@ body {
     line-height: 1.45;
 }
 
-/* 4. TESTO DELLA NEWSLETTER OTTIMIZZATO PER LETTURA SU BIANCO */
+/* TESTO DELLA NEWSLETTER */
 .newsletter-content {
     color: #24362d;
     font-size: 18.5px;
@@ -578,7 +569,7 @@ body {
     color: var(--brand-green-dark);
     margin-bottom: 28px;
     line-height: 1.4;
-    border-left: 4px solid var(--accent-mint);
+    border-left: 4px solid #187741;
     padding-left: 18px;
 }
 
@@ -619,7 +610,7 @@ body {
     color: #6ef195;
 }
 
-/* 5. FOOTER CARD ARTICOLO (AUTORE E TASTO LINKEDIN) */
+/* FOOTER CARD ARTICOLO (AUTORE E TASTO LINKEDIN) */
 .newsletter-card-footer {
     margin-top: 50px;
     padding-top: 30px;
@@ -641,7 +632,7 @@ body {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    border: 2.5px solid var(--accent-mint);
+    border: 2.5px solid #187741;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
@@ -688,35 +679,33 @@ body {
     color: #ffffff;
 }
 
-/* BOX PROSSIME EDIZIONI IN BASSO */
+/* BOX PROSSIME EDIZIONI IN BASSO (SENZA TASTO CONTATTAMI) */
 .newsletter-upcoming-box {
     margin-top: 40px;
-    padding: 30px 35px;
+    padding: 32px 36px;
     background: #ffffff;
     border: 1.5px dashed #b8ccc2;
     border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+    text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
 .upcoming-text h4 {
     color: var(--brand-green-dark);
-    font-size: 18.5px;
+    font-size: 19px;
     font-weight: 800;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .upcoming-text p {
     color: var(--text-muted);
-    font-size: 14.5px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* PULSANTE SECONDARIO TORNA ALLA HOME A FONDO PAGINA */
+/* PULSANTE TORNA ALLA HOME A FONDO PAGINA */
 .bottom-actions-center {
     margin-top: 50px;
     display: flex;
@@ -887,7 +876,7 @@ body {
 }
 
 /* =========================================================
-   RESPONSIVE COMPLETO PER TUTTI I DISPOSITIVI
+   RESPONSIVE COMPLETO PER TUTTI I DISPOSITIVI (ANDROID, IPHONE, IPAD, TABLET, PC)
    ========================================================= */
 @media (max-width: 900px) {
     .newsletter-card { padding: 40px 30px; }
@@ -902,11 +891,19 @@ body {
     .newsletter-content { font-size: 16.5px; line-height: 1.75; }
     .newsletter-content p { margin-bottom: 18px; }
     .newsletter-quote-box { padding: 20px 22px; margin: 32px 0; border-radius: 0 16px 16px 0; }
-    .newsletter-upcoming-box { padding: 22px 18px; border-radius: 18px; }
-    .newsletter-hero-badge { bottom: 12px; left: 12px; font-size: 10.5px; padding: 6px 12px; }
+    .newsletter-upcoming-box { padding: 24px 20px; border-radius: 20px; }
     .fixed-back-to-top { top: calc(max(10px, env(safe-area-inset-top, 10px)) + 80px); right: 12px; width: 40px; height: 40px; }
     .fixed-back-to-top svg { width: 19px; height: 19px; }
-    .whatsapp-fixed { bottom: 20px; left: 16px; padding: 14px 22px; font-size: 14px; }
+    
+    /* WHATSAPP FISSO SU SCHERMI TOUCH / SMARTPHONE (SAFE AREA E TOUCH OTTIMIZZATO) */
+    .whatsapp-fixed-circle { 
+        bottom: max(18px, env(safe-area-inset-bottom, 18px)); 
+        left: max(16px, env(safe-area-inset-left, 16px)); 
+        width: 54px; 
+        height: 54px; 
+    }
+    .whatsapp-fixed-circle svg { width: 28px; height: 28px; }
+    
     .newsletter-card-footer { flex-direction: column; align-items: flex-start; }
     .btn-linkedin-main { width: 100%; justify-content: center; }
     .top-nav a, .top-nav .menu-btn { font-size: 11px; padding: 6px 12px; }
@@ -918,6 +915,8 @@ body {
     .nav-row { gap: 6px; }
     .back-home-pill, .btn-linkedin-top { font-size: 11.5px; padding: 8px 14px; }
     .back-home-bottom-btn { width: 100%; justify-content: center; }
+    .upcoming-text h4 { font-size: 17px; }
+    .upcoming-text p { font-size: 14px; }
 }
 </style>
 </head>
@@ -949,8 +948,12 @@ body {
     </svg>
 </a>
 
-<!-- TASTO CHAT FISSO A SINISTRA -->
-<a href="https://wa.me/393505791061" class="whatsapp-fixed" target="_blank" rel="noopener noreferrer">CHAT</a>
+<!-- TASTO WHATSAPP FISSO TONDO A SINISTRA CON LOGO WHATSAPP UFFICIALE E BORDO ARANCIONE -->
+<a href="https://wa.me/393505791061" class="whatsapp-fixed-circle" target="_blank" rel="noopener noreferrer" title="Contattami su WhatsApp" aria-label="Chat WhatsApp con Matteo Bertoni">
+    <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
 
 <!-- CONTENUTO PRINCIPALE -->
 <main>
@@ -977,10 +980,9 @@ body {
                 <meta itemprop="inLanguage" content="it-IT">
                 <meta itemprop="datePublished" content="2025-01-15">
 
-                <!-- 1. FOTO DEL BONSAI POSTA SUBITO ALL'INIZIO (PRIMA DEL TITOLO) -->
+                <!-- 1. FOTO DEL BONSAI POSTA SUBITO ALL'INIZIO (SENZA BADGE SOVRAPPOSTI, COMPATIBILE CON QUALSIASI NOME FILE) -->
                 <div class="newsletter-hero-image-box">
-                    <img src="bonsai_closing.jpg" alt="Il closing non si forza. Si coltiva. Vendere è una questione di cura - Matteo Bertoni" class="newsletter-hero-img" itemprop="image" loading="eager">
-                    <div class="newsletter-hero-badge">Vendere è una questione di cura</div>
+                    <img src="bonsai_closing.jpg" onerror="this.onerror=null; this.src='immagine%20linkedin%20bonsai.png';" alt="Il closing non si forza. Si coltiva - Matteo Bertoni" class="newsletter-hero-img" itemprop="image" loading="eager">
                 </div>
 
                 <!-- BARRA META INFORMAZIONI -->
@@ -992,7 +994,7 @@ body {
                     <span class="newsletter-read-time">3 min di lettura</span>
                 </div>
 
-                <!-- 2. TITOLO ARTICOLO POSTO DOPO LA FOTO -->
+                <!-- 2. TITOLO ARTICOLO -->
                 <h1 class="newsletter-article-h1" itemprop="headline">Il closing non si forza. Si coltiva.</h1>
 
                 <!-- 3. I 4 PILASTRI CONCETTUALI DELLA GRAFICA DEL BONSAI -->
@@ -1140,13 +1142,12 @@ body {
                 </footer>
             </article>
 
-            <!-- BOX PROSSIME EDIZIONI -->
+            <!-- BOX PROSSIME EDIZIONI (SENZA TASTO CONTATTAMI) -->
             <div class="newsletter-upcoming-box reveal">
                 <div class="upcoming-text">
                     <h4>Prossime uscite ed approfondimenti in arrivo</h4>
                     <p>Nuovi articoli e riflessioni su obiezioni complesse, pipeline commerciali da remoto e vendita consulenziale.</p>
                 </div>
-                <a href="index.html#contatti" class="top-nav-btn" style="padding: 9px 20px; font-size: 12.5px; border-radius: 20px; text-decoration:none; color:#071910; border:2px solid #0a2418; font-weight:700;">Contattami</a>
             </div>
 
             <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
@@ -1161,7 +1162,7 @@ body {
     </section>
 </main>
 
-<!-- FOOTER INFORMATIVO E CONTATTI (CON TASTO SCRIVIMI E SENZA MAIL IN CHIARO) -->
+<!-- FOOTER INFORMATIVO E CONTATTI -->
 <footer class="newsletter-footer">
     <div class="container">
         <div class="footer-author-name">Matteo Bertoni</div>
