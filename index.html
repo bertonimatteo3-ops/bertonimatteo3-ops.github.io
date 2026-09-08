@@ -629,7 +629,8 @@ h2[id], div[id="contatti"] {
 .circle-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
 .circle-progress { fill: none; stroke: var(--accent-mint); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; }
 .circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 34px; font-weight: 900; letter-spacing: -0.5px; }
-.progress-money .circle-content { font-size: 21px !important; }
+.progress-money .circle-content { font-size: 25px !important; white-space: nowrap; letter-spacing: -0.2px; }
+.progress-money .circle-content .num { display: inline-block; margin-left: 8px; margin-right: 0; }
 
 /* PULSANTE WHATSAPP FISSO: SEMPRE VERDE, CON BORDO ARANCIONE E TRILLO */
 .whatsapp-fixed {
@@ -1185,7 +1186,7 @@ h2[id], div[id="contatti"] {
             <div class="card-dark reveal num-card">
                 <div class="circular-progress" data-target="100" data-val="47">
                     <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45"></circle></svg>
-                    <div class="circle-content">+ <span class="num">0</span>%</div>
+                    <div class="circle-content">+ <span class="num">47</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Retention</h3>
                 <p>Dato medio complessivo dei progetti che ho gestito. Non mi limito a chiudere.</p>
@@ -1194,7 +1195,7 @@ h2[id], div[id="contatti"] {
             <div class="card-dark reveal num-card progress-money">
                 <div class="circular-progress" data-target="100" data-val="2.7">
                     <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45"></circle></svg>
-                    <div class="circle-content">+ € <span class="num">0</span> M</div>
+                    <div class="circle-content">+ € <span class="num">2,7</span>M</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Fatturato generato</h3>
                 <p>Fatturato prodotto direttamente attraverso le mie vendite.</p>
@@ -1203,7 +1204,7 @@ h2[id], div[id="contatti"] {
             <div class="card-dark reveal num-card">
                 <div class="circular-progress" data-target="100" data-val="32">
                     <svg viewBox="0 0 100 100"><circle class="circle-bg" cx="50" cy="50" r="45"></circle><circle class="circle-progress" cx="50" cy="50" r="45"></circle></svg>
-                    <div class="circle-content">+ <span class="num">0</span>%</div>
+                    <div class="circle-content">+ <span class="num">32</span>%</div>
                 </div>
                 <h3 class="green" style="font-size:26px; margin-bottom:15px;">Closing rate</h3>
                 <p>Tasso medio calcolato sull'intero storico della mia attività da closer.</p>
@@ -1416,6 +1417,7 @@ document.addEventListener("DOMContentLoaded", function() {
         circle.style.strokeDasharray = circumference;
         circle.style.strokeDashoffset = circumference;
         circle.style.transition = 'none';
+        numSpan.innerText = '0';
 
         let duration = 2400;
         let startTime = null;
