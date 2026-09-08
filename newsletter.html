@@ -7,6 +7,10 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
+try {
+    sessionStorage.setItem('from_newsletter', 'true');
+    sessionStorage.setItem('skip_home_loader', 'true');
+} catch(e) {}
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -679,30 +683,78 @@ body {
     color: #ffffff;
 }
 
-/* BOX PROSSIME EDIZIONI IN BASSO (SENZA TASTO CONTATTAMI) */
-.newsletter-upcoming-box {
+/* BOX ARCHIVIO ALTRE EDIZIONI */
+.newsletter-archive-box {
     margin-top: 40px;
     padding: 32px 36px;
     background: #ffffff;
-    border: 1.5px dashed #b8ccc2;
+    border: 1.5px solid #d4dfd9;
     border-radius: 24px;
-    text-align: center;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    text-align: left;
 }
 
-.upcoming-text h4 {
+.archive-title {
     color: var(--brand-green-dark);
     font-size: 19px;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.upcoming-text p {
+.archive-edition-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #f3f7f5;
+    border: 1px solid #d8e4de;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.archive-edition-card:hover {
+    background: #ffffff;
+    border-color: #187741;
+    transform: translateX(4px);
+    box-shadow: 0 6px 18px rgba(10, 36, 24, 0.08);
+}
+
+.archive-edition-info h5 {
+    color: var(--brand-green-dark);
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.archive-edition-info p {
     color: var(--text-muted);
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 650px;
-    margin: 0 auto;
+    font-size: 13.5px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.archive-edition-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #0a2418;
+    color: #0a2418;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.archive-edition-card:hover .archive-edition-arrow {
+    background: #0a2418;
+    color: #ffffff;
 }
 
 /* PULSANTE TORNA ALLA HOME A FONDO PAGINA */
@@ -928,13 +980,13 @@ body {
     <div class="top-nav-inner">
         <div class="nav-links-wrapper">
             <div class="nav-row nav-row-top">
-                <a href="index.html?skip_loader=true#partner" class="menu-btn">Collaborazioni</a>
-                <a href="index.html?skip_loader=true#risultati" class="menu-btn">Come porto risultati</a>
+                <a href="index.html?skip_loader=true#partner" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Collaborazioni</a>
+                <a href="index.html?skip_loader=true#risultati" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Come porto risultati</a>
             </div>
             <div class="nav-row nav-row-bottom">
-                <a href="index.html?skip_loader=true#numeri" class="menu-btn">I miei numeri</a>
-                <a href="index.html?skip_loader=true#contatti" class="menu-btn">Contattami</a>
-                 <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
+                <a href="index.html?skip_loader=true#numeri" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">I miei numeri</a>
+                <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
+                <a href="index.html?skip_loader=true#contatti" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Contattami</a>
             </div>
         </div>
     </div>
@@ -960,7 +1012,7 @@ body {
     <div class="container">
         <!-- BARRA SUPERIORE: TORNA ALLA HOME + LINKEDIN -->
         <div class="header-actions-bar">
-            <a href="index.html?skip_loader=true" class="back-home-pill" title="Torna alla Landing Page" onclick="try{sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
+            <a href="index.html?skip_loader=true" class="back-home-pill" title="Torna alla Landing Page" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 Torna alla Home
             </a>
@@ -1142,17 +1194,26 @@ body {
                 </footer>
             </article>
 
-            <!-- BOX PROSSIME EDIZIONI (SENZA TASTO CONTATTAMI) -->
-            <div class="newsletter-upcoming-box reveal">
-                <div class="upcoming-text">
-                    <h4>Prossime uscite ed approfondimenti in arrivo</h4>
-                    <p>Nuovi articoli e riflessioni su obiezioni complesse, pipeline commerciali da remoto e vendita consulenziale.</p>
+            <!-- BOX ALTRE EDIZIONI & NUOVI ARTICOLI -->
+            <div class="newsletter-archive-box reveal">
+                <div class="archive-title">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    Nuova Edizione Disponibile
                 </div>
+                <a href="articolo-02.html" class="archive-edition-card" title="Leggi l'Edizione #02">
+                    <div class="archive-edition-info">
+                        <h5>Edizione #02: Quando il prezzo non è il punto</h5>
+                        <p>Nelle call di vendita con prospect ad alto budget: perché rallentare la conversazione sul prezzo cambia la percezione.</p>
+                    </div>
+                    <div class="archive-edition-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </a>
             </div>
 
             <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
             <div class="bottom-actions-center reveal">
-                <a href="index.html?skip_loader=true" class="back-home-bottom-btn" title="Torna alla Home page" onclick="try{sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
+                <a href="index.html?skip_loader=true" class="back-home-bottom-btn" title="Torna alla Home page" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Torna alla Home
                 </a>
@@ -1214,9 +1275,17 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
         link.addEventListener('click', function() {
             try {
+                sessionStorage.setItem('from_newsletter', 'true');
                 sessionStorage.setItem('skip_home_loader', 'true');
             } catch(e) {}
         });
+    });
+
+    window.addEventListener('beforeunload', function() {
+        try {
+            sessionStorage.setItem('from_newsletter', 'true');
+            sessionStorage.setItem('skip_home_loader', 'true');
+        } catch(e) {}
     });
 });
 </script>
