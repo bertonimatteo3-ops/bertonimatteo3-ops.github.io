@@ -1,1 +1,1215 @@
 
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
+<script>
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>Newsletter & Blog | Matteo Bertoni - Remote Closing Specialist</title>
+
+<meta name="description" content="Il closing non si forza. Si coltiva. Riflessioni, disciplina e strategie sul Remote Closing e sulla cura di ogni conversazione commerciale di Matteo Bertoni.">
+<meta property="og:title" content="Newsletter & Blog | Matteo Bertoni - Remote Closing Specialist">
+<meta property="og:description" content="Il closing non si forza. Si coltiva. Riflessioni, disciplina e strategie sul Remote Closing e sulla cura di ogni conversazione commerciale.">
+<meta property="og:image" content="https://matteobertoni.net/bonsai_closing.jpg">
+<meta property="og:url" content="https://matteobertoni.net/newsletter.html">
+<meta property="og:type" content="article">
+
+<!-- DATI STRUTTURATI SCHEMA.ORG PER INDICIZZAZIONE SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://matteobertoni.net/#person",
+      "name": "Matteo Bertoni",
+      "jobTitle": "Remote Closing Specialist",
+      "url": "https://matteobertoni.net/",
+      "image": "https://matteobertoni.net/foto.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/matteo-bertoni-1223b7204/"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://matteobertoni.net/newsletter.html#article-01",
+      "headline": "Il closing non si forza. Si coltiva.",
+      "description": "Perché la vendita consulenziale e il remote closing sono come prendersi cura di un bonsai: ascolto, domande giuste, costanza e pazienza.",
+      "author": {
+        "@id": "https://matteobertoni.net/#person"
+      },
+      "publisher": {
+        "@id": "https://matteobertoni.net/#person"
+      },
+      "datePublished": "2025-01-15",
+      "image": "https://matteobertoni.net/bonsai_closing.jpg",
+      "inLanguage": "it-IT",
+      "articleSection": "Remote Closing & Vendita Consulenziale"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-page: #f8faf9;          /* Sfondo pagina chiaro e pulito */
+    --bg-card: #ffffff;          /* Card bianca */
+    --brand-green-dark: #0a2418; /* Verde scuro della landing */
+    --brand-green-mid: #123324;  
+    --accent-mint: #25a25a;      
+    --accent-mint-light: #eaf8f0;
+    --accent-orange: #ff9f43;    /* Arancione identitario */
+    --accent-orange-hover: #f38b2b;
+    --text-main: #14221b;        
+    --text-muted: #556c61;       
+    --border-subtle: #e1eae5;    
+}
+
+/* RESET E BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { 
+    scroll-behavior: smooth; 
+    background: var(--bg-page); 
+    scroll-padding-top: 110px; 
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    touch-action: pan-y pinch-zoom;
+}
+body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    background-color: var(--bg-page);
+    overflow-x: hidden !important; 
+    max-width: 100% !important;
+    width: 100% !important; 
+    position: relative; 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* CONTAINER CENTRALE */
+.container { 
+    width: 92%; 
+    max-width: 960px; 
+    margin: 0 auto; 
+    position: relative; 
+    z-index: 10; 
+}
+
+/* PATTERN SOTTILE DI SFONDO CHIARO */
+.bg-light-pattern {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(18, 51, 36, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   BARRA DI NAVIGAZIONE FISSA IN ALTO
+   UGUALE ALLA LANDING PAGE: BIANCA, CON CONTORNI VERDI SUI TASTI
+   E RIGA ARANCIONE SOTTO IL BANNER (border-bottom: 3px solid #ff9f43)
+   ========================================================= */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: max(10px, env(safe-area-inset-top, 10px)) 16px 10px;
+    z-index: 9998;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--accent-orange); /* RIGA ARANCIONE SOTTO IL BANNER */
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.top-nav-inner {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 74px;
+    box-sizing: border-box;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* BOTTONI DEL BANNER BIANCHI CON CONTORNO VERDE (COME DA LANDING) */
+.top-nav a, .top-nav .menu-btn {
+    color: #071910;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 18px;
+    border: 2.5px solid #0a2418; /* BIANCO CON CONTORNI VERDI SCURO */
+    border-radius: 30px;
+    background: #ffffff;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.top-nav a:hover, .top-nav .menu-btn:hover {
+    background: #0a2418;
+    border-color: #0a2418;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(10, 36, 24, 0.35);
+    transform: translateY(-2px);
+}
+
+.top-nav a:active, .top-nav .menu-btn:active {
+    transform: translateY(0);
+}
+
+.top-nav a.active-nav-btn, .top-nav .menu-btn.active-nav-btn {
+    background-color: #0a2418;
+    border-color: #0a2418;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(10, 36, 24, 0.25);
+}
+
+/* =========================================================
+   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (CON EFFETTO RADAR/PULSE)
+   ========================================================= */
+.fixed-back-to-top {
+    position: fixed;
+    top: calc(max(10px, env(safe-area-inset-top, 10px)) + 74px);
+    right: max(16px, env(safe-area-inset-right, 16px));
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--accent-orange);
+    color: var(--accent-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9995;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.fixed-back-to-top svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.25s ease;
+}
+
+.fixed-back-to-top:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 159, 67, 0.6);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.fixed-back-to-top:active {
+    transform: translateY(1px) scale(0.96);
+}
+
+.fixed-back-to-top.illuminated {
+    background: #ffffff;
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+    animation: elegantPulse 1.8s infinite ease-in-out;
+}
+
+.fixed-back-to-top.illuminated::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+    animation: radarWave 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+@keyframes elegantPulse {
+    0%, 100% {
+        box-shadow: 0 0 18px rgba(255, 159, 67, 0.9), 0 4px 15px rgba(0,0,0,0.2);
+        transform: scale(1.05);
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+    }
+    50% {
+        box-shadow: 0 0 28px rgba(255, 159, 67, 1), 0 8px 25px rgba(0,0,0,0.3);
+        transform: scale(1.14);
+        color: #ffffff;
+        background: var(--accent-orange);
+        border-color: #ffffff;
+    }
+}
+
+@keyframes radarWave {
+    0% { opacity: 0.9; transform: scale(0.85); }
+    100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* =========================================================
+   TASTO WHATSAPP / CHAT FISSO A SINISTRA (COME RICHIESTO)
+   ========================================================= */
+.whatsapp-fixed {
+    position: fixed; 
+    bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
+    left: max(24px, env(safe-area-inset-left, 24px)); /* A SINISTRA */
+    right: auto !important;
+    padding: 18px 30px; 
+    border-radius: 12px; 
+    text-decoration: none; 
+    font-weight: 900; 
+    z-index: 9999; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
+    font-size: 16px;
+    background: #6ef195 !important; 
+    color: #071910 !important;
+    border: 2px solid var(--accent-orange) !important; 
+    animation: chatTrill 5s ease-in-out infinite !important; 
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-fixed:hover {
+    transform: scale(1.04);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    background: #6ef195 !important;
+    color: #071910 !important;
+    border-color: var(--accent-orange) !important;
+}
+
+@keyframes chatTrill {
+    0%, 85% { transform: scale(1) rotate(0deg); }
+    87% { transform: scale(1.08) rotate(4deg); }
+    89% { transform: scale(1.08) rotate(-4deg); }
+    91% { transform: scale(1.08) rotate(4deg); }
+    93% { transform: scale(1.08) rotate(-4deg); }
+    95% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* =========================================================
+   BARRA SUPERIORE AZIONI (TORNA ALLA HOME + LINKEDIN)
+   ========================================================= */
+.header-actions-bar {
+    padding-top: 125px; /* Spazio per il banner con la riga arancione */
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.back-home-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 2px solid #0a2418;
+    color: var(--brand-green-dark);
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.back-home-pill:hover {
+    background: var(--brand-green-dark);
+    border-color: var(--brand-green-dark);
+    color: #ffffff;
+    transform: translateX(-3px);
+    box-shadow: 0 6px 16px rgba(10, 36, 24, 0.2);
+}
+
+.back-home-pill svg {
+    transition: transform 0.2s ease;
+}
+
+.back-home-pill:hover svg {
+    transform: translateX(-2px);
+}
+
+.btn-linkedin-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a66c2;
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(10, 102, 194, 0.25);
+}
+
+.btn-linkedin-top:hover {
+    background: #084e96;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(10, 102, 194, 0.35);
+}
+
+/* =========================================================
+   SEZIONE NEWSLETTER PRINCIPALE (SFONDO BIANCO / LUMINOSO)
+   ========================================================= */
+.newsletter-section {
+    background-color: var(--bg-page);
+    padding: 5px 0 100px 0;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.newsletter-card {
+    background: var(--bg-card);
+    border-radius: 32px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 20px 55px rgba(10, 36, 24, 0.07);
+    padding: 50px 48px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+    transition: box-shadow 0.3s ease;
+}
+
+.newsletter-card:hover {
+    box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
+}
+
+/* 1. FOTO DEL BONSAI POSTA PRIMA DI TUTTO (IN TESTA) */
+.newsletter-hero-image-box {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 35px;
+    border: 1px solid #d4dfd9;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    background: #000000;
+}
+
+.newsletter-hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newsletter-card:hover .newsletter-hero-img {
+    transform: scale(1.015);
+}
+
+.newsletter-hero-badge {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    background: rgba(10, 36, 24, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid #6ef195;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* BARRA META SOTTO L'IMMAGINE */
+.newsletter-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #ebf1ee;
+}
+
+.newsletter-edition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-mint-light);
+    color: #176538;
+    border: 1px solid #bce6cb;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newsletter-read-time {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+/* 2. TITOLO ARTICOLO SUBITO DOPO LA FOTO */
+.newsletter-article-h1 {
+    color: var(--brand-green-dark);
+    font-size: clamp(28px, 4.4vw, 44px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+    margin-bottom: 30px;
+}
+
+/* 3. I 4 PILASTRI DELLA VENDITA CONSULENZIALE */
+.newsletter-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 35px 0 45px 0;
+    padding: 24px;
+    background: #f3f7f5;
+    border: 1px solid #d8e4de;
+    border-radius: 22px;
+}
+
+.pillar-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 6px;
+}
+
+.pillar-icon {
+    width: 38px;
+    height: 38px;
+    color: #187741;
+    margin-bottom: 12px;
+    stroke-width: 2;
+}
+
+.pillar-title {
+    color: var(--brand-green-dark);
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+
+.pillar-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* 4. TESTO DELLA NEWSLETTER OTTIMIZZATO PER LETTURA SU BIANCO */
+.newsletter-content {
+    color: #24362d;
+    font-size: 18.5px;
+    line-height: 1.85;
+    font-weight: 400;
+}
+
+.newsletter-content p {
+    margin-bottom: 22px;
+}
+
+.newsletter-content .lead-p {
+    font-size: clamp(21px, 3.2vw, 26px);
+    font-weight: 800;
+    color: var(--brand-green-dark);
+    margin-bottom: 28px;
+    line-height: 1.4;
+    border-left: 4px solid var(--accent-mint);
+    padding-left: 18px;
+}
+
+.newsletter-content .emphasis-p {
+    color: #187741;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+.newsletter-content .dialogue-p {
+    font-style: italic;
+    color: var(--brand-green-dark);
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 14px;
+    border-left: 3px solid #ff9f43;
+}
+
+.newsletter-quote-box {
+    margin: 42px 0;
+    padding: 28px 32px;
+    background: #0a2418;
+    border-left: 5px solid #ff9f43;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 10px 30px rgba(10, 36, 24, 0.15);
+}
+
+.newsletter-quote-text {
+    font-size: clamp(21px, 3.2vw, 27px);
+    font-weight: 900;
+    color: #ffffff;
+    font-style: italic;
+    line-height: 1.35;
+}
+
+.newsletter-quote-text .accent {
+    color: #6ef195;
+}
+
+/* 5. FOOTER CARD ARTICOLO (AUTORE E TASTO LINKEDIN) */
+.newsletter-card-footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1.5px solid #e1eae5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.newsletter-author-tag {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.newsletter-author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2.5px solid var(--accent-mint);
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.newsletter-author-name {
+    color: var(--brand-green-dark);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.newsletter-author-role {
+    color: #187741;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* PULSANTE SEGUIMI SU LINKEDIN */
+.btn-linkedin-main {
+    position: relative;
+    background: #0a66c2;
+    color: #ffffff;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);
+}
+
+.btn-linkedin-main:hover {
+    background: #084e96;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.4);
+    color: #ffffff;
+}
+
+/* BOX PROSSIME EDIZIONI IN BASSO */
+.newsletter-upcoming-box {
+    margin-top: 40px;
+    padding: 30px 35px;
+    background: #ffffff;
+    border: 1.5px dashed #b8ccc2;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.upcoming-text h4 {
+    color: var(--brand-green-dark);
+    font-size: 18.5px;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.upcoming-text p {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.5;
+}
+
+/* PULSANTE SECONDARIO TORNA ALLA HOME A FONDO PAGINA */
+.bottom-actions-center {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.back-home-bottom-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--brand-green-dark);
+    color: #ffffff;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 20px rgba(10, 36, 24, 0.2);
+}
+
+.back-home-bottom-btn:hover {
+    background: #123e2b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(10, 36, 24, 0.28);
+    color: #ffffff;
+}
+
+/* =========================================================
+   FOOTER CON CONTATTI, TASTO SCRIVIMI E LINK LEGALI
+   ========================================================= */
+.newsletter-footer {
+    background-color: var(--brand-green-dark);
+    color: #ffffff;
+    padding: 70px 0 45px 0;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid rgba(110, 241, 149, 0.2);
+}
+
+.footer-author-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.footer-author-role {
+    color: #6ef195;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 25px;
+}
+
+.footer-contacts-list {
+    color: #b0c9bd;
+    font-size: 16px;
+    line-height: 2.3;
+    margin-bottom: 35px;
+}
+
+.footer-contacts-list strong {
+    color: #ffffff;
+}
+
+/* PULSANTE SCRIVIMI UGUALE ALLA LANDING (CON BUSTA VERDE) */
+.btn-email-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: rgba(110, 241, 149, 0.12);
+    color: #ffffff;
+    border: 1.5px solid #6ef195;
+    padding: 6px 16px 6px 8px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+.btn-email-box .email-box-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #6ef195;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+}
+
+.btn-email-box .email-box-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke: #071910;
+    stroke-width: 2.2;
+    transition: stroke 0.25s ease;
+}
+
+.btn-email-box:hover {
+    background: rgba(110, 241, 149, 0.22);
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(110, 241, 149, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-email-box:hover .email-box-icon {
+    background: #ffffff;
+}
+
+.btn-email-box:hover .email-box-icon svg {
+    stroke: #0a2418;
+}
+
+.legal-links-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.iubenda-legal-link {
+    color: #8ba89a;
+    font-size: 12.5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.iubenda-legal-link:hover {
+    color: #6ef195;
+    text-decoration: underline;
+}
+
+.legal-separator {
+    color: #8ba89a;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================================
+   RESPONSIVE COMPLETO PER TUTTI I DISPOSITIVI
+   ========================================================= */
+@media (max-width: 900px) {
+    .newsletter-card { padding: 40px 30px; }
+    .newsletter-pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+@media (max-width: 768px) {
+    .header-actions-bar { padding-top: 135px; }
+    .newsletter-section { padding: 5px 0 70px 0; }
+    .newsletter-card { padding: 26px 18px; border-radius: 24px; }
+    .newsletter-hero-image-box { border-radius: 18px; margin-bottom: 25px; }
+    .newsletter-content { font-size: 16.5px; line-height: 1.75; }
+    .newsletter-content p { margin-bottom: 18px; }
+    .newsletter-quote-box { padding: 20px 22px; margin: 32px 0; border-radius: 0 16px 16px 0; }
+    .newsletter-upcoming-box { padding: 22px 18px; border-radius: 18px; }
+    .newsletter-hero-badge { bottom: 12px; left: 12px; font-size: 10.5px; padding: 6px 12px; }
+    .fixed-back-to-top { top: calc(max(10px, env(safe-area-inset-top, 10px)) + 80px); right: 12px; width: 40px; height: 40px; }
+    .fixed-back-to-top svg { width: 19px; height: 19px; }
+    .whatsapp-fixed { bottom: 20px; left: 16px; padding: 14px 22px; font-size: 14px; }
+    .newsletter-card-footer { flex-direction: column; align-items: flex-start; }
+    .btn-linkedin-main { width: 100%; justify-content: center; }
+    .top-nav a, .top-nav .menu-btn { font-size: 11px; padding: 6px 12px; }
+}
+
+@media (max-width: 480px) {
+    .newsletter-pillars-grid { grid-template-columns: 1fr; gap: 12px; padding: 16px 14px; }
+    .top-nav a, .top-nav .menu-btn { font-size: 10px; padding: 5px 10px; }
+    .nav-row { gap: 6px; }
+    .back-home-pill, .btn-linkedin-top { font-size: 11.5px; padding: 8px 14px; }
+    .back-home-bottom-btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO (BIANCO, CON CONTORNI VERDI E RIGA ARANCIONE SOTTO) -->
+<nav class="top-nav" aria-label="Navigazione principale">
+    <div class="top-nav-inner">
+        <div class="nav-links-wrapper">
+            <div class="nav-row nav-row-top">
+                <a href="index.html#partner" class="menu-btn">Collaborazioni</a>
+                <a href="index.html#risultati" class="menu-btn">Come porto risultati</a>
+            </div>
+            <div class="nav-row nav-row-bottom">
+                <a href="index.html#numeri" class="menu-btn">I miei numeri</a>
+                <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
+                <a href="index.html#contatti" class="menu-btn">Contattami</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER -->
+<a href="#" id="fixed-back-to-top" class="fixed-back-to-top illuminated" title="Torna in cima" aria-label="Torna in cima alla pagina">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+</a>
+
+<!-- TASTO CHAT FISSO A SINISTRA -->
+<a href="https://wa.me/393505791061" class="whatsapp-fixed" target="_blank" rel="noopener noreferrer">CHAT</a>
+
+<!-- CONTENUTO PRINCIPALE -->
+<main>
+    <div class="container">
+        <!-- BARRA SUPERIORE: TORNA ALLA HOME + LINKEDIN -->
+        <div class="header-actions-bar">
+            <a href="index.html" class="back-home-pill" title="Torna alla Landing Page">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Torna alla Home
+            </a>
+            <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" rel="noopener noreferrer" class="btn-linkedin-top" title="Profilo LinkedIn di Matteo Bertoni">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                Seguimi su LinkedIn
+            </a>
+        </div>
+    </div>
+
+    <!-- SEZIONE ARTICOLO NEWSLETTER SU SFONDO BIANCO E LUMINOSO -->
+    <section class="newsletter-section" id="newsletter">
+        <div class="bg-light-pattern"></div>
+        <div class="container">
+
+            <article class="newsletter-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
+                <meta itemprop="inLanguage" content="it-IT">
+                <meta itemprop="datePublished" content="2025-01-15">
+
+                <!-- 1. FOTO DEL BONSAI POSTA SUBITO ALL'INIZIO (PRIMA DEL TITOLO) -->
+                <div class="newsletter-hero-image-box">
+                    <img src="bonsai_closing.jpg" alt="Il closing non si forza. Si coltiva. Vendere è una questione di cura - Matteo Bertoni" class="newsletter-hero-img" itemprop="image" loading="eager">
+                    <div class="newsletter-hero-badge">Vendere è una questione di cura</div>
+                </div>
+
+                <!-- BARRA META INFORMAZIONI -->
+                <div class="newsletter-meta-bar">
+                    <span class="newsletter-edition-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        Edizione #01 • Remote Closing & Metodo
+                    </span>
+                    <span class="newsletter-read-time">3 min di lettura</span>
+                </div>
+
+                <!-- 2. TITOLO ARTICOLO POSTO DOPO LA FOTO -->
+                <h1 class="newsletter-article-h1" itemprop="headline">Il closing non si forza. Si coltiva.</h1>
+
+                <!-- 3. I 4 PILASTRI CONCETTUALI DELLA GRAFICA DEL BONSAI -->
+                <div class="newsletter-pillars-grid">
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        <span class="pillar-title">Ascolto</span>
+                        <span class="pillar-desc">Capisci di cosa ha davvero bisogno.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+                        <span class="pillar-title">Domande giuste</span>
+                        <span class="pillar-desc">Potature mirate per far emergere ciò che conta.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span class="pillar-title">Costanza</span>
+                        <span class="pillar-desc">Ogni giorno, con dedizione e attenzione.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8"></path><path d="m4.93 10.93 1.41 1.41"></path><path d="M2 18h2"></path><path d="M20 18h2"></path><path d="m19.07 10.93-1.41 1.41"></path><path d="M22 22H2"></path><path d="m16 6-4 4-4-4"></path><path d="M16 18a4 4 0 0 0-8 0"></path></svg>
+                        <span class="pillar-title">Pazienza</span>
+                        <span class="pillar-desc">Non forzi la crescita. Crei le condizioni.</span>
+                    </div>
+                </div>
+
+                <!-- 4. TESTO INTEGRALE DELLA NEWSLETTER -->
+                <div class="newsletter-content" itemprop="articleBody">
+                    <p class="lead-p">"Il closing non si forza. Si coltiva."</p>
+
+                    <p>Un bonsai non cresce più velocemente perché lo guardi ogni cinque minuti.</p>
+
+                    <p>E non diventa più bello dandogli acqua una volta ogni tanto.</p>
+
+                    <p>Ha bisogno di qualcosa di molto più semplice e molto più difficile:</p>
+
+                    <p class="emphasis-p">costanza.</p>
+
+                    <p>Ogni giorno.</p>
+
+                    <p>Con attenzione.</p>
+
+                    <p>Senza avere fretta di vedere il risultato.</p>
+
+                    <p>Il lavoro di un closer da remoto non è poi così diverso.</p>
+
+                    <p>Un lead arriva.</p>
+
+                    <p>Ha un problema, un desiderio, un dubbio.</p>
+
+                    <p>A volte è pronto a comprare.</p>
+
+                    <p>A volte no.</p>
+
+                    <p>A volte ti dice:</p>
+
+                    <p class="dialogue-p">"Ci devo pensare."</p>
+
+                    <p>E qui si può commettere un errore, pensando che il lavoro del closer sia convincere.</p>
+
+                    <p>Secondo me è molto più simile al prendersi cura di un bonsai.</p>
+
+                    <p>Devi capire di cosa ha bisogno.</p>
+
+                    <p>Devi sapere quando intervenire.</p>
+
+                    <p>Quando fare una domanda.</p>
+
+                    <p>Quando ascoltare.</p>
+
+                    <p>Quando lasciare spazio.</p>
+
+                    <p>E soprattutto, devi avere la pazienza di non forzare il processo.</p>
+
+                    <p>Perché se dai troppa acqua a un bonsai, lo danneggi.</p>
+
+                    <p>E se spingi troppo un prospect, rischi di fare la stessa cosa.</p>
+
+                    <div class="newsletter-quote-box">
+                        <p class="newsletter-quote-text">Il closing non è pressione. <span class="accent">È precisione.</span></p>
+                    </div>
+
+                    <p>Un buon closer non cerca di portare tutti alla vendita.</p>
+
+                    <p>Cerca di capire chi ha davvero bisogno di quella soluzione.</p>
+
+                    <p>Fa domande.</p>
+
+                    <p>Ascolta le risposte.</p>
+
+                    <p>Individua il problema.</p>
+
+                    <p>Comprende il valore che il prodotto o servizio può generare.</p>
+
+                    <p>E solo dopo propone una soluzione.</p>
+
+                    <p>Questo, per me, è il vero significato di vendita consulenziale.</p>
+
+                    <p>E lavorando da remoto diventa ancora più importante.</p>
+
+                    <p>Non hai una stretta di mano.</p>
+
+                    <p>Non hai il linguaggio del corpo completo.</p>
+
+                    <p>Non sei seduto davanti al cliente.</p>
+
+                    <p>Hai la tua voce, le tue domande, il tuo ascolto e la tua capacità di creare fiducia anche attraverso uno schermo.</p>
+
+                    <p>Per questo motivo, secondo me, il commerciale da remoto non è semplicemente qualcuno che "chiude contratti".</p>
+
+                    <p>Dovrebbe essere quella figura che sa prendersi cura di una conversazione commerciale fino alla sua naturale conclusione.</p>
+
+                    <p>Come un bonsai.</p>
+
+                    <p>Non devi forzarlo a crescere.</p>
+
+                    <p>Devi creare le condizioni perché possa farlo.</p>
+
+                    <p>E quando lo fai bene, il risultato arriva quasi come una conseguenza.</p>
+
+                    <p>La vendita non è una gara a chi parla di più.</p>
+
+                    <p>È una disciplina fatta di ascolto, metodo e costanza.</p>
+
+                    <p>Ed è proprio per questo che, secondo me, il miglior closer non è quello che sa convincere chiunque.</p>
+
+                    <p>È quello che sa riconoscere quando vale la pena continuare a coltivare una relazione.</p>
+                </div>
+
+                <!-- 5. FOOTER CARD CON AUTORE E TASTO SEGUIMI SU LINKEDIN -->
+                <footer class="newsletter-card-footer">
+                    <div class="newsletter-author-tag" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <img src="foto.png" alt="Matteo Bertoni" class="newsletter-author-avatar" itemprop="image">
+                        <div>
+                            <div class="newsletter-author-name" itemprop="name">Matteo Bertoni</div>
+                            <div class="newsletter-author-role" itemprop="jobTitle">Remote Closing Specialist</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" rel="noopener noreferrer" class="btn-linkedin-main">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            Seguimi su LinkedIn
+                        </a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- BOX PROSSIME EDIZIONI -->
+            <div class="newsletter-upcoming-box reveal">
+                <div class="upcoming-text">
+                    <h4>Prossime uscite ed approfondimenti in arrivo</h4>
+                    <p>Nuovi articoli e riflessioni su obiezioni complesse, pipeline commerciali da remoto e vendita consulenziale.</p>
+                </div>
+                <a href="index.html#contatti" class="top-nav-btn" style="padding: 9px 20px; font-size: 12.5px; border-radius: 20px; text-decoration:none; color:#071910; border:2px solid #0a2418; font-weight:700;">Contattami</a>
+            </div>
+
+            <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
+            <div class="bottom-actions-center reveal">
+                <a href="index.html" class="back-home-bottom-btn" title="Torna alla Home page">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Torna alla Home
+                </a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER INFORMATIVO E CONTATTI (CON TASTO SCRIVIMI E SENZA MAIL IN CHIARO) -->
+<footer class="newsletter-footer">
+    <div class="container">
+        <div class="footer-author-name">Matteo Bertoni</div>
+        <div class="footer-author-role">Remote Closing Specialist (Verona)</div>
+        <div class="footer-contacts-list">
+            <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                Email: 
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email">
+                    <span class="email-box-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    </span>
+                    Scrivimi
+                </a>
+            </p>
+            <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span> • P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
+        </div>
+        <div class="legal-links-footer">
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
+            <span class="legal-separator">•</span>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // REVEAL ANIMATIONS
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // FRECCIA TORNA IN CIMA
+    const backToTopBtn = document.getElementById('fixed-back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+});
+</script>
+
+</body>
+</html>
