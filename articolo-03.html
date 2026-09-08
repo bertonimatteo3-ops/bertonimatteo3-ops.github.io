@@ -122,7 +122,6 @@ body {
 
 /* =========================================================
    BARRA DI NAVIGAZIONE FISSA IN ALTO
-   UGUALE ALLA LANDING E NEWSLETTER: BIANCA CON BORDO ARANCIONE
    ========================================================= */
 .top-nav {
     position: fixed;
@@ -211,7 +210,7 @@ body {
 }
 
 /* =========================================================
-   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (RADAR PULSE)
+   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER
    ========================================================= */
 .fixed-back-to-top {
     position: fixed;
@@ -291,7 +290,7 @@ body {
 }
 
 /* =========================================================
-   PULSANTE WHATSAPP FISSO: TONDO, VERDE WHATSAPP, BORDO ARANCIONE E TRILLO
+   PULSANTE WHATSAPP FISSO
    ========================================================= */
 .whatsapp-fixed-circle {
     position: fixed; 
@@ -348,7 +347,7 @@ body {
    ========================================================= */
 .header-actions-bar {
     padding-top: 125px;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -416,7 +415,63 @@ body {
 }
 
 /* =========================================================
-   SEZIONE ARTICOLO
+   SELETTORE EDIZIONI IN TESTA ALLA PAGINA
+   ========================================================= */
+.editions-nav-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+}
+
+.edition-tab-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 22px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid var(--border-subtle);
+    background: #ffffff;
+    color: var(--text-muted);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.edition-tab-pill:hover {
+    border-color: var(--brand-green-dark);
+    color: var(--brand-green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 36, 24, 0.08);
+}
+
+.edition-tab-pill.active {
+    background: var(--brand-green-dark);
+    border-color: var(--brand-green-dark);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(10, 36, 24, 0.2);
+}
+
+.edition-tab-pill .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    flex-shrink: 0;
+}
+
+.edition-tab-pill.active .dot {
+    background: var(--accent-mint);
+    box-shadow: 0 0 8px rgba(110, 241, 149, 0.8);
+}
+
+/* =========================================================
+   SEZIONE ARTICOLO NEWSLETTER
    ========================================================= */
 .newsletter-section {
     background-color: var(--bg-page);
@@ -442,7 +497,6 @@ body {
     box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
 }
 
-/* FOTO IN TESTA */
 .newsletter-hero-image-box {
     position: relative;
     border-radius: 22px;
@@ -466,7 +520,6 @@ body {
     transform: scale(1.015);
 }
 
-/* BARRA META */
 .newsletter-meta-bar {
     display: flex;
     align-items: center;
@@ -499,7 +552,6 @@ body {
     font-weight: 600;
 }
 
-/* TITOLO ARTICOLO */
 .newsletter-article-h1 {
     color: var(--brand-green-dark);
     font-size: clamp(28px, 4.4vw, 44px);
@@ -509,7 +561,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* I 4 PILASTRI */
 .newsletter-pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -552,7 +603,6 @@ body {
     line-height: 1.45;
 }
 
-/* TESTO DELL'ARTICOLO */
 .newsletter-content {
     color: #24362d;
     font-size: 18.5px;
@@ -611,7 +661,6 @@ body {
     color: #6ef195;
 }
 
-/* FOOTER CARD ARTICOLO */
 .newsletter-card-footer {
     margin-top: 50px;
     padding-top: 30px;
@@ -652,7 +701,6 @@ body {
     font-weight: 700;
 }
 
-/* PULSANTE LINKEDIN */
 .btn-linkedin-main {
     position: relative;
     background: #0a66c2;
@@ -680,7 +728,7 @@ body {
     color: #ffffff;
 }
 
-/* BOX ALTRE EDIZIONI & ARCHIVIO */
+/* BOX ARCHIVIO ALTRE EDIZIONI */
 .newsletter-archive-box {
     margin-top: 40px;
     padding: 32px 36px;
@@ -704,7 +752,7 @@ body {
 .archive-editions-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
 }
 
 .archive-edition-card {
@@ -780,7 +828,6 @@ body {
     border-radius: 30px;
     font-size: 13.5px;
     font-weight: 700;
-    text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.25s ease;
@@ -794,7 +841,7 @@ body {
     color: #ffffff;
 }
 
-/* FOOTER INFORMATIVO */
+/* FOOTER INFORMATIVO E CONTATTI */
 .newsletter-footer {
     background-color: var(--brand-green-dark);
     color: #ffffff;
@@ -821,17 +868,22 @@ body {
 }
 
 .footer-contacts-list {
-    color: #b0c9bd;
+    color: #ffffff !important;
     font-size: 16px;
     line-height: 2.3;
     margin-bottom: 35px;
 }
 
-.footer-contacts-list strong {
-    color: #ffffff;
+.footer-contacts-list p,
+.footer-contacts-list span,
+.footer-contacts-list .contact-label-item {
+    color: #ffffff !important;
 }
 
-/* PULSANTE SCRIVIMI */
+.footer-contacts-list strong {
+    color: #ffffff !important;
+}
+
 .btn-email-box {
     display: inline-flex;
     align-items: center;
@@ -898,22 +950,23 @@ body {
 }
 
 .iubenda-legal-link {
-    color: #8ba89a;
-    font-size: 12.5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    color: #ffffff !important;
+    font-size: 13px;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .iubenda-legal-link:hover {
-    color: #6ef195;
-    text-decoration: underline;
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 
 .legal-separator {
-    color: #8ba89a;
+    color: #ffffff !important;
     font-size: 11px;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 /* REVEAL ANIMATIONS */
@@ -966,6 +1019,8 @@ body {
     .back-home-pill, .btn-linkedin-top { font-size: 11.5px; padding: 8px 14px; }
     .back-home-bottom-btn { width: 100%; justify-content: center; }
     .archive-title { font-size: 17px; }
+    .editions-nav-tabs { gap: 6px; }
+    .edition-tab-pill { font-size: 11px; padding: 6px 12px; }
 }
 </style>
 </head>
@@ -989,7 +1044,7 @@ body {
     </div>
 </nav>
 
-<!-- FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (CORRETTA AL 100%) -->
+<!-- FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER -->
 <a href="#" id="fixed-back-to-top" class="fixed-back-to-top illuminated" title="Torna in cima" aria-label="Torna in cima alla pagina">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="19" x2="12" y2="5"></line>
@@ -1018,6 +1073,22 @@ body {
                 Seguimi su LinkedIn
             </a>
         </div>
+
+        <!-- SELETTORE RAPIDO DELLE 3 EDIZIONI -->
+        <nav class="editions-nav-tabs" aria-label="Selettore Edizioni Newsletter">
+            <a href="newsletter.html" class="edition-tab-pill" title="Edizione #01: Il closing non si forza. Si coltiva.">
+                <span class="dot"></span>
+                Edizione #01: Il closing non si forza
+            </a>
+            <a href="articolo-02.html" class="edition-tab-pill" title="Edizione #02: Quando il prezzo non è il punto">
+                <span class="dot"></span>
+                Edizione #02: Quando il prezzo non è il punto
+            </a>
+            <a href="articolo-03.html" class="edition-tab-pill active" title="Edizione #03: Quando una call va bene… ma non chiudi lo stesso">
+                <span class="dot"></span>
+                Edizione #03 (In lettura)
+            </a>
+        </nav>
     </div>
 
     <!-- SEZIONE ARTICOLO NEWSLETTER -->
@@ -1173,6 +1244,7 @@ body {
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </div>
                     </a>
+
                     <a href="newsletter.html" class="archive-edition-card" title="Leggi l'Edizione #01">
                         <div class="archive-edition-info">
                             <h5>Edizione #01: Il closing non si forza. Si coltiva.</h5>
@@ -1202,9 +1274,9 @@ body {
     <div class="container">
         <div class="footer-author-name">Matteo Bertoni</div>
         <div class="footer-author-role">Remote Closing Specialist (Verona)</div>
-        <div class="footer-contacts-list">
+        <div class="footer-contacts-list" style="color: #ffffff !important;">
             <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
-                Email: 
+                <span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">Email:</span> 
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email">
                     <span class="email-box-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
@@ -1212,19 +1284,18 @@ body {
                     Scrivimi
                 </a>
             </p>
-            <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span> • P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
+            <p><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">WhatsApp:</span> <span style="color: #ffffff !important; font-weight: 400;">350 579 1061</span> • <span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">P.IVA:</span> <span style="color: #ffffff !important; font-weight: 400;">IT04853980235</span></p>
         </div>
         <div class="legal-links-footer">
-            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
-            <span class="legal-separator">•</span>
-            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy" style="color: #ffffff !important;">Privacy Policy</a>
+            <span class="legal-separator" style="color: #ffffff !important;">•</span>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy" style="color: #ffffff !important;">Cookie Policy</a>
         </div>
     </div>
 </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // REVEAL ANIMATIONS
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1236,7 +1307,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     reveals.forEach(el => observer.observe(el));
 
-    // FRECCIA TORNA IN CIMA
     const backToTopBtn = document.getElementById('fixed-back-to-top');
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', (e) => {
@@ -1245,7 +1315,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // IMPOSTAZIONE AUTOMATICA FLAG SKIP LOADER SU QUALSIASI LINK VERSO LA HOME
     document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
         link.addEventListener('click', function() {
             try {
