@@ -56,17 +56,19 @@ window.scrollTo(0, 0);
 
 <style>
 :root {
-    --bg-dark: #0a2418;         
-    --bg-hero: #0a2418;
-    --bg-light: #f4f6f5;        
-    --accent-mint: #6ef195;     
-    --accent-orange: #ff9f43;
-    --card-dark: #123324;       
+    --bg-dark: #38bdf8;             /* Blu della landing uguale al colore di clienti reali */
+    --bg-hero: #38bdf8;            /* Sezione hero dello stesso blu */
+    --bg-light: #f1f5f9;        
+    --accent-mint: #e0f2fe;         /* Azzurro più chiaro */
+    --accent-blue-dark: #082f49;    /* Azzurro più scuro per titoli e contrasto */
+    --accent-blue-mid: #0c4a6e;     /* Azzurro medio scuro */
+    --accent-orange: #facc15;       /* Giallo per CTA e frasi in evidenza */
+    --card-dark: #075985;           /* Card in azzurro più scuro */
     --card-light: #ffffff;      
-    --text-dark: #071910;       
+    --text-dark: #082f49;       
     --text-light: #ffffff;      
-    --text-muted-dark: #8ba89a; 
-    --text-muted-light: #5b7367;
+    --text-muted-dark: #0c4a6e;     
+    --text-muted-light: #64748b;
 }
 
 /* RESET E BASE */
@@ -84,6 +86,7 @@ html {
 body { 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
     color: var(--text-dark); 
+    background-color: var(--bg-dark);
     overflow-x: hidden !important; 
     max-width: 100% !important;
     width: 100% !important; 
@@ -106,13 +109,13 @@ h2[id], div[id="contatti"] {
 /* PRELOADER */
 #preloader {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #0d1e15; z-index: 9999999;
+    background: #38bdf8; z-index: 9999999;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 #preloader.preloader-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .loading-text { 
-    color: var(--text-light); 
+    color: #082f49; 
     font-size: 15px; 
     letter-spacing: 5px; 
     margin-bottom: 12px; 
@@ -132,13 +135,13 @@ h2[id], div[id="contatti"] {
     font-size: 64px; 
     font-weight: 900 !important; 
     font-style: italic !important; 
-    color: var(--accent-mint); 
+    color: #082f49; 
     letter-spacing: -2px; 
     line-height: 1; 
     text-transform: uppercase !important;
 }
-.preloader-bar-container { width: 180px; height: 4px; background: rgba(255,255,255,0.12); margin-top: 20px; border-radius: 4px; overflow: hidden; }
-.preloader-bar { height: 100%; width: 0%; background: var(--accent-orange); box-shadow: 0 0 12px rgba(255, 159, 67, 0.7); transition: width 0.1s linear; }
+.preloader-bar-container { width: 180px; height: 4px; background: rgba(8, 47, 73, 0.2); margin-top: 20px; border-radius: 4px; overflow: hidden; }
+.preloader-bar { height: 100%; width: 0%; background: #facc15; box-shadow: 0 0 12px rgba(250, 204, 21, 0.7); transition: width 0.1s linear; }
 
 /* STRUTTURA */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; width: 100%; box-sizing: border-box; }
@@ -155,6 +158,11 @@ h2[id], div[id="contatti"] {
     mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100px, rgba(0,0,0,0) 280px);
 }
 
+/* RIMOZIONE DEFINITIVA DEI PUNTINI IN SOTTOFONDO NELLA SEZIONE REMOTE CLOSING SPECIALIST */
+.hero-section .bg-pattern {
+    display: none !important;
+}
+
 /* BANNER DI NAVIGAZIONE FISSO IN ALTO BIANCO CON BORDO INFERIORE E BOTTONI ARANCIONI */
 .top-nav {
     position: fixed;
@@ -166,7 +174,7 @@ h2[id], div[id="contatti"] {
     z-index: 9998;
     background-color: #ffffff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-bottom: 3px solid var(--accent-orange);
+    border-bottom: 3px solid #facc15;
     transition: all 0.3s ease;
     box-sizing: border-box;
     overflow: hidden;
@@ -205,14 +213,14 @@ h2[id], div[id="contatti"] {
 }
 
 .top-nav a {
-    color: #071910;
+    color: #061224;
     text-decoration: none;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     padding: 8px 18px;
-    border: 2.5px solid #0a2418; /* Bordo verde scuro come la landing */
+    border: 2.5px solid #0284c7; /* Bordo azzurro coordinato */
     border-radius: 30px;
     background: #ffffff;
     transition: all 0.25s ease;
@@ -224,10 +232,10 @@ h2[id], div[id="contatti"] {
     cursor: pointer;
 }
 .top-nav a:hover {
-    background: #0a2418;
-    border-color: #0a2418;
+    background: #0284c7;
+    border-color: #0284c7;
     color: #ffffff;
-    box-shadow: 0 4px 15px rgba(10, 36, 24, 0.35);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.35);
     transform: translateY(-2px);
 }
 .top-nav a:active {
@@ -243,8 +251,8 @@ h2[id], div[id="contatti"] {
     height: 46px;
     border-radius: 50%;
     background: #ffffff;
-    border: 2px solid var(--accent-orange);
-    color: var(--accent-orange);
+    border: 2px solid #facc15;
+    color: #facc15;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -261,10 +269,10 @@ h2[id], div[id="contatti"] {
     transition: transform 0.25s ease;
 }
 .fixed-back-to-top:hover {
-    background: var(--accent-orange);
-    border-color: var(--accent-orange);
+    background: #facc15;
+    border-color: #facc15;
     color: #ffffff;
-    box-shadow: 0 0 20px rgba(255, 159, 67, 0.6);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
     transform: translateY(-2px) scale(1.05);
 }
 .fixed-back-to-top:active {
@@ -273,8 +281,8 @@ h2[id], div[id="contatti"] {
 
 .fixed-back-to-top.illuminated {
     background: #ffffff;
-    border-color: var(--accent-orange);
-    color: var(--accent-orange);
+    border-color: #facc15;
+    color: #facc15;
     animation: elegantPulse 1.8s infinite ease-in-out;
 }
 
@@ -283,7 +291,7 @@ h2[id], div[id="contatti"] {
     position: absolute;
     inset: -6px;
     border-radius: 50%;
-    border: 2px solid var(--accent-orange);
+    border: 2px solid #facc15;
     animation: radarWave 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
 }
@@ -293,23 +301,23 @@ h2[id], div[id="contatti"] {
     position: absolute;
     inset: -12px;
     border-radius: 50%;
-    border: 1px dashed rgba(110, 241, 149, 0.6);
+    border: 1px dashed rgba(56, 189, 248, 0.6);
     animation: radarWave 2.2s infinite 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     pointer-events: none;
 }
 
 @keyframes elegantPulse {
     0%, 100% {
-        box-shadow: 0 0 18px rgba(255, 159, 67, 0.9), 0 0 35px rgba(110, 241, 149, 0.4), 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 0 18px rgba(250, 204, 21, 0.9), 0 0 35px rgba(56, 189, 248, 0.4), 0 4px 15px rgba(0,0,0,0.2);
         transform: scale(1.05);
-        color: var(--accent-orange);
-        border-color: var(--accent-orange);
+        color: #facc15;
+        border-color: #facc15;
     }
     50% {
-        box-shadow: 0 0 28px rgba(255, 159, 67, 1), 0 0 50px rgba(110, 241, 149, 0.7), 0 8px 25px rgba(0,0,0,0.3);
+        box-shadow: 0 0 28px rgba(250, 204, 21, 1), 0 0 50px rgba(56, 189, 248, 0.7), 0 8px 25px rgba(0,0,0,0.3);
         transform: scale(1.14);
         color: #ffffff;
-        background: var(--accent-orange);
+        background: #facc15;
         border-color: #ffffff;
     }
 }
@@ -324,7 +332,7 @@ h2[id], div[id="contatti"] {
     right: 58px;
     top: 50%;
     transform: translateY(-50%) translateX(8px);
-    background: rgba(10, 36, 24, 0.95);
+    background: rgba(9, 24, 52, 0.95);
     border: 1px solid var(--accent-mint);
     color: #ffffff;
     font-size: 10px;
@@ -447,7 +455,7 @@ h2[id], div[id="contatti"] {
     background-color: var(--bg-hero) !important;
 }
 .hero-title {
-    color: #ffffff; 
+    color: #ffffff !important; 
     font-size: clamp(30px, 5.5vw, 65px); 
     font-weight: 900 !important;
     font-style: italic !important; 
@@ -455,11 +463,12 @@ h2[id], div[id="contatti"] {
     line-height: 0.95; 
     letter-spacing: -2px; 
     margin-bottom: 30px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 .hero-subtitle { 
     font-size: clamp(18px, 3.2vw, 26px); 
     font-weight: 600; 
-    color: #ffffff !important; /* Frase in colore bianco */
+    color: #0c4a6e !important; 
     display: block; 
     margin-top: 18px; 
     text-transform: uppercase; 
@@ -467,14 +476,31 @@ h2[id], div[id="contatti"] {
     letter-spacing: 0.5px;
 }
 .hero-subtitle br { display: none; }
-.hero-lead-text { color: #ffffff !important; }
+.hero-lead-text { color: #082f49 !important; font-weight: 700; }
+.hero-subtitle .green { color: #ffffff !important; text-shadow: 0 2px 12px rgba(8, 47, 73, 0.45); font-weight: 900; }
 .green { color: var(--accent-mint) !important; }
-.orange { color: var(--accent-orange) !important; }
+.orange { color: #facc15 !important; }
 .hero-content { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; }
-.hero-desc-desktop { display: block; }
-.hero-desc-mobile { display: none; }
+.hero-desc-desktop { display: block; color: #082f49 !important; }
+.hero-desc-mobile { display: none; color: #082f49 !important; }
+.hero-desc-mobile div { color: #082f49 !important; }
 .hero-left { max-width: 680px; width: 100%; }
 .hero-actions { display: flex; flex-direction: column; width: 100%; max-width: 340px; margin-top: 35px; }
+.hero-actions .btn-shimmer {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid #ffffff;
+    color: #ffffff !important;
+}
+.hero-actions .btn-shimmer svg {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+.hero-actions .btn-shimmer:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: #ffffff;
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.35);
+}
 
 /* LINK PRIVACY E COOKIE POLICY SOTTO IL BOX CONTATTI */
 .legal-links-footer {
@@ -488,22 +514,23 @@ h2[id], div[id="contatti"] {
     z-index: 5;
 }
 .iubenda-legal-link {
-    color: var(--text-muted-dark) !important;
-    text-decoration: none;
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-underline-offset: 4px;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
-    transition: color 0.25s ease;
+    transition: all 0.25s ease;
     cursor: pointer;
 }
 .iubenda-legal-link:hover {
-    color: var(--accent-mint) !important;
-    text-decoration: underline;
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 .legal-separator {
-    color: var(--text-muted-dark);
+    color: #ffffff !important;
     font-size: 13px;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 /* LIGHT LAYER */
@@ -590,8 +617,8 @@ h2[id], div[id="contatti"] {
     transition: all 0.3s ease;
 }
 .card-light:hover {
-    border-color: rgba(110, 241, 149, 0.4);
-    box-shadow: 0 20px 45px rgba(110, 241, 149, 0.1);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 20px 45px rgba(56, 189, 248, 0.1);
 }
 .card-light p, .card-dark p { margin-bottom: 20px; line-height: 1.8; font-size: 16px; }
 .card-dark { 
@@ -601,13 +628,13 @@ h2[id], div[id="contatti"] {
     color: #fff; 
     position: relative; 
     z-index: 5; 
-    border: 1px solid rgba(110, 241, 149, 0.15);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border: 1.5px solid rgba(224, 242, 254, 0.25);
+    box-shadow: 0 20px 40px rgba(8, 47, 73, 0.25);
     transition: all 0.3s ease;
 }
 .card-dark:hover {
-    border-color: rgba(110, 241, 149, 0.5);
-    box-shadow: 0 25px 50px rgba(110, 241, 149, 0.2);
+    border-color: rgba(224, 242, 254, 0.6);
+    box-shadow: 0 25px 50px rgba(8, 47, 73, 0.35);
 }
 
 /* MONDO DIGITALE SEZIONE RISULTATI */
@@ -636,6 +663,21 @@ h2[id], div[id="contatti"] {
     overflow: hidden;
     background-color: var(--bg-dark);
 }
+#risultati {
+    color: #082f49 !important;
+}
+.contatti-section .reveal > p:first-child {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+.contatti-section #contatti > h2 {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+}
+.contatti-section .orange {
+    color: #facc15 !important;
+    text-shadow: 0 2px 14px rgba(8, 47, 73, 0.55) !important;
+}
 .contatti-section .globe-overlay-finale {
     position: absolute;
     top: 0;
@@ -661,9 +703,9 @@ h2[id], div[id="contatti"] {
 
 .circular-progress { position: relative; width: 160px; height: 160px; margin-bottom: 30px; }
 .circular-progress svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.circle-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
-.circle-progress { fill: none; stroke: var(--accent-mint); stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; }
-.circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 34px; font-weight: 900; letter-spacing: -0.5px; }
+.circle-bg { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 8; }
+.circle-progress { fill: none; stroke: #38bdf8; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; }
+.circle-content { position: absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size: 34px; font-weight: 900; letter-spacing: -0.5px; color: #ffffff; }
 .progress-money .circle-content { font-size: 25px !important; white-space: nowrap; letter-spacing: -0.2px; }
 .progress-money .circle-content .num { display: inline-block; margin-left: 8px; margin-right: 0; }
 
@@ -677,7 +719,7 @@ h2[id], div[id="contatti"] {
     border-radius: 50% !important; /* PERFETTAMENTE TONDO */
     background: #25d366 !important; /* VERDE UFFICIALE WHATSAPP */
     color: #ffffff !important;
-    border: 2.5px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
+    border: 2.5px solid #ffffff !important; /* BORDO BIANCO */
     box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.25);
     z-index: 9999;
     text-decoration: none;
@@ -696,9 +738,9 @@ h2[id], div[id="contatti"] {
 }
 .whatsapp-fixed:hover {
     transform: scale(1.1);
-    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.6), 0 0 20px rgba(255, 159, 67, 0.5);
+    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.6), 0 0 20px rgba(255, 255, 255, 0.6);
     background: #20ba5a !important;
-    border-color: var(--accent-orange) !important;
+    border-color: #ffffff !important;
 }
 .whatsapp-fixed:active {
     transform: scale(0.95);
@@ -743,20 +785,20 @@ h2[id], div[id="contatti"] {
 }
 .btn-shimmer::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(110, 241, 149, 0.5), transparent);
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
     animation: shimmerEffect 2.5s infinite linear;
     pointer-events: none;
 }
 .btn-shimmer:hover {
-    background: rgba(110, 241, 149, 0.1);
+    background: rgba(56, 189, 248, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(110, 241, 149, 0.25);
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.25);
     color: #ffffff;
 }
 
 .btn-main { 
-    background: var(--accent-orange); 
-    border: 2px solid var(--accent-mint); 
+    background: #facc15; 
+    border: 2px solid #ffffff; 
     color: #000; 
     padding: 20px 30px; 
     border-radius: 14px; 
@@ -776,44 +818,55 @@ h2[id], div[id="contatti"] {
 }
 .btn-main:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 159, 67, 0.4);
-    background: #ffaa5a;
+    box-shadow: 0 8px 25px rgba(250, 204, 21, 0.4);
+    background: #fde047;
     color: #000;
 }
 
 .contact-label { 
-    font-size: 16px; 
+    font-size: clamp(16px, 2.8vw, 20px); 
     font-weight: 800; 
-    color: var(--accent-orange) !important; 
+    background: transparent !important;
+    color: #facc15 !important; 
     text-transform: uppercase; 
     letter-spacing: 3px; 
-    margin-bottom: 15px; 
-    display: block; 
+    margin-bottom: 16px; 
+    display: inline-block; 
     text-align: center; 
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 .contact-box-elegant {
-    background: #0d2c1d !important; /* Verde solido: arriva subito verde, opaco e senza trasparenza del mondo */
+    background: #075985 !important;
     padding: 70px 50px; 
     border-radius: 30px; 
     display: inline-block; 
     width: 100%; 
     max-width: 600px; 
-    border: 1px solid rgba(110, 241, 149, 0.35); 
-    box-shadow: 0 30px 60px rgba(0,0,0,0.45); 
+    border: 1.5px solid rgba(224, 242, 254, 0.35); 
+    box-shadow: 0 30px 60px rgba(8, 47, 73, 0.35); 
     margin: 0 auto;
     position: relative;
     z-index: 5;
 }
+.contact-details-list,
+.contact-details-list p,
+.contact-details-list span,
+.contact-label-item {
+    color: #ffffff !important;
+}
 
-/* PULSANTE ELEGANTE E PICCOLO PER LA MAIL CON CASELLA VERDE DELLA LETTERA */
+/* PULSANTE ELEGANTE E PICCOLO PER LA MAIL */
 .btn-email-box {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 9px;
-    background: rgba(110, 241, 149, 0.12);
+    background: rgba(224, 242, 254, 0.15);
     color: #ffffff;
-    border: 1.5px solid var(--accent-mint);
+    border: 1.5px solid #e0f2fe;
     padding: 6px 16px 6px 8px;
     border-radius: 22px;
     font-size: 14px;
@@ -832,7 +885,7 @@ h2[id], div[id="contatti"] {
     justify-content: center;
     width: 24px;
     height: 24px;
-    background: var(--accent-mint);
+    background: #38bdf8;
     border-radius: 6px;
     flex-shrink: 0;
     transition: background 0.25s ease;
@@ -840,22 +893,22 @@ h2[id], div[id="contatti"] {
 .btn-email-box .email-box-icon svg {
     width: 14px;
     height: 14px;
-    stroke: #071910;
+    stroke: #082f49;
     stroke-width: 2.2;
     transition: stroke 0.25s ease;
 }
 .btn-email-box:hover {
-    background: rgba(110, 241, 149, 0.22);
+    background: rgba(224, 242, 254, 0.3);
     color: #ffffff;
     border-color: #ffffff;
-    box-shadow: 0 4px 16px rgba(110, 241, 149, 0.35);
+    box-shadow: 0 4px 16px rgba(224, 242, 254, 0.35);
     transform: translateY(-1px);
 }
 .btn-email-box:hover .email-box-icon {
     background: #ffffff;
 }
 .btn-email-box:hover .email-box-icon svg {
-    stroke: #0a2418;
+    stroke: #075985;
 }
 
 .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -871,20 +924,22 @@ h2[id], div[id="contatti"] {
     font-size: 13px;
 }
 .iubenda-legal-link {
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: #ffffff !important;
     text-decoration: underline !important;
     text-underline-offset: 4px;
     transition: all 0.25s ease;
     cursor: pointer;
     font-size: 13px;
+    font-weight: 600;
     letter-spacing: 0.3px;
 }
 .iubenda-legal-link:hover {
-    color: var(--accent-mint) !important;
-    opacity: 1;
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 .legal-separator {
-    color: rgba(255, 255, 255, 0.35);
+    color: #ffffff !important;
+    opacity: 0.7;
     user-select: none;
 }
 
@@ -1170,7 +1225,6 @@ h2[id], div[id="contatti"] {
 
 <!-- HERO SECTION (BLOCCO VERDE CON REMOTE CLOSING SPECIALIST E TUTTO IL RESTO) -->
 <section class="dark-section hero-section">
-    <div class="bg-pattern"></div>
     
     <div class="container reveal">
         <div class="hero-content">
@@ -1189,8 +1243,8 @@ h2[id], div[id="contatti"] {
             </div>
             <div class="hero-actions">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
-                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer">
-                    <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer" style="color: #ffffff !important; border-color: #ffffff !important;">
+                    <svg width="22" height="22" fill="#ffffff" viewBox="0 0 24 24" style="color: #ffffff; fill: #ffffff;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     Il mio profilo LinkedIn
                 </a>
             </div>
@@ -1309,28 +1363,28 @@ h2[id], div[id="contatti"] {
     <div class="globe-overlay-finale"></div>
     <div class="container">
         <div style="margin-bottom:120px;" class="reveal">
-            <p style="font-size: clamp(22px, 3.5vw, 28px); color: #fff; margin-bottom: 20px; font-weight: 500;">I lead non sono il problema.</p>
-            <p class="orange" style="font-size: clamp(30px, 5vw, 52px); font-weight: 800; letter-spacing: -1.5px;">È quello che succede dopo a fare la differenza.</p>
+            <p style="font-size: clamp(22px, 3.5vw, 28px); color: #ffffff !important; margin-bottom: 20px; font-weight: 600;">I video non sono il problema.</p>
+            <p class="orange" style="font-size: clamp(30px, 5vw, 52px); font-weight: 800; letter-spacing: -1.5px; color: #facc15 !important;">È quello che succede dopo a fare la differenza.</p>
         </div>
         
         <div id="contatti" class="reveal">
             <span class="contact-label">Contattami</span>
-            <h2 style="color:white; font-size: clamp(22px, 3.5vw, 28px); font-weight:500; margin-bottom:50px; text-transform: none;">Clicca su Whatsapp e collaboriamo</h2>
+            <h2 style="color:#ffffff !important; font-size: clamp(22px, 3.5vw, 28px); font-weight:600; margin-bottom:50px; text-transform: none;">Clicca su WhatsApp e collaboriamo</h2>
             <div class="contact-box-elegant">
                 <p style="font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 15px;">Matteo Bertoni</p>
                 <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Remote Closing Specialist (Verona)</p>
-                <div style="color: var(--text-muted-dark); font-size: 17px; line-height: 2.3;">
-                    <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;">Email: <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email"><span class="email-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>Scrivimi</a></p>
-                    <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span></p>
-                    <p>P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
+                <div class="contact-details-list" style="color: #ffffff !important; font-size: 17px; line-height: 2.3;">
+                    <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;"><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">Email:</span> <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email"><span class="email-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>Scrivimi</a></p>
+                    <p><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">WhatsApp:</span> <span style="color: #ffffff !important; font-weight: 400;">350 579 1061</span></p>
+                    <p><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">P.IVA:</span> <span style="color: #ffffff !important; font-weight: 400;">IT04853980235</span></p>
                 </div>
             </div>
             
             <!-- LINK PRIVACY POLICY E COOKIE POLICY IUBENDA (A NORMA PRIVACY) -->
             <div class="legal-links-footer">
-                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy" id="link-privacy-policy">Privacy Policy</a>
-                <span class="legal-separator">•</span>
-                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy" id="link-cookie-policy">Cookie Policy</a>
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy" id="link-privacy-policy" style="color: #ffffff !important;">Privacy Policy</a>
+                <span class="legal-separator" style="color: #ffffff !important;">•</span>
+                <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy" id="link-cookie-policy" style="color: #ffffff !important;">Cookie Policy</a>
             </div>
         </div>
     </div>
