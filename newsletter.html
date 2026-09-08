@@ -928,13 +928,13 @@ body {
     <div class="top-nav-inner">
         <div class="nav-links-wrapper">
             <div class="nav-row nav-row-top">
-                <a href="index.html#partner" class="menu-btn">Collaborazioni</a>
-                <a href="index.html#risultati" class="menu-btn">Come porto risultati</a>
+                <a href="index.html?skip_loader=true#partner" class="menu-btn">Collaborazioni</a>
+                <a href="index.html?skip_loader=true#risultati" class="menu-btn">Come porto risultati</a>
             </div>
             <div class="nav-row nav-row-bottom">
-                <a href="index.html#numeri" class="menu-btn">I miei numeri</a>
+                <a href="index.html?skip_loader=true#numeri" class="menu-btn">I miei numeri</a>
                 <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
-                <a href="index.html#contatti" class="menu-btn">Contattami</a>
+                <a href="index.html?skip_loader=true#contatti" class="menu-btn">Contattami</a>
             </div>
         </div>
     </div>
@@ -960,7 +960,7 @@ body {
     <div class="container">
         <!-- BARRA SUPERIORE: TORNA ALLA HOME + LINKEDIN -->
         <div class="header-actions-bar">
-            <a href="index.html" class="back-home-pill" title="Torna alla Landing Page">
+            <a href="index.html?skip_loader=true" class="back-home-pill" title="Torna alla Landing Page" onclick="try{sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 Torna alla Home
             </a>
@@ -1152,7 +1152,7 @@ body {
 
             <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
             <div class="bottom-actions-center reveal">
-                <a href="index.html" class="back-home-bottom-btn" title="Torna alla Home page">
+                <a href="index.html?skip_loader=true" class="back-home-bottom-btn" title="Torna alla Home page" onclick="try{sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Torna alla Home
                 </a>
@@ -1209,6 +1209,15 @@ document.addEventListener("DOMContentLoaded", function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    // IMPOSTAZIONE AUTOMATICA FLAG SKIP LOADER SU QUALSIASI LINK VERSO LA HOME
+    document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            try {
+                sessionStorage.setItem('skip_home_loader', 'true');
+            } catch(e) {}
+        });
+    });
 });
 </script>
 
