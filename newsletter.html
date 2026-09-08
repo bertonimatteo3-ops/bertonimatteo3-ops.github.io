@@ -7,6 +7,8 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
+// Segna che l'utente ha già navigato il sito, così la home salta il preloader
+try { sessionStorage.setItem('skip_home_loader', 'true'); } catch(e) {}
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -65,7 +67,7 @@ window.scrollTo(0, 0);
     --bg-card: #ffffff;          /* Card bianca */
     --brand-green-dark: #0a2418; /* Verde scuro della landing */
     --brand-green-mid: #123324;  
-    --accent-mint: #6ef195;      /* Verde menta/WhatsApp brillante */
+    --accent-mint: #6ef195;      
     --accent-mint-dark: #25d366;  /* Verde WhatsApp ufficiale */
     --accent-orange: #ff9f43;    /* Arancione identitario */
     --accent-orange-hover: #f38b2b;
@@ -116,11 +118,7 @@ body {
     z-index: 1;
 }
 
-/* =========================================================
-   BARRA DI NAVIGAZIONE FISSA IN ALTO
-   UGUALE ALLA LANDING PAGE: BIANCA, CON CONTORNI VERDI SUI TASTI
-   E RIGA ARANCIONE SOTTO IL BANNER (border-bottom: 3px solid #ff9f43)
-   ========================================================= */
+/* BARRA DI NAVIGAZIONE FISSA IN ALTO */
 .top-nav {
     position: fixed;
     top: 0;
@@ -131,7 +129,7 @@ body {
     z-index: 9998;
     background-color: #ffffff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-bottom: 3px solid var(--accent-orange); /* RIGA ARANCIONE SOTTO IL BANNER */
+    border-bottom: 3px solid var(--accent-orange);
     transition: all 0.3s ease;
     box-sizing: border-box;
     overflow: hidden;
@@ -208,9 +206,7 @@ body {
     box-shadow: 0 3px 10px rgba(10, 36, 24, 0.25);
 }
 
-/* =========================================================
-   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (CON EFFETTO RADAR/PULSE)
-   ========================================================= */
+/* FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER */
 .fixed-back-to-top {
     position: fixed;
     top: calc(max(10px, env(safe-area-inset-top, 10px)) + 74px);
@@ -288,10 +284,7 @@ body {
     100% { opacity: 0; transform: scale(1.6); }
 }
 
-/* =========================================================
-   PULSANTE WHATSAPP FISSO: TONDO, UGUALE AL LOGO WHATSAPP UFFICIALE
-   CON ICONA UFFICIALE WHATSAPP, BORDO ARANCIONE E TRILLO
-   ========================================================= */
+/* PULSANTE WHATSAPP FISSO TONDO CON LOGO WHATSAPP */
 .whatsapp-fixed-circle {
     position: fixed; 
     bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
@@ -299,10 +292,10 @@ body {
     right: auto !important;
     width: 60px;
     height: 60px;
-    border-radius: 50% !important; /* PERFETTAMENTE TONDO */
-    background: #25d366 !important; /* VERDE UFFICIALE WHATSAPP */
+    border-radius: 50% !important;
+    background: #25d366 !important;
     color: #ffffff !important;
-    border: 2.5px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
+    border: 2.5px solid var(--accent-orange) !important;
     box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.25);
     z-index: 9999;
     text-decoration: none;
@@ -342,11 +335,9 @@ body {
     100% { transform: scale(1) rotate(0deg); }
 }
 
-/* =========================================================
-   BARRA SUPERIORE AZIONI (TORNA ALLA HOME + LINKEDIN)
-   ========================================================= */
+/* BARRA SUPERIORE AZIONI */
 .header-actions-bar {
-    padding-top: 125px; /* Spazio per il banner con la riga arancione */
+    padding-top: 125px;
     padding-bottom: 24px;
     display: flex;
     align-items: center;
@@ -414,9 +405,7 @@ body {
     box-shadow: 0 5px 14px rgba(10, 102, 194, 0.35);
 }
 
-/* =========================================================
-   SEZIONE NEWSLETTER PRINCIPALE (SFONDO BIANCO / LUMINOSO)
-   ========================================================= */
+/* SEZIONE NEWSLETTER PRINCIPALE */
 .newsletter-section {
     background-color: var(--bg-page);
     padding: 5px 0 100px 0;
@@ -441,7 +430,7 @@ body {
     box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
 }
 
-/* FOTO DEL BONSAI POSTA IN TESTA (SENZA SCRITTE O BADGE SOVRAPPOSTI) */
+/* FOTO DEL BONSAI */
 .newsletter-hero-image-box {
     position: relative;
     border-radius: 22px;
@@ -465,7 +454,7 @@ body {
     transform: scale(1.015);
 }
 
-/* BARRA META SOTTO L'IMMAGINE */
+/* BARRA META */
 .newsletter-meta-bar {
     display: flex;
     align-items: center;
@@ -508,7 +497,7 @@ body {
     margin-bottom: 30px;
 }
 
-/* I 4 PILASTRI DELLA VENDITA CONSULENZIALE */
+/* 4 PILASTRI */
 .newsletter-pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -551,7 +540,7 @@ body {
     line-height: 1.45;
 }
 
-/* TESTO DELLA NEWSLETTER */
+/* TESTO NEWSLETTER */
 .newsletter-content {
     color: #24362d;
     font-size: 18.5px;
@@ -610,7 +599,7 @@ body {
     color: #6ef195;
 }
 
-/* FOOTER CARD ARTICOLO (AUTORE E TASTO LINKEDIN) */
+/* FOOTER CARD ARTICOLO */
 .newsletter-card-footer {
     margin-top: 50px;
     padding-top: 30px;
@@ -651,7 +640,7 @@ body {
     font-weight: 700;
 }
 
-/* PULSANTE SEGUIMI SU LINKEDIN */
+/* TASTO LINKEDIN */
 .btn-linkedin-main {
     position: relative;
     background: #0a66c2;
@@ -705,7 +694,7 @@ body {
     margin: 0 auto;
 }
 
-/* PULSANTE TORNA ALLA HOME A FONDO PAGINA */
+/* PULSANTE TORNA ALLA HOME */
 .bottom-actions-center {
     margin-top: 50px;
     display: flex;
@@ -739,9 +728,7 @@ body {
     color: #ffffff;
 }
 
-/* =========================================================
-   FOOTER CON CONTATTI, TASTO SCRIVIMI E LINK LEGALI
-   ========================================================= */
+/* FOOTER CON CONTATTI */
 .newsletter-footer {
     background-color: var(--brand-green-dark);
     color: #ffffff;
@@ -778,7 +765,7 @@ body {
     color: #ffffff;
 }
 
-/* PULSANTE SCRIVIMI UGUALE ALLA LANDING (CON BUSTA VERDE) */
+/* PULSANTE SCRIVIMI CON BUSTA VERDE */
 .btn-email-box {
     display: inline-flex;
     align-items: center;
@@ -875,9 +862,7 @@ body {
     transform: translateY(0);
 }
 
-/* =========================================================
-   RESPONSIVE COMPLETO PER TUTTI I DISPOSITIVI (ANDROID, IPHONE, IPAD, TABLET, PC)
-   ========================================================= */
+/* RESPONSIVE PER TUTTI I DISPOSITIVI */
 @media (max-width: 900px) {
     .newsletter-card { padding: 40px 30px; }
     .newsletter-pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
@@ -895,7 +880,6 @@ body {
     .fixed-back-to-top { top: calc(max(10px, env(safe-area-inset-top, 10px)) + 80px); right: 12px; width: 40px; height: 40px; }
     .fixed-back-to-top svg { width: 19px; height: 19px; }
     
-    /* WHATSAPP FISSO SU SCHERMI TOUCH / SMARTPHONE (SAFE AREA E TOUCH OTTIMIZZATO) */
     .whatsapp-fixed-circle { 
         bottom: max(18px, env(safe-area-inset-bottom, 18px)); 
         left: max(16px, env(safe-area-inset-left, 16px)); 
@@ -923,18 +907,18 @@ body {
 
 <body>
 
-<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO (BIANCO, CON CONTORNI VERDI E RIGA ARANCIONE SOTTO) -->
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO -->
 <nav class="top-nav" aria-label="Navigazione principale">
     <div class="top-nav-inner">
         <div class="nav-links-wrapper">
             <div class="nav-row nav-row-top">
-                <a href="index.html#partner" class="menu-btn">Collaborazioni</a>
-                <a href="index.html#risultati" class="menu-btn">Come porto risultati</a>
+                <a href="index.html?skip_loader=true#partner" class="menu-btn">Collaborazioni</a>
+                <a href="index.html?skip_loader=true#risultati" class="menu-btn">Come porto risultati</a>
             </div>
             <div class="nav-row nav-row-bottom">
-                <a href="index.html#numeri" class="menu-btn">I miei numeri</a>
+                <a href="index.html?skip_loader=true#numeri" class="menu-btn">I miei numeri</a>
                 <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
-                <a href="index.html#contatti" class="menu-btn">Contattami</a>
+                <a href="index.html?skip_loader=true#contatti" class="menu-btn">Contattami</a>
             </div>
         </div>
     </div>
@@ -960,7 +944,7 @@ body {
     <div class="container">
         <!-- BARRA SUPERIORE: TORNA ALLA HOME + LINKEDIN -->
         <div class="header-actions-bar">
-            <a href="index.html" class="back-home-pill" title="Torna alla Landing Page">
+            <a href="index.html?skip_loader=true" class="back-home-pill" title="Torna alla Landing Page">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                 Torna alla Home
             </a>
@@ -980,7 +964,7 @@ body {
                 <meta itemprop="inLanguage" content="it-IT">
                 <meta itemprop="datePublished" content="2025-01-15">
 
-                <!-- 1. FOTO DEL BONSAI POSTA SUBITO ALL'INIZIO (SENZA BADGE SOVRAPPOSTI, COMPATIBILE CON QUALSIASI NOME FILE) -->
+                <!-- 1. FOTO DEL BONSAI POSTA SUBITO ALL'INIZIO (SENZA BADGE SOVRAPPOSTI, DOPPIO FALLBACK AUTOMATICO) -->
                 <div class="newsletter-hero-image-box">
                     <img src="bonsai_closing.jpg" onerror="this.onerror=null; this.src='immagine%20linkedin%20bonsai.png';" alt="Il closing non si forza. Si coltiva - Matteo Bertoni" class="newsletter-hero-img" itemprop="image" loading="eager">
                 </div>
@@ -1152,7 +1136,7 @@ body {
 
             <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
             <div class="bottom-actions-center reveal">
-                <a href="index.html" class="back-home-bottom-btn" title="Torna alla Home page">
+                <a href="index.html?skip_loader=true" class="back-home-bottom-btn" title="Torna alla Home page">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
                     Torna alla Home
                 </a>
