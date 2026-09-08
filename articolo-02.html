@@ -122,7 +122,6 @@ body {
 
 /* =========================================================
    BARRA DI NAVIGAZIONE FISSA IN ALTO
-   UGUALE ALLA LANDING PAGE E ALLA NEWSLETTER: BIANCA CON BORDO ARANCIONE
    ========================================================= */
 .top-nav {
     position: fixed;
@@ -171,7 +170,6 @@ body {
     max-width: 100%;
 }
 
-/* BOTTONI DEL BANNER BIANCHI CON CONTORNO VERDE */
 .top-nav a, .top-nav .menu-btn {
     color: #071910;
     text-decoration: none;
@@ -212,7 +210,7 @@ body {
 }
 
 /* =========================================================
-   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (RADAR PULSE)
+   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER
    ========================================================= */
 .fixed-back-to-top {
     position: fixed;
@@ -292,7 +290,7 @@ body {
 }
 
 /* =========================================================
-   PULSANTE WHATSAPP FISSO: TONDO, VERDE WHATSAPP, BORDO ARANCIONE E TRILLO
+   PULSANTE WHATSAPP FISSO
    ========================================================= */
 .whatsapp-fixed-circle {
     position: fixed; 
@@ -349,7 +347,7 @@ body {
    ========================================================= */
 .header-actions-bar {
     padding-top: 125px;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -417,7 +415,63 @@ body {
 }
 
 /* =========================================================
-   SEZIONE ARTICOLO
+   SELETTORE EDIZIONI IN TESTA ALLA PAGINA
+   ========================================================= */
+.editions-nav-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+}
+
+.edition-tab-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 22px;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid var(--border-subtle);
+    background: #ffffff;
+    color: var(--text-muted);
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.edition-tab-pill:hover {
+    border-color: var(--brand-green-dark);
+    color: var(--brand-green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 36, 24, 0.08);
+}
+
+.edition-tab-pill.active {
+    background: var(--brand-green-dark);
+    border-color: var(--brand-green-dark);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(10, 36, 24, 0.2);
+}
+
+.edition-tab-pill .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    flex-shrink: 0;
+}
+
+.edition-tab-pill.active .dot {
+    background: var(--accent-mint);
+    box-shadow: 0 0 8px rgba(110, 241, 149, 0.8);
+}
+
+/* =========================================================
+   SEZIONE ARTICOLO NEWSLETTER
    ========================================================= */
 .newsletter-section {
     background-color: var(--bg-page);
@@ -443,7 +497,6 @@ body {
     box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
 }
 
-/* FOTO IN TESTA */
 .newsletter-hero-image-box {
     position: relative;
     border-radius: 22px;
@@ -467,7 +520,6 @@ body {
     transform: scale(1.015);
 }
 
-/* BARRA META */
 .newsletter-meta-bar {
     display: flex;
     align-items: center;
@@ -500,7 +552,6 @@ body {
     font-weight: 600;
 }
 
-/* TITOLO ARTICOLO */
 .newsletter-article-h1 {
     color: var(--brand-green-dark);
     font-size: clamp(28px, 4.4vw, 44px);
@@ -510,7 +561,6 @@ body {
     margin-bottom: 30px;
 }
 
-/* I 4 PILASTRI */
 .newsletter-pillars-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -553,7 +603,6 @@ body {
     line-height: 1.45;
 }
 
-/* TESTO DELL'ARTICOLO */
 .newsletter-content {
     color: #24362d;
     font-size: 18.5px;
@@ -612,7 +661,6 @@ body {
     color: #6ef195;
 }
 
-/* FOOTER CARD ARTICOLO */
 .newsletter-card-footer {
     margin-top: 50px;
     padding-top: 30px;
@@ -653,7 +701,6 @@ body {
     font-weight: 700;
 }
 
-/* PULSANTE LINKEDIN */
 .btn-linkedin-main {
     position: relative;
     background: #0a66c2;
@@ -681,7 +728,7 @@ body {
     color: #ffffff;
 }
 
-/* BOX ALTRE EDIZIONI & ARCHIVIO */
+/* BOX ARCHIVIO ALTRE EDIZIONI */
 .newsletter-archive-box {
     margin-top: 40px;
     padding: 32px 36px;
@@ -700,6 +747,12 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.archive-editions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .archive-edition-card {
@@ -789,7 +842,7 @@ body {
     color: #ffffff;
 }
 
-/* FOOTER INFORMATIVO */
+/* FOOTER INFORMATIVO E CONTATTI */
 .newsletter-footer {
     background-color: var(--brand-green-dark);
     color: #ffffff;
@@ -816,17 +869,22 @@ body {
 }
 
 .footer-contacts-list {
-    color: #b0c9bd;
+    color: #ffffff !important;
     font-size: 16px;
     line-height: 2.3;
     margin-bottom: 35px;
 }
 
-.footer-contacts-list strong {
-    color: #ffffff;
+.footer-contacts-list p,
+.footer-contacts-list span,
+.footer-contacts-list .contact-label-item {
+    color: #ffffff !important;
 }
 
-/* PULSANTE SCRIVIMI */
+.footer-contacts-list strong {
+    color: #ffffff !important;
+}
+
 .btn-email-box {
     display: inline-flex;
     align-items: center;
@@ -893,22 +951,23 @@ body {
 }
 
 .iubenda-legal-link {
-    color: #8ba89a;
-    font-size: 12.5px;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
+    color: #ffffff !important;
+    font-size: 13px;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    font-weight: 600;
+    transition: all 0.2s ease;
 }
 
 .iubenda-legal-link:hover {
-    color: #6ef195;
-    text-decoration: underline;
+    color: #ffffff !important;
+    opacity: 0.8;
 }
 
 .legal-separator {
-    color: #8ba89a;
+    color: #ffffff !important;
     font-size: 11px;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 /* REVEAL ANIMATIONS */
@@ -937,7 +996,6 @@ body {
     .newsletter-content { font-size: 16.5px; line-height: 1.75; }
     .newsletter-content p { margin-bottom: 18px; }
     .newsletter-quote-box { padding: 20px 22px; margin: 32px 0; border-radius: 0 16px 16px 0; }
-    .newsletter-archive-box { padding: 24px 20px; border-radius: 20px; }
     .fixed-back-to-top { top: calc(max(10px, env(safe-area-inset-top, 10px)) + 80px); right: 12px; width: 40px; height: 40px; }
     .fixed-back-to-top svg { width: 19px; height: 19px; }
     
@@ -961,13 +1019,15 @@ body {
     .back-home-pill, .btn-linkedin-top { font-size: 11.5px; padding: 8px 14px; }
     .back-home-bottom-btn { width: 100%; justify-content: center; }
     .archive-title { font-size: 17px; }
+    .editions-nav-tabs { gap: 6px; }
+    .edition-tab-pill { font-size: 11px; padding: 6px 12px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO (BIANCO, CON CONTORNI VERDI E RIGA ARANCIONE SOTTO) -->
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO -->
 <nav class="top-nav" aria-label="Navigazione principale">
     <div class="top-nav-inner">
         <div class="nav-links-wrapper">
@@ -992,7 +1052,7 @@ body {
     </svg>
 </a>
 
-<!-- TASTO WHATSAPP FISSO TONDO A SINISTRA CON LOGO WHATSAPP UFFICIALE E BORDO ARANCIONE -->
+<!-- TASTO WHATSAPP FISSO TONDO A SINISTRA -->
 <a href="https://wa.me/393505791061" class="whatsapp-fixed-circle" target="_blank" rel="noopener noreferrer" title="Contattami su WhatsApp" aria-label="Chat WhatsApp con Matteo Bertoni">
     <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false">
         <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
@@ -1013,6 +1073,22 @@ body {
                 Seguimi su LinkedIn
             </a>
         </div>
+
+        <!-- SELETTORE RAPIDO DELLE 3 EDIZIONI -->
+        <nav class="editions-nav-tabs" aria-label="Selettore Edizioni Newsletter">
+            <a href="newsletter.html" class="edition-tab-pill" title="Edizione #01: Il closing non si forza. Si coltiva.">
+                <span class="dot"></span>
+                Edizione #01: Il closing non si forza
+            </a>
+            <a href="articolo-02.html" class="edition-tab-pill active" title="Edizione #02: Quando il prezzo non è il punto">
+                <span class="dot"></span>
+                Edizione #02 (In lettura)
+            </a>
+            <a href="articolo-03.html" class="edition-tab-pill" title="Edizione #03: Quando una call va bene… ma non chiudi lo stesso">
+                <span class="dot"></span>
+                Edizione #03: Quando una call va bene…
+            </a>
+        </nav>
     </div>
 
     <!-- SEZIONE ARTICOLO NEWSLETTER -->
@@ -1134,15 +1210,27 @@ body {
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                     Altre edizioni della Newsletter
                 </div>
-                <a href="newsletter.html" class="archive-edition-card" title="Leggi l'Edizione #01">
-                    <div class="archive-edition-info">
-                        <h5>Edizione #01: Il closing non si forza. Si coltiva.</h5>
-                        <p>Perché la vendita consulenziale è come prendersi cura di un bonsai: ascolto, costanza e pazienza.</p>
-                    </div>
-                    <div class="archive-edition-arrow">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </div>
-                </a>
+                <div class="archive-editions-list">
+                    <a href="articolo-03.html" class="archive-edition-card" title="Leggi l'Edizione #03">
+                        <div class="archive-edition-info">
+                            <h5>Edizione #03: Quando una call va bene… ma non chiudi lo stesso</h5>
+                            <p>Conversazione fluida, domande giuste, ma alla fine: "Ci devo pensare". Non tutte le call sono da chiudere: alcune sono da capire.</p>
+                        </div>
+                        <div class="archive-edition-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </a>
+
+                    <a href="newsletter.html" class="archive-edition-card" title="Leggi l'Edizione #01">
+                        <div class="archive-edition-info">
+                            <h5>Edizione #01: Il closing non si forza. Si coltiva.</h5>
+                            <p>Perché la vendita consulenziale è come prendersi cura di un bonsai: ascolto, costanza e pazienza.</p>
+                        </div>
+                        <div class="archive-edition-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </div>
+                    </a>
+                </div>
             </div>
 
             <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
@@ -1162,9 +1250,9 @@ body {
     <div class="container">
         <div class="footer-author-name">Matteo Bertoni</div>
         <div class="footer-author-role">Remote Closing Specialist (Verona)</div>
-        <div class="footer-contacts-list">
+        <div class="footer-contacts-list" style="color: #ffffff !important;">
             <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
-                Email: 
+                <span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">Email:</span> 
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email">
                     <span class="email-box-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
@@ -1172,19 +1260,18 @@ body {
                     Scrivimi
                 </a>
             </p>
-            <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span> • P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
+            <p><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">WhatsApp:</span> <span style="color: #ffffff !important; font-weight: 400;">350 579 1061</span> • <span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">P.IVA:</span> <span style="color: #ffffff !important; font-weight: 400;">IT04853980235</span></p>
         </div>
         <div class="legal-links-footer">
-            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
-            <span class="legal-separator">•</span>
-            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy" style="color: #ffffff !important;">Privacy Policy</a>
+            <span class="legal-separator" style="color: #ffffff !important;">•</span>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy" style="color: #ffffff !important;">Cookie Policy</a>
         </div>
     </div>
 </footer>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // REVEAL ANIMATIONS
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1196,7 +1283,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     reveals.forEach(el => observer.observe(el));
 
-    // FRECCIA TORNA IN CIMA (CORRETTA E CENTRATA)
     const backToTopBtn = document.getElementById('fixed-back-to-top');
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', (e) => {
@@ -1205,7 +1291,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // IMPOSTAZIONE AUTOMATICA FLAG SKIP LOADER SU QUALSIASI LINK VERSO LA HOME
     document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
         link.addEventListener('click', function() {
             try {
