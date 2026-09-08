@@ -7,6 +7,18 @@ if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
+
+// CONTROLLO IMMEDIATO CARICAMENTO (SE SI ARRIVA DALLA NEWSLETTER IL PRELOADER VIENE RIMOSSO SUBITO A MONTE)
+(function() {
+    try {
+        var params = new URLSearchParams(window.location.search);
+        var skip = params.get('skip_loader') === 'true' || sessionStorage.getItem('skip_home_loader') === 'true';
+        if (skip) {
+            document.documentElement.classList.add('skip-preloader-now');
+            sessionStorage.removeItem('skip_home_loader');
+        }
+    } catch(e) {}
+})();
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
@@ -18,6 +30,25 @@ window.scrollTo(0, 0);
 <meta property="og:image" content="https://matteobertoni.net/anteprima.jpg">
 <meta property="og:url" content="https://matteobertoni.net/">
 <meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://matteobertoni.net/#person",
+      "name": "Matteo Bertoni",
+      "jobTitle": "Remote Closing Specialist",
+      "url": "https://matteobertoni.net/",
+      "image": "https://matteobertoni.net/foto.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/matteo-bertoni-1223b7204/"
+      ]
+    }
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +92,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 body.loading { overflow: hidden; height: 100vh; }
+html.skip-preloader-now body.loading { overflow: visible !important; height: auto !important; }
+html.skip-preloader-now #preloader { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
 
 /* CENTRATURA DELLE ANCORE MENU CON NAVBAR */
 h2[id], div[id="contatti"] {
@@ -166,7 +199,7 @@ h2[id], div[id="contatti"] {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 100%;
 }
@@ -634,31 +667,41 @@ h2[id], div[id="contatti"] {
 .progress-money .circle-content { font-size: 25px !important; white-space: nowrap; letter-spacing: -0.2px; }
 .progress-money .circle-content .num { display: inline-block; margin-left: 8px; margin-right: 0; }
 
-/* PULSANTE WHATSAPP FISSO: SEMPRE VERDE, CON BORDO ARANCIONE E TRILLO */
+/* PULSANTE WHATSAPP FISSO: TONDO, UGUALE AL LOGO WHATSAPP UFFICIALE CON BORDO ARANCIONE E TRILLO */
 .whatsapp-fixed {
     position: fixed; 
     bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
     left: max(24px, env(safe-area-inset-left, 24px)); 
-    padding: 18px 30px; 
-    border-radius: 12px; 
-    text-decoration: none; 
-    font-weight: 900; 
-    z-index: 9999; 
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3); 
-    font-size: 16px;
-    background: var(--accent-mint) !important; /* RIMANE VERDE, NON CAMBIA COLORE */
-    color: #071910 !important;
-    border: 2px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
-    animation: chatTrill 5s ease-in-out infinite !important; /* E CHE COMUNQUE TRILLI */
+    width: 60px;
+    height: 60px;
+    border-radius: 50% !important; /* PERFETTAMENTE TONDO */
+    background: #25d366 !important; /* VERDE UFFICIALE WHATSAPP */
+    color: #ffffff !important;
+    border: 2.5px solid var(--accent-orange) !important; /* BORDO ARANCIONE */
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: chatTrill 5s ease-in-out infinite !important;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
+}
+.whatsapp-fixed svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
 }
 .whatsapp-fixed:hover {
-    transform: scale(1.04);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    background: var(--accent-mint) !important; /* RIMANE VERDE ANCHE IN HOVER */
-    color: #071910 !important;
+    transform: scale(1.1);
+    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.6), 0 0 20px rgba(255, 159, 67, 0.5);
+    background: #20ba5a !important;
     border-color: var(--accent-orange) !important;
+}
+.whatsapp-fixed:active {
+    transform: scale(0.95);
 }
 @keyframes chatTrill {
     0%, 85% { transform: scale(1) rotate(0deg); }
@@ -860,15 +903,19 @@ h2[id], div[id="contatti"] {
     }
     .top-nav-inner { min-height: 68px; width: 100%; max-width: 100%; }
     .nav-links-wrapper { gap: 6px; width: 100%; max-width: 100%; }
-    .nav-row { gap: 8px; width: 100%; max-width: 100%; justify-content: center; }
+    .nav-row { gap: 6px; width: 100%; max-width: 100%; justify-content: center; }
     .top-nav a { 
         font-size: 11px; 
         padding: 7px 11px; 
         letter-spacing: 0.4px; 
         white-space: nowrap;
-        max-width: calc(50% - 4px);
         text-align: center;
         box-sizing: border-box;
+    }
+    .nav-row-bottom a {
+        font-size: 10px;
+        padding: 6.5px 8.5px;
+        letter-spacing: 0.25px;
     }
 
     /* Freccia abbassata per non essere attaccata al bordo arancione su smartphone */
@@ -944,14 +991,12 @@ h2[id], div[id="contatti"] {
         overflow: hidden;
     }
     .whatsapp-fixed { 
-        bottom: max(16px, env(safe-area-inset-bottom, 16px)); 
+        bottom: max(18px, env(safe-area-inset-bottom, 18px)); 
         left: max(16px, env(safe-area-inset-left, 16px)); 
-        padding: 15px 24px; 
-        font-size: 14px; 
-        background: var(--accent-mint) !important;
-        color: #071910 !important;
-        border: 2px solid var(--accent-orange) !important;
+        width: 54px; 
+        height: 54px; 
     }
+    .whatsapp-fixed svg { width: 28px; height: 28px; }
     .contact-box-elegant { padding: 40px 20px; border-radius: 24px; }
     .card-light, .card-dark { padding: 36px 20px; border-radius: 24px; }
     .grid-3 { gap: 24px; }
@@ -960,9 +1005,10 @@ h2[id], div[id="contatti"] {
 
 /* SMARTPHONE PICCOLI (IPHONE SE, COMPACT ANDROID) <= 380px */
 @media (max-width: 380px) {
-    .top-nav { padding: max(6px, env(safe-area-inset-top, 6px)) 6px 6px; }
-    .nav-row { gap: 5px; }
-    .top-nav a { font-size: 9.5px; padding: 6px 8px; letter-spacing: 0.2px; }
+    .top-nav { padding: max(6px, env(safe-area-inset-top, 6px)) 5px 6px; }
+    .nav-row { gap: 4px; }
+    .top-nav a { font-size: 9px; padding: 5px 7px; letter-spacing: 0.2px; }
+    .nav-row-bottom a { font-size: 8.5px; padding: 5px 5px; letter-spacing: 0.1px; }
     .logos-title { font-size: 9.5px; letter-spacing: 0.8px; padding: 0 4px; }
     .light-layer { width: calc(100% - 14px); }
     .container { padding: 0 14px; }
@@ -982,7 +1028,18 @@ h2[id], div[id="contatti"] {
     .hero-title { font-size: 28px; }
     .hero-desc-mobile { font-size: 15.5px; }
     .btn-main, .btn-shimmer { padding: 16px 18px; font-size: 14px; }
-    .whatsapp-fixed { padding: 13px 20px; font-size: 13px; }
+    .whatsapp-fixed { 
+        bottom: max(14px, env(safe-area-inset-bottom, 14px)); 
+        left: max(14px, env(safe-area-inset-left, 14px)); 
+        width: 50px; 
+        height: 50px; 
+    }
+    .whatsapp-fixed svg { width: 25px; height: 25px; }
+    .newsletter-section { padding: 80px 0 100px 0; }
+    .newsletter-card { padding: 26px 16px; border-radius: 20px; }
+    .newsletter-pillars-grid { grid-template-columns: 1fr; gap: 10px; padding: 14px 10px; }
+    .newsletter-article-h1 { font-size: 22px; }
+    .newsletter-content { font-size: 15px; }
 }
 
 /* TABLET E IPAD (769px - 1024px) */
@@ -999,7 +1056,7 @@ h2[id], div[id="contatti"] {
     .hero-section { padding-top: 110px !important; padding-bottom: 220px !important; }
 }
 
-/* SOLO DA PC DESKTOP (>= 1025px): 4 BOTTONI IN LINEA, FRECCIA PIÙ IN BASSO, TASTI HERO A DESTRA A FIANCO */
+/* SOLO DA PC DESKTOP (>= 1025px): 5 BOTTONI IN LINEA, FRECCIA PIÙ IN BASSO, TASTI HERO A DESTRA A FIANCO */
 @media (min-width: 1025px) {
     .top-nav {
         padding: 12px 24px;
@@ -1011,14 +1068,14 @@ h2[id], div[id="contatti"] {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
     }
     .nav-row {
         display: contents;
     }
     .top-nav a {
-        font-size: 13px;
-        padding: 9px 20px;
+        font-size: 12.5px;
+        padding: 8px 16px;
     }
 
     /* Freccia in alto a destra: leggermente più in basso rispetto alla riga arancione */
@@ -1125,8 +1182,9 @@ h2[id], div[id="contatti"] {
                 <div class="hero-desc-mobile">
                     <div>Aiuto aziende e agenzie da remoto</div>
                     <div class="hero-bullets">
-                        <div>nel B2B e B2C</div>
-                        <div>ad aumentare vendite e scalare il fatturato</div>
+                        <div>- nel B2B e B2C</div>
+                        <div>- ad aumentare vendite</div>
+                        <div>- e scalare il fatturato.</div>
                     </div>
                 </div>
             </div>
@@ -1280,7 +1338,12 @@ h2[id], div[id="contatti"] {
     </div>
 </section>
 
-<a href="https://wa.me/393505791061" class="whatsapp-fixed">CHAT</a>
+<!-- TASTO WHATSAPP FISSO TONDO A SINISTRA CON LOGO WHATSAPP UFFICIALE E BORDO ARANCIONE -->
+<a href="https://wa.me/393505791061" class="whatsapp-fixed" target="_blank" rel="noopener noreferrer" title="Contattami su WhatsApp" aria-label="Chat WhatsApp con Matteo Bertoni">
+    <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -1292,25 +1355,40 @@ document.addEventListener("DOMContentLoaded", function() {
     const preloader = document.getElementById('preloader');
     const bar = document.getElementById('preloader-bar');
     const perc = document.getElementById('preloader-percentage');
-    let p = 0;
-    let interval = setInterval(() => {
-        p += Math.floor(Math.random() * 10) + 3;
-        if(p >= 100) {
-            p = 100; clearInterval(interval);
-            setTimeout(() => { 
-                preloader.classList.add('preloader-hidden'); 
-                document.body.classList.remove('loading'); 
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                document.body.scrollTop = 0;
-                init();
-                
-                // AVVIO SEQUENZA PC E FOTO: DOPO 1 SECONDO APPARE LEGGERMENTE IL PC E POI LA FOTO
-                triggerPcAnimation();
-            }, 600);
+
+    var isSkipped = document.documentElement.classList.contains('skip-preloader-now');
+    if (isSkipped) {
+        if (preloader) {
+            preloader.classList.add('preloader-hidden');
+            preloader.style.display = 'none';
         }
-        perc.innerText = p + '%'; bar.style.width = p + '%';
-    }, 110);
+        document.body.classList.remove('loading');
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        init();
+        triggerPcAnimation();
+    } else {
+        let p = 0;
+        let interval = setInterval(() => {
+            p += Math.floor(Math.random() * 10) + 3;
+            if(p >= 100) {
+                p = 100; clearInterval(interval);
+                setTimeout(() => { 
+                    preloader.classList.add('preloader-hidden'); 
+                    document.body.classList.remove('loading'); 
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                    init();
+                    
+                    // AVVIO SEQUENZA PC E FOTO: DOPO 1 SECONDO APPARE LEGGERMENTE IL PC E POI LA FOTO
+                    triggerPcAnimation();
+                }, 600);
+            }
+            perc.innerText = p + '%'; bar.style.width = p + '%';
+        }, 110);
+    }
 
     window.addEventListener('beforeunload', function() {
         window.scrollTo(0, 0);
