@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<script type="text/javascript" src="https://embeds.iubenda.com/widgets/4ffcdef2-e41c-4434-9715-6b9978ad0f63.js"></script>
+<script>
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+try {
+    sessionStorage.setItem('from_newsletter', 'true');
+    sessionStorage.setItem('skip_home_loader', 'true');
+} catch(e) {}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<title>Quando il prezzo non è il punto | Matteo Bertoni - Remote Closing Specialist</title>
+
+<meta name="description" content="Nelle call di vendita con prospect ad alto budget, portare subito la conversazione sul prezzo fa calare l'energia. Riflessioni e metodo di Matteo Bertoni.">
+<meta property="og:title" content="Quando il prezzo non è il punto | Matteo Bertoni - Remote Closing Specialist">
+<meta property="og:description" content="Nelle call di vendita con prospect ad alto budget, il prezzo non è mai davvero il centro. Non stanno comprando un prezzo, stanno scegliendo con chi lavorare.">
+<meta property="og:image" content="https://matteobertoni.net/call_risposta_giusta.jpg">
+<meta property="og:url" content="https://matteobertoni.net/articolo-02.html">
+<meta property="og:type" content="article">
+
+<!-- DATI STRUTTURATI SCHEMA.ORG PER INDICIZZAZIONE SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://matteobertoni.net/#person",
+      "name": "Matteo Bertoni",
+      "jobTitle": "Remote Closing Specialist",
+      "url": "https://matteobertoni.net/",
+      "image": "https://matteobertoni.net/foto.png",
+      "sameAs": [
+        "https://www.linkedin.com/in/matteo-bertoni-1223b7204/"
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://matteobertoni.net/articolo-02.html#article-02",
+      "headline": "Quando il prezzo non è il punto",
+      "description": "Nelle call di vendita con prospect ad alto budget, portare subito la conversazione sul prezzo fa calare l'energia. Non stanno comprando un prezzo, stanno scegliendo con chi lavorare.",
+      "author": {
+        "@id": "https://matteobertoni.net/#person"
+      },
+      "publisher": {
+        "@id": "https://matteobertoni.net/#person"
+      },
+      "datePublished": "2025-02-10",
+      "image": "https://matteobertoni.net/call_risposta_giusta.jpg",
+      "inLanguage": "it-IT",
+      "articleSection": "Remote Closing & Trattative High-Ticket"
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg-page: #f8faf9;
+    --bg-card: #ffffff;
+    --brand-green-dark: #0a2418;
+    --brand-green-mid: #123324;
+    --accent-mint: #6ef195;
+    --accent-mint-dark: #25d366;
+    --accent-orange: #ff9f43;
+    --accent-orange-hover: #f38b2b;
+    --text-main: #14221b;
+    --text-muted: #556c61;
+    --border-subtle: #e1eae5;
+}
+
+/* RESET E BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { 
+    scroll-behavior: smooth; 
+    background: var(--bg-page); 
+    scroll-padding-top: 110px; 
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    touch-action: pan-y pinch-zoom;
+}
+body { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    color: var(--text-main); 
+    background-color: var(--bg-page);
+    overflow-x: hidden !important; 
+    max-width: 100% !important;
+    width: 100% !important; 
+    position: relative; 
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* CONTAINER CENTRALE */
+.container { 
+    width: 92%; 
+    max-width: 960px; 
+    margin: 0 auto; 
+    position: relative; 
+    z-index: 10; 
+}
+
+/* PATTERN SOTTILE DI SFONDO CHIARO */
+.bg-light-pattern {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(18, 51, 36, 0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* =========================================================
+   BARRA DI NAVIGAZIONE FISSA IN ALTO
+   UGUALE ALLA LANDING PAGE E ALLA NEWSLETTER: BIANCA CON BORDO ARANCIONE
+   ========================================================= */
+.top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: max(10px, env(safe-area-inset-top, 10px)) 16px 10px;
+    z-index: 9998;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--accent-orange);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.top-nav-inner {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 74px;
+    box-sizing: border-box;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* BOTTONI DEL BANNER BIANCHI CON CONTORNO VERDE */
+.top-nav a, .top-nav .menu-btn {
+    color: #071910;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 8px 18px;
+    border: 2.5px solid #0a2418;
+    border-radius: 30px;
+    background: #ffffff;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.top-nav a:hover, .top-nav .menu-btn:hover {
+    background: #0a2418;
+    border-color: #0a2418;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(10, 36, 24, 0.35);
+    transform: translateY(-2px);
+}
+
+.top-nav a:active, .top-nav .menu-btn:active {
+    transform: translateY(0);
+}
+
+.top-nav a.active-nav-btn, .top-nav .menu-btn.active-nav-btn {
+    background-color: #0a2418;
+    border-color: #0a2418;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(10, 36, 24, 0.25);
+}
+
+/* =========================================================
+   FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER (RADAR PULSE)
+   ========================================================= */
+.fixed-back-to-top {
+    position: fixed;
+    top: calc(max(10px, env(safe-area-inset-top, 10px)) + 74px);
+    right: max(16px, env(safe-area-inset-right, 16px));
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--accent-orange);
+    color: var(--accent-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9995;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+}
+
+.fixed-back-to-top svg {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.25s ease;
+}
+
+.fixed-back-to-top:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 159, 67, 0.6);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.fixed-back-to-top:active {
+    transform: translateY(1px) scale(0.96);
+}
+
+.fixed-back-to-top.illuminated {
+    background: #ffffff;
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+    animation: elegantPulse 1.8s infinite ease-in-out;
+}
+
+.fixed-back-to-top.illuminated::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-orange);
+    animation: radarWave 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+}
+
+@keyframes elegantPulse {
+    0%, 100% {
+        box-shadow: 0 0 18px rgba(255, 159, 67, 0.9), 0 4px 15px rgba(0,0,0,0.2);
+        transform: scale(1.05);
+        color: var(--accent-orange);
+        border-color: var(--accent-orange);
+    }
+    50% {
+        box-shadow: 0 0 28px rgba(255, 159, 67, 1), 0 8px 25px rgba(0,0,0,0.3);
+        transform: scale(1.14);
+        color: #ffffff;
+        background: var(--accent-orange);
+        border-color: #ffffff;
+    }
+}
+
+@keyframes radarWave {
+    0% { opacity: 0.9; transform: scale(0.85); }
+    100% { opacity: 0; transform: scale(1.6); }
+}
+
+/* =========================================================
+   PULSANTE WHATSAPP FISSO: TONDO, VERDE WHATSAPP, BORDO ARANCIONE E TRILLO
+   ========================================================= */
+.whatsapp-fixed-circle {
+    position: fixed; 
+    bottom: max(24px, env(safe-area-inset-bottom, 24px)); 
+    left: max(24px, env(safe-area-inset-left, 24px)); 
+    right: auto !important;
+    width: 60px;
+    height: 60px;
+    border-radius: 50% !important;
+    background: #25d366 !important;
+    color: #ffffff !important;
+    border: 2.5px solid var(--accent-orange) !important;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0,0,0,0.25);
+    z-index: 9999;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    animation: chatTrill 5s ease-in-out infinite !important;
+    transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
+}
+
+.whatsapp-fixed-circle svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+}
+
+.whatsapp-fixed-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 16px 36px rgba(37, 211, 102, 0.6), 0 0 20px rgba(255, 159, 67, 0.5);
+    background: #20ba5a !important;
+    border-color: var(--accent-orange) !important;
+}
+
+.whatsapp-fixed-circle:active {
+    transform: scale(0.95);
+}
+
+@keyframes chatTrill {
+    0%, 85% { transform: scale(1) rotate(0deg); }
+    87% { transform: scale(1.08) rotate(4deg); }
+    89% { transform: scale(1.08) rotate(-4deg); }
+    91% { transform: scale(1.08) rotate(4deg); }
+    93% { transform: scale(1.08) rotate(-4deg); }
+    95% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+/* =========================================================
+   BARRA SUPERIORE AZIONI (TORNA ALLA HOME + LINKEDIN)
+   ========================================================= */
+.header-actions-bar {
+    padding-top: 125px;
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+}
+
+.back-home-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 2px solid #0a2418;
+    color: var(--brand-green-dark);
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.back-home-pill:hover {
+    background: var(--brand-green-dark);
+    border-color: var(--brand-green-dark);
+    color: #ffffff;
+    transform: translateX(-3px);
+    box-shadow: 0 6px 16px rgba(10, 36, 24, 0.2);
+}
+
+.back-home-pill svg {
+    transition: transform 0.2s ease;
+}
+
+.back-home-pill:hover svg {
+    transform: translateX(-2px);
+}
+
+.btn-linkedin-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #0a66c2;
+    color: #ffffff;
+    padding: 9px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 10px rgba(10, 102, 194, 0.25);
+}
+
+.btn-linkedin-top:hover {
+    background: #084e96;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(10, 102, 194, 0.35);
+}
+
+/* =========================================================
+   SEZIONE ARTICOLO
+   ========================================================= */
+.newsletter-section {
+    background-color: var(--bg-page);
+    padding: 5px 0 100px 0;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.newsletter-card {
+    background: var(--bg-card);
+    border-radius: 32px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 20px 55px rgba(10, 36, 24, 0.07);
+    padding: 50px 48px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+    transition: box-shadow 0.3s ease;
+}
+
+.newsletter-card:hover {
+    box-shadow: 0 25px 65px rgba(10, 36, 24, 0.1);
+}
+
+/* FOTO IN TESTA */
+.newsletter-hero-image-box {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 35px;
+    border: 1px solid #d4dfd9;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+    background: #000000;
+}
+
+.newsletter-hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 540px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newsletter-card:hover .newsletter-hero-img {
+    transform: scale(1.015);
+}
+
+/* BARRA META */
+.newsletter-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #ebf1ee;
+}
+
+.newsletter-edition-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eaf8f0;
+    color: #176538;
+    border: 1px solid #bce6cb;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newsletter-read-time {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-weight: 600;
+}
+
+/* TITOLO ARTICOLO */
+.newsletter-article-h1 {
+    color: var(--brand-green-dark);
+    font-size: clamp(28px, 4.4vw, 44px);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+    margin-bottom: 30px;
+}
+
+/* I 4 PILASTRI */
+.newsletter-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 35px 0 45px 0;
+    padding: 24px;
+    background: #f3f7f5;
+    border: 1px solid #d8e4de;
+    border-radius: 22px;
+}
+
+.pillar-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 6px;
+}
+
+.pillar-icon {
+    width: 38px;
+    height: 38px;
+    color: #187741;
+    margin-bottom: 12px;
+    stroke-width: 2;
+}
+
+.pillar-title {
+    color: var(--brand-green-dark);
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+}
+
+.pillar-desc {
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* TESTO DELL'ARTICOLO */
+.newsletter-content {
+    color: #24362d;
+    font-size: 18.5px;
+    line-height: 1.85;
+    font-weight: 400;
+}
+
+.newsletter-content p {
+    margin-bottom: 22px;
+}
+
+.newsletter-content .lead-p {
+    font-size: clamp(21px, 3.2vw, 26px);
+    font-weight: 800;
+    color: var(--brand-green-dark);
+    margin-bottom: 28px;
+    line-height: 1.4;
+    border-left: 4px solid #187741;
+    padding-left: 18px;
+}
+
+.newsletter-content .emphasis-p {
+    color: #187741;
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: 0.4px;
+}
+
+.newsletter-content .dialogue-p {
+    font-style: italic;
+    color: var(--brand-green-dark);
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 14px;
+    border-left: 3px solid #ff9f43;
+}
+
+.newsletter-quote-box {
+    margin: 42px 0;
+    padding: 28px 32px;
+    background: #0a2418;
+    border-left: 5px solid #ff9f43;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 0 10px 30px rgba(10, 36, 24, 0.15);
+}
+
+.newsletter-quote-text {
+    font-size: clamp(21px, 3.2vw, 27px);
+    font-weight: 900;
+    color: #ffffff;
+    font-style: italic;
+    line-height: 1.35;
+}
+
+.newsletter-quote-text .accent {
+    color: #6ef195;
+}
+
+/* FOOTER CARD ARTICOLO */
+.newsletter-card-footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1.5px solid #e1eae5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.newsletter-author-tag {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.newsletter-author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2.5px solid #187741;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.newsletter-author-name {
+    color: var(--brand-green-dark);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.newsletter-author-role {
+    color: #187741;
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* PULSANTE LINKEDIN */
+.btn-linkedin-main {
+    position: relative;
+    background: #0a66c2;
+    color: #ffffff;
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 13.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(10, 102, 194, 0.3);
+}
+
+.btn-linkedin-main:hover {
+    background: #084e96;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.4);
+    color: #ffffff;
+}
+
+/* BOX ALTRE EDIZIONI & ARCHIVIO */
+.newsletter-archive-box {
+    margin-top: 40px;
+    padding: 32px 36px;
+    background: #ffffff;
+    border: 1.5px solid #d4dfd9;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    text-align: left;
+}
+
+.archive-title {
+    color: var(--brand-green-dark);
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.archive-edition-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 22px;
+    background: #f3f7f5;
+    border: 1px solid #d8e4de;
+    border-radius: 16px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.archive-edition-card:hover {
+    background: #ffffff;
+    border-color: #187741;
+    transform: translateX(4px);
+    box-shadow: 0 6px 18px rgba(10, 36, 24, 0.08);
+}
+
+.archive-edition-info h5 {
+    color: var(--brand-green-dark);
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.archive-edition-info p {
+    color: var(--text-muted);
+    font-size: 13.5px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.archive-edition-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid #0a2418;
+    color: #0a2418;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
+}
+
+.archive-edition-card:hover .archive-edition-arrow {
+    background: #0a2418;
+    color: #ffffff;
+}
+
+/* PULSANTE TORNA ALLA HOME A FONDO PAGINA */
+.bottom-actions-center {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.back-home-bottom-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--brand-green-dark);
+    color: #ffffff;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 20px rgba(10, 36, 24, 0.2);
+}
+
+.back-home-bottom-btn:hover {
+    background: #123e2b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(10, 36, 24, 0.28);
+    color: #ffffff;
+}
+
+/* FOOTER INFORMATIVO */
+.newsletter-footer {
+    background-color: var(--brand-green-dark);
+    color: #ffffff;
+    padding: 70px 0 45px 0;
+    text-align: center;
+    position: relative;
+    border-top: 1px solid rgba(110, 241, 149, 0.2);
+}
+
+.footer-author-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.footer-author-role {
+    color: #6ef195;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 25px;
+}
+
+.footer-contacts-list {
+    color: #b0c9bd;
+    font-size: 16px;
+    line-height: 2.3;
+    margin-bottom: 35px;
+}
+
+.footer-contacts-list strong {
+    color: #ffffff;
+}
+
+/* PULSANTE SCRIVIMI */
+.btn-email-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: rgba(110, 241, 149, 0.12);
+    color: #ffffff;
+    border: 1.5px solid #6ef195;
+    padding: 6px 16px 6px 8px;
+    border-radius: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.4px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+.btn-email-box .email-box-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #6ef195;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+}
+
+.btn-email-box .email-box-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke: #071910;
+    stroke-width: 2.2;
+    transition: stroke 0.25s ease;
+}
+
+.btn-email-box:hover {
+    background: rgba(110, 241, 149, 0.22);
+    color: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(110, 241, 149, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-email-box:hover .email-box-icon {
+    background: #ffffff;
+}
+
+.btn-email-box:hover .email-box-icon svg {
+    stroke: #0a2418;
+}
+
+.legal-links-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.iubenda-legal-link {
+    color: #8ba89a;
+    font-size: 12.5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.iubenda-legal-link:hover {
+    color: #6ef195;
+    text-decoration: underline;
+}
+
+.legal-separator {
+    color: #8ba89a;
+    font-size: 11px;
+    opacity: 0.6;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .newsletter-card { padding: 40px 30px; }
+    .newsletter-pillars-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+}
+
+@media (max-width: 768px) {
+    .header-actions-bar { padding-top: 135px; }
+    .newsletter-section { padding: 5px 0 70px 0; }
+    .newsletter-card { padding: 26px 18px; border-radius: 24px; }
+    .newsletter-hero-image-box { border-radius: 18px; margin-bottom: 25px; }
+    .newsletter-content { font-size: 16.5px; line-height: 1.75; }
+    .newsletter-content p { margin-bottom: 18px; }
+    .newsletter-quote-box { padding: 20px 22px; margin: 32px 0; border-radius: 0 16px 16px 0; }
+    .newsletter-archive-box { padding: 24px 20px; border-radius: 20px; }
+    .fixed-back-to-top { top: calc(max(10px, env(safe-area-inset-top, 10px)) + 80px); right: 12px; width: 40px; height: 40px; }
+    .fixed-back-to-top svg { width: 19px; height: 19px; }
+    
+    .whatsapp-fixed-circle { 
+        bottom: max(18px, env(safe-area-inset-bottom, 18px)); 
+        left: max(16px, env(safe-area-inset-left, 16px)); 
+        width: 54px; 
+        height: 54px; 
+    }
+    .whatsapp-fixed-circle svg { width: 28px; height: 28px; }
+    
+    .newsletter-card-footer { flex-direction: column; align-items: flex-start; }
+    .btn-linkedin-main { width: 100%; justify-content: center; }
+    .top-nav a, .top-nav .menu-btn { font-size: 11px; padding: 6px 12px; }
+}
+
+@media (max-width: 480px) {
+    .newsletter-pillars-grid { grid-template-columns: 1fr; gap: 12px; padding: 16px 14px; }
+    .top-nav a, .top-nav .menu-btn { font-size: 10px; padding: 5px 10px; }
+    .nav-row { gap: 6px; }
+    .back-home-pill, .btn-linkedin-top { font-size: 11.5px; padding: 8px 14px; }
+    .back-home-bottom-btn { width: 100%; justify-content: center; }
+    .archive-title { font-size: 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- BANNER DI NAVIGAZIONE FISSO IN ALTO (BIANCO, CON CONTORNI VERDI E RIGA ARANCIONE SOTTO) -->
+<nav class="top-nav" aria-label="Navigazione principale">
+    <div class="top-nav-inner">
+        <div class="nav-links-wrapper">
+            <div class="nav-row nav-row-top">
+                <a href="index.html?skip_loader=true#partner" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Collaborazioni</a>
+                <a href="index.html?skip_loader=true#risultati" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Come porto risultati</a>
+            </div>
+            <div class="nav-row nav-row-bottom">
+                <a href="index.html?skip_loader=true#numeri" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">I miei numeri</a>
+                <a href="newsletter.html" class="menu-btn active-nav-btn">Newsletter</a>
+                <a href="index.html?skip_loader=true#contatti" class="menu-btn" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">Contattami</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- FRECCIA FISSA IN ALTO A DESTRA SOTTO IL BANNER -->
+<a href="#" id="fixed-back-to-top" class="fixed-back-to-top illuminated" title="Torna in cima" aria-label="Torna in cima alla pagina">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+</a>
+
+<!-- TASTO WHATSAPP FISSO TONDO A SINISTRA CON LOGO WHATSAPP UFFICIALE E BORDO ARANCIONE -->
+<a href="https://wa.me/393505791061" class="whatsapp-fixed-circle" target="_blank" rel="noopener noreferrer" title="Contattami su WhatsApp" aria-label="Chat WhatsApp con Matteo Bertoni">
+    <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
+
+<!-- CONTENUTO PRINCIPALE -->
+<main>
+    <div class="container">
+        <!-- BARRA SUPERIORE: TORNA ALLA HOME + LINKEDIN -->
+        <div class="header-actions-bar">
+            <a href="index.html?skip_loader=true" class="back-home-pill" title="Torna alla Landing Page" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Torna alla Home
+            </a>
+            <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" rel="noopener noreferrer" class="btn-linkedin-top" title="Profilo LinkedIn di Matteo Bertoni">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                Seguimi su LinkedIn
+            </a>
+        </div>
+    </div>
+
+    <!-- SEZIONE ARTICOLO NEWSLETTER -->
+    <section class="newsletter-section" id="newsletter">
+        <div class="bg-light-pattern"></div>
+        <div class="container">
+
+            <article class="newsletter-card reveal" itemscope itemtype="https://schema.org/BlogPosting">
+                <meta itemprop="inLanguage" content="it-IT">
+                <meta itemprop="datePublished" content="2025-02-10">
+
+                <!-- 1. FOTO IN TESTA -->
+                <div class="newsletter-hero-image-box">
+                    <img src="call_risposta_giusta.jpg" onerror="this.onerror=null; this.src='call_risposta_giusta.png';" alt="Quando il prezzo non è il punto - Matteo Bertoni" class="newsletter-hero-img" itemprop="image" loading="eager">
+                </div>
+
+                <!-- BARRA META INFORMAZIONI -->
+                <div class="newsletter-meta-bar">
+                    <span class="newsletter-edition-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        Edizione #02 • Remote Closing & Negoziazione
+                    </span>
+                    <span class="newsletter-read-time">2 min di lettura</span>
+                </div>
+
+                <!-- 2. TITOLO ARTICOLO -->
+                <h1 class="newsletter-article-h1" itemprop="headline">Quando il prezzo non è il punto</h1>
+
+                <!-- 3. I 4 PILASTRI DELLA TRATTATIVA ALTO SPENDENTE -->
+                <div class="newsletter-pillars-grid">
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <span class="pillar-title">Ascolto reale</span>
+                        <span class="pillar-desc">Capisci l'esigenza prima di parlare di cifre.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
+                        <span class="pillar-title">Su misura</span>
+                        <span class="pillar-desc">Non per aziende simili, ma proprio per loro.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span class="pillar-title">Niente fretta</span>
+                        <span class="pillar-desc">Evita offerte al volo. Elabora con metodo.</span>
+                    </div>
+                    <div class="pillar-item">
+                        <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <span class="pillar-title">Scelta reciproca</span>
+                        <span class="pillar-desc">Stanno scegliendo con chi e come collaborare.</span>
+                    </div>
+                </div>
+
+                <!-- 4. TESTO INTEGRALE DELL'ARTICOLO -->
+                <div class="newsletter-content" itemprop="articleBody">
+                    <p class="lead-p">C’è una cosa che mi sta succedendo spesso, ultimamente.</p>
+
+                    <p>Sono in videocall di vendita con persone che, da una mia analisi pre-consulenza, non hanno particolari problemi di budget.</p>
+
+                    <p class="emphasis-p">Quindi... il prezzo non è mai davvero il centro della conversazione.</p>
+
+                    <p>In prima battuta non fanno quasi mai la domanda diretta: <span class="dialogue-p">“quanto ci costa una collaborazione con voi?”</span></p>
+
+                    <p>O meglio: a volte la fanno, ma non è lì che si gioca la partita.</p>
+
+                    <p>Anzi, ho notato una cosa:</p>
+
+                    <p><strong>quando porto troppo velocemente la conversazione sul prezzo, l’energia cala.</strong></p>
+
+                    <p>Come se stessi semplificando qualcosa che per loro non è semplice.</p>
+
+                    <p>Quello che cercano è capire se quello che faccio sia adatto a loro.</p>
+
+                    <p>Non in generale. Non “per aziende come la loro”.</p>
+
+                    <p class="emphasis-p">Proprio per loro.</p>
+
+                    <p>Ed è lì che mi sono trovato a cambiare approccio.</p>
+
+                    <p>Sempre più spesso evito di chiudere tutto in call.</p>
+
+                    <p>Niente proposta al volo (anche se l'avrei pronta). Niente numeri buttati lì.</p>
+
+                    <p>Chiudo Zoom, mi prendo tempo, e torno con qualcosa di pensato.</p>
+
+                    <p>Non so dirti se sia la scelta migliore in assoluto.</p>
+
+                    <p>So solo che, in quelle situazioni, la percezione cambia.</p>
+
+                    <p>La conversazione si sposta.</p>
+
+                    <div class="newsletter-quote-box">
+                        <p class="newsletter-quote-text">Alcune persone, quando possono permetterselo, non stanno comprando un prezzo. <span class="accent">Stanno scegliendo come e con chi lavorare.</span></p>
+                    </div>
+
+                    <p>Forse è solo una mia impressione.</p>
+
+                    <p>O forse alcune persone, quando possono permetterselo, non stanno comprando un prezzo.</p>
+
+                    <p>Stanno scegliendo come e con chi lavorare.</p>
+
+                    <p class="dialogue-p">Sono curioso di capire se succede anche a te.</p>
+                </div>
+
+                <!-- 5. FOOTER CARD CON AUTORE E TASTO LINKEDIN -->
+                <footer class="newsletter-card-footer">
+                    <div class="newsletter-author-tag" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        <img src="foto.png" alt="Matteo Bertoni" class="newsletter-author-avatar" itemprop="image">
+                        <div>
+                            <div class="newsletter-author-name" itemprop="name">Matteo Bertoni</div>
+                            <div class="newsletter-author-role" itemprop="jobTitle">Remote Closing Specialist</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" rel="noopener noreferrer" class="btn-linkedin-main">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                            Seguimi su LinkedIn
+                        </a>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- BOX ARCHIVIO ALTRE EDIZIONI -->
+            <div class="newsletter-archive-box reveal">
+                <div class="archive-title">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                    Altre edizioni della Newsletter
+                </div>
+                <a href="newsletter.html" class="archive-edition-card" title="Leggi l'Edizione #01">
+                    <div class="archive-edition-info">
+                        <h5>Edizione #01: Il closing non si forza. Si coltiva.</h5>
+                        <p>Perché la vendita consulenziale è come prendersi cura di un bonsai: ascolto, costanza e pazienza.</p>
+                    </div>
+                    <div class="archive-edition-arrow">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </div>
+                </a>
+            </div>
+
+            <!-- TASTO TORNA ALLA HOME A FONDO PAGINA -->
+            <div class="bottom-actions-center reveal">
+                <a href="index.html?skip_loader=true" class="back-home-bottom-btn" title="Torna alla Home page" onclick="try{sessionStorage.setItem('from_newsletter','true');sessionStorage.setItem('skip_home_loader','true');}catch(e){}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Torna alla Home
+                </a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER INFORMATIVO E CONTATTI -->
+<footer class="newsletter-footer">
+    <div class="container">
+        <div class="footer-author-name">Matteo Bertoni</div>
+        <div class="footer-author-role">Remote Closing Specialist (Verona)</div>
+        <div class="footer-contacts-list">
+            <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                Email: 
+                <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email">
+                    <span class="email-box-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    </span>
+                    Scrivimi
+                </a>
+            </p>
+            <p>WhatsApp: <span style="color: #fff; font-weight: 300;">350 579 1061</span> • P.IVA: <span style="color: #fff; font-weight: 300;">IT04853980235</span></p>
+        </div>
+        <div class="legal-links-footer">
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63" class="iubenda-cs-preferences-link iubenda-legal-link" title="Privacy Policy">Privacy Policy</a>
+            <span class="legal-separator">•</span>
+            <a href="https://www.iubenda.com/privacy-policy/4ffcdef2-e41c-4434-9715-6b9978ad0f63/cookie-policy" class="iubenda-cs-preferences-link iubenda-legal-link" title="Cookie Policy">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // REVEAL ANIMATIONS
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // FRECCIA TORNA IN CIMA (CORRETTA E CENTRATA)
+    const backToTopBtn = document.getElementById('fixed-back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // IMPOSTAZIONE AUTOMATICA FLAG SKIP LOADER SU QUALSIASI LINK VERSO LA HOME
+    document.querySelectorAll('a[href*="index.html"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            try {
+                sessionStorage.setItem('from_newsletter', 'true');
+                sessionStorage.setItem('skip_home_loader', 'true');
+            } catch(e) {}
+        });
+    });
+
+    window.addEventListener('beforeunload', function() {
+        try {
+            sessionStorage.setItem('from_newsletter', 'true');
+            sessionStorage.setItem('skip_home_loader', 'true');
+        } catch(e) {}
+    });
+});
+</script>
+
+</body>
+</html>
