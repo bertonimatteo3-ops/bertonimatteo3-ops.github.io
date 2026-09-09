@@ -365,8 +365,8 @@ h2[id], div[id="contatti"] {
 }
 
 .pc-showcase-container {
-    max-width: 640px;
-    width: 90%;
+    max-width: 1060px;
+    width: 94%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -377,7 +377,7 @@ h2[id], div[id="contatti"] {
 .pc-mockup-wrapper {
     position: relative;
     width: 100%;
-    max-width: 620px;
+    max-width: 1040px;
     opacity: 1;
     transform: translateY(0) scale(1);
     transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
@@ -413,11 +413,11 @@ h2[id], div[id="contatti"] {
 
 .pc-avatar-circle {
     position: absolute;
-    top: 36%;
+    top: 41%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1);
-    width: clamp(145px, 29vw, 230px);
-    height: clamp(145px, 29vw, 230px);
+    width: clamp(180px, 22vw, 230px);
+    height: clamp(180px, 22vw, 230px);
     border-radius: 50%;
     border: 3.5px solid var(--accent-mint);
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
@@ -941,10 +941,11 @@ h2[id], div[id="contatti"] {
     .fixed-back-to-top .arrow-tooltip { font-size: 9px; padding: 5px 9px; right: 50px; }
 
     .pc-showcase-section { padding-top: 135px; padding-bottom: 25px; }
-    .pc-showcase-container { width: 92%; max-width: 410px; }
+    .pc-showcase-container { width: 95%; max-width: 580px; }
     .pc-avatar-circle { 
-        width: clamp(115px, 32vw, 165px); 
-        height: clamp(115px, 32vw, 165px); 
+        top: 41%;
+        width: clamp(100px, 24vw, 130px); 
+        height: clamp(100px, 24vw, 130px); 
         border-width: 3px; 
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55); 
     }
@@ -1028,11 +1029,12 @@ h2[id], div[id="contatti"] {
     }
     .fixed-back-to-top svg { width: 18px; height: 18px; }
     .pc-showcase-section { padding-top: 125px; padding-bottom: 20px; }
-    .pc-showcase-container { width: 90%; max-width: 330px; }
+    .pc-showcase-container { width: 95%; max-width: 440px; }
     .pc-avatar-circle { 
-        width: clamp(98px, 33vw, 135px); 
-        height: clamp(98px, 33vw, 135px); 
-        border-width: 3px; 
+        top: 41%;
+        width: clamp(85px, 23vw, 105px); 
+        height: clamp(85px, 23vw, 105px); 
+        border-width: 2.5px; 
     }
     .hero-title { font-size: 28px; }
     .hero-desc-mobile { font-size: 15.5px; }
@@ -1051,7 +1053,12 @@ h2[id], div[id="contatti"] {
     .hero-content { gap: 35px; }
     .grid-3 { grid-template-columns: repeat(2, 1fr); gap: 30px; }
     .logos-grid { grid-template-columns: repeat(4, 1fr); }
-    .pc-showcase-container { max-width: 650px; }
+    .pc-showcase-container { max-width: 860px; }
+    .pc-avatar-circle {
+        top: 41%;
+        width: 190px;
+        height: 190px;
+    }
 }
 
 @media (min-width: 769px) {
