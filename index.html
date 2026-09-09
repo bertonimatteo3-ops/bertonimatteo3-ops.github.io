@@ -378,18 +378,18 @@ h2[id], div[id="contatti"] {
     position: relative;
     width: 100%;
     max-width: 620px;
-    opacity: 0;
-    transform: translateY(20px) scale(0.98);
-    transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .pc-mockup-wrapper.pc-visible {
-    opacity: 0.88;
+    opacity: 1;
     transform: translateY(0) scale(1);
 }
 
 .pc-mockup-wrapper:hover {
-    opacity: 0.98;
+    opacity: 1;
 }
 
 .pc-real-img {
@@ -415,7 +415,7 @@ h2[id], div[id="contatti"] {
     position: absolute;
     top: 36%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.85);
+    transform: translate(-50%, -50%) scale(1);
     width: clamp(145px, 29vw, 230px);
     height: clamp(145px, 29vw, 230px);
     border-radius: 50%;
@@ -426,7 +426,7 @@ h2[id], div[id="contatti"] {
     align-items: center;
     justify-content: center;
     background: #050505;
-    opacity: 0;
+    opacity: 1;
     z-index: 2;
     transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -657,7 +657,7 @@ h2[id], div[id="contatti"] {
     background-color: var(--bg-dark);
 }
 #risultati {
-    color: #082f49 !important;
+    color: #ffffff !important;
 }
 .contatti-section .reveal > p:first-child {
     color: #ffffff !important;
@@ -1153,7 +1153,7 @@ h2[id], div[id="contatti"] {
 <section class="pc-showcase-section" id="pc-showcase">
     <div class="pc-showcase-container">
         <div class="pc-mockup-wrapper" id="pc-mockup">
-            <img src="laptop_black_screen.jpg" alt="Laptop Professionale" class="pc-real-img" loading="eager">
+            <img src="laptop_black_screen.jpg" alt="" class="pc-real-img" loading="eager" onerror="this.style.opacity='0'">
 
             <!-- SCHERMO NERO SPENTO CON LA FOTO DI MATTEO BERTONI -->
             <div class="pc-screen-content">
@@ -1231,7 +1231,7 @@ h2[id], div[id="contatti"] {
     <div class="bg-pattern desktop-pattern"></div>
     
     <div class="container">
-        <h2 id="risultati" style="color:white; text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:900; margin-bottom:80px; letter-spacing: -1px;">Come porto risultati</h2>
+        <h2 id="risultati" style="color:#ffffff !important; text-align:center; font-size:clamp(34px, 5vw, 52px); font-weight:900; margin-bottom:80px; letter-spacing: -1px;">Come porto risultati</h2>
         <div class="grid-3">
             <div class="card-dark reveal">
                 <h3 class="green" style="font-size:26px; margin-bottom:25px;">Sales closing</h3>
@@ -1312,7 +1312,7 @@ h2[id], div[id="contatti"] {
             <h2 style="color:#ffffff !important; font-size: clamp(22px, 3.5vw, 28px); font-weight:600; margin-bottom:50px; text-transform: none;">Clicca su WhatsApp e collaboriamo</h2>
             <div class="contact-box-elegant">
                 <p style="font-size: 28px; font-weight: 500; color: #fff; margin-bottom: 15px;">Matteo Bertoni</p>
-                <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px;">Remote Closing Specialist (Verona)</p>
+                <p style="color: var(--accent-mint); margin-bottom: 45px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; line-height: 1.6;">Remote Closing Specialist<br>(Verona)</p>
                 <div class="contact-details-list" style="color: #ffffff !important; font-size: 17px; line-height: 2.3;">
                     <p style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px;"><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">Email:</span> <a href="mailto:bertonimatteo3@gmail.com" class="btn-email-box" title="Scrivimi una email"><span class="email-box-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>Scrivimi</a></p>
                     <p><span class="contact-label-item" style="color: #ffffff !important; font-weight: 600;">WhatsApp:</span> <span style="color: #ffffff !important; font-weight: 400;">350 579 1061</span></p>
@@ -1412,13 +1412,11 @@ document.addEventListener("DOMContentLoaded", function() {
             if (pcMockup) {
                 pcMockup.classList.add('pc-visible');
             }
-            setTimeout(() => {
-                const pcAvatar = document.getElementById('pc-avatar');
-                if (pcAvatar) {
-                    pcAvatar.classList.add('avatar-visible');
-                }
-            }, 450);
-        }, 1000);
+            const pcAvatar = document.getElementById('pc-avatar');
+            if (pcAvatar) {
+                pcAvatar.classList.add('avatar-visible');
+            }
+        }, 100);
     }
 
     function init() {
