@@ -1112,6 +1112,7 @@ h2[id], div[id="contatti"] {
 }
 
 /* SOLO DA PC DESKTOP (>= 1025px): 5 BOTTONI IN LINEA, FRECCIA PIÙ IN BASSO, TASTI HERO A DESTRA A FIANCO */
+/* SOLO DA PC DESKTOP E TABLET ORIZZONTALE: MENU IN LINEA */
 @media (min-width: 769px) {
     .top-nav {
         padding: 12px 24px;
@@ -1138,8 +1139,10 @@ h2[id], div[id="contatti"] {
         top: 86px;
         right: 32px;
     }
+} /* <-- Chiusura del blocco 769px */
 
-    /* Hero da PC: i due tasti a destra a fianco del testo */
+/* IMPAGINAZIONE HERO SOLO ED ESCLUSIVAMENTE PER PC (Esclude Tablet e iPad) */
+@media (min-width: 1025px) {
     .hero-content {
         flex-direction: row;
         align-items: center;
@@ -1235,11 +1238,13 @@ h2[id], div[id="contatti"] {
                 <p class="hero-desc-desktop" style="color: var(--text-muted-dark); font-size: 20px; line-height: 1.6; max-width: 550px;">Aiuto da remoto aziende e agenzie nel B2B e B2C nel chiudere direttamente ogni trattativa di vendita. Tu passami i lead, io ti porto contratti firmati.</p>
                 <div class="hero-desc-mobile">
                     <div>Aiuto da remoto aziende e agenzie</div>
-                    <div class="hero-bullets">
+                   <div class="hero-bullets">
                         <div>nel B2B e B2C.</div>
-                       <div style="color: #ffffff !important; font-weight: 400; text-transform: none;">Tu passami i lead. Io ti porto contratti firmati.</div>
-    </div>
-</div>
+                        <div style="color: #ffffff !important; font-weight: 400; text-transform: none;">Chiudo direttamente trattative e vendite.</div>
+                    </div>
+                </div>
+            </div> <!-- QUESTO DIV MANCANTE CHIUDE LA PARTE SINISTRA -->
+
             <div class="hero-actions">
                 <a href="mailto:bertonimatteo3@gmail.com" class="btn-main">Prenota Call Gratuita</a>
                 <a href="https://www.linkedin.com/in/matteo-bertoni-1223b7204/" target="_blank" class="btn-shimmer" style="color: #ffffff !important; border-color: #ffffff !important;">
