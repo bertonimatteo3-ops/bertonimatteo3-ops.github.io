@@ -1952,11 +1952,9 @@ document.addEventListener("DOMContentLoaded", function() {
             // POI LA FOTO NEL CERCHIO SULLO SCHERMO DEL PC
             setTimeout(() => {
                 const pcAvatar = document.getElementById('pc-avatar');
-                const pcArrow = document.getElementById('pc-avatar-arrow');
                 const pcPill = document.getElementById('pc-avatar-pill');
                 if (pcAvatar) pcAvatar.classList.add('avatar-visible');
                 setTimeout(() => {
-                    if (pcArrow) pcArrow.classList.add('arrow-visible');
                     if (pcPill) pcPill.classList.add('pill-visible');
                 }, 300);
             }, 450);
