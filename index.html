@@ -1714,10 +1714,54 @@ h2[id], div[id="contatti"] {
                     <div class="pc-avatar-circle" id="pc-avatar">
                         <img src="foto.png" alt="Matteo Bertoni" class="pc-avatar-img">
                     </div>
+                  
                     <!-- FRECCIA 3D FLUTTUANTE NELL'ANGOLO IN ALTO A DESTRA DELLA FOTO -->
-                    <div class="pc-avatar-floating-arrow" id="pc-avatar-arrow" title="Clicca per aprire il profilo">
-                        <img src="freccia.svg" alt="Clicca qui per visualizzare il profilo" class="floating-arrow-img">
-                    </div>
+<div class="pc-avatar-floating-arrow" id="pc-avatar-arrow" title="Clicca per aprire il profilo">
+    <svg viewBox="0 0 200 200" class="floating-arrow-img" style="overflow: visible;" aria-hidden="true">
+        <defs>
+            <filter id="cursor3dShadow" x="-40%" y="-40%" width="190%" height="190%">
+                <feDropShadow dx="-2" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.45" />
+                <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#082f49" flood-opacity="0.3" />
+            </filter>
+            <linearGradient id="bevelDark" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#475569" />
+                <stop offset="40%" stop-color="#334155" />
+                <stop offset="100%" stop-color="#1e293b" />
+            </linearGradient>
+            <linearGradient id="bevelHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#64748b" />
+                <stop offset="100%" stop-color="#334155" />
+            </linearGradient>
+            <linearGradient id="bevelBottom" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#1e293b" />
+                <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+            <linearGradient id="faceGradient" x1="20%" y1="10%" x2="80%" y2="90%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="65%" stop-color="#f8fafc" />
+                <stop offset="100%" stop-color="#e2e8f0" />
+            </linearGradient>
+            <linearGradient id="innerBevelStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0.5" />
+            </linearGradient>
+        </defs>
+        <g filter="url(#cursor3dShadow)">
+            <path d="M 42 38 C 41 33 46 29 50 31 L 152 95 C 157 98 156 105 150 107 L 114 116 L 142 168 C 145 174 142 181 136 184 L 118 193 C 112 196 105 193 102 187 L 75 136 L 47 160 C 42 164 36 161 36 155 L 42 38 Z" fill="#0f172a" />
+            <path d="M 152 82 L 152 95 L 114 116 L 114 104 Z" fill="url(#bevelDark)" />
+            <path d="M 114 104 L 114 116 L 142 168 L 142 156 Z" fill="url(#bevelHighlight)" />
+            <path d="M 142 156 L 142 168 L 118 193 L 118 181 Z" fill="url(#bevelBottom)" />
+            <path d="M 118 181 L 118 193 L 75 136 L 75 124 Z" fill="url(#bevelDark)" />
+            <path d="M 75 124 L 75 136 L 47 160 L 47 148 Z" fill="url(#bevelBottom)" />
+            <path d="M 47 148 L 47 160 L 36 155 L 36 142 Z" fill="url(#bevelDark)" />
+            <path d="M 36 142 L 36 155 L 42 38 L 42 26 Z" fill="url(#bevelDark)" />
+            <path d="M 42 26 C 40 21 46 17 50 19 L 152 82 C 157 85 156 93 150 95 L 114 104 L 142 156 C 145 162 142 169 136 172 L 118 181 C 112 184 105 181 102 175 L 75 124 L 47 148 C 42 152 36 149 36 142 L 42 26 Z" fill="url(#bevelDark)" stroke="#1e293b" stroke-width="3" stroke-linejoin="round" />
+            <path d="M 45 31 L 142 86 L 110 94 C 107 95 105 97 106 100 L 133 151 L 118 158 L 92 108 C 90 105 87 104 84 106 L 57 129 Z" fill="url(#faceGradient)" stroke="url(#innerBevelStroke)" stroke-width="2" stroke-linejoin="round" />
+            <path d="M 48 36 L 126 80 L 105 86 L 48 36 Z" fill="#ffffff" opacity="0.6" />
+            <path d="M 46 36 L 46 112 L 54 105 L 46 36 Z" fill="#ffffff" opacity="0.4" />
+        </g>
+    </svg>
+</div>
                     <!-- PILLOLA INFORMATIVA -->
                     <div class="pc-avatar-info-pill" id="pc-avatar-pill">
                         <span>Clicca per info</span>
