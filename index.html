@@ -274,9 +274,24 @@ h2[id], div[id="contatti"] {
     z-index: 9995;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
+    
+    /* La nascondiamo di default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px); 
+}
+
+/* Classe che useremo per farla apparire e lampeggiare */
+.fixed-back-to-top.show-arrow {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    animation: elegantPulse 2s infinite ease-in-out; 
 }
 .fixed-back-to-top svg {
     width: 22px;
