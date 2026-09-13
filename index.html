@@ -1935,20 +1935,26 @@ document.addEventListener("DOMContentLoaded", function() {
         window.scrollTo(0, 0);
     });
 
-    const backToTopBtn = document.getElementById('fixed-back-to-top');
-    const menuButtons = document.querySelectorAll('.nav-links-wrapper .menu-btn');
-    let glowTimer = null;
-
-    menuButtons.forEach(btn => {
-        btn.addEventListener('click', function() {
-            if (!backToTopBtn) return;
-            backToTopBtn.classList.add('illuminated');
-            if (glowTimer) clearTimeout(glowTimer);
-            glowTimer = setTimeout(() => {
-                backToTopBtn.classList.remove('illuminated');
-            }, 6000);
-        });
+   const backToTopBtn = document.getElementById('fixed-back-to-top');
+    
+    // Mostra la freccia e la fa lampeggiare solo dopo aver scrollato di 300px
+    window.addEventListener('scroll', function() {
+        if (!backToTopBtn) return;
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show-arrow');
+        } else {
+            backToTopBtn.classList.remove('show-arrow');
+        }
     });
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Nasconde subito la freccia mentre si torna su
+            backToTopBtn.classList.remove('show-arrow');
+        });
+    }
 
     if (backToTopBtn) {
         backToTopBtn.addEventListener('click', function(e) {
