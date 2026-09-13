@@ -2083,18 +2083,36 @@ document.addEventListener("DOMContentLoaded", function() {
     const profileCloseBtn = document.getElementById('profile-modal-close');
     const avatarTrigger = document.getElementById('pc-avatar-trigger');
 
+   let scrollPosition = 0; // Variabile per salvare la posizione
+
     function openProfileModal() {
         if (!profileModal) return;
+        
+        // 1. Salva la posizione attuale dello scroll
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // 2. Fissa la pagina esattamente in quel punto (blocca lo scroll anche su iOS)
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.style.width = '100%';
+        
         profileModal.classList.add('is-open');
         profileModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
     }
 
     function closeProfileModal() {
         if (!profileModal) return;
+        
+        // 3. Rimuovi i blocchi dal body
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        
+        // 4. Riporta istantaneamente la pagina al punto esatto in cui era prima
+        window.scrollTo(0, scrollPosition);
+        
         profileModal.classList.remove('is-open');
         profileModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
     }
 
     if (avatarTrigger) {
